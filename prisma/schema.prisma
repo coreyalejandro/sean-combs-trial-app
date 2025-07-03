@@ -1,0 +1,70 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/sean_combs_trial_app/app/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model TrialDay {
+  id                Int      @id @default(autoincrement())
+  date              DateTime @unique
+  trialDayNumber    Int      @unique
+  headlineTitle     String
+  headlineSummary   String   @db.Text
+  dataStoryPlan     String   @db.Text
+  visualizationType String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  testimonies       Testimony[]
+  evidence          Evidence[]
+
+  @@map("trial_days")
+}
+
+model Witness {
+  id            Int      @id @default(autoincrement())
+  name          String
+  pseudonym     String?
+  role          String
+  testimonies   Testimony[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("witnesses")
+}
+
+model Testimony {
+  id            Int      @id @default(autoincrement())
+  witnessId     Int
+  trialDayId    Int
+  content       String   @db.Text
+  keyPoints     String[] @db.Text
+  evidenceType  String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  witness       Witness  @relation(fields: [witnessId], references: [id])
+  trialDay      TrialDay @relation(fields: [trialDayId], references: [id])
+
+  @@map("testimonies")
+}
+
+model Evidence {
+  id            Int      @id @default(autoincrement())
+  trialDayId    Int
+  type          String
+  description   String   @db.Text
+  significance  String   @db.Text
+  imageUrl      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  trialDay      TrialDay @relation(fields: [trialDayId], references: [id])
+
+  @@map("evidence")
+}
