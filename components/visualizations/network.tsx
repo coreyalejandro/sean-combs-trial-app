@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { Users, DollarSign, Link, Info } from 'lucide-react'
+import { Users, DollarSign, Link, Info, Download } from 'lucide-react'
 import type { TrialDay } from '@/lib/types'
 
 interface NetworkVisualizationProps {
@@ -34,6 +34,15 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
   const [selectedNode, setSelectedNode] = useState<NetworkNode | null>(null)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [mounted, setMounted] = useState(false)
+
+  const networkData = {
+    financialTotal: 2.3,
+    keyInsights: [
+      'Multiple financial transfers to alleged victims',
+      'Complex web of business relationships',
+      'Pattern of settlements and payments'
+    ]
+  }
 
   const nodes: NetworkNode[] = [
     {
@@ -180,19 +189,57 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
     }
   }
 
+  const exportData = () => {
+    const csvContent = [
+      ['Node ID', 'Label', 'Type', 'Connections Count'],
+      ...nodes.map(node => [
+        node.id,
+        node.label,
+        node.type,
+        node.connections.length.toString()
+      ]),
+      [],
+      ['From', 'To', 'Label', 'Type', 'Weight'],
+      ...edges.map(edge => [
+        edge.from,
+        edge.to,
+        edge.label,
+        edge.type,
+        edge.weight.toString()
+      ])
+    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n')
+
+    const blob = new Blob([csvContent], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `trial-day-${trialDay.trialDayNumber}-network-analysis.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   if (!mounted) {
     return <div className="h-96 bg-muted rounded-lg animate-pulse" />
   }
 
   return (
     <div className="w-full">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          The Ecosystem of Allegations and Settlements
-        </h3>
-        <p className="text-sm text-muted-foreground">
-          Network visualization of financial flows and relationships in the case
-        </p>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            The Ecosystem of Allegations and Settlements
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Network visualization of financial flows and relationships in the case
+          </p>
+        </div>
+        <button
+          onClick={exportData}
+          className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
+        >
+          <Download className="w-4 h-4" />
+          <span className="text-sm">Export Network</span>
+        </button>
       </div>
 
       <div className="grid lg:grid-cols-4 gap-6">
@@ -348,18 +395,22 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
             </div>
             
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Civil Settlement:</span>
-                <span className="text-foreground font-medium">$20M</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Hotel Settlement:</span>
-                <span className="text-foreground font-medium">$10M</span>
-              </div>
-              <div className="flex justify-between border-t border-border pt-2">
-                <span className="text-muted-foreground">Total Settlements:</span>
-                <span className="text-accent font-bold">$30M</span>
-              </div>
+              {networkData?.financialTotal && networkData.financialTotal > 0 ? (
+                <>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Financial Activity:</span>
+                    <span className="text-foreground font-medium">${networkData.financialTotal}M</span>
+                  </div>
+                  <div className="flex justify-between border-t border-border pt-2">
+                    <span className="text-muted-foreground">Day {trialDay.trialDayNumber} Total:</span>
+                    <span className="text-accent font-bold">${networkData.financialTotal}M</span>
+                  </div>
+                </>
+              ) : (
+                <div className="text-muted-foreground text-center py-2">
+                  No financial data in Day {trialDay.trialDayNumber}
+                </div>
+              )}
             </div>
           </div>
 
@@ -371,18 +422,15 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
             </div>
             
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Total Nodes:</span>
-                <span className="text-foreground">{nodes.length}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Connections:</span>
-                <span className="text-foreground">{edges.length}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Central Node:</span>
-                <span className="text-foreground">Sean Combs</span>
-              </div>
+              {networkData?.keyInsights.map((insight, index) => (
+                <div key={index} className="flex justify-between">
+                  <span className="text-muted-foreground text-xs">{insight}</span>
+                </div>
+              )) || (
+                <div className="text-muted-foreground text-center py-2">
+                  Processing network data...
+                </div>
+              )}
             </div>
           </div>
         </div>

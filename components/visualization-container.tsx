@@ -10,6 +10,16 @@ import GeospatialMapVisualization from './visualizations/geospatial-map'
 import TimelineVisualization from './visualizations/timeline'
 import SentimentAnalysisVisualization from './visualizations/sentiment-analysis'
 import NetworkVisualization from './visualizations/network'
+import EvidenceInventoryVisualization from './visualizations/evidence-inventory'
+import CorroborationMatrixVisualization from './visualizations/corroboration-matrix'
+import ProcessFlowchartVisualization from './visualizations/process-flowchart'
+import EvidenceComparisonVisualization from './visualizations/evidence-comparison'
+import DigitalForensicsVisualization from './visualizations/digital-forensics'
+import PsychologicalAnalysisVisualization from './visualizations/psychological-analysis'
+import LegalProcessVisualization from './visualizations/legal-process'
+import MindMapVisualization from './visualizations/mind-map'
+import ComparativeTableVisualization from './visualizations/comparative-table'
+import Reconstruction3DVisualization from './visualizations/3d-reconstruction'
 import type { TrialDay } from '@/lib/types'
 
 interface VisualizationContainerProps {
@@ -60,6 +70,37 @@ export default function VisualizationContainer({ trialDay }: VisualizationContai
         case 'dynamic-network':
         case 'stakeholder-map':
           return <NetworkVisualization trialDay={trialDay} />
+        
+        case 'evidence-inventory':
+          return <EvidenceInventoryVisualization trialDay={trialDay} />
+        
+        case 'corroboration-matrix':
+          return <CorroborationMatrixVisualization trialDay={trialDay} />
+        
+        case 'process-flowchart':
+        case 'process-flow':
+          return <ProcessFlowchartVisualization trialDay={trialDay} />
+        
+        case 'evidence-comparison':
+          return <EvidenceComparisonVisualization trialDay={trialDay} />
+        
+        case 'digital-forensics':
+          return <DigitalForensicsVisualization trialDay={trialDay} />
+        
+        case 'psychological-analysis':
+          return <PsychologicalAnalysisVisualization trialDay={trialDay} />
+        
+        case 'legal-process':
+          return <LegalProcessVisualization trialDay={trialDay} />
+        
+        case 'mind-map':
+          return <MindMapVisualization trialDay={trialDay} />
+        
+        case 'comparative-table':
+          return <ComparativeTableVisualization trialDay={trialDay} />
+        
+        case '3d-reconstruction':
+          return <Reconstruction3DVisualization trialDay={trialDay} />
         
         default:
           return (

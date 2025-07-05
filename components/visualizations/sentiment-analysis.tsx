@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { TrendingUp, TrendingDown, BarChart3, MessageSquare } from 'lucide-react'
+import { TrendingUp, TrendingDown, BarChart3, MessageSquare, Download } from 'lucide-react'
 import type { TrialDay } from '@/lib/types'
 
 interface SentimentAnalysisVisualizationProps {
@@ -27,112 +27,130 @@ interface MessageData {
   speaker: 'cassie' | 'combs'
 }
 
+interface ProcessedSentimentData {
+  periods: SentimentData[]
+  messages: MessageData[]
+  insights: {
+    earlyPeriod: string
+    transition: string
+    latePeriod: string
+  }
+}
+
 export default function SentimentAnalysisVisualization({ trialDay }: SentimentAnalysisVisualizationProps) {
   const { reducedMotion } = useAccessibilityStore()
   const [selectedPeriod, setSelectedPeriod] = useState<SentimentData | null>(null)
+  const [sentimentInsights, setSentimentInsights] = useState<ProcessedSentimentData | null>(null)
   const [mounted, setMounted] = useState(false)
 
-  const sentimentData: SentimentData[] = [
-    {
-      date: '2012-01',
-      positive: 75,
-      negative: 15,
-      neutral: 10,
-      context: 'Early relationship period - affectionate exchanges'
-    },
-    {
-      date: '2012-06',
-      positive: 60,
-      negative: 30,
-      neutral: 10,
-      context: 'First signs of controlling behavior in messages'
-    },
-    {
-      date: '2013-01',
-      positive: 45,
-      negative: 45,
-      neutral: 10,
-      context: 'Mixed messages during volatile period'
-    },
-    {
-      date: '2013-06',
-      positive: 30,
-      negative: 60,
-      neutral: 10,
-      context: 'Post-assault period - fear and compliance'
-    },
-    {
-      date: '2014-01',
-      positive: 40,
-      negative: 50,
-      neutral: 10,
-      context: 'Attempts at reconciliation and normalcy'
-    },
-    {
-      date: '2015-01',
-      positive: 25,
-      negative: 65,
-      neutral: 10,
-      context: 'Increasing coercion and explicit demands'
-    },
-    {
-      date: '2016-01',
-      positive: 20,
-      negative: 70,
-      neutral: 10,
-      context: 'Peak period of alleged abuse and control'
-    },
-    {
-      date: '2017-01',
-      positive: 15,
-      negative: 75,
-      neutral: 10,
-      context: 'Final phase - fear-driven compliance'
+  // Process trial data for sentiment analysis
+  const processSentimentData = (): ProcessedSentimentData => {
+    const content = `${trialDay.headlineSummary} ${trialDay.dataStoryPlan}`.toLowerCase()
+    
+    // Extract sentiment indicators from the trial content
+    const positiveIndicators = [
+      'affectionate', 'enthusiastic', 'willing', 'consensual', 'love', 'happy',
+      'excited', 'eager', 'voluntary', 'enjoyed', 'pleased', 'playful'
+    ]
+    
+    const negativeIndicators = [
+      'coerced', 'forced', 'threatened', 'afraid', 'fear', 'violence', 'abuse',
+      'assault', 'intimidation', 'control', 'manipulation', 'blackmail', 'extortion',
+      'unwanted', 'against', 'reluctant', 'disgusted', 'repulsed', 'scared'
+    ]
+    
+    const neutralIndicators = [
+      'testimony', 'testified', 'stated', 'described', 'recounted', 'explained',
+      'detailed', 'provided', 'presented', 'revealed', 'disclosed'
+    ]
+    
+    let positiveCount = 0
+    let negativeCount = 0
+    let neutralCount = 0
+    
+    positiveIndicators.forEach(indicator => {
+      const matches = content.match(new RegExp(`\\b${indicator}\\w*`, 'gi')) || []
+      positiveCount += matches.length
+    })
+    
+    negativeIndicators.forEach(indicator => {
+      const matches = content.match(new RegExp(`\\b${indicator}\\w*`, 'gi')) || []
+      negativeCount += matches.length
+    })
+    
+    neutralIndicators.forEach(indicator => {
+      const matches = content.match(new RegExp(`\\b${indicator}\\w*`, 'gi')) || []
+      neutralCount += matches.length
+    })
+    
+    const total = Math.max(positiveCount + negativeCount + neutralCount, 1)
+    
+    // Generate sentiment timeline based on trial day progression
+    const basePositive = Math.max(10, (positiveCount / total) * 100)
+    const baseNegative = Math.max(10, (negativeCount / total) * 100)
+    const baseNeutral = Math.max(10, 100 - basePositive - baseNegative)
+    
+    const periods: SentimentData[] = [
+      {
+        date: `Day ${trialDay.trialDayNumber}`,
+        positive: Math.round(basePositive),
+        negative: Math.round(baseNegative),
+        neutral: Math.round(baseNeutral),
+        context: trialDay.headlineTitle || 'Trial proceedings'
+      }
+    ]
+    
+    // Extract sample "messages" from the content (simulate actual testimony quotes)
+    const messages: MessageData[] = []
+    
+    // Look for quoted material in the trial summary
+    const quoteMatches = (trialDay.headlineSummary || '').match(/[""']([^""']{20,100})[""']/g) || []
+    
+    quoteMatches.slice(0, 5).forEach((quote, index) => {
+      const cleanQuote = quote.replace(/[""']/g, '')
+      const sentiment = negativeIndicators.some(neg => cleanQuote.toLowerCase().includes(neg)) ? 'negative' :
+                       positiveIndicators.some(pos => cleanQuote.toLowerCase().includes(pos)) ? 'positive' : 'neutral'
+      
+      messages.push({
+        id: `${index + 1}`,
+        content: cleanQuote,
+        sentiment,
+        timestamp: `Day ${trialDay.trialDayNumber}`,
+        speaker: index % 2 === 0 ? 'cassie' : 'combs'
+      })
+    })
+    
+    // Fallback messages if no quotes found
+    if (messages.length === 0) {
+      const fallbackMessages = [
+        {
+          id: '1',
+          content: 'Key testimony from this day\'s proceedings',
+          sentiment: baseNegative > basePositive ? 'negative' as const : 'neutral' as const,
+          timestamp: `Day ${trialDay.trialDayNumber}`,
+          speaker: 'cassie' as const
+        }
+      ]
+      messages.push(...fallbackMessages)
     }
-  ]
-
-  const sampleMessages: MessageData[] = [
-    {
-      id: '1',
-      content: 'I\'m always ready to freak off',
-      sentiment: 'positive',
-      timestamp: '2012-03-15 14:30',
-      speaker: 'cassie'
-    },
-    {
-      id: '2',
-      content: 'You know what I need from you',
-      sentiment: 'neutral',
-      timestamp: '2013-06-20 21:15',
-      speaker: 'combs'
-    },
-    {
-      id: '3',
-      content: 'I don\'t want to do this anymore',
-      sentiment: 'negative',
-      timestamp: '2015-11-08 16:45',
-      speaker: 'cassie'
-    },
-    {
-      id: '4',
-      content: 'You will do what I say',
-      sentiment: 'negative',
-      timestamp: '2016-02-14 23:20',
-      speaker: 'combs'
-    },
-    {
-      id: '5',
-      content: 'I love you but this is wrong',
-      sentiment: 'negative',
-      timestamp: '2017-08-12 12:10',
-      speaker: 'cassie'
+    
+    return {
+      periods,
+      messages,
+      insights: {
+        earlyPeriod: basePositive > 50 ? 'Evidence suggests more positive interactions' : 'Mixed emotional dynamics reported',
+        transition: 'Testimony reveals evolving relationship patterns',
+        latePeriod: baseNegative > 50 ? 'Predominantly negative experiences described' : 'Complex emotional testimony presented'
+      }
     }
-  ]
+  }
 
   useEffect(() => {
     setMounted(true)
-    setSelectedPeriod(sentimentData[0])
-  }, [])
+    const processed = processSentimentData()
+    setSentimentInsights(processed)
+    setSelectedPeriod(processed.periods[0])
+  }, [trialDay])
 
   const getSentimentColor = (sentiment: string) => {
     switch (sentiment) {
@@ -143,19 +161,58 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
     }
   }
 
+  const exportData = () => {
+    const csvContent = [
+      ['Period', 'Positive %', 'Negative %', 'Neutral %', 'Context'],
+      ...(sentimentInsights?.periods.map(period => [
+        period.date,
+        period.positive.toString(),
+        period.negative.toString(),
+        period.neutral.toString(),
+        period.context
+      ]) || []),
+      [],
+      ['Message ID', 'Speaker', 'Content', 'Sentiment', 'Timestamp'],
+      ...(sentimentInsights?.messages.map(message => [
+        message.id,
+        message.speaker,
+        message.content,
+        message.sentiment,
+        message.timestamp
+      ]) || [])
+    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n')
+
+    const blob = new Blob([csvContent], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `trial-day-${trialDay.trialDayNumber}-sentiment-analysis.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   if (!mounted) {
     return <div className="h-96 bg-muted rounded-lg animate-pulse" />
   }
 
   return (
     <div className="w-full">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          The Duality of Communication
-        </h3>
-        <p className="text-sm text-muted-foreground">
-          Sentiment analysis of text messages between Combs and Ventura over time
-        </p>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            Day {trialDay.trialDayNumber}: Communication Analysis
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Sentiment analysis of testimony and evidence from this day's proceedings
+          </p>
+        </div>
+        <button
+          onClick={exportData}
+          className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
+        >
+          <Download className="w-4 h-4" />
+          <span className="text-sm">Export Analysis</span>
+        </button>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -165,7 +222,7 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
             <h4 className="font-semibold text-foreground mb-4">Sentiment Evolution Over Time</h4>
             
             <div className="space-y-3">
-              {sentimentData.map((period, index) => (
+              {sentimentInsights?.periods.map((period, index) => (
                 <motion.button
                   key={period.date}
                   initial={{ opacity: 0, x: -20 }}
@@ -221,7 +278,7 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
             <h4 className="font-semibold text-foreground mb-4">Message Examples</h4>
             
             <div className="space-y-3">
-              {sampleMessages.map((message, index) => (
+              {sentimentInsights?.messages.map((message, index) => (
                 <motion.div
                   key={message.id}
                   initial={{ opacity: 0, y: 10 }}
@@ -297,23 +354,23 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
             
             <div className="space-y-3 text-sm">
               <div className="p-3 bg-green-500/10 border border-green-500/30 rounded">
-                <h5 className="font-medium text-green-400 mb-1">Early Period (2012)</h5>
+                <h5 className="font-medium text-green-400 mb-1">Analysis Overview</h5>
                 <p className="text-muted-foreground">
-                  High positive sentiment indicating genuine affection and consensual participation.
+                  {sentimentInsights?.insights.earlyPeriod || 'Sentiment analysis of Day ' + trialDay.trialDayNumber + ' proceedings'}
                 </p>
               </div>
               
               <div className="p-3 bg-yellow-500/10 border border-yellow-500/30 rounded">
-                <h5 className="font-medium text-yellow-400 mb-1">Transition (2013-2014)</h5>
+                <h5 className="font-medium text-yellow-400 mb-1">Key Themes</h5>
                 <p className="text-muted-foreground">
-                  Shifting dynamics as controlling behavior becomes apparent in communication.
+                  {sentimentInsights?.insights.transition || 'Complex emotional dynamics revealed in testimony'}
                 </p>
               </div>
               
               <div className="p-3 bg-red-500/10 border border-red-500/30 rounded">
-                <h5 className="font-medium text-red-400 mb-1">Late Period (2015-2017)</h5>
+                <h5 className="font-medium text-red-400 mb-1">Pattern Analysis</h5>
                 <p className="text-muted-foreground">
-                  Predominantly negative sentiment suggesting fear-driven compliance.
+                  {sentimentInsights?.insights.latePeriod || 'Testimony provides insight into relationship dynamics'}
                 </p>
               </div>
             </div>
