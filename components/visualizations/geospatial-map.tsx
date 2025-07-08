@@ -1,10 +1,9 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { MapPin, Globe, Info, Calendar, AlertTriangle, Download, Filter, Play, Pause, HelpCircle, BarChart3, Clock, Layers } from 'lucide-react'
+import { MapPin, Globe, Info, Calendar, AlertTriangle, Download, Filter, HelpCircle, BarChart3 } from 'lucide-react'
 import type { TrialDay } from '@/lib/types'
 
 interface GeospatialMapVisualizationProps {
@@ -36,11 +35,7 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
   const [selectedLocation, setSelectedLocation] = useState<LocationData | null>(null)
   const [mounted, setMounted] = useState(false)
   const [selectedYearRange, setSelectedYearRange] = useState<[number, number]>([2012, 2018])
-  const [showHeatmap, setShowHeatmap] = useState(true)
-  const [playingTimeline, setPlayingTimeline] = useState(false)
-  const [currentTimelineYear, setCurrentTimelineYear] = useState(2012)
   const [showMethodology, setShowMethodology] = useState(false)
-  const [viewMode, setViewMode] = useState<'map' | 'timeline' | 'analysis'>('map')
 
   const locations: LocationData[] = [
     {
@@ -278,12 +273,6 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
     return 'bg-blue-500'
   }
 
-  const getLocationSize = (eventCount: number) => {
-    const baseSize = 16
-    const maxSize = 32
-    return Math.min(baseSize + (eventCount * 2), maxSize)
-  }
-
   const getFilteredLocations = () => {
     return locations.map(location => ({
       ...location,
@@ -300,13 +289,6 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
           }, 0) / location.events.length)
         : 0
     })).filter(location => location.eventCount > 0)
-  }
-
-  const getTimelineYearData = () => {
-    const allEvents = locations.flatMap(loc => 
-      loc.events.map(event => ({ ...event, location: loc.name }))
-    )
-    return allEvents.filter(event => event.year === currentTimelineYear)
   }
 
   const getSeasonalAnalysis = () => {
@@ -352,7 +334,6 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
   }
 
   const filteredLocations = getFilteredLocations()
-  const timelineData = getTimelineYearData()
   const seasonalAnalysis = getSeasonalAnalysis()
   const durationAnalysis = getDurationAnalysis()
 
@@ -378,6 +359,7 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
               type="button"
               onClick={() => setShowMethodology(!showMethodology)}
               className="flex items-center space-x-2 px-3 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg border border-blue-500/30 transition-colors"
+              aria-label="Toggle methodology explanation"
             >
               <HelpCircle className="w-4 h-4" />
               <span className="text-sm">Methodology</span>
@@ -386,6 +368,7 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
               type="button"
               onClick={exportData}
               className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
+              aria-label="Export geographic data to CSV"
             >
               <Download className="w-4 h-4" />
               <span className="text-sm">Export Data</span>
@@ -414,34 +397,6 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
             </div>
           </motion.div>
         )}
-
-        {/* Navigation Tabs */}
-        <div className="flex flex-wrap sm:flex-nowrap space-x-2 border-b border-border overflow-x-auto">
-          {[
-            { id: 'map', label: 'Interactive Map', shortLabel: 'Map', icon: Globe },
-            { id: 'timeline', label: 'Timeline Analysis', shortLabel: 'Timeline', icon: Clock },
-            { id: 'analysis', label: 'Pattern Analysis', shortLabel: 'Analysis', icon: BarChart3 }
-          ].map(tab => {
-            const Icon = tab.icon
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setViewMode(tab.id as any)}
-                className={`flex items-center space-x-2 px-3 sm:px-4 py-2 border-b-2 transition-colors whitespace-nowrap ${
-                  viewMode === tab.id
-                    ? 'border-accent text-accent bg-accent/10'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
-                }`}
-                aria-label={`Switch to ${tab.label} view`}
-              >
-                <Icon className="w-4 h-4" />
-                <span className="text-sm font-medium hidden sm:inline">{tab.label}</span>
-                <span className="text-sm font-medium sm:hidden">{tab.shortLabel}</span>
-              </button>
-            )
-          })}
-        </div>
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 p-4 bg-muted/30 rounded-lg">
@@ -476,212 +431,113 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
               </select>
             </div>
           </div>
-          
-          {viewMode === 'map' && (
-            <div className="flex items-center space-x-2">
-              <Layers className="w-4 h-4 text-muted-foreground" />
-              <label className="text-sm font-medium text-foreground flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={showHeatmap}
-                  onChange={(e) => setShowHeatmap(e.target.checked)}
-                  className="mr-2 focus:ring-2 focus:ring-accent"
-                  aria-describedby="heatmap-description"
-                />
-                <span>Heatmap Mode</span>
-              </label>
-              <span id="heatmap-description" className="sr-only">
-                Toggle between heatmap and standard map visualization
-              </span>
-            </div>
-          )}
-          
-          {viewMode === 'timeline' && (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
-              <button
-                type="button"
-                onClick={() => setPlayingTimeline(!playingTimeline)}
-                className="flex items-center space-x-2 px-3 py-1 bg-accent/20 hover:bg-accent/30 rounded transition-colors focus:ring-2 focus:ring-accent"
-                aria-label={`${playingTimeline ? 'Pause' : 'Play'} timeline animation`}
-              >
-                {playingTimeline ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                <span className="text-sm">{playingTimeline ? 'Pause' : 'Play'} Timeline</span>
-              </button>
-              <span className="text-sm text-muted-foreground" aria-live="polite">
-                Current Year: {currentTimelineYear}
-              </span>
-            </div>
-          )}
         </div>
       </div>
 
-      {/* Content Area Based on View Mode */}
-      {viewMode === 'map' && (
-        <div className="glass-card p-4 sm:p-6">
-          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-            {/* Interactive Heatmap */}
-            {showHeatmap && (
-              <div className="lg:col-span-2">
-                <h4 className="font-semibold text-foreground mb-4 flex items-center space-x-2">
-                  <Globe className="w-5 h-5 text-accent" />
-                  <span>Interactive Severity Heatmap</span>
-                </h4>
-                
-                <div className="relative h-64 sm:h-80 lg:h-96 bg-slate-900 rounded-lg overflow-hidden">
-                  {/* World Map Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900">
-                    <div className="absolute inset-0 opacity-20">
-                      <svg viewBox="0 0 1000 500" className="w-full h-full">
-                        {/* Simplified continent shapes */}
-                        <path d="M150 200 L300 180 L350 250 L250 280 Z" fill="currentColor" className="text-slate-600" />
-                        <path d="M400 150 L600 140 L650 200 L580 250 L450 260 Z" fill="currentColor" className="text-slate-600" />
-                        <path d="M700 180 L850 170 L900 220 L800 270 L720 260 Z" fill="currentColor" className="text-slate-600" />
-                        <path d="M100 300 L200 290 L180 350 L120 360 Z" fill="currentColor" className="text-slate-600" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Location Markers with Heatmap Effect */}
-                  {filteredLocations.map((location, index) => {
-                    const x = ((location.coordinates[0] + 180) / 360) * 100
-                    const y = ((90 - location.coordinates[1]) / 180) * 100
-                    const intensity = location.totalSeverityScore / 100
-                    
-                    return (
-                      <motion.div
-                        key={location.id}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ 
-                          duration: reducedMotion ? 0.01 : 0.5, 
-                          delay: reducedMotion ? 0 : index * 0.1 
-                        }}
-                        className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                        style={{ left: `${x}%`, top: `${y}%` }}
-                        onClick={() => setSelectedLocation(location)}
-                        role="button"
-                        tabIndex={0}
-                        aria-label={`${location.name}: ${location.eventCount} incidents, severity ${location.totalSeverityScore}`}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault()
-                            setSelectedLocation(location)
-                          }
-                        }}
-                      >
-                        {/* Heatmap Circle */}
-                        <div 
-                          className="relative"
-                          style={{
-                            filter: `blur(${Math.max(0, 2 - intensity)}px)`,
-                          }}
-                        >
-                          <div 
-                            className="rounded-full animate-pulse"
-                            style={{
-                              width: `${Math.max(20, 20 + location.eventCount * 6)}px`,
-                              height: `${Math.max(20, 20 + location.eventCount * 6)}px`,
-                              background: `radial-gradient(circle, hsl(${Math.max(0, 360 - location.totalSeverityScore * 3.6)}, 100%, ${50 + intensity * 20}%) 0%, transparent 70%)`,
-                              opacity: 0.3 + intensity * 0.4
-                            }}
-                          />
-                          
-                          {/* Center Marker */}
-                          <div 
-                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/80"
-                            style={{
-                              width: `${Math.max(8, 8 + location.eventCount * 2)}px`,
-                              height: `${Math.max(8, 8 + location.eventCount * 2)}px`,
-                              backgroundColor: `hsl(${Math.max(0, 360 - location.totalSeverityScore * 3.6)}, 100%, 50%)`
-                            }}
-                          />
-                        </div>
-                        
-                        {/* Location Label */}
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-white bg-black/75 px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                          {location.name} ({location.eventCount} events)
-                        </div>
-                      </motion.div>
-                    )
-                  })}
-                </div>
-                
-                {/* Heatmap Legend */}
-                <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm text-muted-foreground">Severity:</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 rounded-full bg-green-500" aria-label="Low severity"></div>
-                      <span className="text-xs text-muted-foreground">Low</span>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500" aria-label="Medium severity"></div>
-                      <span className="text-xs text-muted-foreground">Medium</span>
-                      <div className="w-3 h-3 rounded-full bg-red-500" aria-label="High severity"></div>
-                      <span className="text-xs text-muted-foreground">High</span>
-                    </div>
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Circle size indicates incident frequency
-                  </div>
+      {/* Interactive Heatmap */}
+      <div className="glass-card p-4 sm:p-6">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="lg:col-span-2">
+            <h4 className="font-semibold text-foreground mb-4 flex items-center space-x-2">
+              <Globe className="w-5 h-5 text-accent" />
+              <span>Interactive Severity Heatmap</span>
+            </h4>
+            
+            <div className="relative h-64 sm:h-80 lg:h-96 bg-slate-900 rounded-lg overflow-hidden">
+              {/* World Map Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900">
+                <div className="absolute inset-0 opacity-20">
+                  <svg viewBox="0 0 1000 500" className="w-full h-full">
+                    {/* Simplified continent shapes */}
+                    <path d="M150 200 L300 180 L350 250 L250 280 Z" fill="currentColor" className="text-slate-600" />
+                    <path d="M400 150 L600 140 L650 200 L580 250 L450 260 Z" fill="currentColor" className="text-slate-600" />
+                    <path d="M700 180 L850 170 L900 220 L800 270 L720 260 Z" fill="currentColor" className="text-slate-600" />
+                    <path d="M100 300 L200 290 L180 350 L120 360 Z" fill="currentColor" className="text-slate-600" />
+                  </svg>
                 </div>
               </div>
-            )}
-            
-            {!showHeatmap && (
-              <div className="lg:col-span-2 space-y-4">
-                <h4 className="font-semibold text-foreground mb-4 flex items-center space-x-2">
-                  <Globe className="w-5 h-5 text-accent" />
-                  <span>Incident Locations</span>
-                </h4>
-                
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {filteredLocations.map((location, index) => (
-                <motion.button
-                  key={location.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: reducedMotion ? 0.01 : 0.3, 
-                    delay: reducedMotion ? 0 : index * 0.1 
-                  }}
-                  onClick={() => setSelectedLocation(location)}
-                  className={`text-left p-4 rounded-lg border transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent ${
-                    selectedLocation?.id === location.id 
-                      ? 'border-accent bg-accent/10 shadow-lg' 
-                      : 'border-border bg-muted/30 hover:bg-muted/50'
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center space-x-3">
-                      <div 
-                        className={`w-4 h-4 rounded-full ${getSeverityIntensity(location.totalSeverityScore)}`}
-                      />
-                      <div>
-                        <h5 className="font-semibold text-foreground">{location.name}</h5>
-                        <p className="text-xs text-muted-foreground">{location.country}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-accent">{location.eventCount}</div>
-                      <div className="text-xs text-muted-foreground">incidents</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <AlertTriangle className="w-3 h-3 text-orange-400" />
-                      <span className="text-xs text-muted-foreground">Severity Score:</span>
-                    </div>
-                    <span className="text-sm font-medium text-foreground">{location.totalSeverityScore}/100</span>
-                  </div>
 
-                  <div className="mt-2 w-full bg-muted rounded-full h-1.5">
+              {/* Location Markers with Heatmap Effect */}
+              {filteredLocations.map((location, index) => {
+                const x = ((location.coordinates[0] + 180) / 360) * 100
+                const y = ((90 - location.coordinates[1]) / 180) * 100
+                const intensity = location.totalSeverityScore / 100
+                
+                return (
+                  <motion.div
+                    key={location.id}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: reducedMotion ? 0.01 : 0.5, 
+                      delay: reducedMotion ? 0 : index * 0.1 
+                    }}
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                    style={{ left: `${x}%`, top: `${y}%` }}
+                    onClick={() => setSelectedLocation(location)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${location.name}: ${location.eventCount} incidents, severity ${location.totalSeverityScore}`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        setSelectedLocation(location)
+                      }
+                    }}
+                  >
+                    {/* Heatmap Circle */}
                     <div 
-                      className={`h-1.5 rounded-full transition-all ${getSeverityIntensity(location.totalSeverityScore)}`}
-                      style={{ width: `${location.totalSeverityScore}%` }}
-                    />
-                  </div>
-                </motion.button>
-              ))}
+                      className="relative"
+                      style={{
+                        filter: `blur(${Math.max(0, 2 - intensity)}px)`,
+                      }}
+                    >
+                      <div 
+                        className="rounded-full animate-pulse"
+                        style={{
+                          width: `${Math.max(20, 20 + location.eventCount * 6)}px`,
+                          height: `${Math.max(20, 20 + location.eventCount * 6)}px`,
+                          background: `radial-gradient(circle, hsl(${Math.max(0, 360 - location.totalSeverityScore * 3.6)}, 100%, ${50 + intensity * 20}%) 0%, transparent 70%)`,
+                          opacity: 0.3 + intensity * 0.4
+                        }}
+                      />
+                      
+                      {/* Center Marker */}
+                      <div 
+                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/80"
+                        style={{
+                          width: `${Math.max(8, 8 + location.eventCount * 2)}px`,
+                          height: `${Math.max(8, 8 + location.eventCount * 2)}px`,
+                          backgroundColor: `hsl(${Math.max(0, 360 - location.totalSeverityScore * 3.6)}, 100%, 50%)`
+                        }}
+                      />
+                    </div>
+                    
+                    {/* Location Label */}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-white bg-black/75 px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      {location.name} ({location.eventCount} events)
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+            
+            {/* Heatmap Legend */}
+            <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0">
+              <div className="flex items-center space-x-4">
+                <span className="text-sm text-muted-foreground">Severity:</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-green-500" aria-label="Low severity"></div>
+                  <span className="text-xs text-muted-foreground">Low</span>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" aria-label="Medium severity"></div>
+                  <span className="text-xs text-muted-foreground">Medium</span>
+                  <div className="w-3 h-3 rounded-full bg-red-500" aria-label="High severity"></div>
+                  <span className="text-xs text-muted-foreground">High</span>
+                </div>
+              </div>
+              <div className="text-xs text-muted-foreground">
+                Circle size indicates incident frequency
+              </div>
             </div>
           </div>
 
@@ -714,7 +570,22 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
                       <div className="text-lg font-bold text-orange-400">{selectedLocation.totalSeverityScore}</div>
                       <div className="text-xs text-muted-foreground">Severity Score</div>
                     </div>
+                    <div className="text-center p-2 bg-background/50 rounded">
+                      <div className="text-lg font-bold text-blue-400">{selectedLocation.averageDuration}d</div>
+                      <div className="text-xs text-muted-foreground">Avg Duration</div>
+                    </div>
+                    <div className="text-center p-2 bg-background/50 rounded">
+                      <div className="text-lg font-bold text-green-400">{selectedLocation.events.filter(e => e.severity === 'high').length}</div>
+                      <div className="text-xs text-muted-foreground">High Severity</div>
+                    </div>
                   </div>
+                  
+                  {selectedLocation.seasonalPattern && (
+                    <div className="p-2 bg-background/30 rounded text-center">
+                      <div className="text-xs text-muted-foreground mb-1">Seasonal Pattern</div>
+                      <div className="text-sm font-medium text-foreground">{selectedLocation.seasonalPattern}</div>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -737,12 +608,24 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
                       >
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs font-medium text-muted-foreground">{event.date}</span>
-                          <span className={`text-xs px-2 py-1 rounded ${getSeverityColor(event.severity)}`}>
-                            {event.severity.toUpperCase()}
-                          </span>
+                          <div className="flex items-center space-x-2">
+                            <span className={`text-xs px-2 py-1 rounded ${getSeverityColor(event.severity)}`}>
+                              {event.severity.toUpperCase()}
+                            </span>
+                            {event.duration && (
+                              <span className="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400">
+                                {event.duration}d
+                              </span>
+                            )}
+                          </div>
                         </div>
                         <h6 className="font-medium text-foreground mb-1">{event.description}</h6>
                         <p className="text-xs text-muted-foreground">{event.details}</p>
+                        {event.season && (
+                          <div className="mt-2 text-xs text-muted-foreground">
+                            Season: {event.season}
+                          </div>
+                        )}
                       </motion.div>
                     ))}
                   </div>
@@ -753,7 +636,7 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
                 <MapPin className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                 <h4 className="font-medium text-foreground mb-2">Select a Location</h4>
                 <p className="text-sm text-muted-foreground">
-                  Click on any location card to view detailed incident information
+                  Click on any location marker to view detailed incident information
                 </p>
               </div>
             )}
