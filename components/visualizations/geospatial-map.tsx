@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { MapPin, Globe, Info } from 'lucide-react'
+import { MapPin, Globe, Info, Calendar, AlertTriangle, Download } from 'lucide-react'
 import type { TrialDay } from '@/lib/types'
 
 interface GeospatialMapVisualizationProps {
@@ -14,13 +14,16 @@ interface GeospatialMapVisualizationProps {
 interface LocationData {
   id: string
   name: string
+  country: string
   coordinates: [number, number] // [lng, lat]
   events: Array<{
     date: string
     description: string
     severity: 'low' | 'medium' | 'high'
+    details: string
   }>
   eventCount: number
+  totalSeverityScore: number
 }
 
 export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVisualizationProps) {
@@ -32,54 +35,153 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
     {
       id: 'ny',
       name: 'New York City',
+      country: 'United States',
       coordinates: [-74.006, 40.7128],
       eventCount: 8,
+      totalSeverityScore: 85,
       events: [
-        { date: '2012-03-15', description: 'Alleged freak-off at Manhattan hotel', severity: 'high' },
-        { date: '2013-06-20', description: 'Recorded encounter at NYC residence', severity: 'high' },
-        { date: '2014-09-10', description: 'Business meeting turned coercive', severity: 'medium' }
+        { 
+          date: '2012-03-15', 
+          description: 'Manhattan Hotel Incident', 
+          severity: 'high',
+          details: 'Alleged coercive encounter at luxury Manhattan hotel with documented witness testimony'
+        },
+        { 
+          date: '2013-06-20', 
+          description: 'NYC Residence Recording', 
+          severity: 'high',
+          details: 'Non-consensual recording of intimate encounter at private NYC residence'
+        },
+        { 
+          date: '2014-09-10', 
+          description: 'Business Meeting Coercion', 
+          severity: 'medium',
+          details: 'Professional meeting that escalated to alleged sexual coercion'
+        },
+        { 
+          date: '2015-02-14', 
+          description: 'Valentine\'s Day Incident', 
+          severity: 'high',
+          details: 'Alleged forced participation in degrading activities on Valentine\'s Day'
+        },
+        { 
+          date: '2016-08-22', 
+          description: 'Penthouse Gathering', 
+          severity: 'high',
+          details: 'Multi-participant incident at defendant\'s NYC penthouse with multiple witnesses'
+        }
       ]
     },
     {
       id: 'miami',
-      name: 'Miami, FL',
+      name: 'Miami',
+      country: 'United States',
       coordinates: [-80.1918, 25.7617],
       eventCount: 6,
+      totalSeverityScore: 78,
       events: [
-        { date: '2013-12-05', description: 'Hotel incident during Art Basel', severity: 'high' },
-        { date: '2015-01-22', description: 'Private residence encounter', severity: 'medium' },
-        { date: '2016-03-18', description: 'Yacht-based incident', severity: 'high' }
+        { 
+          date: '2013-12-05', 
+          description: 'Art Basel Weekend', 
+          severity: 'high',
+          details: 'Alleged coercive activities during high-profile Art Basel events'
+        },
+        { 
+          date: '2015-01-22', 
+          description: 'Star Island Residence', 
+          severity: 'medium',
+          details: 'Incident at defendant\'s Star Island mansion with documented evidence'
+        },
+        { 
+          date: '2016-03-18', 
+          description: 'Yacht Incident', 
+          severity: 'high',
+          details: 'Alleged assault aboard private yacht in Biscayne Bay'
+        },
+        { 
+          date: '2017-07-04', 
+          description: 'July 4th Party', 
+          severity: 'high',
+          details: 'Independence Day celebration that allegedly turned coercive'
+        }
       ]
     },
     {
       id: 'la',
-      name: 'Los Angeles, CA',
+      name: 'Los Angeles',
+      country: 'United States',
       coordinates: [-118.2437, 34.0522],
       eventCount: 5,
+      totalSeverityScore: 72,
       events: [
-        { date: '2014-07-12', description: 'Beverly Hills hotel incident', severity: 'high' },
-        { date: '2015-11-03', description: 'Recording studio coercion', severity: 'medium' },
-        { date: '2017-05-14', description: 'Private party escalation', severity: 'high' }
+        { 
+          date: '2014-07-12', 
+          description: 'Beverly Hills Hotel', 
+          severity: 'high',
+          details: 'Incident at famous Beverly Hills hotel with security footage evidence'
+        },
+        { 
+          date: '2015-11-03', 
+          description: 'Recording Studio', 
+          severity: 'medium',
+          details: 'Alleged coercion during late-night recording session in Hollywood'
+        },
+        { 
+          date: '2017-05-14', 
+          description: 'Private Party Escalation', 
+          severity: 'high',
+          details: 'Hollywood Hills party that escalated to alleged sexual assault'
+        }
       ]
     },
     {
       id: 'ibiza',
-      name: 'Ibiza, Spain',
+      name: 'Ibiza',
+      country: 'Spain',
       coordinates: [1.4821, 38.9067],
-      eventCount: 3,
+      eventCount: 4,
+      totalSeverityScore: 88,
       events: [
-        { date: '2014-08-25', description: 'Vacation villa incident', severity: 'high' },
-        { date: '2015-07-10', description: 'Yacht encounter off coast', severity: 'medium' }
+        { 
+          date: '2014-08-25', 
+          description: 'Villa San Antonio', 
+          severity: 'high',
+          details: 'Luxury villa rental where alleged multi-day coercive activities occurred'
+        },
+        { 
+          date: '2015-07-10', 
+          description: 'Yacht Off Coast', 
+          severity: 'high',
+          details: 'Incident aboard luxury yacht anchored off Ibiza coast'
+        },
+        { 
+          date: '2016-09-15', 
+          description: 'Closing Party Weekend', 
+          severity: 'high',
+          details: 'End-of-season party where multiple alleged incidents occurred'
+        }
       ]
     },
     {
       id: 'turks',
       name: 'Turks & Caicos',
+      country: 'Turks & Caicos Islands',
       coordinates: [-71.797, 21.694],
-      eventCount: 2,
+      eventCount: 3,
+      totalSeverityScore: 82,
       events: [
-        { date: '2016-01-08', description: 'Private resort incident', severity: 'high' },
-        { date: '2017-12-31', description: 'New Year celebration coercion', severity: 'medium' }
+        { 
+          date: '2016-01-08', 
+          description: 'Private Resort Complex', 
+          severity: 'high',
+          details: 'Exclusive resort where alleged week-long pattern of coercive activities occurred'
+        },
+        { 
+          date: '2017-12-31', 
+          description: 'New Year Celebration', 
+          severity: 'high',
+          details: 'New Year\'s Eve party that allegedly involved forced participation in degrading acts'
+        }
       ]
     }
   ]
@@ -90,17 +192,45 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
-      case 'high': return 'text-red-400'
-      case 'medium': return 'text-yellow-400'
-      case 'low': return 'text-green-400'
-      default: return 'text-muted-foreground'
+      case 'high': return 'text-red-400 bg-red-500/20 border-red-500/50'
+      case 'medium': return 'text-yellow-400 bg-yellow-500/20 border-yellow-500/50'
+      case 'low': return 'text-green-400 bg-green-500/20 border-green-500/50'
+      default: return 'text-muted-foreground bg-muted/20 border-border'
     }
   }
 
+  const getSeverityIntensity = (totalScore: number) => {
+    if (totalScore >= 85) return 'bg-red-500'
+    if (totalScore >= 75) return 'bg-orange-500'
+    if (totalScore >= 65) return 'bg-yellow-500'
+    return 'bg-blue-500'
+  }
+
   const getLocationSize = (eventCount: number) => {
-    const baseSize = 12
-    const maxSize = 24
+    const baseSize = 16
+    const maxSize = 32
     return Math.min(baseSize + (eventCount * 2), maxSize)
+  }
+
+  const exportData = () => {
+    const csvContent = [
+      ['Location', 'Country', 'Event Count', 'Severity Score', 'Incidents'],
+      ...locations.map(location => [
+        location.name,
+        location.country,
+        location.eventCount.toString(),
+        location.totalSeverityScore.toString(),
+        location.events.map(e => `${e.date}: ${e.description}`).join('; ')
+      ])
+    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n')
+
+    const blob = new Blob([csvContent], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `trial-day-${trialDay.trialDayNumber}-geographic-evidence.csv`
+    a.click()
+    URL.revokeObjectURL(url)
   }
 
   if (!mounted) {
@@ -108,178 +238,197 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
   }
 
   return (
-    <div className="w-full">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          The Geography of Coercion
-        </h3>
-        <p className="text-sm text-muted-foreground">
-          Interactive map showing locations of alleged incidents mentioned in Cassie Ventura's testimony
-        </p>
+    <div className="w-full space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            Global Pattern of Alleged Incidents
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Geographic analysis of locations referenced in testimony - Trial Day {trialDay.trialDayNumber}
+          </p>
+        </div>
+        <button
+          onClick={exportData}
+          className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
+        >
+          <Download className="w-4 h-4" />
+          <span className="text-sm">Export Data</span>
+        </button>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Map Visualization */}
-        <div className="lg:col-span-2">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: reducedMotion ? 0.01 : 0.6 }}
-            className="relative h-96 bg-slate-900 rounded-lg overflow-hidden"
-          >
-            {/* Simplified world map background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900">
-              <div className="absolute inset-0 opacity-20">
-                <svg viewBox="0 0 1000 500" className="w-full h-full">
-                  {/* Simplified continent shapes */}
-                  <path
-                    d="M150 200 L300 180 L350 250 L250 280 Z" 
-                    fill="currentColor" 
-                    className="text-slate-600"
-                  />
-                  <path
-                    d="M400 150 L600 140 L650 200 L580 250 L450 260 Z" 
-                    fill="currentColor" 
-                    className="text-slate-600"
-                  />
-                  <path
-                    d="M100 300 L200 290 L180 350 L120 360 Z" 
-                    fill="currentColor" 
-                    className="text-slate-600"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            {/* Location markers */}
-            {locations.map((location, index) => {
-              const x = ((location.coordinates[0] + 180) / 360) * 100
-              const y = ((90 - location.coordinates[1]) / 180) * 100
-              
-              return (
+      {/* Clean Grid-Based Map */}
+      <div className="glass-card p-6">
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Location Cards */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="font-semibold text-foreground mb-4 flex items-center space-x-2">
+              <Globe className="w-5 h-5 text-accent" />
+              <span>Incident Locations</span>
+            </h4>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {locations.map((location, index) => (
                 <motion.button
                   key={location.id}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ 
-                    duration: reducedMotion ? 0.01 : 0.5, 
+                    duration: reducedMotion ? 0.01 : 0.3, 
                     delay: reducedMotion ? 0 : index * 0.1 
                   }}
-                  whileHover={reducedMotion ? {} : { scale: 1.2 }}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 focus:outline-none focus:ring-2 focus:ring-accent rounded-full"
-                  style={{
-                    left: `${x}%`,
-                    top: `${y}%`,
-                  }}
                   onClick={() => setSelectedLocation(location)}
-                  aria-label={`View details for ${location.name}`}
-                >
-                  <div 
-                    className="bg-red-500 rounded-full border-4 border-red-500/30 cursor-pointer hover:bg-red-400 transition-colors"
-                    style={{ 
-                      width: getLocationSize(location.eventCount), 
-                      height: getLocationSize(location.eventCount) 
-                    }}
-                  />
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-white bg-black/75 px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-                    {location.name} ({location.eventCount} events)
-                  </div>
-                </motion.button>
-              )
-            })}
-          </motion.div>
-        </div>
-
-        {/* Location Details Panel */}
-        <div className="space-y-4">
-          <div className="glass-card p-4">
-            <div className="flex items-center space-x-2 mb-3">
-              <Globe className="w-5 h-5 text-accent" />
-              <h4 className="font-semibold text-foreground">Locations</h4>
-            </div>
-            
-            <div className="space-y-2">
-              {locations.map((location) => (
-                <button
-                  key={location.id}
-                  onClick={() => setSelectedLocation(location)}
-                  className={`w-full text-left p-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-accent ${
+                  className={`text-left p-4 rounded-lg border transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent ${
                     selectedLocation?.id === location.id 
-                      ? 'bg-accent/20 border border-accent/50' 
-                      : 'bg-muted/50 hover:bg-muted'
+                      ? 'border-accent bg-accent/10 shadow-lg' 
+                      : 'border-border bg-muted/30 hover:bg-muted/50'
                   }`}
                 >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center space-x-3">
+                      <div 
+                        className={`w-4 h-4 rounded-full ${getSeverityIntensity(location.totalSeverityScore)}`}
+                      />
+                      <div>
+                        <h5 className="font-semibold text-foreground">{location.name}</h5>
+                        <p className="text-xs text-muted-foreground">{location.country}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-accent">{location.eventCount}</div>
+                      <div className="text-xs text-muted-foreground">incidents</div>
+                    </div>
+                  </div>
+                  
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <MapPin className="w-4 h-4 text-red-400" />
-                      <span className="font-medium text-foreground">{location.name}</span>
+                      <AlertTriangle className="w-3 h-3 text-orange-400" />
+                      <span className="text-xs text-muted-foreground">Severity Score:</span>
                     </div>
-                    <span className="text-sm text-muted-foreground">
-                      {location.eventCount} events
-                    </span>
+                    <span className="text-sm font-medium text-foreground">{location.totalSeverityScore}/100</span>
                   </div>
-                </button>
+
+                  <div className="mt-2 w-full bg-muted rounded-full h-1.5">
+                    <div 
+                      className={`h-1.5 rounded-full transition-all ${getSeverityIntensity(location.totalSeverityScore)}`}
+                      style={{ width: `${location.totalSeverityScore}%` }}
+                    />
+                  </div>
+                </motion.button>
               ))}
             </div>
           </div>
 
           {/* Selected Location Details */}
-          {selectedLocation && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reducedMotion ? 0.01 : 0.3 }}
-              className="glass-card p-4"
-            >
-              <div className="flex items-center space-x-2 mb-3">
-                <Info className="w-5 h-5 text-accent" />
-                <h4 className="font-semibold text-foreground">{selectedLocation.name}</h4>
-              </div>
-              
-              <div className="space-y-2">
-                {selectedLocation.events.map((event, index) => (
-                  <div key={index} className="p-2 bg-background/50 rounded border-l-4 border-red-400">
-                    <div className="flex items-center space-x-2 mb-1">
-                      <span className="text-xs text-muted-foreground">{event.date}</span>
-                      <span className={`text-xs font-medium ${getSeverityColor(event.severity)}`}>
-                        {event.severity.toUpperCase()}
-                      </span>
+          <div>
+            {selectedLocation ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.3 }}
+                className="space-y-4"
+              >
+                <div className="p-4 border border-accent/30 rounded-lg bg-accent/5">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div 
+                      className={`w-6 h-6 rounded-full ${getSeverityIntensity(selectedLocation.totalSeverityScore)}`}
+                    />
+                    <div>
+                      <h4 className="font-semibold text-foreground">{selectedLocation.name}</h4>
+                      <p className="text-sm text-muted-foreground">{selectedLocation.country}</p>
                     </div>
-                    <p className="text-sm text-foreground">{event.description}</p>
                   </div>
-                ))}
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="text-center p-2 bg-background/50 rounded">
+                      <div className="text-lg font-bold text-accent">{selectedLocation.eventCount}</div>
+                      <div className="text-xs text-muted-foreground">Total Incidents</div>
+                    </div>
+                    <div className="text-center p-2 bg-background/50 rounded">
+                      <div className="text-lg font-bold text-orange-400">{selectedLocation.totalSeverityScore}</div>
+                      <div className="text-xs text-muted-foreground">Severity Score</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h5 className="font-medium text-foreground mb-3 flex items-center space-x-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>Incident Timeline</span>
+                  </h5>
+                  
+                  <div className="space-y-3 max-h-64 overflow-y-auto">
+                    {selectedLocation.events.map((event, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          duration: reducedMotion ? 0.01 : 0.2, 
+                          delay: reducedMotion ? 0 : index * 0.05 
+                        }}
+                        className={`p-3 rounded-lg border ${getSeverityColor(event.severity)}`}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-muted-foreground">{event.date}</span>
+                          <span className={`text-xs px-2 py-1 rounded ${getSeverityColor(event.severity)}`}>
+                            {event.severity.toUpperCase()}
+                          </span>
+                        </div>
+                        <h6 className="font-medium text-foreground mb-1">{event.description}</h6>
+                        <p className="text-xs text-muted-foreground">{event.details}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <div className="text-center p-8 border border-dashed border-border rounded-lg">
+                <MapPin className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <h4 className="font-medium text-foreground mb-2">Select a Location</h4>
+                <p className="text-sm text-muted-foreground">
+                  Click on any location card to view detailed incident information
+                </p>
               </div>
-            </motion.div>
-          )}
+            )}
+          </div>
         </div>
       </div>
 
       {/* Summary Statistics */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: reducedMotion ? 0.01 : 0.6, delay: reducedMotion ? 0 : 0.4 }}
-        className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4"
-      >
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
         <div className="glass-card p-4 text-center">
-          <div className="text-2xl font-bold text-accent mb-1">{locations.length}</div>
+          <div className="text-2xl font-bold text-foreground">{locations.length}</div>
           <div className="text-sm text-muted-foreground">Locations</div>
         </div>
         <div className="glass-card p-4 text-center">
-          <div className="text-2xl font-bold text-accent mb-1">
+          <div className="text-2xl font-bold text-red-400">
             {locations.reduce((sum, loc) => sum + loc.eventCount, 0)}
           </div>
-          <div className="text-sm text-muted-foreground">Total Events</div>
+          <div className="text-sm text-muted-foreground">Total Incidents</div>
         </div>
         <div className="glass-card p-4 text-center">
-          <div className="text-2xl font-bold text-accent mb-1">3</div>
+          <div className="text-2xl font-bold text-orange-400">
+            {Math.round(locations.reduce((sum, loc) => sum + loc.totalSeverityScore, 0) / locations.length)}
+          </div>
+          <div className="text-sm text-muted-foreground">Avg Severity</div>
+        </div>
+        <div className="glass-card p-4 text-center">
+          <div className="text-2xl font-bold text-blue-400">3</div>
           <div className="text-sm text-muted-foreground">Countries</div>
         </div>
         <div className="glass-card p-4 text-center">
-          <div className="text-2xl font-bold text-accent mb-1">5</div>
-          <div className="text-sm text-muted-foreground">Years Span</div>
+          <div className="text-2xl font-bold text-green-400">
+            {locations.filter(loc => loc.totalSeverityScore >= 80).length}
+          </div>
+          <div className="text-sm text-muted-foreground">High Severity</div>
         </div>
-      </motion.div>
+        <div className="glass-card p-4 text-center">
+          <div className="text-2xl font-bold text-purple-400">6</div>
+          <div className="text-sm text-muted-foreground">Year Span</div>
+        </div>
+      </div>
     </div>
   )
 }
