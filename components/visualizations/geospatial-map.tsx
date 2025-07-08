@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { MapPin, Globe, Info, Calendar, AlertTriangle, Download, Filter, HelpCircle, BarChart3 } from 'lucide-react'
+import { MapPin, Globe, Info, Calendar, AlertTriangle, Download, Filter, HelpCircle, BarChart3, BookOpen, ChevronRight, ChevronLeft, Network } from 'lucide-react'
 import type { TrialDay } from '@/lib/types'
 
 interface GeospatialMapVisualizationProps {
@@ -36,6 +36,9 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
   const [mounted, setMounted] = useState(false)
   const [selectedYearRange, setSelectedYearRange] = useState<[number, number]>([2012, 2018])
   const [showMethodology, setShowMethodology] = useState(false)
+  const [showNarrative, setShowNarrative] = useState(false)
+  const [currentStoryStep, setCurrentStoryStep] = useState(0)
+  const [showNetworkAnalysis, setShowNetworkAnalysis] = useState(false)
 
   const locations: LocationData[] = [
     {
@@ -333,9 +336,100 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
     URL.revokeObjectURL(url)
   }
 
+  const getNarrativeStory = () => {
+    const allEvents = locations.flatMap(location => 
+      location.events.map(event => ({
+        ...event,
+        locationName: location.name,
+        locationId: location.id
+      }))
+    ).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+    const storyChapters = [
+      {
+        title: "The Beginning: Pattern Establishment",
+        description: "Early incidents in 2012-2013 establish the foundational pattern of behavior across multiple cities.",
+        events: allEvents.filter(e => e.year <= 2013),
+        keyInsight: "Geographic diversity suggests systematic approach rather than isolated incidents."
+      },
+      {
+        title: "Expansion Phase: Geographic Diversification", 
+        description: "2014-2015 shows expansion to international locations and luxury venues.",
+        events: allEvents.filter(e => e.year >= 2014 && e.year <= 2015),
+        keyInsight: "International expansion coincides with increased severity and duration of incidents."
+      },
+      {
+        title: "Peak Activity: Multi-Location Escalation",
+        description: "2016-2017 represents the height of activity with multiple concurrent location usage.",
+        events: allEvents.filter(e => e.year >= 2016 && e.year <= 2017),
+        keyInsight: "Seasonal patterns become more pronounced with concentration around major events."
+      },
+      {
+        title: "Pattern Analysis: Behavioral Consistency",
+        description: "Cross-location analysis reveals consistent behavioral patterns and escalation methods.",
+        events: allEvents,
+        keyInsight: "Geographic analysis confirms systematic pattern of behavior across multiple jurisdictions."
+      }
+    ]
+
+    return storyChapters
+  }
+
+  const getNetworkAnalysis = () => {
+    const allLocations = filteredLocations
+    const connections: Array<{
+      from: string,
+      to: string,
+      strength: number,
+      sharedPeriods: string[],
+      temporalOverlap: number
+    }> = []
+
+    for (let i = 0; i < allLocations.length; i++) {
+      for (let j = i + 1; j < allLocations.length; j++) {
+        const locationA = allLocations[i]
+        const locationB = allLocations[j]
+        
+        const sharedYears = locationA.events
+          .map(e => e.year)
+          .filter(year => locationB.events.some(e => e.year === year))
+        
+        const sharedSeasons = locationA.events
+          .map(e => e.season)
+          .filter((season): season is string => season !== undefined && locationB.events.some(e => e.season === season))
+        
+        const temporalOverlap = sharedYears.length + (sharedSeasons.length * 0.5)
+        
+        if (temporalOverlap > 0) {
+          connections.push({
+            from: locationA.id,
+            to: locationB.id,
+            strength: temporalOverlap,
+            sharedPeriods: [...new Set([...sharedYears.map(y => y.toString()), ...sharedSeasons])],
+            temporalOverlap
+          })
+        }
+      }
+    }
+
+    const sortedConnections = connections.sort((a, b) => b.strength - a.strength)
+    
+    return {
+      connections: sortedConnections,
+      strongestConnection: sortedConnections[0],
+      totalConnections: connections.length,
+      avgConnectionStrength: connections.length > 0 
+        ? Math.round((connections.reduce((sum, c) => sum + c.strength, 0) / connections.length) * 10) / 10 
+        : 0
+    }
+  }
+
   const filteredLocations = getFilteredLocations()
   const seasonalAnalysis = getSeasonalAnalysis()
   const durationAnalysis = getDurationAnalysis()
+  const narrativeStory = getNarrativeStory()
+  const currentChapter = narrativeStory[currentStoryStep]
+  const networkAnalysis = getNetworkAnalysis()
 
   if (!mounted) {
     return <div className="h-96 bg-muted rounded-lg animate-pulse" />
@@ -354,7 +448,25 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
               Interactive analysis of incident patterns - Trial Day {trialDay.trialDayNumber}
             </p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowNarrative(!showNarrative)}
+              className="flex items-center space-x-2 px-3 py-2 bg-purple-500/20 hover:bg-purple-500/30 rounded-lg border border-purple-500/30 transition-colors"
+              aria-label="Toggle narrative story mode"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span className="text-sm">Story Mode</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowNetworkAnalysis(!showNetworkAnalysis)}
+              className="flex items-center space-x-2 px-3 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg border border-green-500/30 transition-colors"
+              aria-label="Toggle network analysis view"
+            >
+              <Network className="w-4 h-4" />
+              <span className="text-sm">Network</span>
+            </button>
             <button
               type="button"
               onClick={() => setShowMethodology(!showMethodology)}
@@ -375,6 +487,158 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
             </button>
           </div>
         </div>
+
+        {/* Narrative Story Mode */}
+        {showNarrative && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-6"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="font-semibold text-foreground flex items-center space-x-2">
+                <BookOpen className="w-4 h-4" />
+                <span>Geographic Intelligence Narrative</span>
+              </h4>
+              <div className="flex items-center space-x-2">
+                <button
+                  type="button"
+                  onClick={() => setCurrentStoryStep(Math.max(0, currentStoryStep - 1))}
+                  disabled={currentStoryStep === 0}
+                  className="p-1 rounded bg-purple-500/20 hover:bg-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Previous chapter"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="text-sm text-muted-foreground">
+                  {currentStoryStep + 1} / {narrativeStory.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setCurrentStoryStep(Math.min(narrativeStory.length - 1, currentStoryStep + 1))}
+                  disabled={currentStoryStep === narrativeStory.length - 1}
+                  className="p-1 rounded bg-purple-500/20 hover:bg-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Next chapter"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <div>
+                <h5 className="font-semibold text-foreground mb-2">{currentChapter.title}</h5>
+                <p className="text-sm text-muted-foreground mb-3">{currentChapter.description}</p>
+                <div className="bg-purple-500/5 border border-purple-500/20 rounded p-3">
+                  <p className="text-sm font-medium text-purple-300">Key Insight:</p>
+                  <p className="text-sm text-muted-foreground">{currentChapter.keyInsight}</p>
+                </div>
+              </div>
+              
+              <div className="max-h-48 overflow-y-auto">
+                <h6 className="font-medium text-foreground mb-2">Chapter Timeline ({currentChapter.events.length} events)</h6>
+                <div className="space-y-2">
+                  {currentChapter.events.map((event, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-start space-x-3 p-2 rounded bg-background/50 border border-border/50"
+                    >
+                      <div className="text-xs text-muted-foreground whitespace-nowrap">
+                        {event.date}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <span className="text-sm font-medium text-foreground">{event.locationName}</span>
+                          <span className={`text-xs px-2 py-1 rounded ${getSeverityColor(event.severity)}`}>
+                            {event.severity.toUpperCase()}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">{event.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Network Analysis Panel */}
+        {showNetworkAnalysis && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="bg-green-500/10 border border-green-500/30 rounded-lg p-6"
+          >
+            <h4 className="font-semibold text-foreground mb-4 flex items-center space-x-2">
+              <Network className="w-4 h-4" />
+              <span>Location Network Analysis</span>
+            </h4>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 className="font-medium text-foreground mb-3">Network Statistics</h5>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm text-muted-foreground">Total Connections:</span>
+                    <span className="text-sm font-medium text-foreground">{networkAnalysis.totalConnections}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm text-muted-foreground">Avg Connection Strength:</span>
+                    <span className="text-sm font-medium text-foreground">{networkAnalysis.avgConnectionStrength}</span>
+                  </div>
+                  {networkAnalysis.strongestConnection && (
+                    <div className="mt-3 p-3 bg-green-500/5 border border-green-500/20 rounded">
+                      <p className="text-sm font-medium text-green-300 mb-1">Strongest Connection</p>
+                      <p className="text-sm text-muted-foreground">
+                        {filteredLocations.find(l => l.id === networkAnalysis.strongestConnection.from)?.name} ↔ {' '}
+                        {filteredLocations.find(l => l.id === networkAnalysis.strongestConnection.to)?.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Strength: {networkAnalysis.strongestConnection.strength} • Shared: {networkAnalysis.strongestConnection.sharedPeriods.join(', ')}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              <div>
+                <h5 className="font-medium text-foreground mb-3">Connection Matrix</h5>
+                <div className="max-h-48 overflow-y-auto">
+                  <div className="space-y-2">
+                    {networkAnalysis.connections.map((connection, index) => {
+                      const fromLocation = filteredLocations.find(l => l.id === connection.from)
+                      const toLocation = filteredLocations.find(l => l.id === connection.to)
+                      const strengthPercent = (connection.strength / Math.max(...networkAnalysis.connections.map(c => c.strength))) * 100
+                      
+                      return (
+                        <div key={index} className="p-2 bg-background/50 rounded border border-border/50">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-xs font-medium text-foreground">
+                              {fromLocation?.name} ↔ {toLocation?.name}
+                            </span>
+                            <span className="text-xs text-green-400">{connection.strength}</span>
+                          </div>
+                          <div className="w-full bg-muted/30 rounded-full h-1.5">
+                            <div 
+                              className="bg-green-500 h-1.5 rounded-full transition-all"
+                              style={{ width: `${strengthPercent}%` }}
+                            />
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Shared periods: {connection.sharedPeriods.join(', ')}
+                          </p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Methodology Panel */}
         {showMethodology && (
@@ -457,11 +721,12 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
                 </div>
               </div>
 
-              {/* Location Markers with Heatmap Effect */}
+              {/* Location Markers with Clustering */}
               {filteredLocations.map((location, index) => {
                 const x = ((location.coordinates[0] + 180) / 360) * 100
                 const y = ((90 - location.coordinates[1]) / 180) * 100
                 const intensity = location.totalSeverityScore / 100
+                const hasMultipleIncidents = location.eventCount > 1
                 
                 return (
                   <motion.div
@@ -472,7 +737,7 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
                       duration: reducedMotion ? 0.01 : 0.5, 
                       delay: reducedMotion ? 0 : index * 0.1 
                     }}
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                     style={{ left: `${x}%`, top: `${y}%` }}
                     onClick={() => setSelectedLocation(location)}
                     role="button"
@@ -511,11 +776,32 @@ export default function GeospatialMapVisualization({ trialDay }: GeospatialMapVi
                           backgroundColor: `hsl(${Math.max(0, 360 - location.totalSeverityScore * 3.6)}, 100%, 50%)`
                         }}
                       />
+                      
+                      {/* Cluster Indicator for Multiple Incidents */}
+                      {hasMultipleIncidents && (
+                        <div 
+                          className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold border-2 border-white shadow-lg"
+                          style={{
+                            animation: 'pulse 2s infinite',
+                            fontSize: '10px'
+                          }}
+                        >
+                          {location.eventCount}
+                        </div>
+                      )}
                     </div>
                     
-                    {/* Location Label */}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-white bg-black/75 px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                      {location.name} ({location.eventCount} events)
+                    {/* Enhanced Location Label with Cluster Info */}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 text-xs text-white bg-black/90 px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/20">
+                      <div className="font-semibold">{location.name}</div>
+                      <div className="text-gray-300">
+                        {location.eventCount} incident{location.eventCount > 1 ? 's' : ''} • Severity: {location.totalSeverityScore}
+                      </div>
+                      {hasMultipleIncidents && (
+                        <div className="text-red-300 text-xs mt-1">
+                          Multiple incidents cluster
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )
