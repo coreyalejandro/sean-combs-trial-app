@@ -20,6 +20,11 @@ import LegalProcessVisualization from './visualizations/legal-process'
 import MindMapVisualization from './visualizations/mind-map'
 import ComparativeTableVisualization from './visualizations/comparative-table'
 import Reconstruction3DVisualization from './visualizations/3d-reconstruction'
+import CauseEffectVisualization from './visualizations/cause-effect'
+import EvidenceHeatmapVisualization from './visualizations/evidence-heatmap'
+import EvidenceIntegrationVisualization from './visualizations/evidence-integration'
+import InterpretationAnalysisVisualization from './visualizations/interpretation-analysis'
+import DeliberationTrackerVisualization from './visualizations/deliberation-tracker'
 import type { TrialDay } from '@/lib/types'
 
 interface VisualizationContainerProps {
@@ -101,6 +106,21 @@ export default function VisualizationContainer({ trialDay }: VisualizationContai
         
         case '3d-reconstruction':
           return <Reconstruction3DVisualization trialDay={trialDay} />
+        
+        case 'cause-effect':
+          return <CauseEffectVisualization trialDay={trialDay} />
+        
+        case 'evidence-heatmap':
+          return <EvidenceHeatmapVisualization trialDay={trialDay} />
+        
+        case 'evidence-integration':
+          return <EvidenceIntegrationVisualization trialDay={trialDay} />
+        
+        case 'interpretation-analysis':
+          return <InterpretationAnalysisVisualization trialDay={trialDay} />
+        
+        case 'deliberation-tracker':
+          return <DeliberationTrackerVisualization trialDay={trialDay} />
         
         default:
           return (
