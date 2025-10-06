@@ -329,6 +329,7 @@ export default function PsychologicalAnalysisVisualization({ trialDay }: Psychol
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter psychological patterns by category"
           >
             <option value="all">All Categories</option>
             <option value="coercive_control">Coercive Control</option>

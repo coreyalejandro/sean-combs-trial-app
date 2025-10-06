@@ -415,6 +415,7 @@ export default function MindMapVisualization({ trialDay }: MindMapProps) {
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter mind map by focus area"
           >
             <option value="all">All Themes</option>
             <option value="employment">Employment</option>
@@ -669,8 +670,10 @@ export default function MindMapVisualization({ trialDay }: MindMapProps) {
               ].map((item) => (
                 <div key={item.type} className="flex items-center space-x-3">
                   <div 
-                    className="rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center"
-                    style={{ width: item.size / 2, height: item.size / 2 }}
+                    className={`rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center ${
+                      item.type === 'central' ? 'w-10 h-10' :
+                      item.type === 'primary' ? 'w-8 h-8' : 'w-5 h-5'
+                    }`}
                   >
                     <Brain className="w-3 h-3 text-accent" />
                   </div>

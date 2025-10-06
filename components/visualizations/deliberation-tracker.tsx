@@ -343,6 +343,7 @@ export default function DeliberationTrackerVisualization({ trialDay }: Deliberat
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter deliberation sessions by status"
           >
             <option value="all">All Sessions</option>
             <option value="completed">Completed</option>

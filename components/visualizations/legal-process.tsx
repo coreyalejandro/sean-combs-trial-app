@@ -301,6 +301,7 @@ export default function LegalProcessVisualization({ trialDay }: LegalProcessProp
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter legal processes by type"
           >
             <option value="all">All Types</option>
             <option value="motion">Motions</option>
@@ -318,6 +319,7 @@ export default function LegalProcessVisualization({ trialDay }: LegalProcessProp
             value={filterParty}
             onChange={(e) => setFilterParty(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter legal processes by initiating party"
           >
             <option value="all">All Parties</option>
             <option value="prosecution">Prosecution</option>

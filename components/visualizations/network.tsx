@@ -1,11 +1,20 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { Users, DollarSign, Link, Info, Download } from 'lucide-react'
+import { Users, DollarSign, Link, Info, Download, Filter, BarChart3 } from 'lucide-react'
+import { 
+  getPlotlyConfig, 
+  getPlotlyLayout, 
+  exportPlotlyData,
+  plotlyColors
+} from '@/lib/plotly-utils'
 import type { TrialDay } from '@/lib/types'
+
+// Dynamic import for Plotly to avoid SSR issues
+const Plot = dynamic(() => import('react-plotly.js'), { ssr: false })
 
 interface NetworkVisualizationProps {
   trialDay: TrialDay
@@ -34,6 +43,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
   const [selectedNode, setSelectedNode] = useState<NetworkNode | null>(null)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [viewMode, setViewMode] = useState<'network' | 'force' | 'hierarchy'>('network')
+  const [filterType, setFilterType] = useState<string>('all')
 
   const networkData = {
     financialTotal: 2.3,
@@ -50,8 +61,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: 'Sean Combs',
       type: 'person',
       size: 60,
-      x: 400,
-      y: 200,
+      x: 0,
+      y: 0,
       connections: ['cassie', 'badboy', 'hotel', 'settlement1', 'settlement2']
     },
     {
@@ -59,8 +70,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: 'Cassie Ventura',
       type: 'person',
       size: 50,
-      x: 200,
-      y: 150,
+      x: -3,
+      y: 2,
       connections: ['combs', 'settlement1', 'settlement2']
     },
     {
@@ -68,8 +79,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: 'Bad Boy Records',
       type: 'entity',
       size: 40,
-      x: 300,
-      y: 300,
+      x: -1,
+      y: -3,
       connections: ['combs', 'settlement1']
     },
     {
@@ -77,8 +88,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: 'InterContinental Hotels',
       type: 'entity',
       size: 35,
-      x: 500,
-      y: 300,
+      x: 3,
+      y: -2,
       connections: ['combs', 'settlement2']
     },
     {
@@ -86,8 +97,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: '$20M Civil Settlement',
       type: 'financial',
       size: 45,
-      x: 250,
-      y: 50,
+      x: -2,
+      y: 4,
       connections: ['combs', 'cassie', 'badboy']
     },
     {
@@ -95,8 +106,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: '$10M Hotel Settlement',
       type: 'financial',
       size: 35,
-      x: 550,
-      y: 100,
+      x: 4,
+      y: 1,
       connections: ['combs', 'cassie', 'hotel']
     },
     {
@@ -104,8 +115,8 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
       label: '2023 Civil Lawsuit',
       type: 'event',
       size: 30,
-      x: 100,
-      y: 250,
+      x: -4,
+      y: 0,
       connections: ['cassie', 'settlement1']
     }
   ]
@@ -159,63 +170,180 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
     setMounted(true)
   }, [])
 
-  const getNodeColor = (type: string, isSelected: boolean, isHovered: boolean) => {
-    let baseColor = ''
+  const getNodeColor = (type: string) => {
     switch (type) {
-      case 'person': baseColor = 'bg-blue-500'
-        break
-      case 'entity': baseColor = 'bg-purple-500'
-        break
-      case 'event': baseColor = 'bg-green-500'
-        break
-      case 'financial': baseColor = 'bg-yellow-500'
-        break
-      default: baseColor = 'bg-muted'
+      case 'person': return plotlyColors.blue
+      case 'entity': return plotlyColors.purple
+      case 'event': return plotlyColors.green
+      case 'financial': return plotlyColors.yellow
+      default: return plotlyColors.gray
     }
-    
-    if (isSelected) return baseColor + ' ring-4 ring-accent'
-    if (isHovered) return baseColor + ' ring-2 ring-white/50'
-    return baseColor
   }
 
-  const getEdgeStyle = (edge: NetworkEdge, fromNode: NetworkNode, toNode: NetworkNode) => {
-    const isConnectedToSelected = selectedNode && 
-      (selectedNode.id === edge.from || selectedNode.id === edge.to)
-    
-    return {
-      stroke: isConnectedToSelected ? '#f59e0b' : '#6b7280',
-      strokeWidth: isConnectedToSelected ? 3 : Math.max(1, edge.weight / 50),
-      opacity: isConnectedToSelected ? 1 : 0.6
+  const getEdgeColor = (type: string) => {
+    switch (type) {
+      case 'financial': return plotlyColors.yellow
+      case 'relationship': return plotlyColors.blue
+      case 'legal': return plotlyColors.purple
+      case 'communication': return plotlyColors.green
+      default: return plotlyColors.gray
     }
+  }
+
+  const filteredNodes = filterType === 'all' ? nodes : nodes.filter(node => node.type === filterType)
+  const filteredEdges = edges.filter(edge => 
+    filteredNodes.some(node => node.id === edge.from) &&
+    filteredNodes.some(node => node.id === edge.to)
+  )
+
+  // Create edge traces for Plotly
+  const edgeTraces = filteredEdges.map((edge, index) => {
+    const fromNode = nodes.find(n => n.id === edge.from)
+    const toNode = nodes.find(n => n.id === edge.to)
+    
+    if (!fromNode || !toNode) return null
+
+    return {
+      type: 'scatter',
+      mode: 'lines',
+      x: [fromNode.x, toNode.x, null],
+      y: [fromNode.y, toNode.y, null],
+      line: {
+        color: getEdgeColor(edge.type),
+        width: Math.max(2, edge.weight / 30),
+        dash: edge.type === 'financial' ? 'dash' : 'solid'
+      },
+      hoverinfo: 'text',
+      hovertext: `${edge.label}<br>Type: ${edge.type}<br>Weight: ${edge.weight}`,
+      showlegend: false,
+      name: `Edge_${index}`
+    }
+  }).filter(Boolean)
+
+  // Create node traces grouped by type
+  const nodeTypeGroups = ['person', 'entity', 'event', 'financial']
+  const nodeTraces = nodeTypeGroups.map(nodeType => {
+    const typeNodes = filteredNodes.filter(node => node.type === nodeType)
+    
+    if (typeNodes.length === 0) return null
+
+    return {
+      type: 'scatter',
+      mode: 'markers+text',
+      x: typeNodes.map(node => node.x),
+      y: typeNodes.map(node => node.y),
+      text: typeNodes.map(node => node.label),
+      textposition: 'bottom center',
+      textfont: {
+        color: '#e2e8f0',
+        size: 10,
+        family: 'Arial, sans-serif'
+      },
+      marker: {
+        size: typeNodes.map(node => node.size),
+        color: getNodeColor(nodeType),
+        line: {
+          color: '#1e293b',
+          width: 2
+        },
+        sizemode: 'diameter',
+        sizeref: 2
+      },
+      hovertemplate: `<b>%{text}</b><br>Type: ${nodeType}<br>Connections: %{customdata}<extra></extra>`,
+      customdata: typeNodes.map(node => node.connections.length),
+      name: nodeType.charAt(0).toUpperCase() + nodeType.slice(1),
+      showlegend: true
+    }
+  }).filter(Boolean)
+
+  const plotData = [...edgeTraces, ...nodeTraces] as any[]
+
+  const plotLayout = {
+    ...getPlotlyLayout({
+      showlegend: true,
+      margin: { l: 40, r: 40, t: 40, b: 40 }
+    }),
+    xaxis: {
+      showgrid: false,
+      zeroline: false,
+      showticklabels: false,
+      range: [-6, 6]
+    },
+    yaxis: {
+      showgrid: false,
+      zeroline: false,
+      showticklabels: false,
+      range: [-5, 6]
+    },
+    height: 500,
+    legend: {
+      bgcolor: 'rgba(15, 23, 42, 0.8)',
+      bordercolor: '#334155',
+      font: { color: '#e2e8f0' },
+      x: 1,
+      xanchor: 'right' as 'right',
+      y: 1,
+      yanchor: 'top' as 'top'
+    },
+    annotations: selectedNode ? [{
+      x: selectedNode.x,
+      y: selectedNode.y + 1,
+      text: `<b>${selectedNode.label}</b><br>Selected`,
+      showarrow: true,
+      arrowhead: 2,
+      arrowsize: 1,
+      arrowwidth: 2,
+      arrowcolor: plotlyColors.accent,
+      font: { color: plotlyColors.accent, size: 12 },
+      bgcolor: 'rgba(15, 23, 42, 0.9)',
+      bordercolor: plotlyColors.accent,
+      borderwidth: 1
+    }] : []
   }
 
   const exportData = () => {
-    const csvContent = [
-      ['Node ID', 'Label', 'Type', 'Connections Count'],
-      ...nodes.map(node => [
-        node.id,
-        node.label,
-        node.type,
-        node.connections.length.toString()
-      ]),
-      [],
-      ['From', 'To', 'Label', 'Type', 'Weight'],
-      ...edges.map(edge => [
-        edge.from,
-        edge.to,
-        edge.label,
-        edge.type,
-        edge.weight.toString()
-      ])
-    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n')
+    const networkAnalysis = {
+      nodes: filteredNodes.map(node => ({
+        id: node.id,
+        label: node.label,
+        type: node.type,
+        connections: node.connections.length,
+        position: { x: node.x, y: node.y }
+      })),
+      edges: filteredEdges.map(edge => ({
+        from: edge.from,
+        to: edge.to,
+        label: edge.label,
+        type: edge.type,
+        weight: edge.weight
+      })),
+      statistics: {
+        totalNodes: filteredNodes.length,
+        totalEdges: filteredEdges.length,
+        networkDensity: (filteredEdges.length * 2) / (filteredNodes.length * (filteredNodes.length - 1)),
+        averageConnections: filteredNodes.reduce((sum, node) => sum + node.connections.length, 0) / filteredNodes.length
+      }
+    }
 
-    const blob = new Blob([csvContent], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `trial-day-${trialDay.trialDayNumber}-network-analysis.csv`
-    a.click()
-    URL.revokeObjectURL(url)
+    exportPlotlyData(networkAnalysis.nodes, `trial-day-${trialDay.trialDayNumber}-network-analysis`, [
+      'id',
+      'label', 
+      'type',
+      'connections',
+      'position'
+    ])
+  }
+
+  const handleNodeClick = (event: any) => {
+    if (event?.points?.[0]) {
+      const point = event.points[0]
+      const clickedNode = filteredNodes.find(node => 
+        Math.abs(node.x - point.x) < 0.1 && Math.abs(node.y - point.y) < 0.1
+      )
+      if (clickedNode) {
+        setSelectedNode(clickedNode)
+      }
+    }
   }
 
   if (!mounted) {
@@ -230,93 +358,63 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
             The Ecosystem of Allegations and Settlements
           </h3>
           <p className="text-sm text-muted-foreground">
-            Network visualization of financial flows and relationships in the case
+            Interactive network visualization of financial flows and relationships in the case
           </p>
         </div>
-        <button
-          onClick={exportData}
-          className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
-        >
-          <Download className="w-4 h-4" />
-          <span className="text-sm">Export Network</span>
-        </button>
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            <Filter className="w-4 h-4 text-muted-foreground" />
+            <span className="text-sm font-medium text-foreground">View:</span>
+          </div>
+          <select
+            value={viewMode}
+            onChange={(e) => setViewMode(e.target.value as 'network' | 'force' | 'hierarchy')}
+            className="px-2 py-1 text-sm bg-background border border-border rounded"
+            aria-label="Network visualization view mode"
+          >
+            <option value="network">Network View</option>
+            <option value="force">Force Layout</option>
+            <option value="hierarchy">Hierarchical</option>
+          </select>
+          
+          <div className="flex items-center space-x-2">
+            <BarChart3 className="w-4 h-4 text-muted-foreground" />
+            <span className="text-sm font-medium text-foreground">Filter:</span>
+          </div>
+          <select
+            value={filterType}
+            onChange={(e) => setFilterType(e.target.value)}
+            className="px-2 py-1 text-sm bg-background border border-border rounded"
+            aria-label="Network node type filter"
+          >
+            <option value="all">All Nodes</option>
+            <option value="person">People</option>
+            <option value="entity">Organizations</option>
+            <option value="financial">Financial</option>
+            <option value="event">Events</option>
+          </select>
+          
+          <button
+            onClick={exportData}
+            className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            <span className="text-sm">Export</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-4 gap-6">
         {/* Network Visualization */}
         <div className="lg:col-span-3">
           <div className="glass-card p-6">
-            <div className="relative w-full h-96 bg-slate-900/20 rounded-lg overflow-hidden">
-              <svg viewBox="0 0 600 400" className="w-full h-full">
-                {/* Edges */}
-                <g>
-                  {edges.map((edge, index) => {
-                    const fromNode = nodes.find(n => n.id === edge.from)
-                    const toNode = nodes.find(n => n.id === edge.to)
-                    if (!fromNode || !toNode) return null
-                    
-                    return (
-                      <motion.line
-                        key={`${edge.from}-${edge.to}`}
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: 1 }}
-                        transition={{ 
-                          duration: reducedMotion ? 0.01 : 1, 
-                          delay: reducedMotion ? 0 : index * 0.2 
-                        }}
-                        x1={fromNode.x}
-                        y1={fromNode.y}
-                        x2={toNode.x}
-                        y2={toNode.y}
-                        {...getEdgeStyle(edge, fromNode, toNode)}
-                        strokeDasharray={edge.type === 'financial' ? '5,5' : 'none'}
-                      />
-                    )
-                  })}
-                </g>
-
-                {/* Nodes */}
-                <g>
-                  {nodes.map((node, index) => (
-                    <motion.g
-                      key={node.id}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ 
-                        duration: reducedMotion ? 0.01 : 0.5, 
-                        delay: reducedMotion ? 0 : index * 0.1 
-                      }}
-                    >
-                      <circle
-                        cx={node.x}
-                        cy={node.y}
-                        r={node.size / 2}
-                        className={`cursor-pointer transition-all ${getNodeColor(
-                          node.type, 
-                          selectedNode?.id === node.id,
-                          hoveredNode === node.id
-                        )}`}
-                        onClick={() => setSelectedNode(node)}
-                        onMouseEnter={() => setHoveredNode(node.id)}
-                        onMouseLeave={() => setHoveredNode(null)}
-                        style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' }}
-                      />
-                      
-                      {/* Node labels */}
-                      <text
-                        x={node.x}
-                        y={node.y + node.size / 2 + 20}
-                        textAnchor="middle"
-                        className="text-xs font-medium fill-foreground pointer-events-none"
-                        style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
-                      >
-                        {node.label}
-                      </text>
-                    </motion.g>
-                  ))}
-                </g>
-              </svg>
-            </div>
+            <Plot
+              data={plotData}
+              layout={plotLayout}
+              config={getPlotlyConfig(`trial-day-${trialDay.trialDayNumber}-network`)}
+              onClick={handleNodeClick}
+              style={{ width: '100%', height: '500px' }}
+            />
           </div>
         </div>
 
@@ -331,10 +429,10 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
             
             <div className="space-y-2">
               {[
-                { type: 'person', color: 'bg-blue-500', label: 'People', count: 2 },
-                { type: 'entity', color: 'bg-purple-500', label: 'Organizations', count: 2 },
-                { type: 'financial', color: 'bg-yellow-500', label: 'Financial', count: 2 },
-                { type: 'event', color: 'bg-green-500', label: 'Legal Events', count: 1 }
+                { type: 'person', color: 'bg-blue-500', label: 'People', count: filteredNodes.filter(n => n.type === 'person').length },
+                { type: 'entity', color: 'bg-purple-500', label: 'Organizations', count: filteredNodes.filter(n => n.type === 'entity').length },
+                { type: 'financial', color: 'bg-yellow-500', label: 'Financial', count: filteredNodes.filter(n => n.type === 'financial').length },
+                { type: 'event', color: 'bg-green-500', label: 'Legal Events', count: filteredNodes.filter(n => n.type === 'event').length }
               ].map((item) => (
                 <div key={item.type} className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -422,15 +520,35 @@ export default function NetworkVisualization({ trialDay }: NetworkVisualizationP
             </div>
             
             <div className="space-y-2 text-sm">
-              {networkData?.keyInsights.map((insight, index) => (
-                <div key={index} className="flex justify-between">
-                  <span className="text-muted-foreground text-xs">{insight}</span>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Nodes:</span>
+                <span className="text-foreground">{filteredNodes.length}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Connections:</span>
+                <span className="text-foreground">{filteredEdges.length}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Avg. Connections:</span>
+                <span className="text-foreground">
+                  {(filteredNodes.reduce((sum, node) => sum + node.connections.length, 0) / filteredNodes.length).toFixed(1)}
+                </span>
+              </div>
+              
+              <div className="pt-2 border-t border-border">
+                <h5 className="text-sm font-medium text-foreground mb-1">Key Insights:</h5>
+                <div className="space-y-1">
+                  {networkData?.keyInsights.map((insight, index) => (
+                    <div key={index} className="text-xs text-muted-foreground">
+                      • {insight}
+                    </div>
+                  )) || (
+                    <div className="text-muted-foreground text-center py-2">
+                      Processing network data...
+                    </div>
+                  )}
                 </div>
-              )) || (
-                <div className="text-muted-foreground text-center py-2">
-                  Processing network data...
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
 import { AlertTriangle, BarChart3 } from 'lucide-react'
 import WordCloudVisualization from './visualizations/word-cloud'
-import GeospatialMapVisualization from './visualizations/geospatial-map'
+import PlotlyGeospatialMap from './visualizations/plotly-geospatial-map'
 import TimelineVisualization from './visualizations/timeline'
 import SentimentAnalysisVisualization from './visualizations/sentiment-analysis'
 import NetworkVisualization from './visualizations/network'
@@ -58,7 +58,7 @@ export default function VisualizationContainer({ trialDay }: VisualizationContai
           return <WordCloudVisualization trialDay={trialDay} />
         
         case 'geospatial-map':
-          return <GeospatialMapVisualization trialDay={trialDay} />
+          return <PlotlyGeospatialMap trialDay={trialDay} />
         
         case 'interactive-timeline':
         case 'multi-modal-timeline':

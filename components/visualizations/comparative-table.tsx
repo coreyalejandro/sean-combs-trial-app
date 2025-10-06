@@ -331,6 +331,7 @@ export default function ComparativeTableVisualization({ trialDay }: ComparativeT
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter by evidence type"
           >
             <option value="all">All Types</option>
             <option value="testimony">Testimony</option>
@@ -346,6 +347,7 @@ export default function ComparativeTableVisualization({ trialDay }: ComparativeT
             value={filterImpact}
             onChange={(e) => setFilterImpact(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter by credibility impact"
           >
             <option value="all">All Impacts</option>
             <option value="strengthened">Strengthened</option>
@@ -361,6 +363,7 @@ export default function ComparativeTableVisualization({ trialDay }: ComparativeT
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Sort evidence by criteria"
           >
             <option value="timeline">Timeline</option>
             <option value="impact">Credibility Impact</option>

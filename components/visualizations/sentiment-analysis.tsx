@@ -1,11 +1,22 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { useAccessibilityStore } from '@/lib/stores/accessibility'
-import { TrendingUp, TrendingDown, BarChart3, MessageSquare, Download } from 'lucide-react'
+import { TrendingUp, TrendingDown, BarChart3, MessageSquare, Download, PieChart, Filter } from 'lucide-react'
+import { 
+  getPlotlyConfig, 
+  getPlotlyLayout, 
+  createBarData, 
+  getSentimentColor, 
+  exportPlotlyData,
+  plotlyColors
+} from '@/lib/plotly-utils'
 import type { TrialDay } from '@/lib/types'
+
+// Dynamic import for Plotly to avoid SSR issues
+const Plot = dynamic(() => import('react-plotly.js'), { ssr: false })
 
 interface SentimentAnalysisVisualizationProps {
   trialDay: TrialDay
@@ -42,6 +53,7 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
   const [selectedPeriod, setSelectedPeriod] = useState<SentimentData | null>(null)
   const [sentimentInsights, setSentimentInsights] = useState<ProcessedSentimentData | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [viewMode, setViewMode] = useState<'pie' | 'bar' | 'stacked'>('pie')
 
   // Process trial data for sentiment analysis
   const processSentimentData = (): ProcessedSentimentData => {
@@ -152,7 +164,7 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
     setSelectedPeriod(processed.periods[0])
   }, [trialDay])
 
-  const getSentimentColor = (sentiment: string) => {
+  const getSentimentColorClass = (sentiment: string) => {
     switch (sentiment) {
       case 'positive': return 'text-green-400 bg-green-500/20'
       case 'negative': return 'text-red-400 bg-red-500/20'
@@ -161,115 +173,208 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
     }
   }
 
-  const exportData = () => {
-    const csvContent = [
-      ['Period', 'Positive %', 'Negative %', 'Neutral %', 'Context'],
-      ...(sentimentInsights?.periods.map(period => [
-        period.date,
-        period.positive.toString(),
-        period.negative.toString(),
-        period.neutral.toString(),
-        period.context
-      ]) || []),
-      [],
-      ['Message ID', 'Speaker', 'Content', 'Sentiment', 'Timestamp'],
-      ...(sentimentInsights?.messages.map(message => [
-        message.id,
-        message.speaker,
-        message.content,
-        message.sentiment,
-        message.timestamp
-      ]) || [])
-    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n')
+  // Prepare pie chart data
+  const preparePieChartData = () => {
+    if (!selectedPeriod) return []
+    
+    return [{
+      type: 'pie' as const,
+      labels: ['Positive', 'Negative', 'Neutral'],
+      values: [selectedPeriod.positive, selectedPeriod.negative, selectedPeriod.neutral],
+      marker: {
+        colors: [plotlyColors.sentiment.positive, plotlyColors.sentiment.negative, plotlyColors.sentiment.neutral],
+        line: { color: '#ffffff', width: 2 }
+      },
+      textinfo: 'label+percent',
+      textposition: 'outside',
+      hole: 0.4, // Makes it a donut chart
+      hovertemplate: '<b>%{label}</b><br>%{value}%<br>%{percent}<extra></extra>'
+    }]
+  }
 
-    const blob = new Blob([csvContent], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `trial-day-${trialDay.trialDayNumber}-sentiment-analysis.csv`
-    a.click()
-    URL.revokeObjectURL(url)
+  // Prepare bar chart data
+  const prepareBarChartData = () => {
+    if (!sentimentInsights) return []
+    
+    const periods = sentimentInsights.periods
+    
+    return [
+      {
+        x: periods.map(p => p.date),
+        y: periods.map(p => p.positive),
+        type: 'bar' as const,
+        name: 'Positive',
+        marker: { color: plotlyColors.sentiment.positive },
+        hovertemplate: '<b>Positive Sentiment</b><br>%{y}%<extra></extra>'
+      },
+      {
+        x: periods.map(p => p.date),
+        y: periods.map(p => p.negative),
+        type: 'bar' as const,
+        name: 'Negative',
+        marker: { color: plotlyColors.sentiment.negative },
+        hovertemplate: '<b>Negative Sentiment</b><br>%{y}%<extra></extra>'
+      },
+      {
+        x: periods.map(p => p.date),
+        y: periods.map(p => p.neutral),
+        type: 'bar' as const,
+        name: 'Neutral',
+        marker: { color: plotlyColors.sentiment.neutral },
+        hovertemplate: '<b>Neutral Sentiment</b><br>%{y}%<extra></extra>'
+      }
+    ]
+  }
+
+  // Prepare stacked bar chart data
+  const prepareStackedBarData = () => {
+    if (!sentimentInsights) return []
+    
+    const periods = sentimentInsights.periods
+    
+    return [
+      {
+        x: periods.map(p => p.date),
+        y: periods.map(p => p.positive),
+        type: 'bar' as const,
+        name: 'Positive',
+        marker: { color: plotlyColors.sentiment.positive },
+        hovertemplate: '<b>Positive</b><br>%{y}%<extra></extra>'
+      },
+      {
+        x: periods.map(p => p.date),
+        y: periods.map(p => p.negative),
+        type: 'bar' as const,
+        name: 'Negative',
+        marker: { color: plotlyColors.sentiment.negative },
+        hovertemplate: '<b>Negative</b><br>%{y}%<extra></extra>'
+      },
+      {
+        x: periods.map(p => p.date),
+        y: periods.map(p => p.neutral),
+        type: 'bar' as const,
+        name: 'Neutral',
+        marker: { color: plotlyColors.sentiment.neutral },
+        hovertemplate: '<b>Neutral</b><br>%{y}%<extra></extra>'
+      }
+    ]
+  }
+
+  const exportData = () => {
+    if (!sentimentInsights) return
+    
+    const allData = [
+      ...sentimentInsights.periods.map(period => ({
+        type: 'period',
+        date: period.date,
+        positive_percent: period.positive,
+        negative_percent: period.negative,
+        neutral_percent: period.neutral,
+        context: period.context
+      })),
+      ...sentimentInsights.messages.map(message => ({
+        type: 'message',
+        id: message.id,
+        speaker: message.speaker,
+        content: message.content,
+        sentiment: message.sentiment,
+        timestamp: message.timestamp
+      }))
+    ]
+    
+    exportPlotlyData(
+      allData,
+      `trial-day-${trialDay.trialDayNumber}-sentiment-analysis-plotly.csv`,
+      ['Type', 'Date', 'Positive %', 'Negative %', 'Neutral %', 'Context', 'ID', 'Speaker', 'Content', 'Sentiment', 'Timestamp']
+    )
   }
 
   if (!mounted) {
     return <div className="h-96 bg-muted rounded-lg animate-pulse" />
   }
 
+  const plotData = viewMode === 'pie' ? preparePieChartData() : 
+                   viewMode === 'bar' ? prepareBarChartData() : 
+                   prepareStackedBarData()
+
+  const plotLayout = viewMode === 'pie' ? 
+    {
+      ...getPlotlyLayout({ showlegend: true, margin: { l: 40, r: 40, t: 40, b: 40 } }),
+      height: 400
+    } : 
+    {
+      ...getPlotlyLayout({ margin: { l: 60, r: 40, t: 40, b: 60 } }),
+      xaxis: {
+        title: { text: 'Period', font: { color: '#e2e8f0', size: 14 } },
+        tickfont: { color: '#94a3b8', size: 10 },
+        gridcolor: '#374151'
+      },
+      yaxis: {
+        title: { text: 'Percentage (%)', font: { color: '#e2e8f0', size: 14 } },
+        tickfont: { color: '#94a3b8', size: 10 },
+        gridcolor: '#374151'
+      },
+      ...(viewMode === 'stacked' && { barmode: 'stack' }),
+      height: 400
+    }
+
   return (
-    <div className="w-full">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h3 className="text-lg font-semibold text-foreground mb-2">
-            Day {trialDay.trialDayNumber}: Communication Analysis
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            Sentiment analysis of testimony and evidence from this day's proceedings
-          </p>
+    <div className="w-full space-y-6">
+      {/* Header */}
+      <div className="flex flex-col space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-semibold text-foreground mb-2">
+              Day {trialDay.trialDayNumber}: Communication Analysis
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Professional Plotly.js Sentiment Analysis - Advanced NLP analysis of testimony and evidence
+            </p>
+          </div>
+          <button
+            onClick={exportData}
+            className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            <span className="text-sm">Export Analysis</span>
+          </button>
         </div>
-        <button
-          onClick={exportData}
-          className="flex items-center space-x-2 px-4 py-2 bg-accent/20 hover:bg-accent/30 rounded-lg border border-accent/30 transition-colors"
-        >
-          <Download className="w-4 h-4" />
-          <span className="text-sm">Export Analysis</span>
-        </button>
+
+        {/* Controls */}
+        <div className="flex items-center space-x-4 p-4 bg-muted/30 rounded-lg">
+          <div className="flex items-center space-x-2">
+            <PieChart className="w-4 h-4 text-muted-foreground" />
+            <span className="text-sm font-medium text-foreground">Chart Type:</span>
+          </div>
+          <select
+            value={viewMode}
+            onChange={(e) => setViewMode(e.target.value as 'pie' | 'bar' | 'stacked')}
+            className="px-2 py-1 text-sm bg-background border border-border rounded"
+            aria-label="Select chart type"
+          >
+            <option value="pie">Pie Chart</option>
+            <option value="bar">Bar Chart</option>
+            <option value="stacked">Stacked Bar</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
-        {/* Sentiment Timeline */}
+        {/* Main Plotly Visualization */}
         <div className="lg:col-span-2 space-y-4">
           <div className="glass-card p-6">
-            <h4 className="font-semibold text-foreground mb-4">Sentiment Evolution Over Time</h4>
+            <h4 className="font-semibold text-foreground mb-4 flex items-center space-x-2">
+              <BarChart3 className="w-5 h-5 text-accent" />
+              <span>Sentiment Distribution</span>
+            </h4>
             
-            <div className="space-y-3">
-              {sentimentInsights?.periods.map((period, index) => (
-                <motion.button
-                  key={period.date}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ 
-                    duration: reducedMotion ? 0.01 : 0.4, 
-                    delay: reducedMotion ? 0 : index * 0.1 
-                  }}
-                  onClick={() => setSelectedPeriod(period)}
-                  className={`w-full text-left p-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-accent ${
-                    selectedPeriod?.date === period.date 
-                      ? 'bg-accent/20 border border-accent/50' 
-                      : 'bg-muted/30 hover:bg-muted/50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-foreground">{period.date}</span>
-                    <div className="flex items-center space-x-1">
-                      {period.positive > period.negative ? (
-                        <TrendingUp className="w-4 h-4 text-green-400" />
-                      ) : (
-                        <TrendingDown className="w-4 h-4 text-red-400" />
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Sentiment bar */}
-                  <div className="flex rounded-full overflow-hidden h-2 mb-2">
-                    <div 
-                      className="bg-green-500" 
-                      style={{ width: `${period.positive}%` }}
-                    />
-                    <div 
-                      className="bg-red-500" 
-                      style={{ width: `${period.negative}%` }}
-                    />
-                    <div 
-                      className="bg-blue-500" 
-                      style={{ width: `${period.neutral}%` }}
-                    />
-                  </div>
-                  
-                  <div className="text-xs text-muted-foreground">
-                    Positive: {period.positive}% | Negative: {period.negative}% | Neutral: {period.neutral}%
-                  </div>
-                </motion.button>
-              ))}
+            <div className="h-96 rounded-lg overflow-hidden border border-slate-700">
+              <Plot
+                data={plotData as any}
+                layout={plotLayout as any}
+                config={getPlotlyConfig(`trial-day-${trialDay.trialDayNumber}-sentiment`)}
+                style={{ width: '100%', height: '100%' }}
+              />
             </div>
           </div>
 
@@ -296,7 +401,7 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
                       {message.speaker}
                     </span>
                     <div className="flex items-center space-x-2">
-                      <span className={`text-xs px-2 py-1 rounded-full ${getSentimentColor(message.sentiment)}`}>
+                      <span className={`text-xs px-2 py-1 rounded-full ${getSentimentColorClass(message.sentiment)}`}>
                         {message.sentiment}
                       </span>
                       <span className="text-xs text-muted-foreground">{message.timestamp}</span>
@@ -378,11 +483,12 @@ export default function SentimentAnalysisVisualization({ trialDay }: SentimentAn
 
           {/* Methodology */}
           <div className="glass-card p-4">
-            <h4 className="font-semibold text-foreground mb-3">Analysis Method</h4>
+            <h4 className="font-semibold text-foreground mb-3">Plotly.js Analysis Method</h4>
             <div className="text-xs text-muted-foreground space-y-2">
+              <p>• Interactive visualization with Plotly.js</p>
               <p>• Natural language processing of text messages</p>
               <p>• Contextual sentiment scoring</p>
-              <p>• Temporal pattern analysis</p>
+              <p>• Professional data visualization standards</p>
               <p>• Cross-referenced with testimony events</p>
             </div>
           </div>

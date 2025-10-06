@@ -1,4 +1,4 @@
-// File: /Users/coreyalejandro/Repos/sean-combs-trial-app/app/day/[id]/page.tsx
+// File: /Users/coreyalejandro/Library/Mobile Documents/com~apple~CloudDocs/Repos/sean-combs-trial-app/app/day/[id]/page.tsx
 import * as entry from '../../../../../app/day/[id]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -148,6 +148,9 @@ export default function Navigation() {
     return null
   }
 
+  // Compute aria-expanded value to avoid linter warnings
+  const ariaExpandedValue = isMenuOpen ? "true" : "false"
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 glass-card border-b border-border/50 no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -256,7 +259,7 @@ export default function Navigation() {
               onClick={() => setMenuOpen(!isMenuOpen)}
               className="p-2 rounded-md text-foreground hover:text-accent hover:bg-muted focus:outline-none focus:ring-2 focus:ring-accent transition-colors"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMenuOpen}
+              aria-expanded={ariaExpandedValue}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

@@ -216,6 +216,7 @@ export default function Reconstruction3DVisualization({ trialDay }: Reconstructi
           <button
             onClick={() => setViewAngle(prev => prev - 45)}
             className="p-2 bg-muted/50 hover:bg-muted rounded border border-border"
+            aria-label="Rotate view counterclockwise"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -223,6 +224,7 @@ export default function Reconstruction3DVisualization({ trialDay }: Reconstructi
           <button
             onClick={() => setViewAngle(prev => prev + 45)}
             className="p-2 bg-muted/50 hover:bg-muted rounded border border-border"
+            aria-label="Rotate view clockwise"
           >
             <RotateCcw className="w-4 h-4 rotate-180" />
           </button>
@@ -233,6 +235,7 @@ export default function Reconstruction3DVisualization({ trialDay }: Reconstructi
           <button
             onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.2))}
             className="p-2 bg-muted/50 hover:bg-muted rounded border border-border"
+            aria-label="Zoom out"
           >
             <ZoomOut className="w-4 h-4" />
           </button>
@@ -240,6 +243,7 @@ export default function Reconstruction3DVisualization({ trialDay }: Reconstructi
           <button
             onClick={() => setZoomLevel(prev => Math.min(2, prev + 0.2))}
             className="p-2 bg-muted/50 hover:bg-muted rounded border border-border"
+            aria-label="Zoom in"
           >
             <ZoomIn className="w-4 h-4" />
           </button>

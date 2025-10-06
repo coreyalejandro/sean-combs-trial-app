@@ -266,6 +266,7 @@ export default function EvidenceComparisonVisualization({ trialDay }: EvidenceCo
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter evidence by type"
           >
             <option value="all">All Types</option>
             <option value="testimony">Testimony</option>

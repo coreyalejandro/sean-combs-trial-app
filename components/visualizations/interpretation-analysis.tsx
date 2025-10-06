@@ -378,6 +378,7 @@ export default function InterpretationAnalysisVisualization({ trialDay }: Interp
             value={filterStrength}
             onChange={(e) => setFilterStrength(e.target.value as any)}
             className="px-3 py-1 bg-muted/50 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Filter evidence by strength comparison"
           >
             <option value="all">All Evidence</option>
             <option value="contested">Highly Contested</option>
