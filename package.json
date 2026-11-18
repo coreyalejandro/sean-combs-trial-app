@@ -1,10 +1,11 @@
 {
-  "name": "app",
+  "name": "sean-combs-trial-app",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "prisma generate && next build",
+    "start": "npx serve@14.2.4 out",
+    "postinstall": "prisma generate",
     "lint": "next lint"
   },
   "prisma": {

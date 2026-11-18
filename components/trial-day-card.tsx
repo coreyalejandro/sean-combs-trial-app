@@ -22,7 +22,9 @@ export default function TrialDayCard({ trialDay, index, onClick }: TrialDayCardP
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      // Dates are stored as midnight UTC; format in UTC so Day 1 shows May 12, not May 11.
+      timeZone: 'UTC'
     })
   }
 

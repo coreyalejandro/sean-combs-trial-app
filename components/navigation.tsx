@@ -38,7 +38,7 @@ export default function Navigation() {
   
   const fetchTrialDaysData = async () => {
     try {
-      const response = await fetch('/api/trial-days')
+      const response = await fetch('/trial-days.json')
       if (response.ok) {
         const data = await response.json()
         setTrialDaysData(data)

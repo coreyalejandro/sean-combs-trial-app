@@ -1,12 +1,10 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Static export: `next build` writes plain HTML/CSS/JS to ./out, which is what
+  // Cloudflare Pages serves. All data comes from prisma/dev.db at build time.
+  output: 'export',
+  // The local dev launcher sets NEXT_DIST_DIR=.next-local; builds use .next.
   distDir: process.env.NEXT_DIST_DIR || '.next',
-  output: process.env.NEXT_OUTPUT_MODE,
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, '../'),
-  },
   eslint: {
     ignoreDuringBuilds: true,
   },

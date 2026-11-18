@@ -65,6 +65,9 @@ function TrialDayLoading() {
   )
 }
 
+// Only days 1-28 exist; anything else is a 404 in the static export.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return Array.from({ length: 28 }, (_, i) => ({
     id: (i + 1).toString(),
