@@ -14,10 +14,10 @@
       "confidence": "medium",
       "sources": [
         {
-          "outlet": "Associated Press via Journal-News",
-          "outlet_family": "AP",
-          "title": "The Latest: Cassie takes the stand in Sean 'Diddy' Combs' sex trafficking trial",
-          "url": "https://coxohio-journal-news-prod.cdn.arcpublishing.com/nation-world/the-latest-cassie-takes-the-stand-in-sean-diddy-combs-sex-trafficking-trial/ZGZUYN53GZAAJMUBO2NOTJRV7Y/",
+          "outlet": "NPR",
+          "outlet_family": "NPR",
+          "title": "Sean Combs trial: Cassie's testimony details scope of violent relationship",
+          "url": "https://www.npr.org/2025/05/13/nx-s1-5396851/diddy-trial-cassie-sean-combs",
           "date": "2025-05-13"
         }
       ]
@@ -54,7 +54,7 @@
     {
       "id": "jane-agent-contact",
       "kind": "event",
-      "text": "After the March 2024 federal raids, an HSI agent left Jane a card (her first contact with investigators reported in coverage); Combs arranged and paid for her lawyer",
+      "text": "On the day federal agents raided Combs's properties in March 2024, an HSI agent left Jane a card (her first contact with investigators reported in coverage); Combs arranged her lawyer and has paid her legal bills",
       "value": "2024-03",
       "unit": "month",
       "date": "2024-03",
@@ -64,18 +64,18 @@
       "confidence": "high",
       "sources": [
         {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "NBC News live blog, June 9, 2025 (Day 19)",
-          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-testimony-girlfriend-live-updates-rcna211565",
-          "date": "2025-06-09"
-        },
-        {
           "outlet": "ABC News / Good Morning America",
           "outlet_family": "ABC",
           "title": "Diddy trial Day 23 recap (ABC count): loose ends, witness testifies",
           "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-23-loose-ends-witness-testifies-122678794",
           "date": "2025-06-10"
+        },
+        {
+          "outlet": "Associated Press via PBS NewsHour",
+          "outlet_family": "AP",
+          "title": "Feds search Sean 'Diddy' Combs properties as part of sex trafficking probe, AP sources say",
+          "url": "https://www.pbs.org/newshour/arts/feds-search-sean-diddy-combs-properties-as-part-of-sex-trafficking-probe-ap-sources-say",
+          "date": "2024-03-25"
         }
       ]
     },

@@ -73,10 +73,17 @@ export function mapGeometry(sel: Day27Selection, width: number, height: number):
     .sort((p, q) => p.y - q.y)
   // Nudge labels that would overlap a label already placed.
   const lh = (narrow ? layout.fontSize.small : layout.fontSize.label) + 2
-  const lw = layout.chartWidth / (narrow ? (2 + 2) * (2 + 1) : (2 + 2) * (2 + 2))
+  const fsL = narrow ? layout.fontSize.small : layout.fontSize.label
+  // Horizontal extent of a label as drawn (text starts after the marker, or ends before it when anchored at the end).
+  const span = (p: MapGeometry['places'][number]): [number, number] => {
+    const w = p.name.length * fsL * (layout.dot / (layout.dot + 2 + 1))
+    return p.anchor === 'end' ? [p.x - layout.dot * 2 - w, p.x - layout.dot * 2] : [p.x + layout.dot * 2 + 2, p.x + layout.dot * 2 + 2 + w]
+  }
   places.forEach((p, i) => {
     for (const q of places.slice(0, i)) {
-      if (Math.abs(q.x - p.x) < lw && Math.abs(q.ly - p.ly) < lh) p.ly = q.ly + lh
+      const [a0, a1] = span(p)
+      const [b0, b1] = span(q)
+      if (a0 < b1 && b0 < a1 && Math.abs(q.ly - p.ly) < lh) p.ly = q.ly + lh
     }
   })
   const inset = insetProj

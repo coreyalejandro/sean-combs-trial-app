@@ -159,7 +159,7 @@
     {
       "id": "assistants-frank-black",
       "kind": "note",
-      "text": "Two former assistants testified they booked hotel rooms for Combs under the alias Frank Black (David James, who worked for him 2007 to 2009, and George Kaplan, 2014 to 2015)",
+      "text": "Two former assistants testified about hotel rooms for Combs under the alias Frank Black: George Kaplan (2014 to 2015) said he set rooms up under it, and David James (2007 to 2009) described rooms where Combs stayed under it",
       "value": "Frank Black",
       "unit": "alias",
       "alias": "Frank Black",
@@ -168,21 +168,21 @@
         7,
         8
       ],
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
-        {
-          "outlet": "CNN-sourced via Yahoo News",
-          "outlet_family": "CNN",
-          "title": "Sean 'Diddy' Combs trial takeaways: Cassie Ventura's mother, a former assistant and a male escort named 'The Punisher' testify in sex trafficking case",
-          "url": "https://www.yahoo.com/news/sean-diddy-combs-trial-takeaways-cassie-venturas-mother-a-former-assistant-and-a-male-escort-named-the-punisher-testify-in-sex-trafficking-case-191615644.html",
-          "date": "2025-05-21"
-        },
         {
           "outlet": "Fox News",
           "outlet_family": "Fox",
           "title": "Sean Diddy Combs trial day 8 (live blog)",
           "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-8",
           "date": "2025-05-21"
+        },
+        {
+          "outlet": "Associated Press via Bangor Daily News",
+          "outlet_family": "AP",
+          "title": "Sean 'Diddy' Combs' personal assistant tells jury about guns, drugs and lie detector tests",
+          "url": "https://www.bangordailynews.com/2025/05/20/nation/sean-diddy-combs-personal-assistant-tells-jury-about-guns-drugs-and-lie-detector-tests/",
+          "date": "2025-05-20"
         }
       ]
     }

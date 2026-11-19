@@ -122,13 +122,6 @@
           "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
           "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
           "date": "2025-05-19"
-        },
-        {
-          "outlet": "Associated Press via Dayton Daily News",
-          "outlet_family": "AP",
-          "title": "Singer Dawn Richard says Sean 'Diddy' Combs threatened her with death after she saw him beat Cassie",
-          "url": "https://www.daytondailynews.com/nation-world/singer-dawn-richard-says-sean-diddy-combs-threatened-her-with-death-after-she-saw-him-beat-cassie/UPCU45GK4RAZPMSGOGGTQTXMMQ/",
-          "date": "2025-05-19"
         }
       ]
     },
@@ -234,9 +227,8 @@
     {
       "id": "acct-kaplan-lasvegas-2015",
       "kind": "event",
-      "text": "George Kaplan, a former assistant, testified he saw violence toward Ventura on a 2015 flight to Las Vegas.",
+      "text": "George Kaplan, a former assistant, testified he saw violence toward Ventura on a flight to Las Vegas; the year was not reported.",
       "value": "place-las-vegas",
-      "date": "2015",
       "from_days": [
         9
       ],
@@ -254,26 +246,26 @@
     {
       "id": "acct-morales-beverlyhills-2010",
       "kind": "event",
-      "text": "Mylah Morales, a makeup artist, testified she saw Ventura's injuries after a Grammy-weekend incident in 2010; ABC places it at a Beverly Hills hotel, AP says she did not name the hotel.",
+      "text": "Mylah Morales, a makeup artist, testified she saw Ventura's injuries after an incident in 2010; ABC places it at the Beverly Hills Hotel, and FOX 5 places it on Grammys weekend.",
       "value": "place-beverly-hills",
       "date": "2010",
       "from_days": [
         9
       ],
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
-        {
-          "outlet": "FOX 5 NY",
-          "outlet_family": "Fox",
-          "title": "Cudi claims Diddy retaliated; makeup artist recalls Cassie injuries during Grammys weekend",
-          "url": "https://www.fox5ny.com/news/nyc-diddy-trial-kid-cudi-testify-sean-combs",
-          "date": "2025-05-22"
-        },
         {
           "outlet": "ABC News",
           "outlet_family": "ABC",
           "title": "Sean 'Diddy' Combs trial recap day 13: 2nd week of testimony concludes with Kid Cudi describing alleged car bombing",
           "url": "https://abcnews.com/US/sean-diddy-combs-trial-recap-day-13-2nd/story?id=122096856",
+          "date": "2025-05-22"
+        },
+        {
+          "outlet": "FOX 5 NY",
+          "outlet_family": "Fox",
+          "title": "Cudi claims Diddy retaliated; makeup artist recalls Cassie injuries during Grammys weekend",
+          "url": "https://www.fox5ny.com/news/nyc-diddy-trial-kid-cudi-testify-sean-combs",
           "date": "2025-05-22"
         }
       ]
@@ -281,7 +273,7 @@
     {
       "id": "acct-nash-weho-disputed",
       "kind": "event",
-      "text": "Deonte Nash, a stylist, testified he saw Combs be violent toward Ventura more than once; Fox places one incident at a West Hollywood hotel without a year, NBC dates it 2016 (unresolved).",
+      "text": "Deonte Nash, a stylist, testified he saw Combs be violent toward Ventura more than once; Fox places one incident at a West Hollywood hotel without a year, and NBC reports a balcony incident in 2013 or 2014 (whether they are the same is unresolved).",
       "value": "place-west-hollywood",
       "from_days": [
         11
@@ -307,7 +299,7 @@
     {
       "id": "acct-phillip-unplaced",
       "kind": "event",
-      "text": "Daniel Phillip testified he saw Combs assault Ventura at her residence; the city and year were not reported.",
+      "text": "Daniel Phillip, a male escort, testified he saw Combs throw a bottle at Ventura and drag her; the place and year were not reported.",
       "from_days": [
         1
       ],
@@ -319,6 +311,13 @@
           "title": "First witnesses in Sean 'Diddy' Combs' trial testify about Cassie assault, paid sexual encounters",
           "url": "https://www.cbsnews.com/amp/newyork/news/sean-diddy-combs-trial-daniel-phillip-israel-florez",
           "date": "2025-05-12"
+        },
+        {
+          "outlet": "ABC7 New York",
+          "outlet_family": "ABC",
+          "title": "Everyone who testified for the prosecution in the Sean 'Diddy' Combs trial",
+          "url": "https://abc7ny.com/post/everyone-testified-prosecution-sean-diddy-combs-trial/16844383/",
+          "date": "2025-06-25"
         }
       ]
     }

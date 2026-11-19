@@ -29,14 +29,6 @@ function TripMap({ g, trips, selected, onSelect }: { g: MapGeometry; trips: Trip
           <text x={g.inset.x + dot} y={g.inset.y + g.inset.h - dot} fontSize={fontSize.small} className={styles.insetLabel}>{g.inset.label}</text>
         </g>
       ) : null}
-      {g.places.map((p) => (
-        <g key={p.id} aria-hidden="true">
-          <circle cx={p.x} cy={p.y} r={2} className={styles.dot} />
-          <text x={p.x + (p.anchor === 'end' ? -dot * 2 : dot * 2 + 2)} y={p.ly - dot} textAnchor={p.anchor} fontSize={g.narrow ? fontSize.small : fontSize.label} className={styles.placeLabel}>
-            {p.name}
-          </text>
-        </g>
-      ))}
       {g.rings.map((r) => (
         <circle key={r.key} cx={r.x} cy={r.y} r={r.r} className={`${styles.ring} ${cls(r.tripId)}`} strokeDasharray={styleOf(r.tripId) === 'count-b' ? dashUnconfirmed : undefined} onClick={() => onSelect(r.tripId)} />
       ))}
@@ -45,6 +37,14 @@ function TripMap({ g, trips, selected, onSelect }: { g: MapGeometry; trips: Trip
           <path d={a.d} className={styles.arcHalo} />
           <path d={a.d} className={`${styles.arc} ${cls(a.tripId)}`} strokeDasharray={styleOf(a.tripId) === 'count-b' ? dashUnconfirmed : undefined} />
           <circle cx={a.head.x} cy={a.head.y} r={dot - 1} className={`${styles.head} ${cls(a.tripId)}`} />
+        </g>
+      ))}
+      {g.places.map((p) => (
+        <g key={p.id} aria-hidden="true" pointerEvents="none">
+          <circle cx={p.x} cy={p.y} r={2} className={styles.dot} />
+          <text x={p.x + (p.anchor === 'end' ? -dot * 2 : dot * 2 + 2)} y={p.ly - dot} textAnchor={p.anchor} fontSize={g.narrow ? fontSize.small : fontSize.label} className={styles.placeLabel}>
+            {p.name}
+          </text>
         </g>
       ))}
     </svg>

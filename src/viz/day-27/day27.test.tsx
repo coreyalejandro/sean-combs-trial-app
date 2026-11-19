@@ -16,7 +16,7 @@ describe('Day 27 arc map', () => {
     expect(g.rings.length).toBeGreaterThan(4)
     const atl = sel.trips.find((t) => t.id === 'trip-atlanta-newark')
     expect(atl?.count).toBe(5)
-    expect(sel.trips.find((t) => t.id === 'trip-london')?.count).toBe(3)
+    expect(sel.trips.find((t) => t.id === 'trip-2009-flights')?.count).toBe(3)
     for (const t of sel.trips) expect(t.sources.length).toBeGreaterThan(0)
   })
   it('renders the map, trip list, tables and no worker names', () => {

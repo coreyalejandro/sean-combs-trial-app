@@ -7,7 +7,9 @@
       "text": "CNN's account of Garcia's testimony: he gave $50,000 of the $100,000 to his supervisor. NBC reported $50,000 as the price his boss first wanted, so outlets frame this figure differently.",
       "value": 50000,
       "unit": "USD",
-      "from_days": [15],
+      "from_days": [
+        15
+      ],
       "confidence": "medium",
       "sources": [
         {
@@ -25,7 +27,9 @@
       "text": "CNN's account of Garcia's testimony: he gave $20,000 of the $100,000 to another security officer.",
       "value": 20000,
       "unit": "USD",
-      "from_days": [15],
+      "from_days": [
+        15
+      ],
       "confidence": "medium",
       "sources": [
         {

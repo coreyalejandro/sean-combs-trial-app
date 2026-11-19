@@ -21,7 +21,7 @@ export interface Day14View {
   book: SourceBook
 }
 
-const glyphWord: Record<Glyph, string> = { post: 'post', gift: 'scrapbook or gift', text: 'text or chat', video: 'video' }
+const glyphWord: Record<Glyph, string> = { post: 'post', gift: 'gift', text: 'text or chat', video: 'video' }
 
 
 function Mark({ glyph, x, y, r, level }: { glyph: Glyph; x: number; y: number; r: number; level: Fact['confidence'] }) {
@@ -192,7 +192,7 @@ export function Day14Interactive({ view }: { view: Day14View }) {
         </svg>
       </div>
       <div className={kit.legendRow} aria-hidden="true">
-        <span>square = post · diamond = scrapbook · circle = text or chat · wide box = video</span>
+        <span>square = post · diamond = gift · circle = text or chat · wide box = video</span>
         <span>filled = two or more outlets; hollow = one outlet; dashed = one outlet, unconfirmed; half-filled = outlets disagree</span>
       </div>
       <div className={kit.panel} aria-live="polite">

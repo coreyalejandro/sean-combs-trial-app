@@ -46,79 +46,16 @@
           "title": "Sean Diddy Combs trial day 13 (live blog)",
           "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
           "date": "2025-05-30"
-        },
-        {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "Sean Combs trial live updates, May 30 (rcna209833)",
-          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-cassie-ventura-live-updates-rcna209833",
-          "date": "2025-05-30"
         }
       ],
       "glyph": "post",
       "explained_by": "staff"
-    },
-    {
-      "id": "birthday-post-2014",
-      "kind": "exhibit",
-      "text": "A November 4 birthday post for Combs",
-      "date": "2014-11-04",
-      "from_days": [
-        13
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "Fox News",
-          "outlet_family": "Fox",
-          "title": "Sean Diddy Combs trial day 13 (live blog)",
-          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
-          "date": "2025-05-30"
-        },
-        {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "Sean Combs trial live updates, May 30 (rcna209833)",
-          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-cassie-ventura-live-updates-rcna209833",
-          "date": "2025-05-30"
-        }
-      ],
-      "glyph": "post",
-      "explained_by": "staff"
-    },
-    {
-      "id": "birthday-post-2015",
-      "kind": "exhibit",
-      "text": "A November 4 birthday post for Combs",
-      "date": "2015-11-04",
-      "from_days": [
-        13
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "Fox News",
-          "outlet_family": "Fox",
-          "title": "Sean Diddy Combs trial day 13 (live blog)",
-          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
-          "date": "2025-05-30"
-        },
-        {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "Sean Combs trial live updates, May 30 (rcna209833)",
-          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-cassie-ventura-live-updates-rcna209833",
-          "date": "2025-05-30"
-        }
-      ],
-      "glyph": "post",
-      "explained_by": "celebration"
     },
     {
       "id": "scrapbook",
       "kind": "exhibit",
-      "text": "A scrapbook and card she made for Combs's birthday",
-      "date": "2014-11-04",
+      "text": "A book of magazine articles and a letter she gave Combs for his 45th birthday (November 2014)",
+      "date": "2014-11",
       "from_days": [
         13
       ],
@@ -129,13 +66,6 @@
           "outlet_family": "Fox",
           "title": "Sean Diddy Combs trial day 13 (live blog)",
           "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
-          "date": "2025-05-30"
-        },
-        {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "Sean Combs trial live updates, May 30 (rcna209833)",
-          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-cassie-ventura-live-updates-rcna209833",
           "date": "2025-05-30"
         }
       ],
@@ -145,20 +75,13 @@
     {
       "id": "chat",
       "kind": "exhibit",
-      "text": "A friendly chat message",
+      "text": "A WhatsApp chat with Combs's then chief of staff, shown in court",
       "date": "2015-10-26",
       "from_days": [
         13
       ],
       "confidence": "medium",
       "sources": [
-        {
-          "outlet": "Fox News",
-          "outlet_family": "Fox",
-          "title": "Sean Diddy Combs trial day 13 (live blog)",
-          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
-          "date": "2025-05-30"
-        },
         {
           "outlet": "NBC News",
           "outlet_family": "NBC",
@@ -173,20 +96,13 @@
     {
       "id": "text-chief-of-staff",
       "kind": "exhibit",
-      "text": "A text exchange with Combs's chief of staff",
+      "text": "A text exchange with Combs's chief of staff about her being let go",
       "date": "2016-12-06",
       "from_days": [
         13
       ],
       "confidence": "medium",
       "sources": [
-        {
-          "outlet": "Fox News",
-          "outlet_family": "Fox",
-          "title": "Sean Diddy Combs trial day 13 (live blog)",
-          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
-          "date": "2025-05-30"
-        },
         {
           "outlet": "NBC News",
           "outlet_family": "NBC",
@@ -201,7 +117,7 @@
     {
       "id": "text-2016-12",
       "kind": "exhibit",
-      "text": "Supportive texts shown by the defense",
+      "text": "A text message from December 2016, sent after she learned she would be let go, shown by the defense",
       "date": "2016-12",
       "from_days": [
         14
@@ -243,7 +159,7 @@
     {
       "id": "text-2019-01",
       "kind": "exhibit",
-      "text": "A supportive text shown by the defense",
+      "text": "A text message about a dream, shown by the defense",
       "date": "2019-01",
       "from_days": [
         14
@@ -306,7 +222,7 @@
     {
       "id": "text-2020-08-29",
       "kind": "exhibit",
-      "text": "A supportive text shown by the defense",
+      "text": "A text message shown by the defense",
       "date": "2020-08-29",
       "from_days": [
         14
@@ -348,7 +264,7 @@
     {
       "id": "text-2022-12-28",
       "kind": "exhibit",
-      "text": "A supportive text shown by the defense",
+      "text": "A holiday greeting text shown by the defense",
       "date": "2022-12-28",
       "from_days": [
         14

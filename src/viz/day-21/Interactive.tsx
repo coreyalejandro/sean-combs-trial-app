@@ -108,7 +108,7 @@ function Chart({ g, items, active, onPick, prefix }: { g: Day21Geo; items: Money
             ) : (
               <circle cx={d.x} cy={d.y} r={d.r} fill={p.fill} fillOpacity={p.fillOpacity} stroke="var(--ink)" strokeWidth={layout.stroke.mark} strokeDasharray={m.level === 'low' ? layout.dashUnconfirmed : undefined} />
             )}
-            <text x={asked ? d.x + d.r + layout.dot : d.x} y={asked ? d.y - d.r + fs.small : d.y + d.r + fs.small + layout.stroke.mark} textAnchor={asked ? 'start' : 'middle'} className={asked ? s.askedLabel : s.dotLabel}>
+            <text x={asked ? d.x - d.r - layout.dot : d.x} y={asked ? d.y - d.r + fs.small : d.y + d.r + fs.small + layout.stroke.mark} textAnchor={asked ? 'end' : 'middle'} className={asked ? s.askedLabel : s.dotLabel}>
               {asked ? `asked ${formatUSD(m.hi)}` : formatUSD(m.hi)}
             </text>
             <circle className={k.focusRing} cx={d.x} cy={d.y} r={d.r + layout.stroke.emphasis} />

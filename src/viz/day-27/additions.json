@@ -59,25 +59,6 @@
       ]
     },
     {
-      "id": "place-london",
-      "kind": "place",
-      "text": "London, England (reference point for the map; not a trial fact)",
-      "value": "51.50722,-0.12750",
-      "from_days": [
-        27
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "Wikipedia",
-          "outlet_family": "Wikipedia",
-          "title": "London (infobox coordinates)",
-          "url": "https://en.wikipedia.org/wiki/London",
-          "date": "accessed 2026-11-19"
-        }
-      ]
-    },
-    {
       "id": "place-los-angeles",
       "kind": "place",
       "text": "Los Angeles, California (reference point for the map; not a trial fact)",
@@ -116,25 +97,6 @@
       ]
     },
     {
-      "id": "place-las-vegas",
-      "kind": "place",
-      "text": "Las Vegas, Nevada (reference point for the map; not a trial fact)",
-      "value": "36.1672,-115.1486",
-      "from_days": [
-        27
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "Wikipedia",
-          "outlet_family": "Wikipedia",
-          "title": "Las Vegas (infobox coordinates)",
-          "url": "https://en.wikipedia.org/wiki/Las_Vegas",
-          "date": "accessed 2026-11-19"
-        }
-      ]
-    },
-    {
       "id": "place-turks-and-caicos",
       "kind": "place",
       "text": "Turks and Caicos Islands (reference point for the map; not a trial fact)",
@@ -162,7 +124,7 @@
       "from_days": [
         27
       ],
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
         {
           "outlet": "NBC News",
@@ -170,13 +132,6 @@
           "title": "Sean 'Diddy' Combs live updates: prosecution expected to rest (Day 28)",
           "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-live-updates-prosecution-expected-rest-case-today-rcna214153",
           "date": "2025-06-23"
-        },
-        {
-          "outlet": "ABC News (abc7ny.com live updates)",
-          "outlet_family": "ABC",
-          "title": "Sean Combs trial updates: prosecution expected to rest Monday",
-          "url": "https://abc7ny.com/live-updates/diddy-trial-live-updates-sean-combs-sex-trafficking-case-nyc-prosecution-expected-rest-monday/16820654/entry/16837060",
-          "date": "2025-06-23/24"
         }
       ],
       "source_ids": [
@@ -186,10 +141,10 @@
       ]
     },
     {
-      "id": "trip-london",
+      "id": "trip-2009-flights",
       "kind": "event",
-      "text": "Flight records and a December hotel stay in London for a sex worker named in court records; the government tied this evidence to the transportation counts (origin of the flight not reported)",
-      "value": ">london",
+      "text": "Flight records for a sex worker named in court records, who Combs arranged to travel between New York and Los Angeles in December 2009, and a meeting at \"the London Hotel\" on December 11 to 14, 2009 (the hotel's city and the flight direction were not reported); the government tied this evidence to the transportation counts",
+      "value": ">",
       "date": "2009-12",
       "from_days": [
         24
@@ -233,46 +188,11 @@
       ]
     },
     {
-      "id": "trip-workers-flown",
-      "kind": "event",
-      "text": "Ventura testified that men hired for the encounters were flown to Los Angeles, Miami and Las Vegas (where they flew from was not reported; the day record does not say which of its outlets reported this point)",
-      "value": ">los-angeles|miami|las-vegas",
-      "date": "2008 to 2018",
-      "from_days": [
-        2
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "Eyes on Cassie as prosecution's star witness testifies at Diddy's trial",
-          "url": "https://www.nbcnews.com/news/us-news/eyes-cassie-prosecutions-star-witness-testifies-diddys-trial-rcna206588",
-          "date": "2025-05-13"
-        },
-        {
-          "outlet": "FOX 5 NY",
-          "outlet_family": "Fox",
-          "title": "Diddy trial live: Cassie testifies",
-          "url": "https://www.fox5ny.com/news/diddy-trial-live-cassie-testify",
-          "date": "2025-05-13"
-        }
-      ],
-      "source_ids": [
-        "ap_journal",
-        "npr_mi13",
-        "nbc02",
-        "fox02",
-        "gma_phillip",
-        "dayton_wk1"
-      ]
-    },
-    {
       "id": "trip-jane-travel",
       "kind": "event",
       "text": "Jane testified to travel with Combs to Turks and Caicos, Miami, Los Angeles and New York (starting points not reported)",
       "value": ">turks-and-caicos|miami|los-angeles|new-york",
-      "date": "2021-05 to 2023-10",
+      "date": "2021 to 2023",
       "from_days": [
         17
       ],
@@ -284,6 +204,13 @@
           "title": "Sean Combs trial live updates (June 5)",
           "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-combs-trial-live-updates-witness-says-diddy-dangled-balcony-retur-rcna211025",
           "date": "2025-06-05"
+        },
+        {
+          "outlet": "NBC News",
+          "outlet_family": "NBC",
+          "title": "NBC News live blog, June 9, 2025 (Day 19)",
+          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-testimony-girlfriend-live-updates-rcna211565",
+          "date": "2025-06-09"
         }
       ],
       "source_ids": [

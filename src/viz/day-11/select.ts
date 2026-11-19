@@ -40,7 +40,7 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
   const steps: Step[] = [
     {
       id: 'report', title: 'Report to police', status: cudiReport || call ? 'done' : 'not-done', summary: 'The entry into the home was reported.',
-      evidence: ok([ev('Kid Cudi, Day 9', 'He reported the entry into his home to police.', cudiReport), ev('Global News', 'The call to police was made the same month.', call)]),
+      evidence: ok([ev('Kid Cudi, Day 9', 'He reported the entry into his home to police.', cudiReport), ev('Global News', 'The officer who responded to the call testified on Day 11.', call)]),
     },
     {
       id: 'response', title: 'Police response', status: ignacio ? 'done' : 'not-done', summary: 'An officer responded; it was not logged as a burglary.',
