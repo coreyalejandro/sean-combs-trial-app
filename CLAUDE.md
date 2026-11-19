@@ -1,30 +1,24 @@
 # Claude Instructions for Sean Combs Trial App
 
-## Project Overview
-This is a web application related to the Sean Combs trial. The project structure and specific technologies used should be determined by examining the codebase.
+## Project overview
+A static Next.js 14 site (exported to `out/`, hosted on Cloudflare Pages from `main`) telling the 2025 Combs trial in 29 visualizations. Design: `DESIGN_29.md` (outside the repo); per-day design in `src/viz/day-NN/README.md`. Rules for builders: `CONTRIBUTING-VIZ.md`.
 
-## Development Commands
-- Install dependencies: `npm install --legacy-peer-deps`
-- Generate Prisma client: `npx prisma generate`
-- Create/update database: `npx prisma db push`
-- Seed database: `npx prisma db seed`
-- Dev server command: `npm run dev`
-- Build command: `npm run build`
-- Lint command: `npm run lint`
-- Start production server: `npm start`
+## Commands
+- Install: `npm ci`
+- Dev server: `npm run dev`
+- Typecheck: `npm run typecheck`
+- Unit tests and the no-hand-typed-numbers scan: `npm test`
+- Lint: `npm run lint`
+- Build (static export): `npm run build`
+- Page tests (after a build): `npm run test:e2e`
+- Rebuild the witness table after the data changes: `npm run build:witnesses`
 
-## Database Setup
-- Uses SQLite for local development (file: ./dev.db)
-- Prisma ORM for database management
-- Includes models for TrialDay, Witness, Testimony, and Evidence
+## Data
+- One source of facts: `src/data/trial_days.json` (copied unchanged from the research file). Never type a fact into a component.
+- Read data only through `@/lib/data`.
 
-## Key Guidelines
-- Always run tests after making changes
-- Run lint and typecheck commands before considering work complete
-- Follow existing code patterns and conventions
-- Never commit changes unless explicitly asked
-- Use defensive security practices only
-
-## Notes
-- This file will be updated as we learn more about the project structure and requirements
-- Add specific commands and patterns as they are discovered
+## Key guidelines
+- `main` deploys publicly. Work on branches; never push to `main` without Corey's go-ahead.
+- Run typecheck, `npm test`, lint, build and e2e before considering work complete.
+- Follow the care rules in `CONTRIBUTING-VIZ.md` (no graphic detail, pseudonyms only, no third-party names, sources on every number).
+- Never commit changes unless explicitly asked.

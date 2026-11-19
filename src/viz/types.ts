@@ -1,0 +1,45 @@
+// The contract between the shell and each day's visualization. Scaffold-owned.
+import type { ComponentType } from 'react'
+import type { TrialDay } from '@/lib/data'
+
+export type ContentLevel = 1 | 2 | 3
+
+export interface VizMeta {
+  /** Testimony day, 1 to 28. */
+  day: number
+  /** Cover headline (DESIGN_29 entry title). Numbers here must be traceable to the data (checked). */
+  title: string
+  /** The one question the picture answers; shown as the figure heading. */
+  question: string
+  /** The form from DESIGN_29 ("Aligned claim diff"). */
+  form: string
+  /** 1 = procedure and records; 2 = references to violence or coercion without detail; 3 = centred on testimony about sexual coercion. */
+  contentLevel: ContentLevel
+  /** Optional override of the standard content-note sentence for this level. Survivor readers review it. */
+  contentNote?: string
+  /** Caption under the picture. */
+  caption: string
+  /** One line: "How to read this". */
+  howToRead: string
+  /** Short text alternative (one sentence), read as the figure's description. */
+  altShort: string
+  /** Counts (1-5) this day's evidence speaks to; outlined on the charge ribbon. Optional. */
+  counts?: number[]
+  /** placeholder until the builder ships; done when it meets the definition of done. */
+  status: 'placeholder' | 'in-progress' | 'done'
+}
+
+export interface DayVizProps {
+  /** The day number (same as day.day). */
+  n: number
+  /** The day's full record from trial_days.json. Read other days with getDay(m) from '@/lib/data'. */
+  day: TrialDay
+}
+
+export interface DayModule {
+  meta: VizMeta
+  /** The picture. Render SVG on the server from data; add interaction in a 'use client' child. */
+  Viz: ComponentType<DayVizProps>
+  /** The long description and data table, built from the same selection as the picture. */
+  TextVersion: ComponentType<DayVizProps>
+}

@@ -1,1 +1,12 @@
-{"extends": "next/core-web-vitals"}
+{
+  "extends": "next/core-web-vitals",
+  "overrides": [
+    {
+      "files": ["src/viz/day-*/**/*.ts", "src/viz/day-*/**/*.tsx"],
+      "excludedFiles": ["src/viz/day-*/meta.ts", "src/viz/day-*/**/*.test.ts", "src/viz/day-*/**/*.test.tsx"],
+      "rules": {
+        "no-magic-numbers": ["error", { "ignore": [-1, 0, 1, 2], "ignoreArrayIndexes": true, "enforceConst": true }]
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "_note": "Scaffold-owned. The five counts as tried, in plain words, with the July 2, 2025 verdict. Outcomes and wording from the verdict record in trial_days.json (phase 2025-07-02); source ids refer to trial_days.json verdict.sources.",
+  "charges": [
+    { "count": 1, "short": "Racketeering conspiracy", "plain": "Agreeing with others to run a criminal enterprise through a pattern of crimes", "person": null, "outcome": "not guilty", "source_ids": ["cbs_verdict", "abc7_verdict", "kctv5_ap_verdict"] },
+    { "count": 2, "short": "Sex trafficking (Ventura)", "plain": "Using force, threats, fraud or coercion to cause a person to take part in commercial sex", "person": "Ventura", "outcome": "not guilty", "source_ids": ["cbs_verdict", "abc7_verdict", "kctv5_ap_verdict"] },
+    { "count": 3, "short": "Transportation to engage in prostitution (Ventura)", "plain": "Arranging travel across state lines for people to take part in paid sex", "person": "Ventura", "outcome": "guilty", "source_ids": ["cbs_verdict", "abc7_verdict", "kctv5_ap_verdict"] },
+    { "count": 4, "short": "Sex trafficking (Jane)", "plain": "Using force, threats, fraud or coercion to cause a person to take part in commercial sex", "person": "Jane", "outcome": "not guilty", "source_ids": ["cbs_verdict", "abc7_verdict", "kctv5_ap_verdict"] },
+    { "count": 5, "short": "Transportation to engage in prostitution (Jane)", "plain": "Arranging travel across state lines for people to take part in paid sex", "person": "Jane", "outcome": "guilty", "source_ids": ["cbs_verdict", "abc7_verdict", "kctv5_ap_verdict"] }
+  ]
+}

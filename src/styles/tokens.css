@@ -1,0 +1,29 @@
+/* Vintage LIFE Magazine tokens (DESIGN_29, "Look and feel"). Shared with the migration-map viewer.
+   Scaffold-owned: builders read these, never redefine them. The same values are in src/lib/viz/tokens.ts. */
+:root {
+  --ink: #0a0b0d;        /* landing page, day covers, finale ground */
+  --slate: #14171c;      /* panels on dark */
+  --paper: #f4f4f1;      /* day page body, text on dark */
+  --rule: #2b3038;       /* borders and gridlines on dark */
+  --rule-paper: #d6d6d0; /* borders and gridlines on paper */
+  --muted: #a4abb6;      /* secondary text on dark */
+  --muted-ink: #5a616b;  /* secondary text on paper */
+  --red: #e3261b;        /* the one accent */
+  --red-text: #b3170e;   /* red used as text on paper (contrast >= 4.5:1) */
+  --prosecution: #2f6db3;/* prosecution side (blue) */
+  --defense: #d98a1c;    /* defense side (amber; fills only, labels in ink) */
+  --neutral: #8a9099;    /* court, records, unknown */
+
+  --f-display: "Libre Franklin", "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  --f-body: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --gutter: 16px;
+  --measure: 68ch;
+  --page-max: 1120px;
+  --focus: 2px solid var(--red);
+}
+
+@media (min-width: 800px) {
+  :root { --gutter: 32px; }
+}

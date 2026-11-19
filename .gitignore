@@ -99,3 +99,9 @@ logs
 # Temporary folders
 tmp/
 temp/
+
+# Playwright output (screenshots are copied out by hand when needed)
+test-results/
+playwright-report/
+tests/e2e/__screens__/
+.next-local/
