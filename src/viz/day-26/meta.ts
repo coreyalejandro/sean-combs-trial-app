@@ -10,7 +10,8 @@ export const meta: VizMeta = {
   form: "Hive-plot network",
   contentLevel: 2,
   caption: "Count 1 asked whether these people formed a criminal enterprise. The answer is on the verdict page.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
-  altShort: "Network of nine people and seven tasks, showing which former assistants said they booked hotels, stocked rooms, bought drugs or arranged travel, and who directed them.",
-  status: 'placeholder',
+  howToRead: 'Three axes run out from the centre: people who worked for Combs, the tasks they described, and who directed them. A solid line means a person said they did a task; a dashed red line means the record says who directed them. Select any name or task to read the record behind each line. On a phone the same links are a grid.',
+  altShort: "Network of the people around Combs and seven kinds of task, showing which former assistants said they booked hotels, stocked rooms, bought drugs or arranged travel, and who directed them.",
+  counts: [1],
+  status: 'done',
 }

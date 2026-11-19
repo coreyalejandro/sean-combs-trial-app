@@ -24,3 +24,10 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Why this form:** the last testimony day closes the record; the constellation shows the whole cast at once and the asymmetry between the sides.
 - **Thin data:** no day file yet.
 - **Content level:** 1.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** witness constellation on a LIFE-black sky: all 34 rows of the shared witness table as stars, x = the day each first testified, bands by role, star size by days on the stand, faint lines joining witnesses whose own record text mentions the same event (four rules in `select.ts`: the hotel hallway video, the Kid Cudi break-in and car, the disputed hotel-bill date, the searches and arrest). The defense half is empty except "No witnesses", "under 30 minutes reading exhibits into the record" and "Combs chose not to testify, as is his right." Filter by role; select a star for a card with day links; pseudonymous witnesses show only the pseudonym (no role detail).
+- **Data:** Day 28 (June 24) record: 34 witnesses (checked against the table in the test), under 30 minutes, the decision not to testify, Rule 29 reserved.

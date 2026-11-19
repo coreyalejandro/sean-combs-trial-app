@@ -24,3 +24,12 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Why this form:** a summary witness speaks to the whole body of records; a treemap shows the parts of a whole.
 - **Thin data:** one witness that day; the day's own figures are from one outlet.
 - **Content level:** 2.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** squarified treemap (d3.treemap), one tile per exhibit named in the day records across all 28 days, grouped by kind; tiles coloured by the side coverage states (prosecution blue, defense amber, pale when not stated), hatched when sealed, red-outlined when named on this day. Block buttons and keyboard selection list each block's exhibits with day links; side buttons highlight one side.
+- **Method (the scaffold did not tag exhibits):** kind, sealed and side are computed from each exhibit's own words by the ordered rules in `select.ts` (for example "audio", "photo", "bank"; "sealed", "jury only"; "(defense)"). Side is "not stated" for most exhibits because coverage rarely says; that is shown, not guessed.
+- **Care:** exhibit descriptions are shown with quoted message text removed, and descriptions of injuries, sexual material or people hired for encounters are replaced by plain general words; third parties are redacted (including one name the shared redactor lacks; see SHARED_REQUEST.md).
+- **Day 25's own figures** ($944,059 card bill, more than $46,000 vs $46,786 hotel damage, 2010 tickets, sealed recordings on headphones) are listed under the treemap with their marks.

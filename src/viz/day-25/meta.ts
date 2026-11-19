@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Treemap",
   contentLevel: 2,
   caption: "Counts are exhibits named in news coverage, not the court's official exhibit list, which was not opened for this project.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Each small tile is one exhibit named in news coverage, grouped into blocks by kind; bigger blocks hold more exhibits. Blue and amber tiles were presented by the prosecution or the defense as coverage states; pale tiles do not say. Hatched tiles were sealed from the public. Select a block to list its exhibits.',
   altShort: "Treemap of every exhibit named in coverage, grouped by kind, with sealed recordings hatched.",
-  status: 'placeholder',
+  status: 'done',
 }

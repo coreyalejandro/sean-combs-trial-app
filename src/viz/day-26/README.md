@@ -24,3 +24,12 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Why this form:** Paul's testimony was about relationships between people and tasks; a network shows that structure, and the hive layout keeps it readable.
 - **Thin data:** a short court day with one main outlet; the network leans on earlier days.
 - **Content level:** 2.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** hive plot (three axes: people who worked for Combs, seven kinds of task, who directed) in SVG; on phones a person-by-task grid. Selecting a name or task lights its links and quotes the record text behind each.
+- **Method:** a link is drawn only when a day record holds words matching that link's rule (`RULES` in `select.ts`: person, task or director, and the words). The matched clause is shown as the evidence; if the record changes, the link disappears. Derek Ferguson (Day 15) is a node with no task links on purpose, with his "never saw" testimony shown; security staff appear with no task from the list.
+- **Adaptation:** DESIGN_29's "D27 Khorram texts" are now Day 27 (June 23); "D26 Paul" is Day 26 (June 20). Khorram is labelled from the record as chief of staff, not charged, did not testify.
+- Link confidence is at most "one outlet" (each rests on one day's summary sentence); sources are the day's sources.

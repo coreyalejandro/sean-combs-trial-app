@@ -1,4 +1,294 @@
 {
   "day": 27,
-  "items": []
+  "items": [
+    {
+      "id": "place-atlanta",
+      "kind": "place",
+      "text": "Atlanta, Georgia (reference point for the map; not a trial fact)",
+      "value": "33.74889,-84.39000",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Atlanta (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Atlanta",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-newark",
+      "kind": "place",
+      "text": "Newark, New Jersey (reference point for the map; not a trial fact)",
+      "value": "40.7356,-74.1722",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Newark, New Jersey (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Newark,_New_Jersey",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-new-york",
+      "kind": "place",
+      "text": "New York City (reference point for the map; not a trial fact)",
+      "value": "40.7128,-74.0061",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "New York City (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/New_York_City",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-london",
+      "kind": "place",
+      "text": "London, England (reference point for the map; not a trial fact)",
+      "value": "51.50722,-0.12750",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "London (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/London",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-los-angeles",
+      "kind": "place",
+      "text": "Los Angeles, California (reference point for the map; not a trial fact)",
+      "value": "34.050,-118.250",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Los Angeles (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Los_Angeles",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-miami",
+      "kind": "place",
+      "text": "Miami, Florida (reference point for the map; not a trial fact)",
+      "value": "25.77417,-80.19361",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Miami (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Miami",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-las-vegas",
+      "kind": "place",
+      "text": "Las Vegas, Nevada (reference point for the map; not a trial fact)",
+      "value": "36.1672,-115.1486",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Las Vegas (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Las_Vegas",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-turks-and-caicos",
+      "kind": "place",
+      "text": "Turks and Caicos Islands (reference point for the map; not a trial fact)",
+      "value": "21.78,-71.80",
+      "from_days": [
+        27
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Turks and Caicos Islands (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Turks_and_Caicos_Islands",
+          "date": "accessed 2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "trip-atlanta-newark",
+      "kind": "event",
+      "text": "A sex worker named in court records was flown from Atlanta to Newark and stayed at a New York hotel; records shown in court say Combs's card paid",
+      "value": "atlanta>newark;stay:new-york",
+      "date": "2023-09",
+      "from_days": [
+        27
+      ],
+      "confidence": "high",
+      "sources": [
+        {
+          "outlet": "NBC News",
+          "outlet_family": "NBC",
+          "title": "Sean 'Diddy' Combs live updates: prosecution expected to rest (Day 28)",
+          "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-live-updates-prosecution-expected-rest-case-today-rcna214153",
+          "date": "2025-06-23"
+        },
+        {
+          "outlet": "ABC News (abc7ny.com live updates)",
+          "outlet_family": "ABC",
+          "title": "Sean Combs trial updates: prosecution expected to rest Monday",
+          "url": "https://abc7ny.com/live-updates/diddy-trial-live-updates-sean-combs-sex-trafficking-case-nyc-prosecution-expected-rest-monday/16820654/entry/16837060",
+          "date": "2025-06-23/24"
+        }
+      ],
+      "source_ids": [
+        "d27s1",
+        "d27s2",
+        "d27s3"
+      ]
+    },
+    {
+      "id": "trip-london",
+      "kind": "event",
+      "text": "Flight records and a December hotel stay in London for a sex worker named in court records; the government tied this evidence to the transportation counts (origin of the flight not reported)",
+      "value": ">london",
+      "date": "2009-12",
+      "from_days": [
+        24
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "NBC News",
+          "outlet_family": "NBC",
+          "title": "Sean 'Diddy' Combs trial live updates: summary witness testifies, juror dismissed",
+          "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-trial-live-updates-summary-witness-testify-juror-dism-rcna212953",
+          "date": "2025-06-16"
+        }
+      ],
+      "source_ids": [
+        "d24s1",
+        "d24s3"
+      ]
+    },
+    {
+      "id": "trip-airline-tickets",
+      "kind": "event",
+      "text": "Airline tickets for Ventura and a sex worker, paid through a business account (route not reported)",
+      "value": ">",
+      "date": "2010",
+      "from_days": [
+        25
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "ABC News / Good Morning America",
+          "outlet_family": "ABC",
+          "title": "Sean 'Diddy' Combs trial Day 29 recap: jurors watch videos",
+          "url": "https://www.goodmorningamerica.com/news/story/sean-diddy-combs-trial-day-29-recap-jurors-122949525",
+          "date": "2025-06-17"
+        }
+      ],
+      "source_ids": [
+        "d25s1"
+      ]
+    },
+    {
+      "id": "trip-workers-flown",
+      "kind": "event",
+      "text": "Ventura testified that men hired for the encounters were flown to Los Angeles, Miami and Las Vegas (where they flew from was not reported; the day record does not say which of its outlets reported this point)",
+      "value": ">los-angeles|miami|las-vegas",
+      "date": "2008 to 2018",
+      "from_days": [
+        2
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "NBC News",
+          "outlet_family": "NBC",
+          "title": "Eyes on Cassie as prosecution's star witness testifies at Diddy's trial",
+          "url": "https://www.nbcnews.com/news/us-news/eyes-cassie-prosecutions-star-witness-testifies-diddys-trial-rcna206588",
+          "date": "2025-05-13"
+        },
+        {
+          "outlet": "FOX 5 NY",
+          "outlet_family": "Fox",
+          "title": "Diddy trial live: Cassie testifies",
+          "url": "https://www.fox5ny.com/news/diddy-trial-live-cassie-testify",
+          "date": "2025-05-13"
+        }
+      ],
+      "source_ids": [
+        "ap_journal",
+        "npr_mi13",
+        "nbc13",
+        "fox13",
+        "gma_phillip",
+        "dayton_wk1"
+      ]
+    },
+    {
+      "id": "trip-jane-travel",
+      "kind": "event",
+      "text": "Jane testified to travel with Combs to Turks and Caicos, Miami, Los Angeles and New York (starting points not reported)",
+      "value": ">turks-and-caicos|miami|los-angeles|new-york",
+      "date": "2021-05 to 2023-10",
+      "from_days": [
+        17
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "NBC News",
+          "outlet_family": "NBC",
+          "title": "Sean Combs trial live updates (June 5)",
+          "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-combs-trial-live-updates-witness-says-diddy-dangled-balcony-retur-rcna211025",
+          "date": "2025-06-05"
+        }
+      ],
+      "source_ids": [
+        "d17s1"
+      ]
+    }
+  ]
 }

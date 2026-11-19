@@ -1,0 +1,40 @@
+/* Day 28: witness constellation. The sky is LIFE-cover black. Tokens only. */
+.viz { display: grid; gap: 12px; }
+.count { margin: 0; font-size: 17px; }
+.big { font: 900 40px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.legend { margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted-ink); max-width: var(--measure); }
+.root { display: grid; gap: 10px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.fbtn { min-height: 44px; padding: 6px 10px; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font: 600 13px/1.2 var(--f-body); cursor: pointer; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.skies { display: grid; grid-template-columns: 1fr; background: var(--ink); color: var(--paper); }
+@media (min-width: 800px) { .skies { grid-template-columns: 2fr 1fr; } }
+.prosecution { padding: 8px 0 0; min-width: 0; }
+.sideHead { margin: 0 12px; font: 700 12px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.wide { display: none; width: 100%; height: auto; }
+.narrow { display: block; width: 100%; height: auto; }
+@media (min-width: 800px) { .wide { display: block; } .narrow { display: none; } }
+.band { stroke: var(--rule); stroke-width: 1; }
+.bandLabel { fill: var(--muted); font-family: var(--f-data); text-transform: uppercase; letter-spacing: 0.04em; }
+.bandLabelOff { fill: var(--rule); font-family: var(--f-data); text-transform: uppercase; }
+.line { fill: none; stroke: var(--paper); stroke-width: 1; opacity: 0.35; }
+.tick { fill: var(--muted); font-family: var(--f-data); }
+.star { cursor: pointer; outline: none; }
+.star:focus-visible .core, .star:focus-visible .coreOn { stroke: var(--red); stroke-width: 3; }
+.core { fill: var(--paper); stroke: var(--red); }
+.coreOn { fill: var(--red); stroke: var(--paper); }
+.hit { fill: transparent; }
+.defense { border-top: 1px solid var(--rule); padding: 12px; display: flex; }
+@media (min-width: 800px) { .defense { border-top: 0; border-left: 1px dashed var(--rule); } }
+.defenseInner { align-self: center; }
+.defenseInner .sideHead { margin: 0 0 8px; }
+.none { font: 900 28px/1.1 var(--f-display); margin: 0 0 8px; }
+.defLine { margin: 4px 0; font-size: 15px; color: var(--paper); }
+.defLine a { color: var(--paper); }
+.card { border-left: 4px solid var(--red); padding: 8px 12px; background: #fff; }
+.cardHead { margin: 0 0 4px; font-size: 19px; }
+.card p { margin: 4px 0; }
+.events { font-size: 14px; color: var(--muted-ink); }
+.hint { color: var(--muted-ink); font-size: 15px; }
+.glow { pointer-events: none; }
+.core, .coreOn { pointer-events: none; }

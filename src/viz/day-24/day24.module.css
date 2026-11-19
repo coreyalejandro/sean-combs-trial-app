@@ -1,0 +1,37 @@
+/* Day 24: jury box tracker. Tokens only. */
+.viz { display: grid; gap: 12px; }
+.tracker { display: grid; gap: 12px; }
+.stage { display: grid; gap: 16px; align-items: start; }
+@media (min-width: 800px) { .stage { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.box { width: 100%; height: auto; max-width: 560px; }
+.boxHead { font-family: var(--f-data); fill: var(--muted-ink); text-transform: uppercase; letter-spacing: 0.06em; }
+.rail { fill: #e8e8e3; stroke: var(--ink); stroke-width: 2; }
+.railAlert { fill: #e8e8e3; stroke: var(--red); stroke-width: 3; stroke-dasharray: 6 4; }
+.seat { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.seat_at_issue { fill: var(--paper); stroke: var(--red); stroke-width: 3; }
+.seat_removal_announced { fill: var(--red-text); stroke: var(--red-text); stroke-width: 3; }
+.seat_replaced { fill: var(--ink); stroke: var(--red); stroke-width: 4; }
+.seatNum { fill: var(--ink); font-family: var(--f-data); font-weight: 700; }
+.seatNumOn { fill: #fff; font-family: var(--f-data); font-weight: 700; }
+.alt { fill: var(--paper); stroke: var(--muted-ink); stroke-width: 2; }
+.altEmpty { fill: none; stroke: var(--red); stroke-width: 2; }
+.altText { fill: var(--muted-ink); font-family: var(--f-body); }
+.note { color: var(--muted-ink); margin: 4px 0 0; font-size: 15px; }
+.noteOn { color: var(--red-text); margin: 4px 0 0; font-size: 15px; font-weight: 700; }
+.now { border-left: 4px solid var(--red); padding: 4px 12px; background: #fff; min-height: 120px; }
+.nowDate { font: 700 13px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; color: var(--red-text); margin: 4px 0; }
+.eventHead { margin: 0 0 6px; font: 900 21px/1.15 var(--f-display); }
+.eventBody p { margin: 4px 0; }
+.nums { margin: 4px 0; padding-left: 18px; font-size: 14px; }
+.dayLink { font-size: 14px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.scrub { order: -1; flex: 1 1 100%; display: flex; align-items: center; min-height: 44px; }
+.scrub input { width: 100%; accent-color: var(--red); min-height: 44px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 2px solid var(--rule-paper); }
+.timeline li { padding-left: 8px; }
+.timeline li.on { border-left: 4px solid var(--red); margin-left: -3px; }
+.stepBtn { background: none; border: 0; padding: 6px 0; min-height: 44px; text-align: left; font: inherit; font-size: 15px; color: inherit; cursor: pointer; }
+.on .stepBtn { font-weight: 700; }
+.facts { font-size: 15px; max-width: var(--measure); }
+.facts p { margin: 4px 0; }
+@media (min-width: 800px) { .scrub { order: 0; flex: 1 1 160px; } }

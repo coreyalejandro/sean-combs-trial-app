@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Shared-unit waffle comparison",
   contentLevel: 1,
   caption: "Counts as agents testified. The defense asked why lubricant was relevant to a trafficking case.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Every small square is one bottle, the same size in all three grids, so the grids compare exactly. Dark squares are lubricant, grey squares baby oil. A dashed top rule means the counts come from one outlet. Other items are listed under each grid.',
   altShort: "Three grids of bottles on one scale, one square per bottle, for the arrest room, the Miami home and the Los Angeles home.",
-  status: 'placeholder',
+  status: 'done',
 }
