@@ -1,17 +1,44 @@
-// Day 21: Every Payment Named in Jane's Testimony
-// Owned by Builder 3 (the money and the second account). Replace the placeholder with the payment beeswarm described in README.md.
-// Rules: render only from `day` / '@/lib/data'; no numbers typed by hand (npm run check:literals);
-// interaction goes in a 'use client' child component in this folder.
-import { PlaceholderTextVersion, PlaceholderViz } from '@/components/shell/Placeholder'
+// Day 21: Every Payment Named in Jane's Testimony (Builder 3).
+// Monthly money as bands, one-time payments as a swarm of dots sized by amount, and the undated amounts and the
+// total beside them on the same dot scale. Everything is read from Days 17 to 22.
+import { layout } from '@/lib/viz/layout'
 import type { DayVizProps } from '@/viz/types'
+import { ExtraSources, levelWords } from '../day-15/kit/sources'
+import { OmittedNote, VizTable, type TableRow } from '../day-15/kit/VizTable'
+import k from '../day-15/kit/kit.module.css'
+import { amountText } from './format'
+import { layoutDay21 } from './geometry'
+import Day21Interactive from './Interactive'
 import { meta } from './meta'
+import { select } from './select'
 
 export { meta }
 
-export default function Day21Viz(props: DayVizProps) {
-  return <PlaceholderViz {...props} meta={meta} />
+export default function Day21Viz({ day }: DayVizProps) {
+  const sel = select(day)
+  const geo = { wide: layoutDay21(sel, layout.chartWidth - layout.margin.top * (layout.dot * 2 + 1) - layout.gap, false), narrow: layoutDay21(sel, layout.phoneWidth - layout.gap * 2, true) }
+  return (
+    <div className={k.viz} data-viz="day-21">
+      <Day21Interactive items={sel.items} geo={geo} pool={sel.pool} />
+      <ExtraSources sources={sel.extraSources} pool={sel.pool} />
+    </div>
+  )
 }
 
-export function TextVersion(props: DayVizProps) {
-  return <PlaceholderTextVersion {...props} meta={meta} />
+export function TextVersion({ day }: DayVizProps) {
+  const sel = select(day)
+  const p: string[] = [
+    'The picture has two panels on one time axis. The upper panel shows money paid each month as bands; the lower panel shows one-time payments as dots whose area is proportional to the dollars. Red dashed marks are amounts Jane asked for, not amounts paid. Amounts with no date, and the total, sit beside the chart on the same dot scale.',
+    ...sel.items.map((m) => `${m.label}: ${amountText(m)}, ${m.when}${m.formula ? ` (calculated: ${m.formula})` : ''} (${levelWords(m.level)}; Day ${m.fromDays.join(' and Day ')}).`),
+  ]
+  const rows: TableRow[] = sel.items.map((m) => ({
+    key: m.id, what: m.label, value: `${amountText(m)}${m.formula ? ' (calculated)' : ''}`, when: m.when, level: m.level, sources: m.sources,
+  }))
+  return (
+    <div className={k.longDesc}>
+      {p.map((t) => <p key={t}>{t}</p>)}
+      <VizTable caption={`Money between Combs and Jane, and every other figure from Day ${day.day}`} rows={rows} pool={sel.pool} other={sel.other} dayNumber={day.day} />
+      <OmittedNote count={sel.omitted} why="they count sexual encounters, which this project does not chart (care rule 2)." />
+    </div>
+  )
 }

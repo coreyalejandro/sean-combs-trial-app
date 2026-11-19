@@ -1,4 +1,41 @@
 {
   "day": 15,
-  "items": []
+  "items": [
+    {
+      "id": "split-supervisor",
+      "kind": "number",
+      "text": "CNN's account of Garcia's testimony: he gave $50,000 of the $100,000 to his supervisor. NBC reported $50,000 as the price his boss first wanted, so outlets frame this figure differently.",
+      "value": 50000,
+      "unit": "USD",
+      "from_days": [15],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "CNN via KVIA",
+          "outlet_family": "CNN",
+          "title": "Recap of Diddy trial: hotel security guard says Combs paid $100K in cash for video of assault",
+          "url": "https://kvia.com/entertainment/cnn-entertainment/2025/06/03/recap-of-diddy-trial-hotel-security-guard-says-sean-combs-paid-100k-in-cash-for-video-of-assault/",
+          "date": "2025-06-03"
+        }
+      ]
+    },
+    {
+      "id": "split-officer",
+      "kind": "number",
+      "text": "CNN's account of Garcia's testimony: he gave $20,000 of the $100,000 to another security officer.",
+      "value": 20000,
+      "unit": "USD",
+      "from_days": [15],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "CNN via KVIA",
+          "outlet_family": "CNN",
+          "title": "Recap of Diddy trial: hotel security guard says Combs paid $100K in cash for video of assault",
+          "url": "https://kvia.com/entertainment/cnn-entertainment/2025/06/03/recap-of-diddy-trial-hotel-security-guard-says-sean-combs-paid-100k-in-cash-for-video-of-assault/",
+          "date": "2025-06-03"
+        }
+      ]
+    }
+  ]
 }

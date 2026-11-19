@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Swimlane timeline",
   contentLevel: 3,
   caption: "Order is not cause. The chart shows what happened when, not why.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Each row (each column on a phone) is one person or group. A dot is something that person did; a line runs to the person it reached. Zoom to a month, hide or show lanes, and select any event, or pick it from the list below, for its date, its day in court and its sources.',
   altShort: "Timeline of events across six people and groups between Ventura's November 2023 lawsuit and Combs's September 2024 arrest.",
-  status: 'placeholder',
+  status: 'done',
 }

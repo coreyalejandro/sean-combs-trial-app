@@ -1,0 +1,27 @@
+/* Day 16: a chain-of-custody line drawn like a subway line. HTML list, so it reflows on any width. */
+.wrap { max-width: 760px; }
+.status { font: 400 13px/1.3 var(--f-data); color: var(--muted-ink); flex: 1 1 220px; }
+.line { list-style: none; margin: 0; padding: 0; --rail: 28px; --track: 6px; }
+.stop { position: relative; }
+.row { display: grid; grid-template-columns: var(--rail) 1fr; gap: 0 12px; align-items: start; position: relative; }
+/* the line itself: a thick bar behind the dots */
+.row::before { content: ''; position: absolute; left: calc(var(--rail) / 2 - var(--track) / 2); top: 0; bottom: 0; width: var(--track); background: var(--ink); }
+.stop:last-child .row::before { bottom: auto; height: 14px; }
+.stop:first-child .row::before { top: 14px; }
+.reached .row::before, .reached .track { background: var(--red); }
+.track { position: relative; margin-left: calc(var(--rail) / 2 - var(--track) / 2); width: var(--track); background: var(--ink); transition: background 0.4s; }
+.longTrack { background: repeating-linear-gradient(180deg, var(--ink) 0 8px, transparent 8px 14px) !important; }
+.reached .longTrack { background: repeating-linear-gradient(180deg, var(--red) 0 8px, transparent 8px 14px) !important; }
+.gapLabel { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; font: 600 13px/1.2 var(--f-data); color: var(--muted-ink); }
+.dot { position: relative; z-index: 1; margin-top: 2px; justify-self: center; }
+.body { padding-bottom: 6px; min-width: 0; }
+.stopButton { display: grid; gap: 2px; width: 100%; text-align: left; background: transparent; border: 0; padding: 4px 6px; margin: -4px -6px 0; cursor: pointer; color: inherit; font: inherit; min-height: 44px; }
+.stopButton:hover .title { text-decoration: underline; }
+.when { font: 400 12px/1.3 var(--f-data); color: var(--muted-ink); }
+.title { font: 800 17px/1.25 var(--f-display); }
+.holder { font: 600 11px/1.3 var(--f-data); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-ink); }
+.active .title { color: var(--red-text); }
+.trial .holder::before { content: 'In court · '; color: var(--ink); }
+.detail { background: #fff; border-left: 4px solid var(--red); padding: 8px 12px; margin: 6px 0 4px; }
+.detail ul { margin: 0 0 6px; padding-left: 18px; font-size: 15px; }
+.detail p { margin: 0 0 4px; font-size: 15px; }

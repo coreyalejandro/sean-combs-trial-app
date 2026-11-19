@@ -1,4 +1,51 @@
 {
   "day": 17,
-  "items": []
+  "items": [
+    {
+      "id": "place-los-angeles",
+      "kind": "place",
+      "text": "Los Angeles, California (city coordinates), where Bongolan placed the balcony incident",
+      "value": "34.050,-118.250",
+      "from_days": [16, 17],
+      "confidence": "medium",
+      "sources": [
+        { "outlet": "Wikipedia", "outlet_family": "Wikipedia", "title": "Los Angeles (infobox coordinates)", "url": "https://en.wikipedia.org/wiki/Los_Angeles", "date": "2026-11-19" }
+      ]
+    },
+    {
+      "id": "place-new-york",
+      "kind": "place",
+      "text": "New York City (city coordinates), where the hotel bill placed Combs's stay",
+      "value": "40.7128,-74.0061",
+      "from_days": [17],
+      "confidence": "medium",
+      "sources": [
+        { "outlet": "Wikipedia", "outlet_family": "Wikipedia", "title": "New York City (infobox coordinates)", "url": "https://en.wikipedia.org/wiki/New_York_City", "date": "2026-11-19" }
+      ]
+    },
+    {
+      "id": "earth-radius",
+      "kind": "number",
+      "text": "Earth's volumetric mean radius, used to calculate the distance between the two cities",
+      "value": 6371,
+      "unit": "km",
+      "from_days": [17],
+      "confidence": "medium",
+      "sources": [
+        { "outlet": "NASA Goddard Space Flight Center", "outlet_family": "NASA", "title": "Earth Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html", "date": "2026-11-19" }
+      ]
+    },
+    {
+      "id": "mile",
+      "kind": "number",
+      "text": "One international mile (exactly 1,609.344 meters), used to state the distance in miles",
+      "value": 1.609344,
+      "unit": "km",
+      "from_days": [17],
+      "confidence": "medium",
+      "sources": [
+        { "outlet": "National Institute of Standards and Technology", "outlet_family": "NIST", "title": "NIST Guide to the SI, Appendix B.8: Factors for Units Listed Alphabetically", "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", "date": "2026-11-19" }
+      ]
+    }
+  ]
 }

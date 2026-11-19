@@ -1,4 +1,29 @@
 {
   "day": 19,
-  "items": []
+  "items": [
+    {
+      "id": "lawsuit-filed",
+      "kind": "event",
+      "text": "Cassie Ventura filed her federal lawsuit against Combs on Thursday, November 16, 2023; the settlement was announced the next day, Friday. (The trial record gives only the month; the day comes from these reports, which say the suit was filed on Thursday and settled on Friday.)",
+      "date": "2023-11-16",
+      "from_days": [2, 19],
+      "confidence": "medium",
+      "sources": [
+        { "outlet": "Associated Press via PBS NewsHour", "outlet_family": "AP", "title": "Sean 'Diddy' Combs reaches settlement with Cassie a day after she files abuse lawsuit", "url": "https://www.pbs.org/newshour/arts/sean-diddy-combs-reaches-settlement-with-cassie-a-day-after-she-files-abuse-lawsuit", "date": "2023-11-18" },
+        { "outlet": "NPR", "outlet_family": "NPR", "title": "Hip-hop mogul Sean 'Diddy' Combs and singer Cassie settle abuse lawsuit", "url": "https://www.npr.org/2023/11/16/1213639457", "date": "2023-11-17" }
+      ]
+    },
+    {
+      "id": "searches",
+      "kind": "event",
+      "text": "Federal agents searched Combs's properties in Los Angeles and Miami on Monday, March 25, 2024. (The trial record gives only the month.)",
+      "date": "2024-03-25",
+      "from_days": [19, 23],
+      "confidence": "high",
+      "sources": [
+        { "outlet": "Associated Press via PBS NewsHour", "outlet_family": "AP", "title": "Feds search Sean 'Diddy' Combs' properties as part of sex trafficking probe, AP sources say", "url": "https://www.pbs.org/newshour/arts/feds-search-sean-diddy-combs-properties-as-part-of-sex-trafficking-probe-ap-sources-say", "date": "2024-03-25" },
+        { "outlet": "ABC7 New York", "outlet_family": "ABC", "title": "Electronics seized during search of Sean 'Diddy' Combs' properties, sources tell ABC News", "url": "https://abc7ny.com/post/sean-diddy-combs-homeland-security-investigation-search/14573012/", "date": "2024-03-26" }
+      ]
+    }
+  ]
 }

@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Chain-of-custody subway line",
   contentLevel: 2,
   caption: "This page never shows the video. It shows where the video went.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Read the line from top to bottom: each dot is a stop in the video\'s journey, filled when two or more outlets reported it, hollow or dashed when one did. Select a stop, or use Previous and Next, for who had the video, what was said and the source. Dashed stretches are long waits.',
   altShort: "Eight-stop line tracing the 2016 hotel video from the hallway camera through a $100,000 purchase, a 2024 news release and forensic checks to the jury's deliberations.",
-  status: 'placeholder',
+  status: 'done',
 }

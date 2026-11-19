@@ -1,0 +1,22 @@
+/* Day 17: two places, one date strip. */
+.grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 16px 24px; align-items: start; }
+@media (max-width: 799px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.mapDistance { font: 600 12px/1 var(--f-data); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.city { font: 700 13px/1 var(--f-body); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.distance { font-size: 14px; margin: 6px 0 0; }
+.weekday { font: 400 11px/1 var(--f-data); fill: var(--muted-ink); }
+.dayLabel { font: 600 12px/1 var(--f-data); fill: var(--ink); }
+.dayOn { fill: var(--red-text); }
+.dayCol { cursor: pointer; }
+.laneLabel { font: 700 12px/1 var(--f-data); text-transform: uppercase; letter-spacing: 0.05em; fill: var(--muted-ink); }
+.scrub { display: flex; align-items: center; gap: 10px; margin-top: 8px; font: 600 14px/1.2 var(--f-body); }
+.scrub input { flex: 1 1 auto; min-height: 44px; accent-color: var(--red); }
+.onDay { font-size: 15px; margin: 4px 0 0; min-height: 3em; }
+.clash { color: var(--red-text); font-weight: 700; }
+.lanes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+.resolution { background: #fff; padding: 10px 14px; border-top: 4px solid var(--ink); }
+.resolution h3 { font: 800 16px/1.25 var(--f-display); margin: 0 0 6px; }
+.resolution ul { margin: 0 0 6px; padding-left: 18px; font-size: 15px; }
+.witnessLane { border-top-color: var(--prosecution); }
+.judgeLane { border-top-color: var(--neutral); }
+.wordsOnly { font-size: 14px; color: var(--muted-ink); margin: 0 0 6px; }
