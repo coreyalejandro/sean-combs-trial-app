@@ -1,0 +1,113 @@
+/* Day 1: aligned claim diff. Phone first (390 px); the three-column diff starts at 800 px. */
+.viz { display: grid; gap: 28px; }
+.small { font-size: 14px; color: var(--muted-ink); margin: 0 0 8px; max-width: 68ch; }
+.subhead { font: 700 13px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 6px; }
+
+/* What was at stake: a strip of figure tiles */
+.stakes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--ink); border: 1px solid var(--ink); }
+.stake { background: var(--ink); color: var(--paper); padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+.stake :global(.conf) { color: var(--paper); }
+.stake :global(.source-ref) { color: var(--muted); }
+.stakeValue { font: 900 34px/1 var(--f-display); color: var(--paper); font-variant-numeric: tabular-nums; }
+.stakeLabel { font-size: 14px; line-height: 1.3; }
+.stakeDetail { font: 400 12px/1.3 var(--f-data); color: var(--muted); }
+@media (min-width: 800px) {
+  .stakes { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .stakeValue { font-size: 44px; }
+}
+
+/* The diff */
+.diffHead { display: none; }
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "topic" "pros" "def";
+  gap: 6px;
+  padding: 10px 0 12px;
+  border-top: 1px solid var(--rule-paper);
+  transition: opacity 200ms ease;
+}
+.row > .card.prosecution { grid-area: pros; }
+.row > .card.defense { grid-area: def; }
+.row > .topic { grid-area: topic; }
+.ribbon { display: none; }
+
+.card { position: relative; padding: 10px 12px 10px 14px; background: #fff; border-left: 4px solid; font-size: 15px; line-height: 1.45; }
+.card p { margin: 0; }
+.card.prosecution { border-left-color: var(--prosecution); }
+.card.defense { border-left-color: var(--defense); }
+.cardSide { display: block; font: 700 11px/1 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-ink); margin-bottom: 4px; }
+.empty { background: repeating-linear-gradient(135deg, #ecece7 0 6px, var(--paper) 6px 12px); color: var(--muted-ink); font-style: italic; border-left-style: dashed; }
+.figure { margin-top: 6px !important; font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.figure :global(.num) { font-weight: 700; background: var(--ink); color: var(--paper); padding: 1px 6px; }
+
+.topic { border: 2px solid var(--ink); background: var(--paper); }
+.topic summary { cursor: pointer; padding: 8px 10px; list-style: none; display: grid; gap: 2px; min-height: 44px; }
+.topic summary::-webkit-details-marker { display: none; }
+.topicLabel { font: 900 17px/1.15 var(--f-display); }
+.topicHint { font: 400 12px/1.2 var(--f-data); color: var(--muted-ink); }
+.topicHint::before { content: "+ "; }
+.topic[open] .topicHint::before { content: "\2212 "; }
+.topic[open] { background: var(--ink); color: var(--paper); }
+.topic[open] .topicHint { color: var(--muted); }
+.later { margin: 0; padding: 0 10px 10px; font-size: 14px; }
+.later a { color: var(--paper); font-family: var(--f-data); }
+
+/* Selecting a topic highlights its row and quiets the rest (no JavaScript needed) */
+.rows:has(.topic[open]) .row:not(:has(.topic[open])) { opacity: 0.45; }
+.row:has(.topic[open]) .card { box-shadow: 0 0 0 2px var(--ink); }
+
+.openingSources { font-size: 13px; color: var(--muted-ink); margin: 10px 0 0; }
+
+@media (min-width: 800px) {
+  .diffHead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 32px 200px 32px minmax(0, 1fr);
+    gap: 0;
+    font: 700 12px/1.2 var(--f-data);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 8px;
+  }
+  .headPros { grid-column: 1; color: var(--prosecution); }
+  .headTopic { grid-column: 3; text-align: center; }
+  .headDef { grid-column: 5; text-align: right; }
+  .speaker { display: block; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted-ink); margin-top: 2px; }
+  .row {
+    grid-template-columns: minmax(0, 1fr) 32px 200px 32px minmax(0, 1fr);
+    grid-template-areas: "pros rp topic rd def";
+    align-items: center;
+    gap: 0;
+    border-top: 0;
+    padding: 0;
+  }
+  .ribbon { display: block; height: 0; border-top: 3px solid; align-self: center; }
+  .ribbonPros { grid-area: rp; border-color: var(--prosecution); }
+  .ribbonDef { grid-area: rd; border-color: var(--defense); }
+  .ribbonGap { border-top-style: dashed; border-color: var(--neutral); border-top-width: 2px; }
+  .card.defense { border-left: 0; border-right: 4px solid var(--defense); text-align: right; padding: 10px 14px 10px 12px; }
+  .card.defense .figure { justify-content: flex-end; }
+  .empty.defense { border-right-style: dashed; }
+  .topic { text-align: center; }
+}
+
+/* Witness constellation */
+.constellation { max-width: 640px; }
+.starSvg { width: 100%; height: auto; display: block; background: var(--ink); }
+.starAxis { stroke: var(--rule); stroke-width: 1; }
+.starTick { fill: var(--muted); font: 400 11px var(--f-data); }
+.starLit { fill: var(--red); stroke: var(--paper); stroke-width: 1; }
+.starDim { fill: none; stroke: #6f7680; stroke-width: 1; }
+
+/* The verdict, read only by choice */
+.verdict { border: 1px solid var(--ink); background: #fff; }
+.verdict > summary { cursor: pointer; font-weight: 700; padding: 10px 14px; min-height: 44px; }
+.verdict > :not(summary) { margin-left: 14px; margin-right: 14px; }
+.verdictList { padding-left: 0; list-style: none; font-size: 15px; margin-bottom: 12px; }
+.verdictList li { padding: 4px 0; border-bottom: 1px solid var(--rule-paper); }
+.countNo { font: 700 12px/1 var(--f-data); color: var(--muted-ink); margin-right: 4px; }
+.guilty { background: var(--red-text); color: #fff; padding: 0 6px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; }
+.notGuilty { border: 1px solid var(--ink); padding: 0 6px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; }

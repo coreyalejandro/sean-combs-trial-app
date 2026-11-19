@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Message thread with two reading lanes",
   contentLevel: 2,
   caption: "Both readings are shown because the jury heard both. Messages are paraphrased; this page reproduces no sexual content.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
-  altShort: "Five messages from 2007 to 2017, each shown with the defense's reading and Ventura's answer.",
-  status: 'placeholder',
+  howToRead: "Messages run down the page from oldest to newest, paraphrased, with the years between them. Beside each one, the amber box is what the defense put to her and the black-edged box is what Ventura answered. Use Step through, or the arrow keys, to take them one at a time.",
+  altShort: "Messages from 2007 to 2017 that the defense showed Ventura, each with the defense's reading and her answer.",
+  status: 'done',
 }

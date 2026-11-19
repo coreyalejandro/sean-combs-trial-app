@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Money path on a calendar",
   contentLevel: 2,
   caption: "Regina Ventura testified the money was demanded under a threat to release private videos. Bank records shown on Day 15 match the dates.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: "The red token is the money. It starts with the Ventura family, whose loan has no reported date, moves down into a Combs-related account on the day of the wire and back up on the day of the return. Red stamps mark the dates bank records confirmed. Play or step through the month day by day.",
   altShort: "Calendar of December 2011 tracing $20,000 from the Ventura family's home-equity loan to a Combs-related account and back, with dates confirmed by bank records.",
-  status: 'placeholder',
+  status: 'done',
 }

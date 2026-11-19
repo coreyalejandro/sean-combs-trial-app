@@ -1,0 +1,67 @@
+/* Day 5: isotype pictograph. Icons are plain CSS shapes: no photographs, nothing graphic. */
+.viz { display: grid; gap: 16px; }
+.dateline { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 8px 0; }
+.datelineDate { font: 900 22px/1.1 var(--f-display); }
+.datelinePlace { font: 400 14px/1.2 var(--f-data); color: var(--muted-ink); }
+.layout { display: grid; gap: 16px; }
+@media (min-width: 800px) { .layout { grid-template-columns: minmax(0, 1fr) 260px; align-items: start; } }
+
+.isoWrap { display: grid; gap: 12px; }
+.toolbar { display: flex; justify-content: flex-end; }
+.btn { min-height: 44px; padding: 8px 14px; border: 2px solid var(--ink); background: #fff; color: var(--ink); font: 700 14px/1.2 var(--f-body); cursor: pointer; }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+.groups { display: grid; gap: 14px; }
+@media (min-width: 800px) { .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } .group:first-child { grid-column: 1 / -1; } }
+.group { background: #fff; border-top: 3px solid var(--ink); padding: 10px 12px 12px; }
+.groupHead { margin: 0 0 8px; display: flex; align-items: baseline; gap: 8px; font-weight: 400; }
+.big { font: 900 32px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.groupName { font-size: 15px; line-height: 1.25; }
+.icons { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; min-height: 48px; }
+.key { margin: 8px 0 0; font: 400 12px/1.2 var(--f-data); color: var(--muted-ink); }
+
+/* The icon button: a 44 px tap target holding one CSS-drawn shape */
+.icon { position: relative; width: 44px; height: 48px; padding: 0; border: 0; background: transparent; cursor: pointer; color: var(--ink); }
+.icon::before, .icon::after { content: ""; position: absolute; box-sizing: border-box; }
+.iconOpen { outline: 2px solid var(--red); outline-offset: 2px; }
+
+/* confidence: solid (two or more outlets), hollow (one), dashed (one, unconfirmed) */
+.solid { --fill: var(--ink); --line: solid; }
+.hollow { --fill: #fff; --line: solid; }
+.dashed { --fill: #fff; --line: dashed; }
+
+/* cash bundle */
+.cash::before { left: 2px; right: 2px; top: 14px; height: 22px; background: var(--fill); border: 2px var(--line) var(--ink); }
+.cash::after { left: 18px; width: 8px; top: 12px; height: 26px; background: var(--paper); border: 2px var(--line) var(--ink); }
+/* bottle */
+.bottle::before { left: 14px; width: 16px; top: 14px; height: 32px; border-radius: 6px 6px 3px 3px; background: var(--fill); border: 2px var(--line) var(--ink); }
+.bottle::after { left: 19px; width: 6px; top: 4px; height: 12px; background: var(--fill); border: 2px var(--line) var(--ink); }
+/* pill bottle with a label band */
+.pills::before { left: 11px; width: 22px; top: 16px; height: 28px; border-radius: 2px; background: linear-gradient(var(--fill) 0 30%, var(--paper) 30% 70%, var(--fill) 70%); border: 2px var(--line) var(--ink); }
+.pills::after { left: 8px; width: 28px; top: 8px; height: 9px; background: var(--ink); border-radius: 2px; }
+/* powder in a small tied bag */
+.powder::before { left: 10px; width: 24px; top: 18px; height: 26px; border-radius: 4px 4px 12px 12px; background: var(--fill); border: 2px var(--line) var(--ink); }
+.powder::after { left: 17px; width: 10px; top: 10px; height: 10px; border: 2px var(--line) var(--ink); border-bottom: 0; border-radius: 6px 6px 0 0; }
+/* lighting device: a lamp head on a stand */
+.light::before { left: 9px; width: 26px; top: 4px; height: 26px; border-radius: 50%; background: radial-gradient(circle, var(--paper) 0 35%, var(--fill) 36%); border: 2px var(--line) var(--ink); }
+.light::after { left: 12px; width: 20px; top: 30px; height: 14px; border-bottom: 3px solid var(--ink); background: linear-gradient(var(--ink), var(--ink)) center / 2px 100% no-repeat; }
+
+.list { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 15px; }
+.detail { border: 2px solid var(--ink); background: #fff; padding: 10px 12px; min-height: 64px; }
+.detail p { margin: 0 0 4px; }
+.detailItem { font-weight: 700; }
+.detailWho { font-size: 14px; color: var(--muted-ink); }
+.detailHint { font-size: 14px; color: var(--muted-ink); }
+
+.sideCol { display: grid; gap: 12px; }
+.cross { border-left: 6px solid var(--defense); background: #fff; padding: 10px 12px; font-size: 14px; }
+.cross p { margin: 4px 0; }
+.crossLabel { display: block; font: 700 11px/1 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-ink); }
+.stand { background: var(--ink); color: var(--paper); padding: 10px 12px; }
+.stand .crossLabel { color: var(--muted); }
+.stand :global(.conf), .stand :global(.source-ref) { color: var(--muted); }
+.standDays { list-style: none; margin: 8px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(36px, 1fr)); gap: 3px; }
+.standDays li { font: 400 10px/1.1 var(--f-data); padding: 16px 2px 3px; text-align: center; }
+.standOn { background: var(--red-text); color: #fff; font-weight: 700; }
+.standOff { border: 1px solid var(--rule); color: var(--muted); }
+.standText { margin: 0; font-size: 14px; }

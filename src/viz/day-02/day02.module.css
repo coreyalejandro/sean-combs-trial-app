@@ -1,0 +1,67 @@
+/* Day 2: dual lifeline. The wide drawing shows from 800 px; the phone drawing below that. */
+.viz { display: grid; gap: 20px; }
+.lifeline { display: grid; gap: 12px; }
+.svg { width: 100%; height: auto; display: block; background: #fff; border: 1px solid var(--rule-paper); touch-action: pan-y; cursor: ew-resize; user-select: none; }
+.svgWide { display: none; }
+.svgPhone { display: block; }
+@media (min-width: 800px) {
+  .svgWide { display: block; }
+  .svgPhone { display: none; }
+}
+
+.gapBand { fill: #f7f7f4; }
+.together { fill: #d9d9d2; }
+.togetherUnsure { opacity: 1; }
+.hatchBg { fill: #fff; }
+.hatchLine { stroke: var(--muted-ink); stroke-width: 2; }
+.togetherLabel { font: 700 12px var(--f-data); fill: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
+.gapLabel { font: 700 12px var(--f-data); fill: var(--muted-ink); }
+.svgPhone .who, .svgPhone .gapLabel { font-size: 10px; letter-spacing: 0; }
+.herLine { stroke: var(--red); stroke-width: 4; }
+.hisLine { stroke: var(--ink); stroke-width: 4; }
+.who { font: 700 12px var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; fill: var(--ink); }
+.yearRule { stroke: var(--rule-paper); stroke-width: 1; }
+.age { font: 400 13px var(--f-data); fill: var(--muted-ink); font-variant-numeric: tabular-nums; }
+.svgPhone .age { font-size: 11px; }
+.ageOn { fill: var(--ink); font-weight: 700; }
+.yearLabel { font: 400 11px var(--f-data); fill: var(--muted-ink); }
+.pinStem { stroke: var(--ink); stroke-width: 1; }
+.dashed { stroke-dasharray: 4 3; }
+.pinRange { stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
+.pinDot { fill: var(--ink); stroke: var(--ink); stroke-width: 2; }
+.lvl_medium, .lvl_low { fill: #fff; }
+.lvl_low { stroke-dasharray: 3 2; }
+.lvl_conflict { fill: #fff; }
+.pinNum { font: 700 11px var(--f-data); fill: #fff; }
+.num_medium, .num_low, .num_conflict { fill: var(--ink); }
+.cursor { stroke: var(--red); stroke-width: 2; }
+
+.readout { display: grid; gap: 4px; background: var(--ink); color: var(--paper); padding: 10px 12px; }
+.sliderLabel { font: 700 12px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; }
+.slider { width: 100%; min-height: 44px; accent-color: var(--red); }
+.readoutText { margin: 0; font-size: 16px; }
+.readoutText strong { font-size: 22px; }
+.readout :global(.conf), .readout [class*="calc"] { color: var(--muted); }
+.atYear { color: var(--muted); font-size: 14px; }
+
+.legend { list-style: none; counter-reset: ev; padding: 0; margin: 0; display: grid; gap: 6px; }
+.legend li { counter-increment: ev; display: grid; grid-template-columns: 28px 1fr; gap: 0 8px; align-items: start; font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--rule-paper); }
+.legend li::before { content: counter(ev); grid-row: span 2; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 12px/24px var(--f-data); text-align: center; }
+.legendOn { background: #fff3c4; }
+.legendBtn { background: none; border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; color: inherit; min-height: 28px; text-decoration: underline; text-decoration-color: var(--rule-paper); text-underline-offset: 3px; }
+.legendDetail { color: var(--muted-ink); }
+@media (min-width: 800px) {
+  .legend { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 6px 20px; }
+}
+
+.side { display: grid; gap: 16px; }
+@media (min-width: 800px) { .side { grid-template-columns: 1fr 1fr; } }
+.box { border-top: 3px solid var(--ink); padding-top: 8px; }
+.boxTitle { font: 700 13px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 6px; }
+.small { font-size: 14px; color: var(--muted-ink); margin: 6px 0; }
+.readings { margin: 0; padding-left: 18px; font-size: 14px; }
+.readings li { margin: 4px 0; }
+.note { font-size: 13px; color: var(--muted-ink); margin: 8px 0 0; }
+.squares { display: grid; grid-template-columns: repeat(10, 24px); gap: 4px; }
+.square, .squareOn { width: 24px; height: 24px; border: 2px solid var(--ink); background: #fff; }
+.squareOn { background: var(--red); border-color: var(--red); }
