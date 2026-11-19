@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Space-and-time contradiction diff",
   contentLevel: 2,
   caption: "A hotel bill shows where a stay was booked, not where a person was every hour. The judge left the weight of this testimony to the jury.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'The map shows where; the strip below shows when, one row per city. Bars are stays, dots are dated records, the diamond is the witness. Scrub the dates to light up the cities on that day; switch the three layers on and off; select a mark for its words and sources.',
   altShort: "Two maps and a date strip showing a New York hotel stay of September 24 to 29, 2016, overlapping the September 26 date on photos from Los Angeles.",
-  status: 'placeholder',
+  status: 'done',
 }

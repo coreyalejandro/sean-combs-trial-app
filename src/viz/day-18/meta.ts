@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Duration range plot",
   contentLevel: 3,
   caption: "Durations as each woman testified. Two accounts, more than a decade apart, describe encounters of similar length, which prosecutors called 'freak-offs' and Jane called 'hotel nights'.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Each bar runs from the shortest to the longest figure a witness gave for one length of time; a dot is a single figure. Bars are grouped by witness, with the years each account covers. Solid means two or more outlets reported it, outlined one outlet, striped one outlet unconfirmed. Switch the axis between hours and days; select a bar for its source.',
   altShort: "Range chart comparing durations Ventura described (36 hours to four days, about 2008 to 2018) with those Jane described (12 hours to three and a half days, 2021 to 2023).",
-  status: 'placeholder',
+  status: 'done',
 }

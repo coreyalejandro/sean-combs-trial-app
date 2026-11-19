@@ -1,0 +1,28 @@
+/* Day 21: payments over time. */
+.note { font-size: 14px; color: var(--muted-ink); margin: 0 0 8px; max-width: var(--measure); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 16px; align-items: start; }
+@media (max-width: 799px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+.panelTitle { font: 700 12px/1 var(--f-data); text-transform: uppercase; letter-spacing: 0.05em; fill: var(--muted-ink); }
+.grid { stroke: var(--rule-paper); stroke-width: 1; }
+.tick { font: 400 11px/1 var(--f-data); fill: var(--muted-ink); }
+.yearLine { stroke: var(--muted-ink); stroke-opacity: 0.4; stroke-dasharray: 2 4; }
+.year { font: 600 12px/1 var(--f-data); fill: var(--ink); }
+.bandLabel { font: 700 12px/1 var(--f-data); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.askedLabel { font: 700 12px/1 var(--f-data); fill: var(--red-text); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.incomeLabel { font: 400 12px/1 var(--f-data); fill: var(--prosecution); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.dotLabel { font: 700 12px/1 var(--f-data); fill: var(--ink); }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.card { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; width: 100%; text-align: left; background: #fff; border: 1px solid var(--rule-paper); padding: 8px 10px; cursor: pointer; color: inherit; font: inherit; min-height: 44px; }
+.card[aria-pressed='true'] { border-color: var(--ink); box-shadow: inset 4px 0 0 var(--red); }
+.cardDot { display: block; }
+.cardAmount { display: block; font: 700 15px/1.2 var(--f-data); }
+.cardLabel { display: block; font-size: 14px; line-height: 1.3; }
+.cardWhen { display: block; font: 400 12px/1.3 var(--f-data); color: var(--muted-ink); }
+
+.bandLabelInside { font: 700 12px/1 var(--f-data); fill: var(--paper); }
+.incomeKey { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.keyBtn { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 0; padding: 6px 2px; min-height: 44px; cursor: pointer; color: var(--prosecution); font: 400 13px/1.3 var(--f-data); text-align: left; }
+.keyBtn[aria-pressed='true'] { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; }
+.card { grid-template-columns: auto minmax(0, 1fr); }
+.card { display: flex; flex-wrap: wrap; }
+.card > span { flex: 1 1 140px; }

@@ -1,0 +1,17 @@
+/* Day 15: the money-flow Sankey. */
+.band { stroke-opacity: 0.55; transition: stroke-opacity 0.2s; }
+.bandOn { stroke-opacity: 0.9; }
+.label { paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.labelName { font: 700 14px/1 var(--f-body); fill: var(--ink); }
+.labelValue { font: 400 13px/1 var(--f-data); fill: var(--ink); }
+.dateChip { font: 400 13px/1.3 var(--f-data); color: var(--muted-ink); }
+.switchNote { font-size: 14px; color: var(--muted-ink); margin: 0 0 8px; }
+.ruler { margin-top: 20px; border-top: 1px solid var(--rule-paper); padding-top: 10px; }
+.rulerTitle { font: 800 17px/1.25 var(--f-display); margin: 0 0 4px; }
+.rulerNote { font-size: 15px; margin: 0 0 6px; }
+.tick { font: 400 11px/1 var(--f-data); fill: var(--muted-ink); }
+.rulerValue { font: 700 14px/1 var(--f-data); fill: var(--red-text); }
+@media (max-width: 799px) {
+  .labelName { font-size: 12px; }
+  .labelValue { font-size: 11px; }
+}

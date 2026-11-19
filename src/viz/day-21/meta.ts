@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Payment beeswarm",
   contentLevel: 2,
   caption: "Prosecutors said the rent was leverage. The defense said the gifts showed a loving relationship. Jane's answer comes on Day 22.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Read left to right through time. The upper bands are money paid each month; the dots below are one-time payments, their area true to the dollars; red dashes are what Jane asked for. Undated amounts and the total sit at the side on the same scale. Select any amount for what it was and who reported it; the switch hides one-outlet amounts.',
   altShort: "Timeline of payments from 2021 to 2024, including about $150,000 wired in total and $10,000 a month in rent from March 2023.",
-  status: 'placeholder',
+  status: 'done',
 }

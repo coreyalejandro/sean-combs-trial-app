@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Docket tracker",
   contentLevel: 1,
   caption: "Most of the trial's legal fights happened with the jury out of the room. This is the record of them.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Each lane is one kind of legal fight; each shape sits at the trial day it happened, and its shape and word give the outcome (a cross means denied, a filled dot granted, a hollow dot still pending). Filter by kind, and select any shape for the ruling and its source. On a phone the same events are a list.',
   altShort: "Tracker of the trial's legal events across five kinds, showing two mistrial motions denied and six witnesses given immunity.",
-  status: 'placeholder',
+  status: 'done',
 }
