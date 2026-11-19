@@ -10,7 +10,7 @@ export function describe(sel: Day16Selection, gaps: Array<string | null>): { par
   ]
   sel.stations.forEach((st, i) => {
     const gap = gaps[i] ? ` (${gaps[i]}, calculated)` : ''
-    p.push(`Stop ${i + 1}${gap}: ${st.whenText}. ${st.title}. Who had it: ${st.holder}. ${st.words.join(' ')} (${levelWords(st.level)}.)`)
+    p.push(`Stop ${i + 1}${gap}: ${st.whenText}. ${st.title}. ${st.holderLabel ?? 'Who had it'}: ${st.holder}. ${st.words.join(' ')} (${levelWords(st.level)}.)`)
   })
   const rows: TableRow[] = sel.stations.map((st, i) => ({
     key: st.id,

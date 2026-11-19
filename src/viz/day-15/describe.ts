@@ -1,5 +1,11 @@
 // Day 15 long description and table rows, from the same selection as the picture.
 import { formatDate, redactThirdParties } from '@/lib/data'
+
+/** "2016-03-05" -> "March 2016". */
+function monthYearOf(iso: string): string {
+  const [y, m] = iso.split('-').map(Number)
+  return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'long', year: 'numeric' })
+}
 import { formatInt, formatUSD, formatUSDShort, formatValue } from '@/lib/viz/format'
 import type { TableRow } from '@/viz/kits/days-15-21/VizTable'
 import { levelWords, numSources } from '@/viz/kits/days-15-21/sources'
@@ -23,7 +29,7 @@ export function describe(sel: Day15Selection): { paragraphs: string[]; rows: Tab
   }
   if (garcia?.amount && rest?.amount) {
     p.push(
-      `It splits in two: ${formatUSD(garcia.amount)} kept by Garcia, the hotel's overnight security supervisor (${levelWords(garcia.level)}), and the other ${formatUSD(rest.amount)} (calculated: ${rest.formula}).`,
+      `It splits in two: ${formatUSD(garcia.amount)} kept by Garcia, a hotel security officer on the overnight shift (${levelWords(garcia.level)}), and the other ${formatUSD(rest.amount)} (calculated: ${rest.formula}).`,
     )
   }
   if (sup?.amount && off?.amount) {
@@ -52,7 +58,8 @@ export function describe(sel: Day15Selection): { paragraphs: string[]; rows: Tab
     value: n.amount === null ? 'not stated' : `${formatUSD(n.amount)}${n.formula ? ` (calculated: ${n.formula})` : ''}`,
     level: n.level,
     sources: n.sources,
-    when: sel.incidentDate ? formatDate(String(sel.incidentDate.value)) : undefined,
+    // The money moved after the incident: the video was handed over the day after the deal, the cash after the papers were signed (CNN).
+    when: sel.incidentDate ? `${monthYearOf(String(sel.incidentDate.value))}, after the incident of ${formatDate(String(sel.incidentDate.value), { year: false })}` : undefined,
   }))
   // Reported figures the picture uses outside the flow (the date, the first price, the wage, the penalty).
   for (const num of sel.used) {

@@ -74,7 +74,7 @@ function Detail({ e, pool }: { e: DocketEvent; pool: Source[] }) {
 }
 
 export default function Day20Interactive({ events, geo, pool, counts }: {
-  events: DocketEvent[]; geo: DocketGeo; pool: Source[]; counts: { total: number; motions: number; motionsDenied: number; denied: number; immunity: number }
+  events: DocketEvent[]; geo: DocketGeo; pool: Source[]; counts: { total: number; motions: number; motionsDenied: number; deniedAfterVerdict: number; denied: number; immunity: number }
 }) {
   const [shown, setShown] = useState<Set<Kind>>(new Set(KINDS.map((x) => x.id)))
   const [active, setActive] = useState(events.find((e) => e.kind === 'mistrial' && e.outcome === 'denied')?.id ?? events[0]?.id ?? '')
@@ -86,7 +86,7 @@ export default function Day20Interactive({ events, geo, pool, counts }: {
   return (
     <div className={k.viz}>
       <p className={s.counts}>
-        <strong className="num">{counts.total}</strong> legal events in the record · <strong className="num">{counts.motions}</strong> motions to end the case, <strong className="num">{counts.motionsDenied}</strong> denied · <strong className="num">{counts.immunity}</strong> witnesses testified under immunity orders · <strong className="num">{counts.denied}</strong> requests denied in all
+        <strong className="num">{counts.total}</strong> legal events reported · <strong className="num">{counts.motions}</strong> motions to end the case, {counts.motionsDenied + counts.deniedAfterVerdict === counts.motions && counts.deniedAfterVerdict > 0 ? <>all denied (the last after the verdict)</> : <><strong className="num">{counts.motionsDenied}</strong> denied</>} · <strong className="num">{counts.immunity}</strong> witnesses testified under immunity orders · <strong className="num">{counts.denied}</strong> requests denied in all
         <span className={k.calc} title="Counted from the events below">calculated</span>
       </p>
       <div className={k.controls} role="group" aria-label="Filter by kind">

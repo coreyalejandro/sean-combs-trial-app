@@ -199,7 +199,7 @@ export function Matrix(p: MatrixProps) {
                 {openPieces.map((x) => (
                   <li key={x.id} className={x.day > day ? s.later : ''}>
                     <a href={`/day/${x.day}/`} className={s.dayLink}>Day {x.day}</a> {x.label}
-                    {x.day > day ? <span className={s.notYet}> (arrives later)</span> : null} <Sourced level={x.level} refs={x.refs} labels={p.labels} />
+                    {x.day > day ? <span className={s.notYet}> (arrives later)</span> : null} <Sourced level={x.level} refs={x.refs} labels={p.labels} whole={x.whole} />
                   </li>
                 ))}
               </ol>

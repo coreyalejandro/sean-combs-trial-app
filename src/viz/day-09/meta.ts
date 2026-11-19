@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Two-sided network",
   contentLevel: 1,
   caption: "The defense noted that celebrities commonly use aliases (Day 14). Prosecutors said these kept hotel stays hidden.",
-  howToRead: 'Names are on the left and places on the right; each line is one record or testimony tying a name to a place. Solid lines were reported by two or more outlets, dashed lines by one. Bigger marks connect to more. Select a name or a place to light up its links and read the records behind them.',
+  howToRead: 'Names are on the left and places on the right; each line is one record or testimony tying a name to a place. Solid lines were reported by two or more outlets, dashed lines by one. Bigger marks connect to more. Select a name or a place to light up its links and read what was reported behind them.',
   altShort: "Network linking five aliases to six places (four hotels, rooms booked by former assistants and a laptop user profile), with 'Frank Black' connected to the most places and years.",
   status: 'done',
 }

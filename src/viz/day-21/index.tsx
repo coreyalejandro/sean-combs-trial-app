@@ -38,7 +38,7 @@ export function TextVersion({ day }: DayVizProps) {
     <div className={k.longDesc}>
       {p.map((t) => <p key={t}>{t}</p>)}
       <VizTable caption={`Money between Combs and Jane, and every other figure from Day ${day.day}`} rows={rows} pool={sel.pool} other={sel.other} dayNumber={day.day} />
-      <OmittedNote count={sel.omitted} why="they count sexual encounters, which this project does not chart (care rule 2)." />
+      <OmittedNote count={sel.omitted} why="they count sexual encounters." />
     </div>
   )
 }

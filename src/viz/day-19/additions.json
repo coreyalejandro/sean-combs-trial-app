@@ -4,7 +4,7 @@
     {
       "id": "lawsuit-filed",
       "kind": "event",
-      "text": "Cassie Ventura filed her federal lawsuit against Combs on Thursday, November 16, 2023; the settlement was announced the next day, Friday. (The trial record gives only the month; the day comes from these reports, which say the suit was filed on Thursday and settled on Friday.)",
+      "text": "Cassie Ventura filed her federal lawsuit against Combs on Thursday, November 16, 2023; the settlement was announced the next day, Friday. (Trial coverage gives only the month; the day comes from these reports, which say the suit was filed on Thursday and settled on Friday.)",
       "date": "2023-11-16",
       "from_days": [2, 19],
       "confidence": "medium",
@@ -16,7 +16,7 @@
     {
       "id": "searches",
       "kind": "event",
-      "text": "Federal agents searched Combs's properties in Los Angeles and Miami on Monday, March 25, 2024. (The trial record gives only the month.)",
+      "text": "Federal agents searched Combs's properties in Los Angeles and Miami on Monday, March 25, 2024. (Trial coverage gives only the month.)",
       "date": "2024-03-25",
       "from_days": [19, 23],
       "confidence": "high",

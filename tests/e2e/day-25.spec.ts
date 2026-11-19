@@ -15,8 +15,8 @@ test.describe('day 25 visualization', () => {
 
   test('responds to selection', async ({ page }) => {
     await page.goto('/day/25/')
-    await page.locator('[data-testid=day25-treemap] ul button').first().click()
-    await expect(page.locator('[data-testid=day25-treemap]')).toContainText('Close list')
+    await page.locator('[data-testid=day25-bars] ol button').first().click()
+    await expect(page.locator('[data-testid=day25-bars]')).toContainText('Close list')
   })
 
   test.describe('without JavaScript', () => {

@@ -56,6 +56,10 @@ export interface Day26Selection {
 type Rule = { kind: Link['kind']; from: string; to: string; re: RegExp; scope: RegExp }
 
 // scope: the record text must also name this person (or the director's texts) for the rule to apply.
+// Checked by hand, Nov 2026: links a careful reader of the reporting would not draw were removed (Capricorn Clark
+// being made to go to Kid Cudi's home is not a staff task; texts that mention a hotel are not instructions to book
+// one; texts about rides shown in court do not say who asked for what; being told to expect time away from family is not a
+// report of long hours). Mia is not drawn in a diagram of an alleged enterprise: she testified that she was harmed.
 const RULES: Rule[] = [
   { kind: 'did', from: 'james', to: 'stock', re: /stocked hotel rooms/i, scope: /James/ },
   { kind: 'did', from: 'james', to: 'hotels', re: /booked under 'Frank Black'/i, scope: /James/ },
@@ -64,23 +68,17 @@ const RULES: Rule[] = [
   { kind: 'did', from: 'kaplan', to: 'hotels', re: /set up hotel rooms[^;]*Frank Black/i, scope: /Kaplan/ },
   { kind: 'did', from: 'kaplan', to: 'clean', re: /cleaned rooms/i, scope: /Kaplan/ },
   { kind: 'did', from: 'kaplan', to: 'drugs', re: /picked up MDMA/i, scope: /Kaplan/ },
-  { kind: 'did', from: 'mia', to: 'schedule', re: /24\/7 job|schedule/i, scope: /Mia/ },
-  { kind: 'did', from: 'mia', to: 'clean', re: /cleaning hotel rooms/i, scope: /Mia/ },
-  { kind: 'did', from: 'mia', to: 'stock', re: /supplying baby oil/i, scope: /Mia/ },
   { kind: 'did', from: 'perez', to: 'drugs', re: /bought illegal drugs/i, scope: /Perez/ },
   { kind: 'did', from: 'perez', to: 'hotels', re: /set up hotel rooms/i, scope: /Perez/ },
   { kind: 'did', from: 'perez', to: 'cash', re: /arrange a \$[\d,]+ [a-z]+ payment/i, scope: /Perez/ },
   { kind: 'did', from: 'paul', to: 'drugs', re: /buying marijuana/i, scope: /Paul/ },
-  { kind: 'did', from: 'paul', to: 'schedule', re: /without sleep|away from family/i, scope: /Paul/ },
+  { kind: 'did', from: 'paul', to: 'schedule', re: /without sleep/i, scope: /Paul/ },
   { kind: 'directed-person', from: 'combs', to: 'kaplan', re: /at Combs's direction/i, scope: /Kaplan/ },
-  { kind: 'directed-person', from: 'combs', to: 'clark', re: /made her go with him/i, scope: /Clark/ },
   { kind: 'directed-person', from: 'combs', to: 'perez', re: /bought illegal drugs for Combs/i, scope: /Perez/ },
   { kind: 'directed-person', from: 'combs', to: 'paul', re: /marijuana strains for Combs/i, scope: /Paul/ },
   { kind: 'directed-person', from: 'khorram', to: 'paul', re: /Khorram 'basically ran the enterprise'/i, scope: /Paul/ },
   { kind: 'directed-task', from: 'khorram', to: 'stock', re: /Khorram texts \([^)]*stock a [^)]*room/i, scope: /Khorram/ },
   { kind: 'directed-task', from: 'khorram', to: 'cash', re: /Khorram texts \([^)]*fetch \$[\d,]+ cash/i, scope: /Khorram/ },
-  { kind: 'directed-task', from: 'khorram', to: 'travel', re: /Khorram texts about Ubers/i, scope: /Khorram/ },
-  { kind: 'directed-task', from: 'khorram', to: 'hotels', re: /Khorram texts about[^;.]*hotel/i, scope: /Khorram/ },
 ]
 
 const OUTLET_TOKEN = /\b(NBC|CBS|ABC|GMA|Fox|CNN|AP|NPR|Global)\b/g
@@ -105,7 +103,7 @@ function tidy(s: string): string {
 export function selectDay26(today: TrialDay): Day26Selection {
   const days = getDays().map((d) => (d.day === today.day ? today : d))
   const table = getWitnesses()
-  const staffIds = ['james', 'kaplan', 'clark', 'mia', 'perez', 'paul', 'ferguson']
+  const staffIds = ['james', 'kaplan', 'perez', 'paul', 'ferguson']
   const people: PersonNode[] = staffIds
     .map((id) => table.find((w) => w.id === id))
     .filter((w): w is NonNullable<typeof w> => Boolean(w))
@@ -142,7 +140,7 @@ export function selectDay26(today: TrialDay): Day26Selection {
     .find((p) => /Khorram \(chief of staff; not charged/i.test(p))
   const directors: Day26Selection['directors'] = [
     { id: 'combs', label: 'Sean Combs' },
-    { id: 'khorram', label: khorramLabel ? `${khorramLabel.split(' (')[0]} (chief of staff; not charged, did not testify)` : 'Chief of staff' },
+    { id: 'khorram', label: `${khorramLabel ? khorramLabel.split(' (')[0] : "Combs's chief of staff"} (chief of staff; not charged, did not testify)` },
   ]
   if (securityDay) people.push({ id: 'security', label: 'Security staff (unnamed)', note: null, days: [securityDay.day] })
 
@@ -161,7 +159,7 @@ export function selectDay26(today: TrialDay): Day26Selection {
       return {
         id: p.id,
         label: p.label,
-        evidence: clause ? tidy(clause) : linked.has(p.id) ? 'described being directed, but no task from this list' : null,
+        evidence: clause ? tidy(clause) : linked.has(p.id) ? 'described receiving instructions, but no task from this list' : null,
         day: ev ? ev.x.day : d?.day ?? null,
         sources: ev ? ev.x.sources : [],
       }

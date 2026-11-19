@@ -66,7 +66,7 @@ const COLORS = {
 type Phase = { kind: 'loading'; progress: number } | { kind: 'error'; message: string } | { kind: 'ready' }
 
 interface Display { t: number; counts: Counts; playing: boolean }
-interface Tonight { rows: Array<{ county: number; people: number }>; total: number; places: number; day: number }
+interface Tonight { rows: Array<{ county: number; people: number }>; total: number; places: number; inHomeCounty: number; day: number }
 
 async function fetchWithProgress(url: string, onProgress: (p: number) => void): Promise<ArrayBuffer> {
   const res = await fetch(url)
@@ -448,6 +448,7 @@ export default function MarchMap({ refs }: { refs: Record<string, RefSource> }) 
                     <FinaleRef sources={R('sanitation')} calculated>{fmtInt(Math.ceil(tonight.total / m.needs.people_per_toilet))}</FinaleRef> toilets and{' '}
                     <FinaleRef sources={R('sphere')} calculated>{fmtNum((tonight.total * m.needs.shelter_m2) / KM2, 0)}</FinaleRef> km² of shelter
                     {' '}({fmtNum(m.needs.water_l, 0)} litres of water each, 1 toilet per {fmtNum(m.needs.people_per_toilet, 0)} people, {fmtNum(m.needs.shelter_m2, 1)} m² of shelter each).
+                    {tonight.inHomeCounty > 0 ? <> Another {fmtPeople(tonight.inHomeCounty)} marchers are on the road but still inside their home county, so they are not counted here.</> : null}
                   </>
                 ) : 'Computing tonight’s stops…'}
               </p>

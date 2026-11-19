@@ -1,8 +1,8 @@
 // Turning a number's free-text `source` field into real Source records with URLs.
-import raw from '@/data/trial_days.json'
-import type { ReportedNumber, Source, TrialData, TrialDay } from './types'
+import { data as publicData } from './store'
+import type { ReportedNumber, Source, TrialDay } from './types'
 
-const data = raw as unknown as TrialData
+const data = publicData
 
 /**
  * Every source in the file (all days plus the verdict), de-duplicated by URL (the same article listed on

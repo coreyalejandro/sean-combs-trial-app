@@ -70,7 +70,7 @@ export function select(day: TrialDay, read0: DayReader = getDay): Day10Model {
   const month = (v: unknown) => String(v ?? '').match(/\d{4}-\d{2}/)?.[0] ?? ''
   const events = ([
     {
-      id: 'learns', title: 'Combs learns Ventura is seeing Kid Cudi', date: month(venturaDec?.value), precision: 'month',
+      id: 'learns', title: 'Ventura and Kid Cudi say Combs learned they were seeing each other', date: month(venturaDec?.value), precision: 'month',
       dateNote: 'Month as reported; the day is not stated', dateFact: venturaDec,
       accounts: ok([
         acc('ventura', d3, 'Ventura testified Combs found out she was dating Kid Cudi and threatened her; she ended that relationship.', venturaDec),
@@ -88,12 +88,12 @@ export function select(day: TrialDay, read0: DayReader = getDay): Day10Model {
       accounts: ok([acc('clark', d10, `Clark testified Combs came to her door at about ${clarkTime ? String(clarkTime.value).replace(/^~/, '') : 'dawn'} a.m., angry about Ventura and Kid Cudi, and made her go with him.`, clarkTime && clarkDate ? { ...clarkDate, refs: [...clarkDate.refs, ...clarkTime.refs.filter((r) => !clarkDate.refs.some((x) => x.url === r.url))], confidence: weakest(clarkDate.confidence, clarkTime.confidence) } : clarkDate)]),
     },
     {
-      id: 'entry', title: "Combs enters Kid Cudi's home", date: datesIn(String(clarkDate?.value ?? ''))[0] ?? '', precision: 'day',
+      id: 'entry', title: "Kid Cudi and Clark say Combs entered Kid Cudi's home", date: datesIn(String(clarkDate?.value ?? ''))[0] ?? '', precision: 'day',
       dateNote: "Day from Clark's account; Kid Cudi gave only the month", dateFact: clarkDate,
       accounts: ok([
         acc('mescudi', d9, 'Kid Cudi testified Combs entered his home while he was out, and that he reported it to police.', cudiEntry),
         acc('clark', d10, "Clark testified she was taken with Combs to Kid Cudi's home.", clarkDate),
-        acc('ignacio', d11, 'The officer who responded testified the incident was not reported as a burglary.', ignacio),
+        acc('ignacio', d11, 'The officer who answered a radio call about a possible burglary testified that, as reported, it was not a burglary and nothing was stolen.', ignacio),
       ]),
     },
     {

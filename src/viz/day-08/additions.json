@@ -1,112 +1,133 @@
 {
-  "day": 8,
-  "items": [
+ "day": 8,
+ "items": [
+  {
+   "id": "ventura-first-event",
+   "kind": "event",
+   "text": "Ventura testified that the physical abuse began in 2007",
+   "value": "2007",
+   "unit": "year",
+   "date": "2007",
+   "from_days": [
+    2
+   ],
+   "confidence": "medium",
+   "sources": [
     {
-      "id": "ventura-first-event",
-      "kind": "event",
-      "text": "Ventura testified that the physical abuse began in 2007",
-      "value": "2007",
-      "unit": "year",
-      "date": "2007",
-      "from_days": [
-        2
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "NPR",
-          "outlet_family": "NPR",
-          "title": "Sean Combs trial: Cassie's testimony details scope of violent relationship",
-          "url": "https://www.npr.org/2025/05/13/nx-s1-5396851/diddy-trial-cassie-sean-combs",
-          "date": "2025-05-13"
-        }
-      ]
-    },
-    {
-      "id": "cudi-police-report",
-      "kind": "event",
-      "text": "Kid Cudi reported the December 2011 entry into his home to Los Angeles police that month; an officer who responded testified on Day 11",
-      "value": "2011-12",
-      "unit": "month",
-      "date": "2011-12",
-      "from_days": [
-        9,
-        11
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "Fox News",
-          "outlet_family": "Fox",
-          "title": "Sean Diddy Combs trial day 9 (live blog)",
-          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
-          "date": "2025-05-22"
-        },
-        {
-          "outlet": "Global News",
-          "outlet_family": "Global",
-          "title": "Diddy trial: stylist Deonte Nash testifies",
-          "url": "https://globalnews.ca/news/11201055/diddy-trial-stylist-deonte-nash-testifies-cassie-ventura",
-          "date": "2025-05-28"
-        }
-      ]
-    },
-    {
-      "id": "jane-agent-contact",
-      "kind": "event",
-      "text": "On the day federal agents raided Combs's properties in March 2024, an HSI agent left Jane a card (her first contact with investigators reported in coverage); Combs arranged her lawyer and has paid her legal bills",
-      "value": "2024-03",
-      "unit": "month",
-      "date": "2024-03",
-      "from_days": [
-        19
-      ],
-      "confidence": "high",
-      "sources": [
-        {
-          "outlet": "ABC News / Good Morning America",
-          "outlet_family": "ABC",
-          "title": "Diddy trial Day 23 recap (ABC count): loose ends, witness testifies",
-          "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-23-loose-ends-witness-testifies-122678794",
-          "date": "2025-06-10"
-        },
-        {
-          "outlet": "Associated Press via PBS NewsHour",
-          "outlet_family": "AP",
-          "title": "Feds search Sean 'Diddy' Combs properties as part of sex trafficking probe, AP sources say",
-          "url": "https://www.pbs.org/newshour/arts/feds-search-sean-diddy-combs-properties-as-part-of-sex-trafficking-probe-ap-sources-say",
-          "date": "2024-03-25"
-        }
-      ]
-    },
-    {
-      "id": "bongolan-first-event",
-      "kind": "event",
-      "text": "Bongolan testified that the incident she described at Ventura's apartment happened in 2016",
-      "value": "2016",
-      "unit": "year",
-      "date": "2016",
-      "from_days": [
-        16,
-        17
-      ],
-      "confidence": "medium",
-      "sources": [
-        {
-          "outlet": "NBC News",
-          "outlet_family": "NBC",
-          "title": "NBC News live blog, June 4, 2025 (Day 16)",
-          "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-testimony-witness-live-updates-rcna210760",
-          "date": "2025-06-04"
-        },
-        {
-          "outlet": "Yahoo News",
-          "outlet_family": "Yahoo",
-          "title": "Sean 'Diddy' Combs trial recap: witness testifies Combs dangled her off 17th-floor balcony and threatened to kill her",
-          "url": "https://www.yahoo.com/news/sean-diddy-combs-trial-recap-witness-testifies-that-combs-dangled-her-off-17th-floor-balcony-and-threatened-to-kill-her-200539157.html",
-          "date": "2025-06-04"
-        }
-      ]
+     "outlet": "NPR",
+     "outlet_family": "NPR",
+     "title": "Sean Combs trial: Cassie's testimony details scope of violent relationship",
+     "url": "https://www.npr.org/2025/05/13/nx-s1-5396851/diddy-trial-cassie-sean-combs",
+     "date": "2025-05-13"
     }
-  ]
+   ]
+  },
+  {
+   "id": "cudi-police-report",
+   "kind": "event",
+   "text": "Kid Cudi reported the December 2011 entry into his home to Los Angeles police that month; an officer who responded testified on Day 11",
+   "value": "2011-12",
+   "unit": "month",
+   "date": "2011-12",
+   "from_days": [
+    9,
+    11
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "outlet": "Fox News",
+     "outlet_family": "Fox",
+     "title": "Sean Diddy Combs trial day 9 (live blog)",
+     "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
+     "date": "2025-05-22"
+    },
+    {
+     "outlet": "Global News",
+     "outlet_family": "Global",
+     "title": "Diddy trial: stylist Deonte Nash testifies",
+     "url": "https://globalnews.ca/news/11201055/diddy-trial-stylist-deonte-nash-testifies-cassie-ventura",
+     "date": "2025-05-28"
+    }
+   ]
+  },
+  {
+   "id": "jane-agent-contact",
+   "kind": "event",
+   "text": "On the day federal agents raided Combs's properties in March 2024, an HSI agent left Jane a card (her first contact with investigators reported in coverage); Combs arranged her lawyer and has paid her legal bills",
+   "value": "2024-03",
+   "unit": "month",
+   "date": "2024-03",
+   "from_days": [
+    19
+   ],
+   "confidence": "high",
+   "sources": [
+    {
+     "outlet": "ABC News / Good Morning America",
+     "outlet_family": "ABC",
+     "title": "Diddy trial Day 23 recap (ABC count): loose ends, witness testifies",
+     "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-23-loose-ends-witness-testifies-122678794",
+     "date": "2025-06-10"
+    },
+    {
+     "outlet": "Associated Press via PBS NewsHour",
+     "outlet_family": "AP",
+     "title": "Feds search Sean 'Diddy' Combs properties as part of sex trafficking probe, AP sources say",
+     "url": "https://www.pbs.org/newshour/arts/feds-search-sean-diddy-combs-properties-as-part-of-sex-trafficking-probe-ap-sources-say",
+     "date": "2024-03-25"
+    }
+   ]
+  },
+  {
+   "id": "bongolan-first-event",
+   "kind": "event",
+   "text": "Bongolan testified that the incident she described at Ventura's apartment happened in 2016",
+   "value": "2016",
+   "unit": "year",
+   "date": "2016",
+   "from_days": [
+    16,
+    17
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "outlet": "NBC News",
+     "outlet_family": "NBC",
+     "title": "Diddy trial: Witness testifies Combs dangled her off a balcony (live updates, June 4, 2025)",
+     "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-testimony-witness-live-updates-rcna210760",
+     "date": "2025-06-04"
+    },
+    {
+     "outlet": "Yahoo News",
+     "outlet_family": "Yahoo",
+     "title": "Sean 'Diddy' Combs trial recap: witness testifies Combs dangled her off 17th-floor balcony and threatened to kill her",
+     "url": "https://www.yahoo.com/news/sean-diddy-combs-trial-recap-witness-testifies-that-combs-dangled-her-off-17th-floor-balcony-and-threatened-to-kill-her-200539157.html",
+     "date": "2025-06-04"
+    }
+   ]
+  },
+  {
+   "id": "bongolan-suit-filed",
+   "kind": "event",
+   "text": "Bongolan filed a $10 million civil lawsuit against Combs in November 2024 (Yahoo News, June 2025: 'a $10 million civil lawsuit she filed against Combs in November')",
+   "value": "2024-11",
+   "unit": "month",
+   "date": "2024-11",
+   "from_days": [
+    16
+   ],
+   "confidence": "medium",
+   "sources": [
+    {
+     "outlet": "Yahoo News",
+     "outlet_family": "Yahoo",
+     "title": "Sean 'Diddy' Combs trial recap: witness testifies Combs dangled her off 17th-floor balcony and threatened to kill her",
+     "url": "https://www.yahoo.com/news/sean-diddy-combs-trial-recap-witness-testifies-that-combs-dangled-her-off-17th-floor-balcony-and-threatened-to-kill-her-200539157.html",
+     "date": "2025-06-04"
+    }
+   ]
+  }
+ ]
 }

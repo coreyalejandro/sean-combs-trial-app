@@ -6,7 +6,7 @@ import type { VizMeta } from '@/viz/types'
 export const meta: VizMeta = {
   day: 11,
   title: "The Car Fire Investigation: Where the Trail Stopped",
-  question: "What did investigators do after the January 2012 car fire, and where did the trail stop?",
+  question: "What did police do after the December 2011 entry into Kid Cudi's home, and investigators after the January 2012 car fire, and where did the trail stop?",
   form: "Chain-of-evidence diagram with broken links",
   contentLevel: 1,
   caption: "No one was charged for the fire. Jurors were told to disregard testimony suggesting who set it.",

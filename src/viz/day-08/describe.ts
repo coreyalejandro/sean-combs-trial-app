@@ -1,4 +1,5 @@
 // Day 8 text version: the long description and table rows, from the same selection as the picture.
+import { midSentence } from '@/lib/viz/format'
 import type { TableRow } from '@/viz/kits/days-08-14/ui'
 import { money } from '@/viz/kits/days-08-14/geom'
 import { MODES, gap, type Day08Model, type Mode } from './select'
@@ -18,26 +19,26 @@ export function describe(m: Day08Model): { paragraphs: string[]; rows: TableRow[
     withGap.length > 0
       ? `Measured to the first step toward a court or police, the waits run from ${years(Math.min(...gaps))} (${shortest.who}) to ${years(Math.max(...gaps))} (${longest.who}). These gaps are calculated by subtracting one year from the other.`
       : 'No account has both dates reported in coverage.',
-    missing.length > 0 ? `Not stated in coverage: ${missing.map((r) => `${r.who} (${r.ends[legal].label.toLowerCase()})`).join('; ')}.` : '',
+    missing.length > 0 ? `Not stated in coverage: ${missing.map((r) => `${r.who} (${midSentence(r.ends[legal].label)})`).join('; ')}.` : '',
     m.concepts.length > 0
-      ? `Above the chart: the ${m.concepts.length} general patterns Dr. Dawn Hughes described (${m.concepts.map((c) => c.label.toLowerCase()).join(', ')}). She did not evaluate anyone in this case.`
+      ? `Above the chart: the ${m.concepts.length} general patterns Dr. Dawn Hughes described (${m.concepts.map((c) => midSentence(c.label)).join(', ')}). She did not evaluate anyone in this case.`
       : '',
   ].filter(Boolean)
 
   const rows: TableRow[] = []
   for (const r of m.rows) {
     const who = `${r.who}${r.pseudonym ? ' (pseudonym)' : ''}`
-    rows.push({ key: `${r.id}-start`, value: r.start.year ?? 'not stated', what: `${who}: ${r.start.label.toLowerCase()}`, fact: r.start.fact })
+    rows.push({ key: `${r.id}-start`, value: r.start.year ?? 'not stated', what: `${who}: ${midSentence(r.start.label)}`, fact: r.start.fact })
     for (const mode of MODES) {
       const e = r.ends[mode.id]
       if (mode.id === 'official' && e.fact && r.ends.legal.fact && e.fact.key === r.ends.legal.fact.key) continue
-      rows.push({ key: `${r.id}-${mode.id}`, value: e.year ?? 'not stated in coverage', what: `${who}: ${e.label.toLowerCase()} (${mode.label.toLowerCase()})`, fact: e.fact })
+      rows.push({ key: `${r.id}-${mode.id}`, value: e.year ?? 'not stated in coverage', what: `${who}: ${midSentence(e.label)} (${midSentence(mode.label)})`, fact: e.fact })
     }
     for (const mode of MODES) {
       const n = gap(r, mode.id)
       if (n === null) continue
       if (mode.id === 'official' && r.ends.official.fact?.key === r.ends.legal.fact?.key) continue
-      rows.push({ key: `${r.id}-gap-${mode.id}`, value: years(n), what: `${who}: wait to ${mode.label.toLowerCase()}`, fact: null, calc: `${r.ends[mode.id].year} minus ${r.start.year}` })
+      rows.push({ key: `${r.id}-gap-${mode.id}`, value: years(n), what: `${who}: wait to ${midSentence(mode.label)}`, fact: null, calc: `${r.ends[mode.id].year} minus ${r.start.year}` })
     }
   }
   for (const f of m.fees) {

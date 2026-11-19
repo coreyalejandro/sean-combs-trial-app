@@ -1,10 +1,9 @@
-// Day 26: Who Did What: The Staff Around Combs, as Witnesses Described. A hive plot of people, tasks and
+// Day 26: Who Did What: The Staff Around Combs, as Witnesses Described. A grid of former employees and tasks,
 // who directed them; every link carries the record text that put it there. Phones get a person-by-task grid.
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { NumbersTable } from '@/components/shell/NumbersTable'
 import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { crossDayExtras, dayLink, RowList, XRef } from '@/viz/kits/days-22-28/kit'
-import { hiveGeometry } from './hive'
 import { HiveInteractive, type MatrixData } from './Interactive'
 import { meta } from './meta'
 import { selectDay26, TASKS, type Day26Selection, type Link } from './select'
@@ -52,11 +51,11 @@ function Detail({ sel, id }: { sel: Day26Selection; id: string }) {
       {links.length > 0 ? <ul className={styles.list}>{links.map((l) => <LinkItem key={l.key} sel={sel} l={l} focus={id} />)}</ul> : null}
       {un && un.evidence ? (
         <p>
-          No task from this list in the record. {un.day ? <>Day {un.day}: </> : null}&ldquo;{un.evidence}&rdquo;{' '}
+          No task from this list in the reporting. {un.day ? <>Day {un.day}: </> : null}&ldquo;{un.evidence}&rdquo;{' '}
           {un.sources.length ? <XRef ids={un.sources.map((s) => s.id)} /> : null}
         </p>
       ) : null}
-      {links.length === 0 && !un ? <p>No link in the record.</p> : null}
+      {links.length === 0 && !un ? <p>No link in the reporting.</p> : null}
     </div>
   )
 }
@@ -77,7 +76,9 @@ function matrixData(sel: Day26Selection): MatrixData {
       })),
       ...sel.directors.map((d) => ({
         id: d.id,
-        label: `${d.label.split(' (')[0]} (directing)`,
+        label: d.id === 'khorram'
+          ? `${d.label.split(' (')[0]}, Combs's chief of staff (not charged; did not testify): tasks asked for in texts shown in court`
+          : `${d.label.split(' (')[0]}: tasks asked for, as testified`,
         cells: TASKS.map((t) => sel.links.some((l) => l.kind === 'directed-task' && l.from === d.id && l.to === t.id)),
         directedBy: [],
       })),
@@ -87,17 +88,15 @@ function matrixData(sel: Day26Selection): MatrixData {
 
 export default function Day26Viz({ day }: DayVizProps) {
   const sel = selectDay26(day)
-  const g = hiveGeometry(sel, SHORT)
   const ids = [...sel.people.map((p) => p.id), ...sel.tasks.map((t) => t.id), ...sel.directors.map((d) => d.id)]
   const details = Object.fromEntries(ids.map((id) => [id, <Detail key={id} sel={sel} id={id} />]))
   return (
     <div className={styles.viz}>
       <ul className={styles.legend} aria-label="Key">
-        <li><span className={styles.swDid} aria-hidden="true" /> solid line: the person said they did this task</li>
-        <li><span className={styles.swDir} aria-hidden="true" /> dashed red line: the record says who directed the person or asked for the task</li>
-        <li><span className={styles.swEmpty} aria-hidden="true" /> hollow: in the record, but no task from this list</li>
+        <li>A dot: the person testified they did this task.</li>
+        <li>&ldquo;Instructions from&rdquo;: who a witness, or a text shown in court, says asked for the work. These are accounts, not findings.</li>
       </ul>
-      <HiveInteractive g={g} details={details} matrix={matrixData(sel)} />
+      <HiveInteractive details={details} matrix={matrixData(sel)} />
     </div>
   )
 }
@@ -109,20 +108,22 @@ export function TextVersion({ day }: DayVizProps) {
     <>
       <p>{meta.altShort}</p>
       <p>
-        The picture has three axes: {sel.people.length} people who worked for Combs, {sel.tasks.length} kinds of task, and the{' '}
-        {sel.directors.length} people the record names as directing work. A link is drawn only where a day record holds words that
-        match it; there are {did.length} person-to-task links and {sel.links.length - did.length} direction links (counted). Each link
-        below quotes the record text behind it. People with no task link are shown too, with the reason.
+        The picture is a grid of {sel.people.length} people who worked for Combs against {sel.tasks.length} kinds of task, with the{' '}
+        {sel.directors.length} people witnesses or texts name as giving instructions. A link is drawn only where the reporting holds words
+        that match it, checked by hand; there are {did.length} person-to-task links and {sel.links.length - did.length} instruction links
+        (counted). Each link below quotes the reported words behind it. These are testimony and evidence offered at trial, not findings:
+        the jury found Combs not guilty of racketeering conspiracy. Kristina Khorram, Combs&rsquo;s chief of staff, was not charged and did
+        not testify.
       </p>
       <RowList
-        caption="Every link and the record behind it"
-        columns={['From', 'Link', 'To', 'Record text', 'How sure']}
+        caption="Every link and the reported words behind it"
+        columns={['From', 'Link', 'To', 'Reported words', 'How sure']}
         rows={sel.links.map((l) => ({
           key: l.key,
           sourceIds: l.sources.map((s) => s.id).join(' '),
           cells: [
             nameOf(sel, l.from),
-            l.kind === 'did' ? 'said they did' : 'directed',
+            l.kind === 'did' ? 'testified they did' : 'gave instructions to, as testified',
             nameOf(sel, l.to),
             `“${l.evidence}” (Day ${l.day})`,
             <ConfidenceMark key="c" level={l.confidence} />,

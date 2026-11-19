@@ -19,7 +19,7 @@ describe('day 17', () => {
     expect(photos && stay && photos.start >= stay.start && photos.start <= stay.end).toBe(true)
     expect(sel.miles).toBeGreaterThan(0)
     expect(stripDays(sel.marks).length).toBeGreaterThan(1)
-    expect(sel.ruling?.words.join(' ')).toMatch(/screwed up/)
+    expect(sel.ruling?.words.join(' ')).toMatch(/Perry Mason/)
     expect(meta.status).not.toBe('placeholder')
   })
 

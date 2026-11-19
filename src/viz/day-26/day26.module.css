@@ -8,7 +8,7 @@
 .swEmpty { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--muted-ink); }
 .hive { display: none; width: 100%; height: auto; }
 .matrixWrap { display: block; overflow-x: auto; }
-@media (min-width: 800px) { .hive { display: block; } .matrixWrap { display: none; } }
+/* The grid is used at every width (review, Nov 2026: clearer than the hive plot, whose lines ran through labels). */
 .axis { stroke: var(--rule-paper); stroke-width: 6; stroke-linecap: round; }
 .axisLabel { fill: var(--muted-ink); font-family: var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; }
 .linkDid { fill: none; stroke: var(--ink); stroke-width: 1.5; opacity: 0.55; }

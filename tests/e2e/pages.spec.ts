@@ -27,6 +27,8 @@ async function sharedChecks(page: Page) {
   const html = await page.content()
   for (const name of REDACTED) expect(html, `third-party name "${name}" on page`).not.toContain(name)
   expect(html.toLowerCase(), 'the label "accuser" (care rule 6)').not.toContain('accuser')
+  // A person who was never charged and never testified is never named without saying so.
+  if (/Khorram/.test(html)) expect(html, 'Khorram named without her status').toContain('She was not charged and did not testify')
 }
 
 for (const route of OTHER) {

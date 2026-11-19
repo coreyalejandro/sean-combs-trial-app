@@ -78,15 +78,20 @@ export function select(day: TrialDay): Day02Selection | null {
   let relationship: Day02Selection['relationship'] = null
   if (spanYears.length >= 2) {
     const readings = [
-      ...(lenHere ? [{ text: `${lenHere.value} ${lenHere.unit} (as reported on Day ${day.day})`, level: lenHere.confidence, refs: numberRefs(day, lenHere) }] : []),
-      ...lenCross.map(({ d, n }) => ({ text: `${n.value} ${n.unit} (Day ${d.day}: ${n.what})`, level: n.confidence, refs: numberRefs(d, n) })),
+      ...(lenHere ? [{ text: `${lenHere.value} ${lenHere.unit} by one count (Day ${day.day})`, level: lenHere.confidence, refs: numberRefs(day, lenHere) }] : []),
+      ...[...new Set(lenCross.map(({ n }) => `${n.value} ${n.unit}`))].map((v) => {
+        const same = lenCross.filter(({ n }) => `${n.value} ${n.unit}` === v)
+        const days = same.map(({ d }) => d.day)
+        const list = days.length > 1 ? `Days ${days.slice(0, -1).join(', ')} and ${days[days.length - 1]}` : `Day ${days[0]}`
+        return { text: `${v}, agreed on cross-examination (${list})`, level: same[0].n.confidence, refs: uniqueRefs(same.flatMap(({ d, n }) => numberRefs(d, n))) }
+      }),
     ]
     relationship = { from: spanYears[0], to: spanYears[spanYears.length - 1], readings }
     events.push({
       id: 'together',
       label: 'Relationship begins',
       year: spanYears[0],
-      detail: `The range drawn runs to ${spanYears[spanYears.length - 1]}; outlets disagree on the length.`,
+      detail: `The band runs to ${spanYears[spanYears.length - 1]}; reports differ slightly on its length.`,
       level: readings.length > 1 ? 'conflict' : readings[0]?.level ?? 'medium',
       refs: uniqueRefs(readings.flatMap((r) => r.refs)),
     })
@@ -95,12 +100,12 @@ export function select(day: TrialDay): Day02Selection | null {
   const began = findNumber(day, /age at first/i)
   if (began && typeof began.value === 'number') {
     const y = yearIn(began.what) ?? metYear + (began.value - herAgeMet)
-    events.push({ id: 'began', label: 'She says the encounters began', year: y, detail: `She was ${began.value}, about ${y}.`, level: began.confidence, refs: numberRefs(day, began) })
+    events.push({ id: 'began', label: 'The paid encounters Combs arranged began, she says', year: y, detail: `She was ${began.value}, about ${y}, by her account.`, level: began.confidence, refs: numberRefs(day, began) })
   }
   const last = findNumber(day, /^last/i)
   if (last) {
     const ys = yearsIn(last.value)
-    if (ys.length > 0) events.push({ id: 'last', label: 'The last, as she dated it', year: ys[0], yearEnd: ys[ys.length - 1] !== ys[0] ? ys[ys.length - 1] : undefined, detail: `${last.value}, as she gave it.`, level: last.confidence, refs: numberRefs(day, last) })
+    if (ys.length > 0) events.push({ id: 'last', label: 'The last of those encounters, by her account', year: ys[0], yearEnd: ys[ys.length - 1] !== ys[0] ? ys[ys.length - 1] : undefined, detail: `${last.value}, by her account.`, level: last.confidence, refs: numberRefs(day, last) })
   }
 
   // The record deal inset: Day 2 (NPR) and Day 11 (NBC) describe the one release differently; Day 11 adds a share of music released.
@@ -112,8 +117,8 @@ export function select(day: TrialDay): Day02Selection | null {
   const size = dealHere ? Number(dealHere.value) : dealLater ? Number(dealLater.value) : NaN
   if (Number.isFinite(size)) {
     const readings = [
-      ...(dealHere ? [{ text: `Day ${day.day} record: ${dealHere.value}-${dealHere.unit.replace(/s$/, '')} deal; ${dealHere.what.replace(/^Bad Boy deal;\s*/i, '')}`, level: dealHere.confidence, refs: numberRefs(day, dealHere) }] : []),
-      ...(dealLater ? [{ text: `Day ${day11.day} record: ${dealLater.value} ${dealLater.unit}; ${dealLater.what.replace(/^.*?\(/, '').replace(/\)$/, '')}`, level: dealLater.confidence, refs: numberRefs(day11, dealLater) }] : []),
+      ...(dealHere ? [{ text: `Day ${day.day}: ${dealHere.value}-${dealHere.unit.replace(/s$/, '')} deal; ${dealHere.what.replace(/^Bad Boy deal;\s*/i, '')}`, level: dealHere.confidence, refs: numberRefs(day, dealHere) }] : []),
+      ...(dealLater ? [{ text: `Day ${day11.day}: ${dealLater.value} ${dealLater.unit}; ${dealLater.what.replace(/^.*?\(/, '').replace(/\)$/, '')}`, level: dealLater.confidence, refs: numberRefs(day11, dealLater) }] : []),
     ]
     const released = countIn([dealHere?.what, dealLater?.what].filter(Boolean).join('; ')) ?? 0
     deal = {

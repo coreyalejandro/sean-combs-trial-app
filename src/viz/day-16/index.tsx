@@ -33,7 +33,7 @@ export default function Day16Viz({ day }: DayVizProps) {
   const sel = select(day)
   const w = waits(sel)
   const stations: StationView[] = sel.stations.map((st, i) => ({
-    id: st.id, title: st.title, holder: st.holder, whenText: st.whenText, words: st.words, level: st.level,
+    id: st.id, title: st.title, holder: st.holder, holderLabel: st.holderLabel, whenText: st.whenText, words: st.words, level: st.level,
     sources: st.sources, fromDay: st.fromDay, era: st.era, gapPx: w[i].px, gapText: w[i].text,
   }))
   return (
@@ -50,7 +50,7 @@ export function TextVersion({ day }: DayVizProps) {
     <div className={k.longDesc}>
       {paragraphs.map((t) => <p key={t}>{t}</p>)}
       <VizTable caption={`The video's stops, and every other figure from Day ${day.day}`} rows={rows} pool={sel.pool} other={sel.other} dayNumber={day.day} whenLabel="When" />
-      <OmittedNote count={sel.omitted} why="it describes a witness's body, which this project does not chart (care rule 2)." />
+      <OmittedNote count={sel.omitted} why="it describes a witness&apos;s body." />
     </div>
   )
 }

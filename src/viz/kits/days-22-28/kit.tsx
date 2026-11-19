@@ -4,7 +4,7 @@
 // - crossDayExtras(): the other days' sources a picture cites, for the shell's Sources panel (listed after the
 //   day's own, with id="source-<id>", so every data-source-ids tag on the page resolves).
 import type { ReactNode } from 'react'
-import { redactThirdParties, sourceById, sourceHome, type TrialDay } from '@/lib/data'
+import { redactThirdParties, sourceById, sourceHome, type TrialDay, plainSourceTitle } from '@/lib/data'
 import type { ExtraSource } from '@/viz/types'
 import styles from './kit.module.css'
 
@@ -85,7 +85,7 @@ export function AdditionsList({ items, heading }: { items: AdditionItem[]; headi
             {it.sources.map((s, i) => (
               <span key={s.url}>
                 {i > 0 ? '; ' : ''}
-                <a href={s.url} rel="noopener noreferrer" target="_blank">{s.outlet}, {s.title}</a>
+                <a href={s.url} rel="noopener noreferrer" target="_blank">{s.outlet}, {plainSourceTitle(s.title)}</a>
               </span>
             ))}
           </li>

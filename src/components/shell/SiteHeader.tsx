@@ -9,6 +9,8 @@ export function SiteHeader() {
         <nav aria-label="Site" className="site-nav">
           <Link href="/days/">All days</Link>
           <Link href="/sources/">Sources</Link>
+          <Link href="/glossary/">Words</Link>
+          <Link href="/about/">About</Link>
           <Link href="/support/" className="support-link">Get support</Link>
           <QuietModeToggle />
         </nav>

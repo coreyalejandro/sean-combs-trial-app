@@ -29,7 +29,7 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
 
   const call = factFromAddition(additionById(additions, 'police-call'))
   const cudiReport = textFact(read, d9, 'cudi-report', 'key_points', /reported to police/i, /^(CBS|AP|Fox News)/, 'high', 'Kid Cudi testified he reported the entry into his home to police.')
-  const ignacio = textFact(read, d11, 'ignacio', 'key_points', /not reported as a burglary/i, /^NBC/, 'low', 'The LAPD officer who responded testified the incident was not reported as a burglary.')
+  const ignacio = textFact(read, d11, 'ignacio', 'key_points', /not reported as a burglary/i, /^NBC/, 'low', 'The LAPD officer who answered a call about a possible burglary testified the incident was not reported as a burglary.')
   const found = num(d11, 'found', /Engine company found the Porsche/i)
   const fireMonth = num(d9, 'fire-month', /Porsche set on fire/i)
   const clarkNoContact = textFact(read, d10, 'clark-no-contact', 'key_points', /did not speak to fire investigators/i, /^(Fox News|NBC News)$/, 'medium', 'Clark testified she did not speak to fire investigators at the time.')
@@ -39,15 +39,15 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
 
   const steps: Step[] = [
     {
-      id: 'report', title: 'Report to police', status: cudiReport || call ? 'done' : 'not-done', summary: 'The entry into the home was reported.',
+      id: 'report', title: 'The home: report to police', status: cudiReport || call ? 'done' : 'not-done', summary: 'The entry into the home was reported.',
       evidence: ok([ev('Kid Cudi, Day 9', 'He reported the entry into his home to police.', cudiReport), ev('Global News', 'The officer who responded to the call testified on Day 11.', call)]),
     },
     {
-      id: 'response', title: 'Police response', status: ignacio ? 'done' : 'not-done', summary: 'An officer responded; it was not logged as a burglary.',
-      evidence: ok([ev('Officer Christopher Ignacio, Day 11', 'He responded to the report; the incident was not reported as a burglary.', ignacio)]),
+      id: 'response', title: 'The home: police response', status: ignacio ? 'done' : 'not-done', summary: 'An officer answered a call about a possible burglary; he testified it was not reported as a burglary.',
+      evidence: ok([ev('Officer Christopher Ignacio, Day 11', 'He answered a radio call about a possible burglary; he testified the incident was not reported as a burglary and nothing was reported stolen.', ignacio)]),
     },
     {
-      id: 'scene', title: 'Fire scene examined', status: found || says(/fire was targeted/i) ? 'done' : 'not-done', summary: 'The fire was found and judged deliberate.',
+      id: 'scene', title: 'The car fire: fire scene examined', status: found || says(/fire was targeted/i) ? 'done' : 'not-done', summary: 'The fire was found and judged deliberate.',
       evidence: ok([
         ev('Kid Cudi, Day 9', 'His car was set on fire at his home about a month after the entry.', fireMonth),
         ev('Fire department record', 'An engine company found the car with a cut in its canvas top.', found),
@@ -55,22 +55,22 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
       ]),
     },
     {
-      id: 'collected', title: 'Evidence collected', status: says(/not collected/i) ? 'not-done' : 'done', summary: 'A driving glove on the back seat was not collected.',
+      id: 'collected', title: 'The car fire: evidence collected', status: says(/not collected/i) ? 'not-done' : 'done', summary: 'A driving glove on the back seat was not collected.',
       evidence: ok([ev('Arson investigator Lance Jimenez, Day 11', 'A driving glove on the back seat was not collected.', says(/not collected/i) ? jim('jim-glove', '') : null)]),
     },
     {
-      id: 'tested', title: 'Lab tests', status: says(/DNA-tested/i) ? 'not-done' : 'done', summary: 'The glove was not DNA-tested.',
+      id: 'tested', title: 'The car fire: lab tests', status: says(/DNA-tested/i) ? 'not-done' : 'done', summary: 'The glove was not DNA-tested.',
       evidence: ok([ev('Arson investigator Lance Jimenez, Day 11', 'The glove was not DNA-tested.', says(/DNA-tested/i) ? jim('jim-dna', '') : null)]),
     },
     {
-      id: 'witnesses', title: 'Witnesses reached', status: says(/could not reach/i) ? 'not-done' : 'done', summary: 'Clark and Ventura were not reached.',
+      id: 'witnesses', title: 'The car fire: witnesses reached', status: says(/could not reach/i) ? 'not-done' : 'done', summary: 'Clark and Ventura were not reached.',
       evidence: ok([
         ev('Arson investigator Lance Jimenez, Day 11', 'He could not reach Capricorn Clark or Cassie Ventura.', says(/could not reach/i) ? jim('jim-reach', '') : null),
         ev('Capricorn Clark, Day 10', 'She did not speak to fire investigators at the time.', clarkNoContact),
       ]),
     },
     {
-      id: 'charges', title: 'Charges', status: says(/no charges/i) ? 'not-done' : 'done', summary: 'No one was charged; the case went inactive.',
+      id: 'charges', title: 'The car fire: charges', status: says(/no charges/i) ? 'not-done' : 'done', summary: 'No one was charged; the case went inactive.',
       evidence: ok([ev('Arson investigator Lance Jimenez, Day 11', 'No one was charged, and the case went inactive.', says(/no charges/i) ? jim('jim-charges', '') : null)]),
     },
   ]
@@ -83,8 +83,8 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
   const struck = legal(d11, /struck the arson investigator's fingerprint testimony/i)
     ? textFact(read, d11, 'struck', 'legal_events', /fingerprint testimony/i, /^NBC/, 'low', '')
     : null
-  const disregard = legal(d9, /jury told to disregard/i)
-    ? textFact(read, d9, 'disregard', 'legal_events', /jury told to disregard/i, /^(Fox News|CBS|AP)/, 'medium', '')
+  const disregard = legal(d9, /told to disregard/i)
+    ? textFact(read, d9, 'disregard', 'legal_events', /told to disregard/i, /^(Fox News|CBS|AP)/, 'medium', '')
     : null
   const court: CourtNote[] = [
     struck ? { stepId: 'tested', text: "The arson investigator's testimony about fingerprints was struck; jurors were told to disregard it.", fact: struck } : null,

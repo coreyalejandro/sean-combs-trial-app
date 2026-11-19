@@ -84,7 +84,7 @@ export function TextVersion(props: DayVizProps) {
         {wire && ret ? `: ${ret.date - wire.date} days later (calculated, ${ret.date} minus ${wire.date}).` : '.'}
       </p>
       <p>Marks below the calendar give other dates from that month: an email and photographs (shown only as dates). No image is reproduced.</p>
-      <RowsTable caption={`Day ${day.day}: each step of the money path, other dates that month, and every figure reported`} columns={['Date or value', 'What the record says']} rows={[...pathRows, ...numberRows]} labels={labels} />
+      <RowsTable caption={`Day ${day.day}: each step of the money path, other dates that month, and every figure reported`} columns={['Date or value', 'What was reported']} rows={[...pathRows, ...numberRows]} labels={labels} />
     </>
   )
 }

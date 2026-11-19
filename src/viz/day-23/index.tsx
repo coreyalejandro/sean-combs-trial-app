@@ -141,8 +141,6 @@ export default function Day23Viz({ day }: DayVizProps) {
   const sel = selectDay23(day)
   const colWide = (layout.chartWidth - layout.gap * (sel.sites.length - 1)) / sel.sites.length
   const colNarrow = layout.phoneWidth - layout.gap * 2
-  const la = sel.sites.find((s) => s.id === 'la')
-  const smallest = sel.sites.reduce((a, b) => (b.total < a.total ? b : a), sel.sites[0])
   return (
     <div className={styles.viz}>
       <ul className={styles.key} aria-label="Key">
@@ -160,12 +158,6 @@ export default function Day23Viz({ day }: DayVizProps) {
         }
         table={<SitesTable sel={sel} />}
       />
-      {la && smallest && smallest.total > 0 ? (
-        <p className={styles.ratio}>
-          The Los Angeles count is about <span className="num">{formatInt(Math.round(la.total / smallest.total))}</span> times the arrest-room
-          count <Calc formula={`${la.total} / ${smallest.total}`} />, drawn at the same square size so the difference is exact.
-        </p>
-      ) : null}
       {sel.verification ? (
         <p className={styles.note}>
           <ConfidenceMark level="low" /> The Los Angeles agent&apos;s name was given by one outlet and is not confirmed, so it is not shown.

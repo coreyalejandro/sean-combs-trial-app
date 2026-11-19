@@ -424,6 +424,7 @@ export class MarchEngine {
     const t = day + 1 - EPS
     const ccount = this.m.counties.name.length
     const arr = new Int32Array(ccount)
+    let inHome = 0
     for (let i = 0; i < D.N; i++) {
       if (D.dotAir[i] || t >= D.dotArrive[i]) continue
       const s = this.distAt(i, t).s
@@ -436,6 +437,7 @@ export class MarchEngine {
         c = D.nodeCounty[p >= 0 ? p : u]
       }
       if (c >= 0 && c !== D.dotHome[i]) arr[c]++
+      else inHome++
     }
     const rows: Array<{ county: number; people: number }> = []
     let total = 0
@@ -446,7 +448,8 @@ export class MarchEngine {
       }
     }
     rows.sort((a, b) => b.people - a.people)
-    return { rows: rows.slice(0, top), total: total * this.m.people_per_dot, places: rows.length }
+    // inHomeCounty: marchers still on their way but not yet out of their own county; they are not counted as away.
+    return { rows: rows.slice(0, top), total: total * this.m.people_per_dot, places: rows.length, inHomeCounty: inHome * this.m.people_per_dot }
   }
 
   /** Road stretches that 20,000+ people pass along, with a width in pixels (viewer rule). */

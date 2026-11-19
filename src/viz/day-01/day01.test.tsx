@@ -52,6 +52,6 @@ describe('Day 1 claim diff', () => {
     cleanup()
     const noDefense = { ...day, key_points: day.key_points.filter((k) => !/^Defense opening/.test(k)) }
     const r3 = renderBoth(noDefense)
-    expect(r3.container.textContent).toContain('Not in the record of this opening')
+    expect(r3.container.textContent).toContain('Not reported from this opening')
   })
 })

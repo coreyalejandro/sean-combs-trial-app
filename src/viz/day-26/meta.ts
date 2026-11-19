@@ -6,12 +6,12 @@ import type { VizMeta } from '@/viz/types'
 export const meta: VizMeta = {
   day: 26,
   title: "Who Did What: The Staff Around Combs, as Witnesses Described",
-  question: "What tasks did employees say they did, and who directed them?",
-  form: "Hive-plot network",
+  question: "What tasks did former employees testify they did, and who did witnesses say gave the instructions?",
+  form: "Grid of people and tasks",
   contentLevel: 2,
-  caption: "Count 1 asked whether these people formed a criminal enterprise. The answer is on the verdict page.",
-  howToRead: 'Three axes run out from the centre: people who worked for Combs, the tasks they described, and who directed them. A solid line means a person said they did a task; a dashed red line means the record says who directed them. Select any name or task to read the record behind each line. On a phone the same links are a grid.',
-  altShort: "Network of the people around Combs and seven kinds of task, showing which former assistants said they booked hotels, stocked rooms, bought drugs or arranged travel, and who directed them.",
+  caption: "These are accounts witnesses gave and texts shown in court, not findings. Count 1 charged that Combs led a criminal enterprise; the jury found him not guilty of racketeering conspiracy.",
+  howToRead: "Each row is a person who worked for Combs; each column is a kind of task. A dot means the person testified they did it. Under a name, 'instructions from' gives who witnesses or texts say asked for the work. Select any name or task to read the reported words behind each link.",
+  altShort: "Grid of former assistants and seven kinds of task, showing which tasks each testified to, such as booking hotels, stocking rooms, buying drugs or arranging travel, and who witnesses said gave the instructions.",
   counts: [1],
   status: 'done',
 }

@@ -22,7 +22,7 @@ const SHORT: Record<NodeId, string> = {
   cash: 'Cash for the video',
   garcia: 'Garcia',
   rest: 'The rest',
-  supervisor: 'Supervisor',
+  supervisor: 'His boss',
   officer: 'Another officer',
   nda: 'NDA he signed',
 }

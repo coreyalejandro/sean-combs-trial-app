@@ -2,7 +2,7 @@
 // their records turned up. Owned by Builder 2.
 import { getDay } from '@/lib/data'
 import type { DayVizProps, ExtraSource } from '@/viz/types'
-import { bookExtras, FactsTable } from '@/viz/kits/days-08-14/ui'
+import { bookExtras, FactsTable, kit } from '@/viz/kits/days-08-14/ui'
 import { Day09Interactive } from './Interactive'
 import { describe } from './describe'
 import { meta } from './meta'
@@ -16,6 +16,11 @@ export default function Day09Viz({ day }: DayVizProps) {
   return (
     <div>
       <Day09Interactive view={{ aliases: m.aliases, places: m.places, links: m.links, book: m.book }} />
+      {m.aliases.some((a) => /Pines/.test(a.name)) ? (
+        <p className={kit.note}>
+          &ldquo;Phillip Pines&rdquo; is also the name of a real person who worked for Combs. It is listed here only as it appeared in hotel records.
+        </p>
+      ) : null}
     </div>
   )
 }

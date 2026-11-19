@@ -13,7 +13,8 @@ export default function SourcesPage() {
     <div className="wrap sources-page">
       <h1>Every source</h1>
       <p className="measure">
-        {sources.length} news reports and records, as listed in the research file. The official docket and trial transcripts were not opened for this project.
+        {sources.length} news reports and public records. This site is built from news coverage of the trial; it does not quote the
+        official docket or the trial transcripts. How it was made is on the <a href="/method/">method page</a>.
       </p>
       <ol className="sources-list">
         {sources.map((s) => (

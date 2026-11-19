@@ -38,3 +38,4 @@
 .quote footer { margin-top: 6px; font-size: 14px; color: var(--muted); }
 .quote footer a { color: var(--paper); }
 .total { margin: 0; font-size: 15px; max-width: var(--measure); }
+.quote .quoteLead { font-size: 16px; font-style: normal; margin: 0 0 6px; }

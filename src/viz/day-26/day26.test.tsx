@@ -6,7 +6,7 @@ import { selectDay26 } from './select'
 
 afterEach(cleanup)
 
-describe('Day 26 hive plot', () => {
+describe('Day 26 people-by-task grid', () => {
   const day = getDay(26)
   it('draws only links the records support, and keeps Ferguson unlinked', () => {
     const sel = selectDay26(day)
@@ -15,10 +15,15 @@ describe('Day 26 hive plot', () => {
     expect(sel.links.some((l) => l.from === 'ferguson' || l.to === 'ferguson')).toBe(false)
     expect(sel.unlinked.find((u) => u.id === 'ferguson')?.evidence).toMatch(/never saw/)
     for (const l of sel.links) expect(l.evidence.length).toBeGreaterThan(0)
+    // Mia is not drawn in a diagram of an alleged enterprise; the link resting on Clark's account was removed.
+    expect(sel.people.some((p) => p.id === 'mia')).toBe(false)
+    expect(sel.links.some((l) => l.to === 'clark')).toBe(false)
+    expect(sel.directors.find((d) => d.id === 'khorram')?.label).toMatch(/not charged, did not testify/)
   })
-  it('renders the hive, the phone grid and source tags', () => {
+  it('renders the grid, the acquittal and source tags', () => {
     const { container } = render(<div><Viz n={26} day={day} /><TextVersion n={26} day={day} /></div>)
-    expect(container.querySelectorAll('[data-roving-index]').length).toBeGreaterThan(10)
+    expect(container.querySelectorAll('[data-testid=day26-hive] button').length).toBeGreaterThan(10)
+    expect(container.textContent).toMatch(/not guilty of racketeering conspiracy/)
     expect(container.querySelectorAll('table')).toHaveLength(1)
     expect(container.querySelectorAll('dl').length).toBeGreaterThan(5)
     expect(container.querySelectorAll('[data-source-ids]').length).toBeGreaterThan(5)

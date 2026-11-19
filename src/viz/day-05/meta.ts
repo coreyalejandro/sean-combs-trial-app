@@ -5,12 +5,12 @@ import type { VizMeta } from '@/viz/types'
 
 export const meta: VizMeta = {
   day: 5,
-  title: "What Agents Found in the Hotel Room on the Day of the Arrest",
-  question: "What did agents find when they arrested Combs at a Manhattan hotel on September 16, 2024?",
-  form: "Isotype pictograph",
+  title: "Ventura Leaves the Stand; an Agent Lists What the Arrest Turned Up",
+  question: "As Ventura's four days on the stand ended, what did an agent say was found when Combs was arrested on September 16, 2024?",
+  form: "Stand days and an isotype of the cash",
   contentLevel: 2,
   caption: "Items as the agent listed them. On cross-examination, the defense pointed out a woman's belongings were also in the room.",
-  howToRead: "Each plain icon is one unit of what the agent listed; the key under each group says what one icon stands for. Solid icons were reported by two or more outlets, outlined icons by one. Focus or tap an icon for its source, or choose Show as a list.",
-  altShort: "Pictograph of items found in the arrest room: $9,000 in cash, five bottles of baby oil, pills under an alias, a powder tested for drugs, and a lighting device.",
+  howToRead: "The row of days shows when Ventura was on the stand. Below it, each icon is $1,000 of the cash the agent listed; the other items are listed in words, because their amounts were not reported. Solid icons were reported by two or more outlets, outlined icons by one. Focus or tap an icon for its source, or choose Show as a list.",
+  altShort: "Ventura's four days on the stand, ending today; then $9,000 in cash found in the arrest room, drawn as icons, with the other items the agent listed given in words.",
   status: 'done',
 }

@@ -12,7 +12,9 @@ const both = (d: TrialDay) => render(<div><Viz n={d.day} day={d} /><TextVersion 
 describe('day 21', () => {
   it('finds rent, one-time payments, undated amounts and the total', () => {
     const sel = select(day)
-    for (const kind of ['monthly', 'payment', 'undated', 'total', 'income'] as const) expect(sel.items.some((i) => i.kind === kind)).toBe(true)
+    for (const kind of ['monthly', 'payment', 'undated', 'total'] as const) expect(sel.items.some((i) => i.kind === kind)).toBe(true)
+    // Her own income is never shown (pseudonymous witness)
+    expect(sel.items.some((i) => i.kind === 'income')).toBe(false)
     expect(sel.items.find((i) => i.id === 'rent')?.open).toBe(true)
     expect(meta.status).not.toBe('placeholder')
   })

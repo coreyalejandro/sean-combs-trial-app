@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import type { Source } from '@/lib/data'
-import { formatInt, formatUSD, formatUSDShort } from '@/lib/viz/format'
+import { formatInt, formatUSD, formatUSDShort, midSentence } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
 import { useRovingFocus } from '@/lib/viz/roving'
 import { Calc, SrcTags, levelWords, type Level } from '@/viz/kits/days-15-21/sources'
@@ -186,7 +186,7 @@ export default function Day15Interactive({ view }: { view: Day15View }) {
       <p className={s.switchNote} aria-live="polite">
         {onlyConfirmed
           ? hidden.length > 0
-            ? `Hidden because one outlet reported them: ${hidden.map((n) => n.name.toLowerCase()).join('; ')}.`
+            ? `Hidden because one outlet reported them: ${hidden.map((n) => midSentence(n.name)).join('; ')}.`
             : 'Every part of this picture was reported by two or more outlets.'
           : 'Showing every part of the account, including parts only one outlet reported (striped).'}
       </p>

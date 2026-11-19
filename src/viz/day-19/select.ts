@@ -110,7 +110,7 @@ export function select(day: TrialDay): Day19Selection {
       const kp = day.key_points.find((k) => /recorded calls/i.test(k))
       push({
         id: 'calls', iso: iso(utcDay.offset(filed.date, afterDays)), precision: 'day', from: 'staff', to: 'jane',
-        title: `Recorded calls to Jane from the chief of staff's phone${gap ? `, ${gap.value} ${gap.unit} apart` : ''}`,
+        title: `Recorded calls between Combs and Jane, from an assistant's phone${gap ? `, ${gap.value} ${gap.unit} apart` : ''}`,
         words: [kp ? clause(kp, /recorded calls/i) ?? '' : '', `First call ${after.value} ${after.unit} after the lawsuit was filed (calculated date).`].filter(Boolean),
         level: lowest(after.confidence, gap?.confidence ?? 'high'), sources: resolveSources(after, day.sources), fromDay: day.day,
       })

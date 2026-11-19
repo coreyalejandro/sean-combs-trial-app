@@ -46,7 +46,15 @@ const DEFENSE = /\(defense|defense exhibit|defense-introduced|defense\)|Defense 
 const PROSECUTION = /\bprosecution\b|Government released/i
 
 const INJURY = /injur|bruis|black eye|fat lip|eyebrow|welts?\b/i
-const SEXUAL = /freak|sex video|sex tape|explicit/i
+const SEXUAL = /freak|sex video|sex tape|explicit|horny|every detail/i
+
+/**
+ * Things the reporting mentions that were not shown to the jury as exhibits (review, Nov 2026): items the judge
+ * excluded, items only described or referred to in testimony, and records the reporting implies but never names.
+ */
+const NOT_SHOWN = /excluded|not admitted|testimonial description|\bimplied\b|no exhibit numbers|\(described|described in opening|\(referenced|referenced in|\breferenced\)/i
+/** The 2016 hotel video is one exhibit, however many days the reporting mentions it. */
+const HOTEL_VIDEO = /(?:InterContinental|hotel hallway|2016 hotel).*(?:video|footage)|(?:video|footage).*(?:InterContinental|hotel hallway)/i
 const HIRED_PEOPLE = /escorts?\b|sex workers?/i
 
 export type Side = 'prosecution' | 'defense' | 'unstated'
@@ -80,7 +88,14 @@ export interface KindGroup {
 
 export interface Day25Selection {
   groups: KindGroup[]
+  /** Exhibits after removing what was not shown and repeats (calculated). */
   total: number
+  /** Every exhibit-like item the reporting mentions, before that (calculated). */
+  mentions: number
+  /** Mentions left out: excluded by the judge, only described or referred to, or implied. */
+  notShown: number
+  /** Repeat mentions of the same exhibit on later days (the hotel video and identical descriptions). */
+  repeats: number
   sealed: number
   bySide: Record<Side, number>
   daysWithExhibits: number
@@ -92,8 +107,6 @@ function kindOf(text: string): Kind {
   return KIND_RULES.find(([, re]) => re.test(t))?.[0] ?? 'document'
 }
 
-const QUOTED = /(^|[\s(])'([^']+?)'(?=[\s,.;:)?]|$)/g
-
 /** Care rule 2: no injury detail, no sexual content, no quoted message text. */
 export function safeLabel(text: string, kind: Kind, sealed: boolean): { label: string; generalized: boolean } {
   if (INJURY.test(text)) return { label: 'Photographs or video of injuries (not shown or described here)', generalized: true }
@@ -104,8 +117,9 @@ export function safeLabel(text: string, kind: Kind, sealed: boolean): { label: s
     if (sealed || kind === 'video' || kind === 'photo') return { label: 'Sealed or private recordings and images (not shown or described here)', generalized: true }
     return { label: `${KIND_LABEL[kind]} of a sexual nature (not shown or described here)`, generalized: true }
   }
-  const unquoted = redact(text).replace(QUOTED, '$1(quoted words not shown)').replace(/\(\(quoted words not shown\)\)/g, '(quoted words not shown)')
-  return { label: unquoted, generalized: false }
+  // Names of third parties are removed by redact(); other quoted words are shown as reported (a voicemail's
+  // nickname is dropped).
+  return { label: redact(text).replace(/'Crack Pipe' /, '').replace(/\s*\(defense, per NBC blog; date inferred\)/, ' (defense, per NBC)'), generalized: false }
 }
 
 export function classify(day: TrialDay, text: string, i: number): Exhibit {
@@ -122,7 +136,17 @@ const countSides = (list: Exhibit[]) =>
 
 export function selectDay25(today: TrialDay): Day25Selection {
   const days = getDays().map((d) => (d.day === today.day ? today : d))
-  const all = days.flatMap((d) => d.exhibits.map((t, i) => classify(d, t, i)))
+  const raw = days.flatMap((d) => d.exhibits.map((t, i) => ({ t, e: classify(d, t, i) })))
+  const shown = raw.filter((x) => !NOT_SHOWN.test(x.t))
+  const seen = new Set<string>()
+  const all = shown
+    .filter((x) => {
+      const key = HOTEL_VIDEO.test(x.t) ? 'hotel-video' : x.e.label.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .map((x) => x.e)
   const groups: KindGroup[] = (Object.keys(KIND_LABEL) as Kind[])
     .map((kind) => {
       const exhibits = all.filter((e) => e.kind === kind)
@@ -133,6 +157,9 @@ export function selectDay25(today: TrialDay): Day25Selection {
   return {
     groups,
     total: all.length,
+    mentions: raw.length,
+    notShown: raw.length - shown.length,
+    repeats: shown.length - all.length,
     sealed: all.filter((e) => e.sealed).length,
     bySide: countSides(all),
     daysWithExhibits: days.filter((d) => d.exhibits.length > 0).length,

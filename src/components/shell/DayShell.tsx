@@ -9,8 +9,11 @@ import { ContentNote } from './ContentNote'
 import { DayCover } from './DayCover'
 import { DayPager, type PagerLink } from './DayPager'
 import { FigureFrame } from './FigureFrame'
+import { WordsOnThisPage } from './Glossary'
 import { RailKeys, TextVersionHash } from './RailKeys'
+import { SourceNumbers } from './SourceNumbers'
 import { SourcesPanel } from './SourcesPanel'
+import { TowardMarch } from './TowardMarch'
 import { dayHref, TrialRail } from './TrialRail'
 
 export function DayShell({ n }: { n: number }) {
@@ -35,9 +38,11 @@ export function DayShell({ n }: { n: number }) {
         <DayPager prev={prev} next={next} position="top" />
         <ChargeRibbon highlight={meta.counts} />
         <ContentNote level={meta.contentLevel} override={meta.contentNote} nextHref={next.href} nextLabel={n < DAY_COUNT ? 'Skip to the next day' : 'Skip to the verdict'} />
+        <WordsOnThisPage text={[JSON.stringify(day), meta.title, meta.question, meta.caption, meta.howToRead].join(' ')} />
         <FigureFrame meta={meta} textVersion={<TextVersion n={n} day={day} />}>
           <Viz n={n} day={day} />
         </FigureFrame>
+        <TowardMarch n={n} />
         <AlsoToday day={day} />
         {gapAfter ? (
           <aside className="gap-note" aria-label="Calendar note">
@@ -50,6 +55,7 @@ export function DayShell({ n }: { n: number }) {
       </div>
       <RailKeys prevHref={prev?.href ?? null} nextHref={next.href} />
       <TextVersionHash />
+      <SourceNumbers />
     </article>
   )
 }

@@ -60,12 +60,9 @@ export default function Day27Viz({ day }: DayVizProps) {
       </ul>
       <ArcMapInteractive wide={wide} narrow={narrow} trips={trips} details={details} />
       <p className={styles.note}>
-        The records do not say which count each trip was offered for, so trips are grouped by date against the two relationships the
-        transportation counts name. Workers are never named.
+        The reporting does not say which count each trip was offered for, so trips are grouped by date against the two relationships the
+        transportation counts name. The people paid for sex who travelled are never named.
       </p>
-      <section className={kitStyles.xsources} aria-label="Map reference points">
-        <AdditionsList items={sel.placeSources} heading="Map reference points (city coordinates)" />
-      </section>
     </div>
   )
 }
@@ -77,14 +74,14 @@ export function TextVersion({ day }: DayVizProps) {
     <>
       <p>{meta.altShort}</p>
       <p>
-        {sel.trips.length} trips or sets of trips appear in the records. Only {withArc.length} names both a starting city and an arrival
+        {sel.trips.length} trips or sets of trips appear in the reporting. Only {withArc.length} names both a starting city and an arrival
         city, so only {withArc.length === 1 ? 'that one is' : 'those are'} drawn as an arc; for the rest only the arrival cities were
         reported, and they are drawn as rings. Trips are grouped by date: Count{' '}
         {sel.periods.map((p) => `${p.count} covers ${p.person} (${p.from} to ${p.to})`).join('; Count ')}.
       </p>
       <RowList
-        caption="Trips in the records, in date order"
-        columns={['Date', 'Route', 'What the record says', 'Count period', 'How sure']}
+        caption="Trips in the reporting, in date order"
+        columns={['Date', 'Route', 'What was reported', 'Count period', 'How sure']}
         rows={sel.trips.map((t) => ({
           key: t.id,
           sourceIds: t.sources.map((s) => s.id).join(' '),
@@ -92,6 +89,9 @@ export function TextVersion({ day }: DayVizProps) {
         }))}
       />
       <NumbersTable numbers={day.numbers} pool={day.sources} caption={`Figures reported on Day ${day.day}`} />
+      <section className={kitStyles.xsources} aria-label="Where the cities sit on the map">
+        <AdditionsList items={sel.placeSources} heading="Where the cities sit on the map (reference points for drawing, not trial facts)" />
+      </section>
     </>
   )
 }

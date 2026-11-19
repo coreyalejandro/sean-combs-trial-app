@@ -1,6 +1,6 @@
 'use client'
 // Day 22 interaction: select a bar (click, tap, or Tab then arrow keys and Enter) to read that session's
-// times, who was asking, and the topics the record lists. Escape closes the detail.
+// times, who was asking, and the topics the reporting lists. Escape closes the detail.
 import { useState, type ReactNode } from 'react'
 import { layout } from '@/lib/viz/layout'
 import { useRovingFocus } from '@/lib/viz/roving'
@@ -155,7 +155,7 @@ export function GanttInteractive({ wide, narrow, details, legend }: {
       <Chart g={narrow} id="n" {...props} />
       <div className={styles.detail} aria-live="polite">
         {selected === null ? (
-          <p className={styles.hint}>Select a bar to see that session&apos;s times, who was asking and the topics the record lists.</p>
+          <p className={styles.hint}>Select a bar to see that session&apos;s times, who was asking and the topics the reporting lists.</p>
         ) : (
           <>
             {details[selected]}

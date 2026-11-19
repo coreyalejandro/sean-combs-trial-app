@@ -189,7 +189,7 @@ export default function Day17Interactive({ view }: { view: Day17View }) {
           <p className={s.onDay} aria-live="polite">
             <strong>{day ? formatDate(day, { weekday: true }) : ''}:</strong>{' '}
             {onDayMarks.length === 0
-              ? 'nothing in the record on this date.'
+              ? 'nothing reported on this date.'
               : onDayMarks.map((m) => m.label).join('; ') + '.'}
             {lit.has('ny') && lit.has('la') ? <span className={s.clash}> Two cities on one date.</span> : null}
           </p>

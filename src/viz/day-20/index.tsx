@@ -1,6 +1,7 @@
 // Day 20: Motions, Rulings and Immunity: The Legal Fights Behind the Testimony (Builder 3).
 // A docket tracker: five lanes of legal events placed by trial day, each with an outcome shape and word.
 // Counts are computed from the events, never typed.
+import { midSentence } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
 import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { extrasFrom, levelWords } from '@/viz/kits/days-15-21/sources'
@@ -27,10 +28,10 @@ export function TextVersion({ day }: DayVizProps) {
   const sel = select(day)
   const c = sel.counts
   const p: string[] = [
-    `The picture is a docket tracker: ${KINDS.length} lanes (${KINDS.map((x) => x.name.toLowerCase()).join('; ')}), with each legal event placed at the trial day it happened and marked by an outcome shape and word. It holds ${c.total} events (calculated): ${c.motions} motions to end the case, ${c.motionsDenied} of them denied; ${c.immunity} witnesses who testified under immunity orders; ${c.denied} requests denied in all.`,
+    `The picture is a docket tracker: ${KINDS.length} lanes (${KINDS.map((x) => x.name.toLowerCase()).join('; ')}), with each legal event placed at the trial day it happened and marked by an outcome shape and word. It holds ${c.total} events (calculated): ${c.motions} motions to end the case, ${c.motionsDenied + c.deniedAfterVerdict === c.motions && c.deniedAfterVerdict > 0 ? 'all denied (the last after the verdict)' : `${c.motionsDenied} of them denied`}; ${c.immunity} witnesses who testified under immunity orders; ${c.denied} requests denied in all.`,
     ...KINDS.map((kind) => {
       const list = sel.events.filter((e) => e.kind === kind.id)
-      return `${kind.name}: ${list.map((e) => `${e.dayLabel}, ${e.title.charAt(0).toLowerCase()}${e.title.slice(1)} (${e.outcome}; ${levelWords(e.level)})`).join('; ')}.`
+      return `${kind.name}: ${list.map((e) => `${e.dayLabel}, ${midSentence(e.title)} (${e.outcome}; ${levelWords(e.level)})`).join('; ')}.`
     }),
   ]
   const rows: TableRow[] = sel.events.map((e) => ({

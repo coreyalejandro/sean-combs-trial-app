@@ -23,12 +23,14 @@ describe('Day 5 isotype', () => {
     const { container } = renderDay(Viz, TextVersion, day)
     expectSourcedPage(container, day)
     const icons = container.querySelectorAll('[data-roving-index]')
-    expect(icons.length).toBe(select(day).items.reduce((t, i) => t + i.icons, 0))
+    // Only the cash is drawn as icons; the other items are listed in words.
+    expect(icons.length).toBe(select(day).items.filter((i) => i.id === 'cash').reduce((t, i) => t + i.icons, 0))
+    expect(container.textContent).toContain('Also on the agent')
   })
   it('changes when the record changes', () => {
     const before = renderDay(Viz, TextVersion, day).container.querySelectorAll('[data-roving-index]').length
     cleanup()
-    const altered = { ...day, numbers: day.numbers.filter((n) => !/baby oil bottles/i.test(n.what)) }
+    const altered = { ...day, numbers: day.numbers.map((n) => (/cash found/i.test(n.what) && typeof n.value === 'number' ? { ...n, value: n.value / 3 } : n)) }
     expect(renderDay(Viz, TextVersion, altered).container.querySelectorAll('[data-roving-index]').length).toBeLessThan(before)
   })
 })

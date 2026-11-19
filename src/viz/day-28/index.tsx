@@ -81,7 +81,7 @@ export default function Day28Viz({ day }: DayVizProps) {
       </p>
       <ul className={styles.legend} aria-label="Key">
         <li>Each star is one witness, placed at the day they first testified and in the band for their role.</li>
-        <li>Bigger stars spent more days on the stand. Faint lines join witnesses whose records mention the same event: {EVENTS.map((e) => e.label).join('; ')}.</li>
+        <li>Bigger stars spent more days on the stand. Faint lines join witnesses whose testimony, as reported, mentions the same event: {EVENTS.map((e) => e.label).join('; ')}.</li>
       </ul>
       <SkyInteractive
         wide={wide}
@@ -101,7 +101,7 @@ export function TextVersion({ day }: DayVizProps) {
       <p>{meta.altShort}</p>
       <p>
         The shared witness table lists {sel.total} prosecution witnesses (calculated by counting its rows). The defense called no
-        witnesses. {sel.defenseRead} {sel.rule29 ? sel.rule29 : ''} Faint lines in the picture join witnesses whose records mention the same
+        witnesses. {sel.defenseRead} {sel.rule29 ? sel.rule29 : ''} Faint lines in the picture join witnesses whose reported testimony mentions the same
         event; the rules match words in each witness&apos;s own record.
       </p>
       <p>

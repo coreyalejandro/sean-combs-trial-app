@@ -55,7 +55,7 @@
     {
      "value": 10,
      "unit": "peremptory strikes",
-     "what": "Defense strikes used (prosecution 6) - single source",
+     "what": "Jurors the defense struck without giving a reason (prosecutors struck 6)",
      "source": "shrop_ap",
      "outlets": [
       "AP"
@@ -75,12 +75,12 @@
     {
      "value": 5,
      "unit": "counts",
-     "what": "Indictment counts: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution",
+     "what": "Indictment counts: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution (court record)",
      "source": "cbs_live1",
      "outlets": [
       "CBS"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": 15,
@@ -116,7 +116,7 @@
     {
      "value": 8,
      "unit": "prosecutors",
-     "what": "Assistant U.S. Attorneys, 7 women (CBS live blog; single source)",
+     "what": "Federal prosecutors on the trial team, 7 of them women",
      "source": "cbs_live1",
      "outlets": [
       "CBS"
@@ -137,7 +137,7 @@
     {
      "value": "~190",
      "unit": "names",
-     "what": "Celebrity names read to prospective jurors (single source)",
+     "what": "Names of famous people read to prospective jurors, in case any knew them",
      "source": "cbs_live1",
      "outlets": [
       "CBS"
@@ -147,17 +147,7 @@
     {
      "value": 2012,
      "unit": "year",
-     "what": "Phillip first contacted (2012 or 2013)",
-     "source": "cbs_live1",
-     "outlets": [
-      "CBS"
-     ],
-     "confidence": "medium"
-    },
-    {
-     "value": "4:42 PM",
-     "unit": "time",
-     "what": "Phillip cross-examination began",
+     "what": "Year Daniel Phillip was first contacted (2012 or 2013)",
      "source": "cbs_live1",
      "outlets": [
       "CBS"
@@ -183,10 +173,10 @@
     "Xavier Donaldson (cross of Phillip)"
    ],
    "legal_events": [
-    "Judge rejected defense bid to exclude the 2016 hotel video (defense said the CNN version was edited/incomplete; prosecutors said they would use other hotel recordings).",
-    "Judge rejected defense claim that prosecutors struck Black jurors discriminatorily, accepting race-neutral reasons (AUSA Maurene Comey).",
-    "Jury swearing-in had been delayed from the prior Friday over whether the defense could question an accuser about her history of violence (CBS live blog, single source).",
-    "Combs rejected a plea deal at a May 1 hearing (CBS live blog, single source)."
+    "The judge rejected a defense bid to exclude the 2016 hotel video. The defense said the version CNN aired was edited or incomplete; prosecutors said they would also use other hotel recordings.",
+    "The judge rejected a defense claim that prosecutors struck Black jurors unfairly, accepting the prosecutors' race-neutral reasons.",
+    "Swearing in the jury had been delayed from the Friday before, over whether the defense could ask a witness about her own history of violence (CBS).",
+    "At a May 1 hearing, Combs turned down a plea deal (CBS)."
    ],
    "sources": [
     {
@@ -245,10 +235,10 @@
     }
    ],
    "discrepancies": [
-    "Florez described as LAPD officer (CBS live) vs former hotel security officer (AP); he was hotel security in 2016.",
-    "Phillip payment: CBS live says Ventura paid 'several thousand dollars' - not corroborated elsewhere.",
-    "Whether a cash stack was thrown vs offered: reports vary; Florez says he refused.",
-    "RESOLVED - jury composition: 12 jurors = 8 men, 4 women (AP via PBS NewsHour, ABC7 'Meet the 12 jurors', CBS New York, NBC, Fox 5, AP via KCTV5). The CBS live blog's '12 men and six women' counts the 12 jurors plus 6 alternates together (the live blog says so in the preceding sentence); ABC7 profiles the 6 alternates as 4 men and 2 women, so both statements are consistent. Keep 8/4 for the jury of 12."
+    "Israel Florez's job: a CBS live blog called him a Los Angeles police officer; AP called him a former hotel security officer. In March 2016 he worked hotel security.",
+    "Daniel Phillip's pay: a CBS live blog says Ventura paid him 'several thousand dollars'; no other outlet reported that figure.",
+    "The cash offered to Florez: reports differ on whether it was thrown at him or held out. Florez said he refused it.",
+    "The jury: AP, ABC7 and CBS New York report 8 men and 4 women. A CBS live blog's '12 men and six women' counted the six alternate jurors as well."
    ],
    "single_sourced": [
     "10/6 peremptory strike counts",
@@ -264,8 +254,8 @@
     "Phillip: first contacted 2012 or 2013 for what he expected to be a dance performance at a Gramercy Park hotel (New York); found Ventura, who asked for a massage.",
     "Phillip: later encounters at two hotels and at homes of Combs and Ventura; rooms had closed curtains, candles, baby oil, lubricant; Combs gave directions; Phillip says he was paid by Ventura.",
     "Phillip: says he saw Combs drag Ventura by the hair and slap her at her residence; did not intervene or report because afraid.",
-    "Prosecution opening (AUSA Emily Johnson): alleges ~20 years of conduct through an enterprise of bodyguards and employees; alleges $100,000 in cash in a paper bag paid for the 2016 hotel video and a signed NDA; says searches found guns, a medical bag of drugs, lubricant.",
-    "Defense opening (Teny Geragos): 'love, jealousy, infidelity and money'; concedes bad temper, argues domestic violence is not sex trafficking; payment to guard was to prevent bad publicity; men were paid for porn-related work."
+    "Prosecution opening (Emily Johnson, a federal prosecutor): alleges ~20 years of conduct through an enterprise of bodyguards and employees; alleges $100,000 in cash in a paper bag paid for the 2016 hotel video and a signed NDA; says searches found guns, a medical bag of drugs, lubricant; says Combs used lies, threats, drugs and violence to get sex in highly orchestrated ways (CBS New York); alleges he filmed women made to have sex with male escorts (CBS New York).",
+    "Defense opening (Teny Geragos, a Combs lawyer): 'love, jealousy, infidelity and money'; concedes bad temper, argues domestic violence is not sex trafficking; payment to guard was to prevent bad publicity; men were paid for porn-related work."
    ],
    "viz_ideas": [
     "Timeline of alleged conduct 2005-2024 from the openings, as a lens for the whole 28-day series.",
@@ -382,26 +372,6 @@
      "confidence": "medium"
     },
     {
-     "value": "~10",
-     "unit": "bottles",
-     "what": "Large baby-oil bottles per freak off",
-     "source": "dayton_wk1",
-     "outlets": [
-      "AP"
-     ],
-     "confidence": "medium"
-    },
-    {
-     "value": "weekly",
-     "unit": "frequency",
-     "what": "Freak-off frequency at peak",
-     "source": "ap_journal",
-     "outlets": [
-      "AP"
-     ],
-     "confidence": "medium"
-    },
-    {
      "value": "2017 or 2018",
      "unit": "year",
      "what": "Last freak off",
@@ -429,7 +399,7 @@
      "outlets": [
       "NPR"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": 30000000,
@@ -458,9 +428,9 @@
     "Escorts shown in photos (names not given in court coverage)"
    ],
    "legal_events": [
-    "Judge provisionally denied media requests (including AP) to view freak-off recordings; ruling expected Wed (AP).",
-    "Defense had asked to bar Fine from courtroom; he stayed except for 2018 testimony.",
-    "Earlier ruling noted: judge rejected Combs's selective-prosecution (race) claim."
+    "The judge, for now, denied media requests, including from AP, to view the sealed recordings shown to the jury.",
+    "The defense had asked that Ventura's husband, Alex Fine, be kept out of the courtroom. He was allowed to stay, except during her testimony about 2018.",
+    "Earlier in the case, the judge rejected Combs's claim that he was prosecuted because of his race."
    ],
    "sources": [
     {
@@ -519,9 +489,8 @@
     }
    ],
    "discrepancies": [
-    "Freak-off durations: AP/Fox say 36-48 hours, NBC says 36, 48 and 72; all agree longest was four days.",
-    "'Three-minute golf-cart ride' (AP) vs 'three-minute drive' (Fox 5).",
-    "NPR copy blends Day 2 and Day 3 testimony; some items (2016 premiere texts) may be Day 3."
+    "How long the encounters lasted: AP and Fox say 36 to 48 hours; NBC says 36, 48 and 72 hours. All agree the longest lasted four days.",
+    "A short trip Ventura described: AP calls it a three-minute golf-cart ride; Fox 5 calls it a three-minute drive."
    ],
    "single_sourced": [
     "Photo list (AP only)",
@@ -592,16 +561,6 @@
      "confidence": "medium"
     },
     {
-     "value": "hundreds?",
-     "unit": "count",
-     "what": "Freak offs - witness estimate ('impossible to know')",
-     "source": "fox03",
-     "outlets": [
-      "Fox"
-     ],
-     "confidence": "medium"
-    },
-    {
      "value": "~9",
      "unit": "hours",
      "what": "Total direct examination across Days 2-3",
@@ -614,7 +573,7 @@
     {
      "value": "2013",
      "unit": "year",
-     "what": "Gash/eyebrow incident; Cannes dispute",
+     "what": "Year of an injury to her eyebrow, and of a dispute in Cannes",
      "source": "gn14",
      "outlets": [
       "Global",
@@ -655,27 +614,27 @@
     {
      "value": "2023-11-16",
      "unit": "date",
-     "what": "Lawsuit filed; settled next day",
+     "what": "Lawsuit filed by Ventura; settled the next day (court filings; widely reported)",
      "source": "cnn14",
      "outlets": [
       "CNN"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": 20000000,
      "unit": "USD",
-     "what": "Settlement",
+     "what": "Settlement of her 2023 civil lawsuit (widely reported; she confirmed it on cross-examination)",
      "source": "cnn14",
      "outlets": [
       "CNN"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": 30000000,
      "unit": "USD",
-     "what": "Price Ventura offered Combs for rights to her manuscript in 2023 through a lawyer; CNN: no purchase. Not the same as the $20M civil settlement",
+     "what": "Price Ventura's lawyer offered Combs for the rights to her manuscript in 2023; CNN reports no purchase. Not the same as the $20M settlement",
      "source": "cnn14",
      "outlets": [
       "CNN"
@@ -702,16 +661,6 @@
       "AP"
      ],
      "confidence": "high"
-    },
-    {
-     "value": "4:45 PM",
-     "unit": "time",
-     "what": "Court adjourned",
-     "source": "fox03",
-     "outlets": [
-      "Fox"
-     ],
-     "confidence": "medium"
     }
    ],
    "locations": [
@@ -731,10 +680,10 @@
     "Capricorn Clark (assistant)"
    ],
    "legal_events": [
-    "Judge denied government request that defense disclose cross exhibits in advance; Agnifilo refused (NBC live blog).",
-    "Judge denied media request to publicly show freak-off material, citing risk of re-victimization (CNN).",
-    "Privacy screens used for sealed evidence (Global News).",
-    "Direct examination concluded."
+    "The judge denied a prosecution request that the defense disclose cross exhibits (the documents it would show while questioning Ventura) in advance (NBC).",
+    "The judge denied media requests to show the sealed recordings publicly, citing the risk of harming the people in them again (CNN).",
+    "Screens were used so the public could not see sealed evidence (Global News).",
+    "Prosecutors finished their questions to Ventura."
    ],
    "sources": [
     {
@@ -792,11 +741,7 @@
      "opened_this_pass": false
     }
    ],
-   "discrepancies": [
-    "Outlets disagree on day label: Global News headline '2nd day' but body 'day 3'; NBC calls this 'day two of testimony'.",
-    "Cannes: Global says she was kicked off a yacht without belongings; CNN/others stress videos played on flight home.",
-    "Bed-frame eyebrow injury is dated 2013 by Global News, CNN and Fox 5 (consistent)."
-   ],
+   "discrepancies": [],
    "single_sourced": [
     "Names 'Jules','Dave','Greg','Mia/Victim-4' (Global News only)",
     "Dozen photos of sex workers (NBC only)",
@@ -854,7 +799,7 @@
     {
      "value": 11,
      "unit": "years",
-     "what": "Relationship length agreed in cross",
+     "what": "Relationship length agreed on cross-examination",
      "source": "gn15",
      "outlets": [
       "Global"
@@ -862,19 +807,9 @@
      "confidence": "medium"
     },
     {
-     "value": "~4",
-     "unit": "occasions",
-     "what": "Times she saw Combs with other women (Global News; single source)",
-     "source": "gn15",
-     "outlets": [
-      "Global"
-     ],
-     "confidence": "low"
-    },
-    {
      "value": "2007-2009",
      "unit": "years",
-     "what": "Range of early texts/emails shown",
+     "what": "Years of the early texts and emails the defense showed",
      "source": "gn15",
      "outlets": [
       "Global"
@@ -884,7 +819,7 @@
     {
      "value": "noon Friday",
      "unit": "deadline",
-     "what": "Judge's deadline for cross to finish",
+     "what": "Judge's deadline for the defense to finish questioning Ventura",
      "source": "baw15",
      "outlets": [
       "BlackAmericaWeb"
@@ -905,13 +840,13 @@
     "Suge Knight"
    ],
    "legal_events": [
-    "Judge set deadline: cross concludes by noon Friday; prosecution redirect that day (agreed because of her pregnancy).",
-    "10-minute recess after defense displayed a freak-off text."
+    "The judge set a deadline: the defense would finish questioning Ventura by noon Friday, and prosecutors would ask their follow-up questions that day. Both sides agreed because she was pregnant.",
+    "The court took a 10-minute break after the defense displayed one of her messages."
    ],
    "sources": [
     {
      "id": "gn15",
-     "title": "Diddy trial: Cassie Ventura cross-examination (day 4)",
+     "title": "Diddy trial: Cassie Ventura cross-examination",
      "outlet": "Global News (Katie Scott)",
      "url": "https://globalnews.ca/news/11181227/diddy-trial-cassie-ventura-cross-examination",
      "date": "2025-05-15",
@@ -920,7 +855,7 @@
     },
     {
      "id": "baw15",
-     "title": "Sean Combs trial day 4: Cassie Ventura's cross-examination focuses on relationship, drug use, texts",
+     "title": "Sean Combs trial: Cassie Ventura's cross-examination focuses on relationship, drug use, texts",
      "outlet": "BlackAmericaWeb (Tiffany Hamilton)",
      "url": "https://blackamericaweb.com/2025/05/16/sean-combs-trial-day-4-cassie-venturas-cross-examination-focuses-on-relationship-drug-use-texts/",
      "date": "2025-05-16",
@@ -955,10 +890,7 @@
      "opened_this_pass": false
     }
    ],
-   "discrepancies": [
-    "Fox 5 calls May 16 'day four' while Global News and BlackAmericaWeb call May 15 day four.",
-    "Number of Porter children: AP says four, CNN says three with Combs (CNN probably counting differently)."
-   ],
+   "discrepancies": [],
    "single_sourced": [
     "Four times observing Combs with others",
     "Honey 3 / Jordan timeline (ABC live blog)"
@@ -1037,7 +969,7 @@
     {
      "value": "2018-09-27",
      "unit": "date",
-     "what": "Last sexual encounter per ABC live blog",
+     "what": "Date of the last sexual encounter she described (ABC)",
      "source": "gma_2018",
      "outlets": [
       "ABC"
@@ -1047,12 +979,12 @@
     {
      "value": "2024-09-16",
      "unit": "date",
-     "what": "Combs's arrest date, Park Hyatt",
+     "what": "Combs's arrest date, at the Park Hyatt in Manhattan (court record; widely reported)",
      "source": "gma_special",
      "outlets": [
       "ABC"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": 9000,
@@ -1078,7 +1010,7 @@
     {
      "value": "25",
      "unit": "minutes",
-     "what": "Length of Atlantic City audio (Fox 5; single source)",
+     "what": "Length of an audio recording from Atlantic City played in court",
      "source": "fox16",
      "outlets": [
       "Fox"
@@ -1098,17 +1030,17 @@
     {
      "value": 20000000,
      "unit": "USD",
-     "what": "Settlement she'd return (redirect)",
+     "what": "Settlement of her 2023 civil lawsuit, raised again on redirect (widely reported)",
      "source": "gma_redirect",
      "outlets": [
       "ABC"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": "~6",
      "unit": "weeks",
-     "what": "Prosecutors' estimate to finish case (Fox 5; single source)",
+     "what": "Prosecutors' estimate of how long their case would take",
      "source": "fox16",
      "outlets": [
       "Fox"
@@ -1128,22 +1060,13 @@
     {
      "value": 10000000,
      "unit": "USD",
-     "what": "REJECTED/unverified: Fox 5 live blog says Ventura expects a $10M settlement from the LA hotel; not in NPR, CNN or ABC",
-     "source": "Fox 5 only",
+     "what": "Settlement Ventura testified she expects from InterContinental, the Los Angeles hotel where the 2016 video was recorded; not yet received",
+     "source": "variety16 | also: fox16",
      "outlets": [
+      "Variety",
       "Fox"
      ],
-     "confidence": "low"
-    },
-    {
-     "value": 20000000,
-     "unit": "USD",
-     "what": "REJECTED/unverified: Fox 5 says Combs bought her memoir rights for $20M; CNN says manuscript offered at $30M and no purchase; the $20M figure in other outlets is the civil settlement",
-     "source": "Fox 5 only (contradicted by CNN, NPR)",
-     "outlets": [
-      "Fox"
-     ],
-     "confidence": "low"
+     "confidence": "high"
     }
    ],
    "locations": [
@@ -1162,9 +1085,9 @@
     "Marc Agnifilo"
    ],
    "legal_events": [
-    "Cross concluded after nearly two days; redirect and re-cross followed (ABC).",
-    "Court adjourned; jury told to return Monday 8:30 AM; Week 2 sessions end 3 PM (GMA).",
-    "Defense objections to Richard's skillet account; no rulings reported."
+    "The defense finished questioning Ventura after nearly two days; prosecutors asked follow-up questions, and the defense asked a few more (ABC).",
+    "The jury was told to return Monday at 8:30 a.m. In the trial's second week, court days ended at 3 p.m. (GMA).",
+    "The defense objected to parts of Dawn Richard's account; no rulings were reported."
    ],
    "sources": [
     {
@@ -1187,7 +1110,7 @@
     },
     {
      "id": "gma_2018",
-     "title": "Defense digs into Ventura and Combs 2018 breakup, rape allegation / Binda / Richard entries",
+     "title": "Defense digs into Ventura and Combs 2018 breakup (live updates, May 16, 2025)",
      "outlet": "ABC News / Good Morning America live updates",
      "url": "https://www.goodmorningamerica.com/US/live-updates/sean-diddy-combs-trial-live-updates-121656142/defense-digs-into-ventura-and-combs-2018-breakup-rape-allegation-121882354",
      "date": "2025-05-16",
@@ -1218,7 +1141,7 @@
      "outlet": "NPR",
      "url": "https://www.npr.org/2025/05/16/nx-s1-5401461/sean-combs-trial-cassie-concludes-testimony",
      "date": "2025-05-16",
-     "note": "date from URL | Re-opened: only dollar figures are $20M civil settlement and $9,000 cash found in Park Hyatt room (Sept 2024); no $10M hotel settlement, no $30M manuscript",
+     "note": "Re-opened: dollar figures are the $20M civil settlement and $9,000 cash found in the Park Hyatt room (Sept 2024).",
      "opened_this_pass": true
     },
     {
@@ -1227,15 +1150,20 @@
      "outlet": "FOX 5 NY (Adeja Shivonne)",
      "url": "https://www.fox5ny.com/news/diddy-trial-cassie-cross-part-2",
      "date": "2025-05-16",
-     "note": "updated May 17; article labels May 16 'day four' (mislabel) | Re-opened: source of the $10M hotel / $20M memoir-rights claims (live-blog entries 3:27 pm, 11:45 am, 11:07 am)",
+     "note": "Source of the $10M InterContinental settlement figure (confirmed by Variety, May 16, 2025); its $20M memoir-rights claim is contradicted by CNN and not used.",
+     "opened_this_pass": true
+    },
+    {
+     "id": "variety16",
+     "title": "Cassie Expects $10 Million Settlement From InterContinental for Diddy Hotel Assault",
+     "outlet": "Variety (Ethan Shanfeld), via Yahoo News",
+     "url": "https://www.yahoo.com/news/cassie-expects-10-million-settlement-194940800.html",
+     "date": "2025-05-16",
+     "note": "Opened November 19, 2026: she testified she expects a settlement from InterContinental of about $10 million, not yet received.",
      "opened_this_pass": true
     }
    ],
-   "discrepancies": [
-    "Atlantic City recipient name: 'Sujin' (Fox 5), 'Sugit' (ABC), unnamed 'man' (CNN).",
-    "Fox 5 labels this date 'day four'; consistent count elsewhere is day 5.",
-    "RESOLVED - Fox 5 live blog (re-opened) says Ventura 'expects a $10 million settlement from the Los Angeles hotel' and that Combs 'bought the rights for $20 million to prevent' publication of her book. NPR's wrap-up of the same day (re-opened) lists only $20M (civil settlement, confirmed on cross) and $9,000 cash found in a Park Hyatt room; CNN reports the manuscript was offered to Combs for $30M and no purchase is described. Decision: keep CNN/NPR figures; the Fox 5 $10M and $20M-memoir claims are rated LOW and excluded from numbers used for visuals. The $20M civil settlement itself is high-confidence (AP, NPR, CNN, ABC, Global News)."
-   ],
+   "discrepancies": [],
    "single_sourced": [
     "$10M hotel settlement",
     "25-minute audio length",
@@ -1311,7 +1239,7 @@
     {
      "value": "~6",
      "unit": "hours",
-     "what": "Testimony time (GMA; single source)",
+     "what": "How long the day's testimony ran (GMA)",
      "source": "gma_wk2",
      "outlets": [
       "ABC"
@@ -1326,7 +1254,7 @@
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": 2010,
@@ -1336,7 +1264,7 @@
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": 2013,
@@ -1346,7 +1274,7 @@
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": 17,
@@ -1356,17 +1284,17 @@
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": 2001,
      "unit": "year",
-     "what": "Morgan met Ventura (roommates from 2004)",
+     "what": "Year Kerry Morgan met Ventura (they shared a home from 2004)",
      "source": "complex19",
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": 20,
@@ -1376,17 +1304,17 @@
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": "20",
      "unit": "hours",
-     "what": "James's workdays",
+     "what": "Length of David James's workdays as Combs's assistant",
      "source": "complex19",
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     },
     {
      "value": 15,
@@ -1396,7 +1324,7 @@
      "outlets": [
       "Complex"
      ],
-     "confidence": "low"
+     "confidence": "medium"
     }
    ],
    "locations": [
@@ -1417,8 +1345,8 @@
     "Usher, Jimmy Iovine, Ne-Yo (named as present at 2010 dinner)"
    ],
    "legal_events": [
-    "No rulings reported.",
-    "Defense motion to dismiss Richard's civil suit filed the prior week (GMA)."
+    "No rulings were reported.",
+    "The week before, Combs's lawyers had asked a court to dismiss Dawn Richard's civil lawsuit (GMA)."
    ],
    "sources": [
     {
@@ -1477,9 +1405,7 @@
     }
    ],
    "discrepancies": [
-    "GMA live blog labels May 19 'Trial Day 5' and GMA's May 20 article calls May 20 the '11th day' - counts vary; court-day count used here is May 12 = Day 1.",
-    "Skillet: AP says Combs tried to hit her with a skillet; some accounts add 'dragged her up the stairs' (AP wire later); the skillet did not contact per Complex.",
-    "Richard lawsuit date: Sept 2024 (Fox 5) vs 'last year' (AP)."
+    "The incident Dawn Richard described: AP and Complex report it with different details."
    ],
    "single_sourced": [
     "~6 hours",
@@ -1550,7 +1476,7 @@
     {
      "value": "25-30",
      "unit": "bottles",
-     "what": "Pill bottles in Louis Vuitton bag",
+     "what": "Pill bottles David James testified he saw in a Louis Vuitton bag Combs carried",
      "source": "cnn21",
      "outlets": [
       "CNN"
@@ -1560,7 +1486,7 @@
     {
      "value": 10000,
      "unit": "USD",
-     "what": "Cash typically carried / stocked",
+     "what": "Cash David James said was typically kept on hand for Combs",
      "source": "cnn21",
      "outlets": [
       "CNN"
@@ -1570,7 +1496,7 @@
     {
      "value": 3,
      "unit": "handguns",
-     "what": "Handguns in Combs's lap, Mel's Diner trip (Nov 2008)",
+     "what": "Handguns David James testified he saw in Combs's lap on a trip to Mel's Diner (November 2008)",
      "source": "gn20",
      "outlets": [
       "Global"
@@ -1590,7 +1516,7 @@
     {
      "value": "6",
      "unit": "months",
-     "what": "James's notice period (Global News; single source)",
+     "what": "Notice David James gave when he left Combs's employment",
      "source": "gn20",
      "outlets": [
       "Global"
@@ -1600,7 +1526,7 @@
     {
      "value": 2000,
      "unit": "USD",
-     "what": "Hayes first-encounter payment: $2,000 cash (CNN); Global News gives it as $800 + $1,200; GMA says $1,200-$2,000 per occasion",
+     "what": "What Sharay Hayes said he was paid in cash for the first encounter (CNN; Global News gives it as $800 plus $1,200)",
      "source": "gn20 | also confirmed: CNN, ABC",
      "outlets": [
       "Global",
@@ -1610,19 +1536,9 @@
      "confidence": "high"
     },
     {
-     "value": "8-12",
-     "unit": "sessions",
-     "what": "Hayes encounters (additional); Global News: dozen+",
-     "source": "cnn21",
-     "outlets": [
-      "CNN"
-     ],
-     "confidence": "medium"
-    },
-    {
      "value": "80-90",
      "unit": "agents",
-     "what": "Miami raid personnel",
+     "what": "Agents in the March 2024 search of the Miami home",
      "source": "cnn21",
      "outlets": [
       "CNN"
@@ -1632,7 +1548,7 @@
     {
      "value": "20000",
      "unit": "sq ft",
-     "what": "Star Island residence",
+     "what": "Size of Combs's Star Island home in Miami, searched in March 2024",
      "source": "cnn21",
      "outlets": [
       "CNN"
@@ -1642,7 +1558,7 @@
     {
      "value": 4,
      "unit": "photos",
-     "what": "Bruise photos shown during Regina's testimony",
+     "what": "Bruise photos shown during Regina Ventura's testimony (not reproduced here)",
      "source": "gn20",
      "outlets": [
       "Global"
@@ -1652,17 +1568,7 @@
     {
      "value": 2,
      "unit": "AR-15 receivers",
-     "what": "Parts found (Global News: two)",
-     "source": "gn20",
-     "outlets": [
-      "Global"
-     ],
-     "confidence": "medium"
-    },
-    {
-     "value": 51,
-     "unit": "years",
-     "what": "Hayes's age",
+     "what": "AR-15 rifle receivers found in the Miami search",
      "source": "gn20",
      "outlets": [
       "Global"
@@ -1699,11 +1605,10 @@
     "AUSAs Christy Slavik, Meredith Foster, Emily Johnson"
    ],
    "legal_events": [
-    "Judge allowed Regina Ventura's testimony over defense objection ('purely prejudicial'), calling threats 'potential extortion' (Global News).",
-    "Defense (Agnifilo) declined to cross Regina Ventura.",
-    "James testifying under a proffer agreement, per cross (GMA).",
-    "NBC analysis: Mann Act counts are Counts 3 and 5; prosecution need only show a dominant purpose.",
-    "Expected Wed: Dawn Hughes, George Kaplan, Kid Cudi (GMA)."
+    "The judge allowed Regina Ventura's testimony over a defense objection that it was 'purely prejudicial', calling the threats she described 'potential extortion' (Global News).",
+    "The defense chose not to question Regina Ventura.",
+    "David James testified under a proffer agreement, a deal to tell prosecutors what he knew (GMA).",
+    "Counts 3 and 5 fall under the Mann Act, a law against transporting people for paid sex. Prosecutors had to show paid sex was a dominant purpose of the travel, not the only one (NBC)."
    ],
    "sources": [
     {
@@ -1762,10 +1667,7 @@
     }
    ],
    "discrepancies": [
-    "Regina Ventura testimony length: Global ~15 minutes, CNN less than an hour.",
-    "CNN gives Star Island as '86.5-acre' - treat as unverified.",
-    "GMA says 11th day (counting from May 5) while its caption says Day 7.",
-    "RESOLVED - Hayes payments: CNN (via Yahoo) reports $2,000 in cash for the first encounter; Global News reports $800 and $1,200 (which sum to $2,000); GMA reports $1,200 to $2,000 per occasion for the later 8-12 encounters. These are consistent: $2,000 first encounter (two payments); $1,200-$2,000 per later occasion. Hotel: CNN and GMA name Trump International Hotel & Tower (Central Park West); Global News mentions Essex House as where he realized who Combs was."
+    "Sharay Hayes's pay: CNN reports $2,000 in cash for the first encounter; Global News reports $800 and $1,200, which add up to the same $2,000; GMA reports $1,200 to $2,000 for each later encounter."
    ],
    "single_sourced": [
     "James polygraph details (CNN/Fox agree)",
@@ -1831,7 +1733,7 @@
     {
      "value": 34,
      "unit": "years",
-     "what": "Kaplan's age per Fox only (not stated by Global News/CNN)",
+     "what": "George Kaplan's age (Fox)",
      "source": "fox8, fox5_21",
      "outlets": [
       "Fox"
@@ -1875,7 +1777,7 @@
     {
      "value": 25,
      "unit": "bottles",
-     "what": "Baby oil bottles recovered, Miami (agent Gannon; stated in Fox day-9 recap of Tuesday-Wednesday testimony)",
+     "what": "Baby oil bottles recovered in the Miami search, as agent Gerard Gannon listed them",
      "source": "fox9, nbc8 | also confirmed: CNN, Global",
      "outlets": [
       "Fox",
@@ -1901,7 +1803,7 @@
     {
      "value": 13,
      "unit": "pairs",
-     "what": "High heels recovered (Fox day-9 recap)",
+     "what": "Pairs of high heels found in the Miami search (Fox)",
      "source": "fox9 (single-sourced)",
      "outlets": [
       "Fox"
@@ -1921,7 +1823,7 @@
     {
      "value": 600,
      "unit": "USD/hour",
-     "what": "Hughes's rate per NBC",
+     "what": "Hughes's rate per hour (NBC)",
      "source": "nbc8",
      "outlets": [
       "NBC"
@@ -1931,7 +1833,7 @@
     {
      "value": 6000,
      "unit": "USD",
-     "what": "Hughes's fee per Fox and AP; conflicts with NBC hourly rate",
+     "what": "Hughes's fee for a day in court (Fox, AP)",
      "source": "fox8, ksat_ap",
      "outlets": [
       "Fox",
@@ -1950,9 +1852,9 @@
      "confidence": "low"
     },
     {
-     "value": "2024-03-24 or 25",
+     "value": "2024-03-25",
      "unit": "date",
-     "what": "Raid on Miami and Los Angeles homes (UPI says Mar 24; Fox says Mar 25)",
+     "what": "Searches of Combs's Miami and Los Angeles homes (Fox and Global News; UPI gives March 24)",
      "source": "upi21, fox8",
      "outlets": [
       "UPI",
@@ -1963,7 +1865,7 @@
     {
      "value": 5,
      "unit": "counts",
-     "what": "Charges: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution",
+     "what": "Charges at trial: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution (court record)",
      "source": "nbc8, upi21",
      "outlets": [
       "NBC",
@@ -2011,14 +1913,13 @@
     "Maurene Comey"
    ],
    "legal_events": [
-    "Kaplan invoked the Fifth Amendment; judge signed immunity order mid-day",
-    "Kid Cudi's appearance postponed to May 22",
-    "Defense lawyers suggested prosecutors might not call alleged third victim 'Gina' (GMA)",
-    "Court adjourned for the day after Kaplan's direct; cross set for May 22"
+    "George Kaplan invoked his Fifth Amendment right not to answer. The judge signed an immunity order mid-day, so he had to testify and his words could not be used to charge him.",
+    "Kid Cudi's testimony moved to May 22.",
+    "Court adjourned after prosecutors finished questioning Kaplan; the defense's questions were set for May 22."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 8 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-8",
      "date": "2025-05-21",
@@ -2027,7 +1928,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean Combs trial recap: Agent testifies about drugs, guns and sex supplies found in Miami home (live blog rcna207379)",
+     "title": "Sean Combs trial recap: Agent testifies about drugs, guns and sex supplies found in Miami home",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-sean-combs-trial-testimony-live-updates-rcna207379",
      "date": "2025-05-21",
@@ -2036,7 +1937,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean Combs trial day 12 recap: jurors hear... (ABC day count includes jury selection)",
+     "title": "Sean Combs trial recap, May 21, 2025: jurors hear from a former assistant",
      "outlet": "ABC News / GMA",
      "url": "https://www.goodmorningamerica.com/amp/news/story/sean-combs-trial-day-12-recap-jurors-hear-122050227",
      "date": "2025-05-21",
@@ -2103,14 +2004,8 @@
     "Three-hotel 'room setup' map: LA / New York / Miami hotel aliases ('Frank Black') linked to the staff labor hours - a logistics-of-an-enterprise view for the migration map's location layer."
    ],
    "discrepancies": [
-    "Order of Gannon vs Hughes unclear; GMA says Gannon morning, Hughes, then Kaplan afternoon.",
-    "Hughes fee: $6,000 (Fox, AP) vs $600/hour (NBC).",
-    "Raid date Mar 24 (UPI) vs Mar 25 (Fox).",
-    "Gannon's testimony began May 20 (Day 7).",
-    "RESOLVED - Hughes fee: both figures are correct and compatible: $600 per hour and $6,000 per day of testimony (Global News and CNN, re-opened; Fox, AP, NBC earlier).",
-    "RESOLVED - Raid date: March 25, 2024 (Global News photo caption; Fox); UPI says March 24. Kept March 25, medium confidence.",
-    "Order of Gannon vs Hughes unclear; GMA says Gannon morning, Hughes, then Kaplan afternoon. Gannon's testimony began May 20 (Day 7).",
-    "Kaplan's age (34) appears only in Fox coverage; Global News and CNN give pay and hours but not age."
+    "Dr. Dawn Hughes's fee: some outlets report $600 an hour, others $6,000. Both are right: $600 an hour, and $6,000 for a day in court.",
+    "The date federal agents searched Combs's homes: Fox and Global News say March 25, 2024; UPI says March 24."
    ],
    "single_sourced": [],
    "outlet_families": [
@@ -2153,8 +2048,8 @@
     },
     {
      "order": "4 (afternoon)",
-     "name": "Frederic (Frédéric) Demmour/Zemmour",
-     "role": "General manager, L'Ermitage Beverly Hills (spelled both ways in sources); subpoenaed",
+     "name": "Frédéric Zemmour",
+     "role": "General manager, L'Ermitage Beverly Hills; subpoenaed",
      "exam": "Direct (hotel records)"
     },
     {
@@ -2339,13 +2234,13 @@
     "Anna Estevao"
    ],
    "legal_events": [
-    "Cudi: judge sustained defense objection to his belief that Combs was involved in the fire; jury told to disregard",
-    "Judge sustained prosecution objection to a fingerprint-match question by Steel",
-    "Jury released for Memorial Day weekend; court resumed Tuesday May 27"
+    "The judge sustained a defense objection to Kid Cudi saying he believed Combs was involved in the car fire, and the jury was told to disregard it.",
+    "The judge sustained a prosecution objection to a defense question about a fingerprint match.",
+    "The jury was released for the Memorial Day weekend; court resumed Tuesday, May 27."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 9 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
      "date": "2025-05-22",
@@ -2354,7 +2249,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean 'Diddy' Combs trial recap day 13: 2nd week of testimony concludes with Kid Cudi describing alleged car bombing",
+     "title": "Sean 'Diddy' Combs trial recap: 2nd week of testimony concludes with Kid Cudi describing alleged car bombing",
      "outlet": "ABC News",
      "url": "https://abcnews.com/US/sean-diddy-combs-trial-recap-day-13-2nd/story?id=122096856",
      "date": "2025-05-22",
@@ -2397,17 +2292,14 @@
     "Cudi: about a month later (early January 2012) his Porsche was set on fire at his home; Combs later denied knowing; a few years later Combs apologized 'for everything' (Cudi's account).",
     "Cudi cross: no forced entry, door unlocked, no property damage inside; no known forensic link; Cudi agreed Combs was calm in the calls.",
     "Morales: saw Ventura with a swollen eye, split lip and bumps on her head after a Grammy-weekend incident in 2010; took her to her home for a few days; did not call police. Cross: gave interviews to CNN, Dateline and a documentary.",
-    "Demmour: hotel guest-profile records show Combs used aliases (Frank White, Frank Black, Jackie Star, Ryan Lopez); a January 10, 2010 stay produced candle-wax damage complaint."
+    "Zemmour: hotel guest-profile records show Combs used aliases (Frank White, Frank Black, Jackie Star, Ryan Lopez); a January 10, 2010 stay produced candle-wax damage complaint."
    ],
    "viz_ideas": [
     "Two-month timeline (Dec 2011 - Jan 2012) of the break-in, speaker-phone call, car fire and later meetings as a 'sequence of events' with source-grade markers.",
     "Alias network: one person, multiple hotel profile names (Ryan Lopez, Jackie Star, Frank White, Frank Black) mapped to hotels - supports the migration map's location/records layer."
    ],
    "discrepancies": [
-    "Cudi age conflicts (41 vs 44).",
-    "Order of Cudi/Morales not stated by Fox.",
-    "Hotel of the 2010 incident: not named by Morales per AP; ABC says Beverly Hills Hotel.",
-    "Federal agent testimony (Croft) day not confirmed from retrieved sources."
+    "Where a 2010 incident happened: AP says Mylah Morales did not name the hotel; ABC says it was the Beverly Hills Hotel."
    ],
    "single_sourced": [],
    "outlet_families": [
@@ -2421,7 +2313,7 @@
     "summary": "5 sources from 4 outlet families (ABC, AP, CBS, Fox); numbers: 3 high, 6 medium, 5 low."
    },
    "day_label": "Testimony day 9 of 28",
-   "summary": "Witnesses heard: George Kaplan; Kid Cudi (Scott Mescudi); Mylah Morales; Frederic (Frédéric) Demmour/Zemmour; Federal agent / HSI forensic (Josh Croft per Fox).",
+   "summary": "Witnesses heard: George Kaplan; Kid Cudi (Scott Mescudi); Mylah Morales; Frédéric Zemmour; Federal agent / HSI forensic (Josh Croft per Fox).",
    "calendar_note": "No court Friday May 23 (NBC calls Tuesday May 27 'Day 10', consistent with no sitting on May 23) or Monday May 26 (Memorial Day)."
   },
   {
@@ -2467,7 +2359,7 @@
     {
      "value": 5,
      "unit": "days",
-     "what": "Duration of lie-detector tests",
+     "what": "Days of lie-detector tests Clark said Combs made her take after accusing her of stealing jewelry",
      "source": "fox10, nbc10 | also confirmed: AP, Global",
      "outlets": [
       "Fox",
@@ -2480,7 +2372,7 @@
     {
      "value": "~40",
      "unit": "hours",
-     "what": "Total lie-detector time (NBC blog)",
+     "what": "Total lie-detector time over those days (NBC)",
      "source": "nbc10 (single-sourced)",
      "outlets": [
       "NBC"
@@ -2588,13 +2480,13 @@
     "Janice Combs (in court)"
    ],
    "legal_events": [
-    "Government objected to defense exhibits (assistant-Ventura communications) as hearsay; judge: case-by-case, asked for letters the night before",
-    "Defense motion to strike Cudi testimony filed the day before (per TheGrio)",
-    "Judge target: jury by July 4; prosecution case now ~5 weeks"
+    "Prosecutors objected to defense exhibits (messages between Combs's assistants and Ventura) as hearsay; the judge said he would decide case by case and asked for letters the night before.",
+    "The day before, the defense filed a motion to strike Kid Cudi's testimony (TheGrio).",
+    "The judge said he aimed to give the case to the jury by July 4."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 10 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-10",
      "date": "2025-05-27",
@@ -2603,7 +2495,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean 'Diddy' Combs trial live updates, May 27 (rcna209083)",
+     "title": "Sean 'Diddy' Combs trial live updates, May 27",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-sean-combs-trial-live-updates-rcna209083",
      "date": "2025-05-27",
@@ -2651,11 +2543,7 @@
     "Clark employment/conflict timeline 2004-2021 (hire, 2011 incident, 2012 firing, 2014 forgiveness email, 2016 return) as a relationship-over-time chart showing how cross-examination used the later emails.",
     "Hours-per-week workload strip (7 a.m. to 4 a.m.) with the Kaplan/Mia hours to show how staff time was structured - an 'employee as infrastructure' view."
    ],
-   "discrepancies": [
-    "TheGrio says employment ended in 2020 - conflicts; not used.",
-    "Clark's start year: Fox/NBC say 2004.",
-    "Second source for numbers is NBC live blog only for some values."
-   ],
+   "discrepancies": [],
    "single_sourced": [],
    "outlet_families": [
     "AP",
@@ -2826,13 +2714,12 @@
     "Judge Subramanian"
    ],
    "legal_events": [
-    "Defense moved for a mistrial over implication Combs destroyed fingerprint evidence; Judge Subramanian denied (NBC; Global; ABC); struck the arson investigator's fingerprint testimony (NBC; single-sourced)",
-    "Judge irritated by late-running cross; court ran late to finish Nash",
-    "Cassie's lawsuit etc. not argued"
+    "The defense moved for a mistrial (asked the judge to end the trial and start again), saying testimony implied Combs destroyed fingerprint evidence. Judge Arun Subramanian denied it (NBC, Global News, ABC) and, NBC reports, struck the arson investigator's fingerprint testimony.",
+    "Court stayed late to finish Deonte Nash's testimony."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 11 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-11",
      "date": "2025-05-28",
@@ -2841,7 +2728,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean Combs trial live updates, May 28 (rcna209331)",
+     "title": "Sean Combs trial live updates, May 28",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-trial-testimony-witnesses-live-updates-rcna209331",
      "date": "2025-05-28",
@@ -2870,7 +2757,7 @@
    ],
    "weekday": "Wednesday",
    "key_points": [
-    "Ignacio: the incident was not reported as a burglary (NBC).",
+    "Ignacio: answered a radio call for a possible burglary at 8:20 a.m.; on cross-examination said the incident was not reported as a burglary and no stolen items were reported (Global News, NBC).",
     "Jimenez: the fire was targeted; cut in the car's canvas top; a driving glove on the back seat was not collected or DNA-tested; he could not reach Clark or Ventura; no charges, case inactive.",
     "Nash (direct): saw Combs be violent toward Ventura more than once; threats to release private recordings and have her parents fired; he told chief of staff Kristina Khorram, violence continued; he did not go to police 'out of fear' of retaliation; hotel visits 'nearly every week'; only ~10% of Ventura's music released.",
     "Nash (cross): spent his 20s in Combs's orbit; has no hatred of Combs; met prosecutors five times; not planning a civil suit."
@@ -2880,9 +2767,8 @@
     "Nash's reporting chain (witness -> chief of staff -> no external report) as a flow showing why violence stayed internal."
    ],
    "discrepancies": [
-    "NBC places Nash's 'hotel incident' in 2016; Fox says West Hollywood hotel without a year - unresolved.",
-    "Fox says no cross reported for Ignacio; NBC says Steel crossed him.",
-    "Mistrial motion: denied per NBC, Global News and ABC News 4; only NBC reports that the arson investigator's fingerprint testimony was struck."
+    "When Deonte Nash's 'hotel incident' happened: NBC places it in 2016; Fox names a West Hollywood hotel and gives no year.",
+    "Whether the defense questioned Officer Christopher Ignacio: Fox reports no cross-examination; NBC says Combs's lawyer Brian Steel questioned him."
    ],
    "single_sourced": [],
    "outlet_families": [
@@ -2954,30 +2840,9 @@
      "confidence": "low"
     },
     {
-     "value": "25-26",
-     "unit": "years",
-     "what": "Mia's age when hired",
-     "source": "nbc12 (single-sourced)",
-     "outlets": [
-      "NBC"
-     ],
-     "confidence": "low"
-    },
-    {
      "value": 5,
      "unit": "days",
      "what": "Longest stretch without sleep she reported",
-     "source": "nbc12, fox14",
-     "outlets": [
-      "NBC",
-      "Fox"
-     ],
-     "confidence": "high"
-    },
-    {
-     "value": 17,
-     "unit": "years",
-     "what": "Age when Adderall prescribed",
      "source": "nbc12, fox14",
      "outlets": [
       "NBC",
@@ -3008,7 +2873,7 @@
     {
      "value": "10 p.m. vs 7 p.m.",
      "unit": "hour",
-     "what": "Defense request for later jail visits",
+     "what": "Defense request for later jail visits with Combs (10 p.m., not 7 p.m.)",
      "source": "nbc12",
      "outlets": [
       "NBC"
@@ -3035,14 +2900,14 @@
     "Michael B. Jordan (referenced in cross)"
    ],
    "legal_events": [
-    "Judge denied government request to cut all video of Mia from overflow room; banned courtroom sketches of Mia",
-    "Defense gave notice of a change in strategy; suggested its case could run longer; prosecution may rest second week of June",
-    "Defense sought jail visits to 10 p.m.; judge working on it",
-    "Jury dismissed just before 4 p.m."
+    "The judge denied a prosecution request to cut all video of Mia from the overflow room, and banned courtroom sketches of Mia.",
+    "The defense said it had changed its strategy and that its case could run longer; prosecutors said they might rest in the second week of June.",
+    "The defense asked that lawyers be allowed to visit Combs in jail until 10 p.m.; the judge said he was working on it.",
+    "The jury was dismissed just before 4 p.m."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 12 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-12",
      "date": "2025-05-29",
@@ -3051,7 +2916,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean Combs trial live updates, May 29 (rcna209575)",
+     "title": "Sean Combs trial live updates, May 29",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-trial-cassie-ventura-live-updates-rcna209575",
      "date": "2025-05-29",
@@ -3080,10 +2945,7 @@
     "Location map of where Mia places the events (LA, New York, Turks & Caicos, Cannes, Burning Man) - alleged-location points only, labelled 'per testimony', for the migration-map layer.",
     "Witness rhythm chart: 'who has testified' by trial day (21 witnesses by May 30) for the 28-day series."
    ],
-   "discrepancies": [
-    "Fox says Mia began 'late afternoon'; NBC says direct begins May 29 after Nash.",
-    "Fox/NBC/GMA conflict on pay ($55k promised, $50k paid is NBC)."
-   ],
+   "discrepancies": [],
    "single_sourced": [],
    "outlet_families": [
     "ABC",
@@ -3110,11 +2972,10 @@
    ],
    "exhibits": [
     "Mia's personal social posts (2013-2016)",
-    "Scrapbook/card for Combs's 45th birthday (Nov 4, 2014) with 1991-1999 magazine articles",
-    "Dec 6, 2016 text exchange with Khorram; Oct 26, 2015 WhatsApp chat",
-    "Feb 4 and Feb 7, 2024 messages from Combs",
-    "A comedy video directed by Andy Samberg (NBC)",
-    "Burning Man 2013 photo"
+    "A scrapbook and card for Combs's 45th birthday (2014)",
+    "A 2016 text exchange with Combs's chief of staff; a 2015 WhatsApp chat",
+    "Messages from Combs in February 2024",
+    "A comedy video directed by Andy Samberg (NBC)"
    ],
    "numbers": [
     {
@@ -3130,7 +2991,7 @@
     {
      "value": "2017",
      "unit": "year",
-     "what": "Mediation: ~$10M demand, ~$400K settlement, ~$200K to Mia",
+     "what": "Mediation over her claims: about $10M asked, about $400K settled, about $200K to Mia",
      "source": "fox13, nbc13",
      "outlets": [
       "Fox",
@@ -3166,7 +3027,7 @@
     {
      "value": 200000,
      "unit": "USD",
-     "what": "Mia's share of the $400,000 settlement: $200,000 (Fox, NBC) vs $250,000 (Global News)",
+     "what": "Mia's share of the $400,000 settlement: $200,000 (Fox, NBC) or $250,000 (Global News)",
      "source": "fox13, nbc13",
      "outlets": [
       "Fox",
@@ -3195,25 +3056,15 @@
      "confidence": "low"
     },
     {
-     "value": "2024-02-04 / 02-07",
+     "value": "2024-02",
      "unit": "dates",
-     "what": "Combs's messages to Mia",
+     "what": "Combs's messages to Mia (month)",
      "source": "fox13, nbc13",
      "outlets": [
       "Fox",
       "NBC"
      ],
      "confidence": "high"
-    },
-    {
-     "value": "12:34 p.m. ET",
-     "unit": "time",
-     "what": "Start of lunch break; cross began after",
-     "source": "fox13",
-     "outlets": [
-      "Fox"
-     ],
-     "confidence": "medium"
     },
     {
      "value": "90 min + 2.5 hours",
@@ -3253,13 +3104,13 @@
     "Judge Subramanian"
    ],
    "legal_events": [
-    "Court resumed after lunch; cross-examination to continue Monday June 2",
-    "President Trump comments on a possible pardon (not trial testimony)",
-    "Judge Subramanian still aims to give the case to jurors about July 4"
+    "The defense's questioning of Mia continued Monday, June 2.",
+    "President Trump commented on a possible pardon for Combs. This happened outside the courtroom and was not testimony.",
+    "Judge Subramanian still aimed to give the case to the jury around July 4."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 13 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-13",
      "date": "2025-05-30",
@@ -3268,7 +3119,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean Combs trial live updates, May 30 (rcna209833)",
+     "title": "Sean Combs trial live updates, May 30",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-cassie-ventura-live-updates-rcna209833",
      "date": "2025-05-30",
@@ -3306,21 +3157,19 @@
    ],
    "weekday": "Friday",
    "key_points": [
-    "Direct: left in 2017 after Combs shut down Revolt Films; reports complex PTSD and being unable to hold a job; received texts/emails from Combs in Feb 2024 after the lawsuit; was 'terrified' and did not respond.",
+    "Direct: left in 2017 after Combs shut down Revolt Films; received texts/emails from Combs in Feb 2024 after the lawsuit; was 'terrified' and did not respond.",
     "Direct: after Ventura's Nov 2023 lawsuit a security staffer called her (Nov 30, 2023); a 2017 mediation sought about $10M and settled for about $400K (about $200K to her).",
     "Cross: Steel showed her own social-media posts and birthday gifts praising Combs; she said staff had to post support; 'I have not lied to anyone at all.'",
-    "Cross: Nov. 4 birthday posts (2013, 2014, 2015); a scrapbook and card for Combs's 45th birthday; Steel framed Nov. 4, 2015 as an alleged-assault anniversary; she said she did not treat it as a celebration.",
-    "Cross: she conceded she could not rule out being drugged at the 40th-birthday party ('a possibility')."
+    "Cross: birthday posts for Combs (2013, 2014, 2015) and a scrapbook and card for his 45th birthday; the defense framed one of those dates as the anniversary of an alleged assault; she said she did not treat it as a celebration.",
+    "Cross: she conceded she could not rule out being drugged at the 40th-birthday party ('a possibility').",
+    "Settlement purpose (Global News): the $400,000 settlement reimbursed her for promised bonuses that were never paid and for unpaid overtime; she said she never told her lawyers about the sexual abuse."
    ],
    "viz_ideas": [
     "Timeline of Mia's own posts vs. alleged events (cross-exam exhibits) - plotted as 'what the defense asked' vs 'what she said', clearly labelled as advocacy and testimony.",
     "Settlement waterfall: $10M asked, $400K paid, $200K to witness - simple verified amounts."
    ],
    "discrepancies": [
-    "Fox header says Thursday vs May 30 timestamps.",
-    "Firing date per Fox ('Dec 2014') vs 2017 departure not reconciled.",
-    "Details of allegations intentionally omitted.",
-    "CONFLICT (open) - share of Mia's 2017 settlement that she kept: Fox and NBC say about $200,000 of $400,000; Global News (re-opened) says she received $250,000 of $400,000. The $10M demand and $400,000 total are confirmed by NPR, Fox, NBC. Kept $400,000 as high confidence and the $200K/$250K split as LOW."
+    "How much of the $400,000 settlement Mia kept: Fox and NBC say about $200,000; Global News says $250,000."
    ],
    "single_sourced": [],
    "outlet_families": [
@@ -3360,11 +3209,11 @@
     }
    ],
    "exhibits": [
-    "Defense Exhibit 1750: birthday video from Mia to Combs (admitted)",
-    "Texts from Dec 2016 to Dec 2022 (Dec 2016, Jan/Mar/Apr 2019, Xmas 2018, Aug 29 2020, Jul 30 2022, Dec 28 2022)",
+    "A birthday video from Mia to Combs (a defense exhibit, admitted)",
+    "Texts from 2016 to 2022",
     "Beverly Hills Hotel bill (about $6,600) and May 2015 stay with oil damage charge",
-    "Mia's resume; her notes of Jan 5 and Jan 8, 2024 meetings with prosecutors",
-    "Honduras footage excluded; vacation-drinking material excluded"
+    "Her notes of January 2024 meetings with prosecutors",
+    "Some vacation footage excluded"
    ],
    "numbers": [
     {
@@ -3413,9 +3262,9 @@
      "confidence": "high"
     },
     {
-     "value": "2024-01-05 / 01-08",
+     "value": "2024-01",
      "unit": "dates",
-     "what": "Mia's first meetings with prosecutors per defense notes",
+     "what": "Mia's first meetings with prosecutors per defense notes (month)",
      "source": "fox14 (single-sourced)",
      "outlets": [
       "Fox"
@@ -3471,16 +3320,6 @@
       "NBC"
      ],
      "confidence": "low"
-    },
-    {
-     "value": "9:15 a.m. ET",
-     "unit": "time",
-     "what": "Mia on the stand",
-     "source": "fox14",
-     "outlets": [
-      "Fox"
-     ],
-     "confidence": "medium"
     }
    ],
    "locations": [
@@ -3503,15 +3342,15 @@
     "Frank Piazza (expected)"
    ],
    "legal_events": [
-    "Objection sustained to 'Diddy money grab' phrase; jury told to disregard (Fox)",
-    "Defense Exhibit 1750 admitted; additional social posts and Honduras/vacation footage excluded",
-    "Prosecutor Maurene Comey said cross was harassing; judge found some questions argumentative and repetitive and cautioned Steel; NPR says he mostly disagreed with the tone complaint",
-    "Prosecutors acknowledged error: Mia's face shown briefly on overflow feed against order",
-    "Eddy Garcia invoked Fifth briefly"
+    "The judge sustained an objection to the defense phrase 'Diddy money grab'; the jury was told to disregard it (Fox).",
+    "The judge admitted one defense exhibit of Mia's social media posts and excluded other posts and vacation footage.",
+    "Prosecutor Maurene Comey said the cross-examination was harassing. The judge found some questions argumentative and repetitive and cautioned Steel (Brian Steel, the Combs lawyer questioning Mia); NPR reports he mostly disagreed with the complaint about tone.",
+    "Prosecutors acknowledged an error: Mia's face was shown briefly on the overflow-room video feed, against the judge's order.",
+    "Eddy Garcia, a former hotel security officer, invoked his Fifth Amendment right not to answer questions."
    ],
    "sources": [
     {
-     "title": "Sean Diddy Combs trial day 14 (live blog)",
+     "title": "Sean Diddy Combs trial live updates",
      "outlet": "Fox News",
      "url": "https://noticias.foxnews.com/live-news/sean-diddy-combs-trial-day-14.amp",
      "date": "2025-06-02",
@@ -3520,7 +3359,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy trial: Mia testimony live updates, June 2 (rcna210064)",
+     "title": "Diddy trial: Mia testimony live updates, June 2",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-sean-combs-trial-mia-testimony-live-updates-rcna210064",
      "date": "2025-06-02",
@@ -3541,7 +3380,7 @@
    "weekday": "Monday",
    "key_points": [
     "Mia cross: asked if she testified for money (no); alleged 'money grab' remark struck; asserted she never lied; said she disclosed to no one until she had a lawyer and wanted to 'die with the secrets'.",
-    "Mia: texts and posts from 2016-2022 showed support; she said they were sent out of fear and job pressure; she worked for Madonna after leaving (6 months per Fox, 8 per NBC).",
+    "Mia: texts and posts from 2016-2022 showed support; she said they were sent out of fear and job pressure; she worked for Madonna after leaving.",
     "Mia redirect: said she 'was terrified and brainwashed' and cited that for delay.",
     "Oken: explained the hotel's 'Opera' profile system; Combs's aliases 'Phillip Pines' and 'Frank Black'; hotel bills with candle pickup and cleaning charges; cross: celebrities commonly use aliases."
    ],
@@ -3550,9 +3389,7 @@
     "Courtroom rulings tally for the day (sustained / admitted / excluded) as a small ledger."
    ],
    "discrepancies": [
-    "Madonna job: 6 months (Fox) vs 8 months (NBC).",
-    "Disclosure timing: Fox says Jan 5/8 2024 meetings; NPR says Steel cited June 2024.",
-    "Trump pardon comment on this date reported by NBC only."
+    "When Mia first met prosecutors: Fox reports meetings in January 2024; NPR reports the defense citing June 2024."
    ],
    "single_sourced": [],
    "outlet_families": [
@@ -3717,15 +3554,14 @@
     "Garcia's boss and two other guards (unnamed)"
    ],
    "legal_events": [
-    "Before the jury came in (about 9:25 AM ET): a spectator shouted from the gallery and was removed by marshals on Judge Arun Subramanian's order after prosecutors complained that Mia's real identity was being broadcast (NBC calls it the first major courtroom outburst).",
-    "June 2 (previous day): Garcia invoked the Fifth Amendment and received an immunity order (NBC June 2 blog).",
-    "1:44 PM: prosecutors asked for an order barring an outlet that reported Mia's identity; the judge asked them to draft a proposed order.",
-    "After the jury left (about 3:32 PM): prosecutors asked that Jane's face not be shown in overflow rooms; Jane expected to testify Thursday (June 5); defense asked for more time with Combs without the dividing screen to review texts.",
-    "No mistrial motion or jury note reported."
+    "Before the jury came in, a spectator shouted from the gallery and was removed by marshals on Judge Arun Subramanian's order, after prosecutors complained that Mia's real identity was being broadcast (NBC).",
+    "On June 2, Eddy Garcia invoked his Fifth Amendment right and received an immunity order, so he could be made to testify (NBC).",
+    "Prosecutors asked for an order against a news outlet that had reported Mia's identity; the judge asked them to draft one.",
+    "After the jury left, prosecutors asked that Jane's face not be shown in overflow rooms. The defense asked for more time with Combs without the dividing screen, to review messages."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 3, 2025 (Day 15)",
+     "title": "Live updates from the Sean Combs trial, June 3, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-sean-combs-trial-cassie-hotel-attack-live-updates-rcna210484",
      "date": "2025-06-03",
@@ -3734,7 +3570,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "ABC News Audio recap (Day 19 in ABC count), republished by WOKV",
+     "title": "ABC News Audio recap of the Sean Combs trial, June 3, 2025",
      "outlet": "ABC News (via WOKV)",
      "url": "https://www.wokv.com/news/national/sean-diddy-combs/IRSPYPWTOWL55OVNT55FGDVTPE",
      "date": "2025-06-04",
@@ -3743,7 +3579,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "NBC News live blog, June 2, 2025 (Day 14) - context for Garcia's Fifth Amendment invocation",
+     "title": "Live updates from the Sean Combs trial, June 2, 2025 - context for Garcia's Fifth Amendment invocation",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-sean-combs-trial-mia-testimony-live-updates-rcna210064",
      "date": "2025-06-02",
@@ -3790,7 +3626,7 @@
     "Network map of who in Combs's circle contacted whom (Khorram, Combs, security staff). Why: shows how an enterprise worked, which is the legal question."
    ],
    "discrepancies": [
-    "RESOLVED - Ferguson tenure: CNN (KVIA) and GMA/ABC (live blog, re-opened) say about 19 years working for Combs (1998-2017); NBC gives 1998-2017; CNN adds that he was CFO of Bad Boy Entertainment from 1998 to 2012. An ABC audio recap that said 'CFO for 12 years' (WOKV, earlier pass) does not match and is treated as a different measure/error. Kept: 19 years with Combs (high), CFO 1998-2012 (medium, CNN only)."
+    "How long Derek Ferguson worked for Combs: CNN, GMA and NBC say 1998 to 2017, about 19 years. CNN adds that he was the finance chief of Bad Boy Entertainment from 1998 to 2012."
    ],
    "outlet_families": [
     "ABC",
@@ -3935,16 +3771,16 @@
     "Mia (identity-leak dispute referenced)"
    ],
    "legal_events": [
-    "Bongolan invoked the Fifth Amendment and was given immunity if she testifies truthfully.",
-    "10 sex videos filed under seal (about 11:08 AM).",
-    "Prosecutors asked the judge to order a news outlet to remove a post revealing Mia's identity; judge said he would consider a formal request. A YouTube streamer who posted an image of Mia's face was barred from the courthouse (Yahoo).",
-    "About 4:27 PM: defense raised that Combs cannot reach his lawyers by phone/email at night from jail; judge said he would contact the jail.",
-    "Prosecutors worried about Jane's ('Victim-2') identity; Jane expected Thursday (June 5); Comey said her direct would take at least two days, cross similar.",
-    "Jurors dismissed about 4:06 PM; return before 11 AM Thursday."
+    "Bryana Bongolan invoked her Fifth Amendment right and was given immunity, on condition that she testify truthfully.",
+    "Ten sexual videos were filed under seal, to be seen by the jury only.",
+    "Prosecutors asked the judge to order a news outlet to remove a post revealing Mia's identity; the judge said he would consider a formal request. A YouTube streamer who posted an image of Mia's face was barred from the courthouse (Yahoo).",
+    "The defense said Combs could not reach his lawyers by phone or email at night from jail; the judge said he would contact the jail.",
+    "Prosecutors raised concerns about protecting Jane's identity; prosecutor Maurene Comey said their questions to Jane would take at least two days.",
+    "Jurors were dismissed about 4:06 PM and told to return before 11 AM Thursday."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 4, 2025 (Day 16)",
+     "title": "Live updates from the Sean Combs trial, June 4, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-testimony-witness-live-updates-rcna210760",
      "date": "2025-06-04",
@@ -3962,7 +3798,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "ABC News Audio recap (Day 19 in ABC count), republished by WOKV",
+     "title": "ABC News Audio recap of the Sean Combs trial, June 4, 2025",
      "outlet": "ABC News (via WOKV)",
      "url": "https://www.wokv.com/news/national/sean-diddy-combs/IRSPYPWTOWL55OVNT55FGDVTPE",
      "date": "2025-06-04",
@@ -4059,7 +3895,7 @@
     {
      "value": "2016-09-30",
      "unit": "date",
-     "what": "Ventura-to-Khorram text recovered from her phone",
+     "what": "Date of a text Ventura sent Combs's chief of staff about the balcony incident, recovered from her phone",
      "source": "ABC; NBC",
      "outlets": [
       "ABC",
@@ -4206,14 +4042,13 @@
     "Combs's travel agent and assistants (unnamed)"
    ],
    "legal_events": [
-    "About 1:29 PM: Judge Subramanian threatened to remove Combs from the courtroom for nodding vigorously and making faces at jurors, calling it 'absolutely unacceptable' and 'This cannot happen again'; Agnifilo: 'it's not going to happen again.' Court TV: judge saw two nodding episodes while jurors were at lunch and said there should be 'no efforts whatsoever to have an interaction with this jury.'",
-    "Judge said jurors will know Jane's real name, which will not be public; pseudonym does not affect her weight as a witness.",
-    "Court adjourned about 4:30 PM; jurors told to return before 9 AM Friday; judge warned some days next week could run to 5 PM.",
-    "No mistrial ruling that day (the defense's second mistrial motion followed over the weekend; ruled June 10, see Day 20)."
+    "Judge Subramanian threatened to remove Combs from the courtroom for nodding vigorously and making faces at jurors, calling it 'absolutely unacceptable'. Combs's lawyer Marc Agnifilo said it would not happen again (Court TV, NBC).",
+    "The judge said jurors would know Jane's real name, which would not be made public, and that her pseudonym does not change how much weight jurors should give her testimony.",
+    "Court adjourned about 4:30 PM; jurors were told to return before 9 AM Friday, and the judge warned that some days the next week could run to 5 PM."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 5, 2025 (Day 17)",
+     "title": "Live updates from the Sean Combs trial, June 5, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-combs-trial-live-updates-witness-says-diddy-dangled-balcony-retur-rcna211025",
      "date": "2025-06-05",
@@ -4222,7 +4057,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy Trial, Day 21 (ABC count): Thursday, June 5, 2025",
+     "title": "Diddy trial recap: Thursday, June 5, 2025",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-21-recap-3rd-victim-takes-122560446",
      "date": "2025-06-05",
@@ -4231,7 +4066,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "AP story on Jane's testimony (June 5-6), republished by MyNorthwest",
+     "title": "Associated Press report on Jane's testimony, June 5 and 6, 2025",
      "outlet": "Associated Press (via MyNorthwest)",
      "url": "https://mynorthwest.com/?p=4096614",
      "date": "2025-06-06",
@@ -4257,7 +4092,7 @@
    "key_points": [
     "Bongolan cross: she kept using drugs and kept seeing Ventura after the incident; shared a marijuana blunt with Combs afterward; returned to Ventura's apartment within two weeks for an overnight stay (text chain); kept going around Combs to 'be cool'; some claims by her civil lawyer Tyrone Blackburn were incorrect; she could not agree one person can be in two places ('in like theory, yeah'), but said she had 'no doubt' about the incident.",
     "Defense showed a Trump International Hotel & Tower bill placing Combs (alias 'Frank Black') in Manhattan Sept 24-29, 2016; injury photos were dated Sept 26, 2016; the defense said Combs and Ventura were at a Boys and Girls Club event in New York that morning. Bongolan said she misremembered the date but not the event.",
-    "Santos: recovered phone data including deleted messages; presented a Sept 30, 2016 text from Ventura to Combs's chief of staff Kristina Khorram about the balcony incident (NBC quotes 'This is crazy' / 'I have to stay away'); implies Ventura did not see it herself but believed it happened.",
+    "Santos: recovered phone data including deleted messages, among them a September 30, 2016 text from Ventura to Combs's chief of staff Kristina Khorram about the balcony incident (NBC quotes 'This is crazy' / 'I have to stay away'). The text suggests Ventura did not see the incident herself but believed it happened.",
     "Jane (direct): relationship with Combs from 2021 to 2024; single mother; met on a late-2020 Miami girls' trip; a five-day first date in early 2021; February 2021 Turks and Caicos birthday trip; first encounter with a male sex worker arranged by Combs in May 2021, which she calls opening 'Pandora's box'; estimates about 90% of their time together involved such encounters; said she told Combs in person and in writing she did not want them; Combs paid rent and she felt financially obligated; code names 'Bert' and 'Ernie'; used drugs (ecstasy, cocaine, ketamine) with him; multi-day 'hotel nights' of 24-30 hours; extensive travel logistics May 2021-Oct 2023."
    ],
    "viz_ideas": [
@@ -4339,16 +4174,6 @@
      "confidence": "high"
     },
     {
-     "value": 3,
-     "unit": "credit cards",
-     "what": "Cards Jane opened to furnish the home",
-     "source": "NBC (single-sourced)",
-     "outlets": [
-      "NBC"
-     ],
-     "confidence": "low"
-    },
-    {
      "value": "almost weekly",
      "unit": "frequency",
      "what": "UTIs/yeast infections during these periods",
@@ -4411,19 +4236,9 @@
      "confidence": "medium"
     },
     {
-     "value": "2021-12-12",
+     "value": "2022-12-12",
      "unit": "date",
-     "what": "'I am done being used by you' note (Dec 12, 2022 per NBC; year as reported)",
-     "source": "NBC",
-     "outlets": [
-      "NBC"
-     ],
-     "confidence": "medium"
-    },
-    {
-     "value": "5:03 PM",
-     "unit": "time ET",
-     "what": "Court adjourned",
+     "what": "'I am done being used by you' note (NBC)",
      "source": "NBC",
      "outlets": [
       "NBC"
@@ -4459,14 +4274,14 @@
     "Entertainer 'Chef' (named by Jane)"
    ],
    "legal_events": [
-    "Jane's attorney told the court media outlets and social accounts were trying to identify her; judge said he would consider a gag order or further restrictions if anyone violates the order.",
-    "Judge's June 5 warning to Combs recapped (nodding at jurors).",
-    "Prosecution aimed to excuse Jane by Thursday June 12 (she was booked to fly home).",
-    "Lunch 12:20-1:15 PM; court adjourned 5:03 PM; resumes Monday. Weekend: defense letter seeking mistrial (see Day 19/20)."
+    "Jane's lawyer told the court that news outlets and social media accounts were trying to identify her; the judge said he would consider a gag order or other limits if anyone broke his order.",
+    "Prosecutors aimed to finish with Jane by Thursday, June 12.",
+    "Lunch 12:20-1:15 PM; court adjourned 5:03 PM and resumed Monday.",
+    "Over the weekend, the defense sent a letter asking for a mistrial (see Days 19 and 20)."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 6, 2025 (Day 18)",
+     "title": "Live updates from the Sean Combs trial, June 6, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-combs-diddy-trial-jane-live-updates-rcna211291",
      "date": "2025-06-06",
@@ -4593,12 +4408,12 @@
     {
      "value": 20000000,
      "unit": "USD",
-     "what": "Ventura settlement figure per ABC",
+     "what": "Ventura's 2023 settlement (widely reported; she confirmed the figure on cross-examination)",
      "source": "ABC (single-sourced; flagged)",
      "outlets": [
       "ABC"
      ],
-     "confidence": "low"
+     "confidence": "high"
     },
     {
      "value": "2024-06-18",
@@ -4664,17 +4479,6 @@
      "confidence": "low"
     },
     {
-     "value": 10000,
-     "unit": "USD",
-     "what": "Amount a sex worker asked to keep a sex tape confidential (NBC); ABC: monthly rent $10,000",
-     "source": "NBC; ABC",
-     "outlets": [
-      "NBC",
-      "ABC"
-     ],
-     "confidence": "high"
-    },
-    {
      "value": "2021-2024",
      "unit": "years",
      "what": "Duration of relationship",
@@ -4682,17 +4486,6 @@
      "outlets": [
       "NPR",
       "NBC"
-     ],
-     "confidence": "high"
-    },
-    {
-     "value": 3,
-     "unit": "months",
-     "what": "Time in therapy",
-     "source": "ABC; AP-style summary (ABNews4)",
-     "outlets": [
-      "ABC",
-      "AP"
      ],
      "confidence": "high"
     },
@@ -4728,13 +4521,13 @@
     "HSI agents"
    ],
    "legal_events": [
-    "Weekend of June 7-8: defense letter seeking a mistrial (their second), alleging prosecutorial misconduct over Bongolan's testimony; judge to rule June 10.",
-    "Court sealed visual evidence to protect Jane; audio of recordings was public (NPR). Courtroom sketch shows Combs meeting Judge Subramanian in chambers (ABC).",
-    "Lunch recess; jurors due back 1:15 PM; direct concluded by day end."
+    "Over the weekend of June 7 and 8, the defense filed a letter seeking a mistrial (its second), accusing prosecutors of misconduct over Bryana Bongolan's testimony; the judge said he would rule June 10.",
+    "The court sealed video and images to protect Jane; the audio of recordings played in court was public (NPR).",
+    "After the lunch recess, jurors were due back 1:15 PM; prosecutors finished their questions to Jane by the end of the day."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 9, 2025 (Day 19)",
+     "title": "Live updates from the Sean Combs trial, June 9, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/diddy-trial-sean-combs-testimony-girlfriend-live-updates-rcna211565",
      "date": "2025-06-09",
@@ -4743,7 +4536,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy trial Day 23 recap (ABC count): loose ends, witness testifies",
+     "title": "Diddy trial recap: loose ends, witness testifies",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-23-loose-ends-witness-testifies-122678794",
      "date": "2025-06-10",
@@ -4767,15 +4560,15 @@
    ],
    "weekday": "Monday",
    "key_points": [
-    "Money/rent: Combs paid her rent and still does; she described the home as 'leverage' ('the roof over my head' text). She joined OnlyFans in early 2024 to regain independence and went into debt.",
+    "Money/rent: Combs paid her rent and still does; she described the home as 'leverage' ('the roof over my head' text).",
     "Spring 2023 verbal 'love contract' (NPR): Combs paid rent and supported her; a voice memo suggested he expected compliance in return.",
     "October 2023: she told Combs she was 'not a porn star' and needed a break; at his request she joined a drug-free 'sobriety party' lasting 12 to 18 hours with several men ('I was just repulsed').",
-    "She feared staff could access phones containing explicit videos of her and asked Combs to lock them. Combs threatened (late Dec 2023) to release tapes/show them to her child's father; she texted Khorram, who reassured her. She testified to suicidal thoughts at end of 2023.",
+    "She feared staff could access phones containing explicit videos of her and asked Combs to lock them. Combs threatened (late Dec 2023) to release tapes; she texted Khorram, who reassured her. She testified to suicidal thoughts at end of 2023.",
     "Nov 2023: Cassie Ventura's lawsuit was filed; Jane said she nearly fainted reading it ('my own sexual trauma'). Recorded calls from Khorram's phone (one three days after filing, a second 22 minutes later per ABC) were entered; she did not know she was recorded.",
-    "March 2024 federal raids: an HSI agent left a card; Combs arranged and paid for her lawyer (still paying her legal fees). [NBC's blog says 'March 2023' - an error; AP/ABC/NBC June 10 say March 2024.]",
+    "March 2024 federal raids: an HSI agent left a card; Combs arranged and paid for her lawyer (still paying her legal fees).",
     "May 2024: she saw the CNN release of the 2016 hotel video; Combs told her it was the only time he had been violent toward Ventura (NBC) and showed apology drafts (NPR).",
     "June 18, 2024: after a fight at her Los Angeles home she testified Combs chased her, kicked in locked doors, struck and dragged her; she had two forehead welts, a developing black eye, three slaps (ABC); hid about two hours; received about $12,000 cash from his bodyguard the next day for damages and an escort's fee (ABC).",
-    "She last saw Combs in Miami in late July/August 2024; was not in contact at his Sept 2024 arrest; later received immunity and met a grand jury; continued meeting Combs's defense team until April 2025; in therapy about three months; says she prays for him."
+    "She last saw Combs in Miami in late July/August 2024; was not in contact at his Sept 2024 arrest; later received immunity and met a grand jury; continued meeting Combs's defense team until April 2025; says she prays for him."
    ],
    "viz_ideas": [
     "Evidence timeline Oct 2023 -> Aug 2024 for Jane (Oct 15 text, Nov 2023 lawsuit, recorded calls 3 days and 22 minutes later, Dec threats, Mar 2024 raids, May 2024 CNN video, June 18, 2024 incident, Aug 2024 last contact). Why: densest dated sequence of the whole trial; ties private events to public ones.",
@@ -4825,23 +4618,12 @@
      "confidence": "low"
     },
     {
-     "value": 50000,
-     "unit": "USD",
-     "what": "Jane's earlier annual influencer income",
-     "source": "NBC (single-sourced)",
-     "outlets": [
-      "NBC"
-     ],
-     "confidence": "low"
-    },
-    {
      "value": 20000,
      "unit": "USD",
-     "what": "Unsolicited transfer after argument (NBC); investment in her dress line (ABC)",
-     "source": "NBC; ABC (two separate $20,000 items)",
+     "what": "Unsolicited transfer from Combs after an argument (NBC)",
+     "source": "NBC",
      "outlets": [
-      "NBC",
-      "ABC"
+      "NBC"
      ],
      "confidence": "high"
     },
@@ -4927,13 +4709,13 @@
     "Cassie Ventura"
    ],
    "legal_events": [
-    "Morning: Judge Subramanian denied the defense's second mistrial motion (filed over the weekend). Defense argued the government 'knew or should have known' Bongolan's testimony was perjured because hotel records put Combs in New York on Sept 26, 2016. Judge said the government 'screwed up' but defense was not prejudiced because Westmoreland cross-examined effectively; compared it to a 'Perry Mason moment.' (NBC; CNN.) NBC's blog gives the denial time as 8:43 AM and 9:13 AM in different places.",
-    "Prosecutors raised the juror issue (Juror No. 6) outside the jury's presence on Tuesday; filed request Wednesday (CrimeOnline/CNN). Court to start at 1:00 PM the next day (NBC).",
+    "The judge denied the defense's second mistrial motion. The defense argued the government 'knew or should have known' that part of Bryana Bongolan's account was wrong, because hotel records put Combs in New York on September 26, 2016. The judge ruled the defense was not harmed, because its lawyer had questioned her effectively on that point, and compared that questioning to a 'Perry Mason moment' (CNN, NBC).",
+    "Prosecutors raised a concern about a juror (Juror No. 6) outside the jury's presence, and filed a formal request the next day (CrimeOnline, CNN). Court was set to start at 1:00 PM the next day (NBC).",
     "Jury dismissed about 3:08 PM."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 10, 2025 (Day 20)",
+     "title": "Live updates from the Sean Combs trial, June 10, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-combs-diddy-trial-jane-cross-examination-live-updates-rcna211946",
      "date": "2025-06-10",
@@ -4951,7 +4733,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy trial: Combs considered himself Michael Jordan of sex parties, witness says (Day 24, ABC count)",
+     "title": "Diddy trial: Combs considered himself Michael Jordan of sex parties, witness says",
      "outlet": "ABC7 / ABC News",
      "url": "https://abc7news.com/16717522/",
      "date": "2025-06-10",
@@ -4975,7 +4757,7 @@
    "weekday": "Tuesday",
    "key_points": [
     "Jane said she still loves Combs; his affection was the main reason she tolerated hotel nights; she fell in love before understanding the relationship's terms.",
-    "Money: agreed Combs wired about $150,000 during the relationship; before him she earned about $50,000 as an influencer plus child support; Combs sent $20,000 unsolicited after an argument; he invested $20,000 in her dress line (ABC).",
+    "Money: agreed Combs wired about $150,000 during the relationship; Combs sent $20,000 unsolicited after an argument.",
     "A 2023 voicemail was played in which Combs called her 'Crack Pipe' after a Turks and Caicos trip; she worried about his drug and alcohol use and wanted him to attend a rehab clinic in Thailand.",
     "She agreed Combs introduced her to gospel music; described Khorram as always with Combs; said Khorram phoned her at least once while she transported drugs for Combs and they coordinated travel by text.",
     "Combs called himself Michael Jordan, Jane Kobe Bryant, an escort 'Paul' Shaquille O'Neal (a 'trifecta').",
@@ -5123,16 +4905,6 @@
      "confidence": "high"
     },
     {
-     "value": "4:37 PM",
-     "unit": "time ET",
-     "what": "Court adjourned; jurors due before 9 AM June 12",
-     "source": "NBC",
-     "outlets": [
-      "NBC"
-     ],
-     "confidence": "medium"
-    },
-    {
      "value": "June 20 / June 18",
      "unit": "dates",
      "what": "Prosecution said it would rest no later than 'a week from Friday' (June 20), possibly as early as 'next Wednesday' (June 18) (inferred from NBC phrasing)",
@@ -5163,13 +4935,12 @@
     "Dr. Dawn Hughes (referenced in prosecution plans)"
    ],
    "legal_events": [
-    "Government moved to remove Juror No. 6 for 'lack of candor with the court' (no specifics); defense (Alexandra Shapiro) called it a 'thinly veiled effort' to remove a Black juror and asked to respond in writing; judge said he would decide Thursday June 12 (CNN/CrimeOnline) or by Friday (ABC) - sources differ.",
-    "Prosecution said it is condensing its case and will identify witnesses to be cut; expects to rest soon.",
-    "No rulings on exhibits reported."
+    "Prosecutors moved to remove Juror No. 6 for 'lack of candor with the court'. Defense lawyer Alexandra Shapiro called it a 'thinly veiled effort' to remove a Black juror and asked to respond in writing. The judge said he would decide within days.",
+    "Prosecutors said they were shortening their case and would name witnesses they would no longer call."
    ],
    "sources": [
     {
-     "title": "NBC News live blog, June 11, 2025 (Day 21)",
+     "title": "Live updates from the Sean Combs trial, June 11, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-trial-jane-cross-examination-live-updates-rcna212268",
      "date": "2025-06-11",
@@ -5178,7 +4949,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy trial day 25 recap (ABC count): prosecutors try to drop a juror over 'lack of candor'",
+     "title": "Diddy trial recap: prosecutors try to drop a juror over 'lack of candor'",
      "outlet": "ABC News (via AOL)",
      "url": "https://www.aol.com/diddy-trial-day-25-recap-012700310.html",
      "date": "2025-06-11 (fetch tool inferred 06-10 from captions; content matches June 11)",
@@ -5214,9 +4985,7 @@
     "Gifts and payments 'both-sides' ledger ($13,000 birthday, $15,000 asked, Van Cleef set, $150,000 total from Day 20). Why: shows exactly what the defense used to argue consent and what the prosecution used to argue leverage.",
     "Tone-and-timestamp comparison of the same relationship events as shown by direct (Day 17-19) vs cross (Days 20-21) - paired timeline. Why: highlights competing narratives from one evidence base."
    ],
-   "discrepancies": [
-    "RESOLVED - Juror 6 ruling date: June 11 (Wed) prosecutors filed the request; June 12 (Thu) the judge deferred in court and the hearing noted it was still pending (GMA, NBC); June 13 (Fri) the judge announced he would grant the removal ('Removal of the juror is required', GMA re-opened); June 16 (Mon) formal dismissal and seating of a 57-year-old alternate (CBS, re-opened). CNN/CrimeOnline's expectation of a Thursday ruling and ABC's 'by Friday' were forecasts, not rulings."
-   ],
+   "discrepancies": [],
    "outlet_families": [
     "ABC",
     "CNN",
@@ -5271,26 +5040,6 @@
      "confidence": "medium"
     },
     {
-     "value": 5000,
-     "unit": "USD/month (approx.)",
-     "what": "Child support Jane receives",
-     "source": "gmaredirect",
-     "outlets": [
-      "ABC"
-     ],
-     "confidence": "medium"
-    },
-    {
-     "value": 10000,
-     "unit": "USD/month (approx.)",
-     "what": "Jane's income from OnlyFans",
-     "source": "gmaredirect",
-     "outlets": [
-      "ABC"
-     ],
-     "confidence": "medium"
-    },
-    {
      "value": 3,
      "unit": "years",
      "what": "Approximate length of Jane's relationship with Combs",
@@ -5321,14 +5070,14 @@
      "confidence": "medium"
     },
     {
-     "value": 5,
-     "unit": "court days (Jun 6, 9, 10, 11, 12)",
-     "what": "Days Jane was on the stand by the court-day record (GMA says 'about six days'; discrepancy flagged)",
+     "value": 6,
+     "unit": "court days",
+     "what": "Days Jane was on the stand, June 5 to 12 (GMA: 'a marathon six days')",
      "source": "fox5",
      "outlets": [
       "Fox"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     }
    ],
    "locations": [
@@ -5347,16 +5096,16 @@
     "Chelsea Lovelace (civil plaintiff, context only)"
    ],
    "legal_events": [
-    "Closed hearing on ground rules for questioning about the January 2024 incident; judge sided with prosecution, testimony resumed in open court (GMA).",
-    "Government sought to limit Combs' text messages/voicemails; judge appeared to rule against at least one Combs voicemail (NBC blog, relative timestamp).",
-    "Prosecutors asked to remove Juror No. 6 for 'lack of candor'; Comey said the government was reluctant to raise it; defense says the juror is among the panel's Black members; judge postponed decision (NBC blog; Fox5 recap).",
-    "Jane's testimony concluded."
+    "In a closed hearing, the judge set ground rules for questions about a January 2024 incident, siding with prosecutors; testimony then resumed in open court (GMA).",
+    "Prosecutors sought to limit which of Combs's messages and voicemails could be played; the judge appeared to rule against playing at least one voicemail (NBC).",
+    "Prosecutors asked to remove Juror No. 6 for 'lack of candor'. The defense said the juror is one of the panel's Black members. The judge postponed a decision (NBC, Fox 5).",
+    "Jane's testimony ended."
    ],
    "weekday": "Thursday",
    "day_label": "Testimony day 22 of 28",
    "sources": [
     {
-     "title": "Diddy trial Day 26 recap: Combs' girlfriend ends testimony",
+     "title": "Diddy trial recap: Combs' girlfriend ends testimony",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-26-recap-combs-girlfriend-ends-122796574",
      "date": "2025-06-13",
@@ -5374,7 +5123,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "NBC News live blog (Jane cross-exam, closed hearing, juror 6 request); page shows only relative timestamps",
+     "title": "Live updates from the Sean Combs trial, June 12, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/amp/live-blog/rcna212550?page=3",
      "date": "2025-06-12 (inferred; page undated)",
@@ -5400,20 +5149,17 @@
     "Jane testified she took part in the 'hotel nights' because Combs threatened to withhold rent payments or release a private recording (defense position: recordings and texts show willing participation, and violence stemmed from addiction and jealousy).",
     "Defense played audio: a recording in which Combs suggests Jane end the relationship and move on; a March 2023 voice memo thanking her for a trip; her voice note after a Turks and Caicos trip saying she had fun; a 2021 recording in which Combs asks her to arrange a 'hotel night'.",
     "Redirect (Comey): showed a message Combs sent to an escort ('Imma need you to persuade her'), which Jane said she had never seen; Jane said she did not enjoy encounters with male entertainers and was 'putting on a show'; asked about a June 2024 violent episode, Jane described Combs' demeanor as 'evil'.",
-    "Re-cross (Geragos): noted Jane did not report the June 2024 violence while Combs was under federal investigation; Jane said giving up her home (where she lives with her child) was 'a very hard question for me'. Her final answer: 'Is that all I'm worth in three years?'"
+    "Re-cross (Geragos): noted Jane did not report the June 2024 violence while Combs was under federal investigation; Jane said giving up her home was 'a very hard question for me'. Her final answer: 'Is that all I'm worth in three years?'"
    ],
    "viz_ideas": [
     "Two-readings panel: the same recordings and texts annotated 'as presented by prosecution' vs 'as presented by defense'; makes the central legal dispute (coercion vs consent) visible without graphic content.",
     "Money-flow diagram of the amounts raised on cross ($10,000/month, about $150,000 over three years, about $5,000/month child support) to show how economic dependence was argued by both sides.",
     "Testimony-length ribbon: Jane's five days on the stand as a bar chart of hours split direct/cross/redirect (needs transcript timing; not yet sourced)."
    ],
-   "discrepancies": [
-    "Juror 6: request pending on this date; ruling announced June 13, formalized June 16 (see Days 21, 23, 24).",
-    "Jane's days on the stand: June 5 (late afternoon), 6, 9, 10, 11, 12 are six calendar court days if the June 5 start is counted; NBC counts June 6 as her second day, so five full days from June 6 (GMA: about six). Not a factual dispute, a counting difference."
-   ],
+   "discrepancies": [],
    "single_sourced": [],
    "alt_day_labels": [
-    "Trial Day 22 (court-day count from May 12; Fox5/ABC 'Day 26' counts jury selection from May 5)"
+    "Fox 5 and ABC call this 'Day 26', counting from jury selection on May 5."
    ],
    "outlet_families": [
     "ABC",
@@ -5532,7 +5278,7 @@
     {
      "value": "15-30",
      "unit": "minutes (approx.)",
-     "what": "Kanye West's time in the 23rd-floor overflow room: about 15 minutes (GMA, re-opened) vs about 30 minutes (ABC live blog); not resolved",
+     "what": "Kanye West's time in an overflow courtroom: about 15 minutes (GMA) or about 30 (ABC live blog)",
      "source": "abc613",
      "outlets": [
       "ABC"
@@ -5567,14 +5313,14 @@
     "Combs' son (accompanied West)"
    ],
    "legal_events": [
-    "Judge announced removal of Juror No. 6 for lack of candor; defense objected (diversity argument) (GMA; ABC 2:07 PM PDT).",
-    "Court adjourned for the week at 4:51 PM PDT (ABC)."
+    "The judge announced removal of Juror No. 6 for lack of candor about where the juror lived; defense lawyer Xavier Donaldson objected, citing the jury's diversity (GMA, ABC).",
+    "Court adjourned for the week."
    ],
    "weekday": "Friday",
    "day_label": "Testimony day 23 of 28",
    "sources": [
     {
-     "title": "Sean 'Diddy' Combs trial Day 27 recap",
+     "title": "Sean 'Diddy' Combs trial recap, June 13, 2025",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/sean-diddy-combs-trial-day-27-recap-judge-122834180",
      "date": "2025-06-13",
@@ -5624,13 +5370,11 @@
     "Map pin: Los Angeles home search, March 2024, within a timeline of raids (March 2024) and arrest (September 2024)."
    ],
    "discrepancies": [
-    "RESOLVED - Juror 6: on this date the judge announced he would remove the juror for lack of candor (residence: Bronx vs New Jersey) (GMA re-opened; ABC live blog); the formal dismissal and substitution occurred Monday June 16 (CBS re-opened, NBC). Defense lawyer Xavier Donaldson objected, citing diversity.",
-    "Kanye West overflow-room time: GMA says about 15 minutes with four court officers present; the ABC live blog was read earlier as about 30 minutes. Kept as a range, LOW.",
-    "Agent name: GMA gives 'Andre Lamon' (photo caption 'Marc LaMon'); no second outlet confirms the name. Rated LOW. The counts (900 AstroGlide, 200 baby oil, 18 boxes, 60-round drum with 59 rounds) are reported by GMA and ABC live blog."
+    "How long Kanye West sat in an overflow courtroom: GMA says about 15 minutes; ABC's live blog says about 30."
    ],
    "single_sourced": [],
    "alt_day_labels": [
-    "Trial Day 23 (Fox5/ABC 'Day 27')"
+    "Fox 5 and ABC call this 'Day 27'."
    ],
    "outlet_families": [
     "ABC",
@@ -5773,12 +5517,12 @@
     {
      "value": 5,
      "unit": "counts",
-     "what": "Combs faces 1 racketeering conspiracy, 2 sex trafficking, 2 transportation",
+     "what": "Charges at trial: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution (court record)",
      "source": "nbc616",
      "outlets": [
       "NBC"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     }
    ],
    "locations": [
@@ -5802,9 +5546,9 @@
     "'Frank Black' (code name)"
    ],
    "legal_events": [
-    "Juror No. 6 formally dismissed and replaced by alternate (NBC, CBS, NY1 headline).",
-    "Defense objection and 14-page letter overruled.",
-    "Second juror issue deferred (NBC)."
+    "Juror No. 6 was formally dismissed and replaced by an alternate juror (NBC, CBS).",
+    "The defense's objection, set out in a 14-page letter, was overruled.",
+    "A question about a second juror was put off to a later day (NBC)."
    ],
    "weekday": "Monday",
    "day_label": "Testimony day 24 of 28",
@@ -5860,12 +5604,10 @@
     "Hotel-night ledger: a table-style graphic of itemized hotel bill (Oct. 14, 2022: $795.63 split into components) to show how routine records were used as evidence; avoids testimony detail.",
     "Route map of Jules Theodore's flights (origin/destination still unsourced) for the transportation count, legal-term annotated."
    ],
-   "discrepancies": [
-    "RESOLVED - Juror 6 formal dismissal: Monday June 16 (CBS, NBC); announced June 13. Alternate: 57-year-old from Westchester; six alternates seated, five remain (CBS)."
-   ],
+   "discrepancies": [],
    "single_sourced": [],
    "alt_day_labels": [
-    "Trial Day 24 (NBC labels this 'Day 24'; Fox5/ABC 'Day 28')"
+    "Fox 5 and ABC call this 'Day 28'."
    ],
    "outlet_families": [
     "CBS",
@@ -5930,12 +5672,12 @@
     {
      "value": 5,
      "unit": "counts",
-     "what": "Combs faces 1 racketeering conspiracy, 2 sex trafficking, 2 transportation (GMA writes 'three charges' in categories)",
+     "what": "Charges at trial: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution (court record)",
      "source": "nbc616",
      "outlets": [
       "NBC"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": "2 to 5",
@@ -5984,15 +5726,15 @@
     "Brendan Paul (expected next day)"
    ],
    "legal_events": [
-    "Gag order warning; judge threatened sanctions and contempt for leaks.",
-    "Closed juror conference at end of day; unresolved publicly.",
-    "Defense case outline: Vashta Dunlap first; case could be 'shorter than two' days."
+    "Gag order warning: the judge threatened sanctions and contempt of court over leaks.",
+    "Closed juror conference at the end of the day: the judge met privately with the lawyers about a juror; the outcome was not made public.",
+    "The defense said its case could take 'shorter than two' days."
    ],
    "weekday": "Tuesday",
    "day_label": "Testimony day 25 of 28",
    "sources": [
     {
-     "title": "Sean 'Diddy' Combs trial Day 29 recap: jurors watch videos",
+     "title": "Sean 'Diddy' Combs trial recap: jurors watch videos",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/sean-diddy-combs-trial-day-29-recap-jurors-122949525",
      "date": "2025-06-17",
@@ -6001,7 +5743,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean 'Diddy' Combs trial updates: testimony resumes Monday (live blog; Jun 17-18 entries)",
+     "title": "Sean 'Diddy' Combs trial updates: testimony resumes Monday",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/live-updates/sean-diddy-combs-trial-updates-testimony-resume-monday-122882825",
      "date": "2025-06-17/18",
@@ -6020,7 +5762,7 @@
     },
     {
      "id": "nbc_jun17",
-     "title": "Sean 'Diddy' Combs trial live updates (June 17, Brendan Paul / Penland)",
+     "title": "Sean 'Diddy' Combs trial live updates, June 17, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-trial-live-updates-brendan-paul-rcna213329",
      "date": "2025-06-17",
@@ -6053,12 +5795,11 @@
     "Courtroom-process timeline: gag-order warning, juror closed conference, and schedule changes as a 'what could end the trial early' decision tree."
    ],
    "discrepancies": [
-    "CONFLICT (unresolved) - date of the judge's gag-order/sealing warning: Fox News (print page, re-opened) and the GMA live blog place it on Tuesday June 17; a note appended to the NBC June 17 live blog says it was issued in the morning session of June 16. Kept June 17 (two outlets), medium confidence.",
-    "Juror 6: CBS, Fox and NBC (June 16 pages) say dismissed Monday June 16; an NBC June 17 live-blog entry (8:57 AM) reads as if the juror was excused that morning. Treated as the NBC blog restating the June 16 dismissal; formal date June 16."
+    "When the judge warned about leaks: Fox News and GMA say Tuesday, June 17; a note on NBC's live blog says Monday, June 16."
    ],
    "single_sourced": [],
    "alt_day_labels": [
-    "Trial Day 25 (GMA 'Day 29')"
+    "GMA calls this 'Day 29'."
    ],
    "outlet_families": [
     "ABC",
@@ -6070,7 +5811,7 @@
     "summary": "5 sources from 3 outlet families (ABC, Fox, NBC); numbers: 0 high, 5 medium, 2 low."
    },
    "summary": "Witnesses heard: DeLeassa Penland.",
-   "calendar_note": "Wednesday June 18, 2025 is not a testimony day: court convened briefly, a juror reported vertigo symptoms, no witnesses were heard, and the court adjourned (ABC/GMA live blog; ABC7 live blog; NBC newsletter calls the day 'effectively canceled'). Thursday June 19 was the Juneteenth federal holiday. Testimony resumed Friday June 20 (Day 26). NBC's 'Day N' labels count June 18 (NBC calls June 20 'Day 27', June 23 'Day 28', June 24 'Day 29')."
+   "calendar_note": "Wednesday, June 18, 2025 was not a testimony day: court met briefly, a juror reported being ill, no witnesses were heard, and the court adjourned (ABC, NBC). Thursday June 19 was the Juneteenth federal holiday. Testimony resumed Friday June 20 (Day 26)."
   },
   {
    "day": 26,
@@ -6161,9 +5902,9 @@
     "Rodney 'Lil Rod' Jones (civil plaintiff, context)"
    ],
    "legal_events": [
-    "Judge kept a juror who had outside communications about jury service (ABC, 1:41 PM GMT).",
-    "Judge flagged wording issues in jury instructions on the drug predicate for racketeering conspiracy.",
-    "Prosecution expected to rest Monday June 23 (did not; rested Tuesday June 24)."
+    "The judge kept a juror who had outside communications about jury service (ABC).",
+    "The judge flagged wording problems in the jury instructions on the drug crimes listed under the racketeering conspiracy count.",
+    "Prosecutors expected to rest Monday, June 23; they rested Tuesday, June 24."
    ],
    "weekday": "Friday",
    "day_label": "Testimony day 26 of 28",
@@ -6178,7 +5919,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Jury, Sean Combs, Diddy newsletter (Day 27: Brendan Paul, Cerciello)",
+     "title": "Jury, Sean Combs, Diddy newsletter, June 20, 2025",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/jury-sean-combs-diddy-newsletter-rcna214068",
      "date": "2025-06-20",
@@ -6213,7 +5954,7 @@
    "discrepancies": [],
    "single_sourced": [],
    "alt_day_labels": [
-    "Trial Day 27 (NBC labels it 'Day 27')"
+    "NBC calls this 'Day 27', because it counts June 18."
    ],
    "outlet_families": [
     "ABC",
@@ -6290,12 +6031,12 @@
     {
      "value": 5,
      "unit": "counts",
-     "what": "1 racketeering conspiracy, 2 sex trafficking, 2 transportation",
+     "what": "Charges at trial: 1 racketeering conspiracy, 2 sex trafficking, 2 transportation to engage in prostitution (court record)",
      "source": "nbc623",
      "outlets": [
       "NBC"
      ],
-     "confidence": "medium"
+     "confidence": "high"
     },
     {
      "value": 4,
@@ -6365,15 +6106,15 @@
     "Cowboys 4 Angels (escort service)"
    ],
    "legal_events": [
-    "Defense announced it will rest without calling witnesses.",
-    "Rule 29 (directed verdict) motion to be heard outside the jury's presence.",
-    "Schedule set: cross finishes Tuesday, prosecution rests, charge conference Wednesday."
+    "The defense announced it would rest without calling witnesses.",
+    "A defense motion asking the judge to acquit (a Rule 29 motion) would be heard outside the jury's presence.",
+    "Schedule set: the defense's questions to the last witness would finish Tuesday, then prosecutors would rest; lawyers would meet the judge on jury instructions Wednesday."
    ],
    "weekday": "Monday",
    "day_label": "Testimony day 27 of 28",
    "sources": [
     {
-     "title": "Sean 'Diddy' Combs live updates: prosecution expected to rest (Day 28)",
+     "title": "Sean 'Diddy' Combs live updates: prosecution expected to rest",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-live-updates-prosecution-expected-rest-case-today-rcna214153",
      "date": "2025-06-23",
@@ -6382,7 +6123,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Sean Combs trial updates: prosecution expected to rest Monday (live blog; Jun 23-24 entries)",
+     "title": "Sean Combs trial updates: prosecution expected to rest Monday",
      "outlet": "ABC News (abc7ny.com live updates)",
      "url": "https://abc7ny.com/live-updates/diddy-trial-live-updates-sean-combs-sex-trafficking-case-nyc-prosecution-expected-rest-monday/16820654/entry/16837060",
      "date": "2025-06-23/24",
@@ -6391,7 +6132,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy's lawyers won't call witnesses after prosecution rests case (Day 28 newsletter)",
+     "title": "Diddy's lawyers won't call witnesses after prosecution rests case",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/sean-combs-defense-witness-diddy-newsletter-rcna214461",
      "date": "2025-06-23/24",
@@ -6400,7 +6141,7 @@
      "opened_this_pass": false
     },
     {
-     "title": "Diddy trial Day 32 recap: Combs declines to testify",
+     "title": "Diddy trial recap: Combs declines to testify",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-32-recap-combs-declines-testify-123176244",
      "date": "2025-06-24",
@@ -6433,12 +6174,10 @@
     "Timeline strip of Dec. 17-21, 2021 showing only the count and duration of recordings (50 files; two shown), no content.",
     "Defense vs prosecution weight scale: 34 witnesses and about six weeks vs zero defense witnesses and under 30 minutes, to anchor the endgame of the trial."
    ],
-   "discrepancies": [
-    "Cerciello 'final witness': Fox News (June 23) calls him the 34th and final prosecution witness while he was still testifying on Monday; NBC (June 24) confirms the government rested after 34 witnesses. The cross by Geragos began June 23 afternoon and ended June 24 (NBC)."
-   ],
+   "discrepancies": [],
    "single_sourced": [],
    "alt_day_labels": [
-    "Trial Day 28 (NBC labels it 'Day 28')"
+    "NBC calls this 'Day 28', because it counts June 18."
    ],
    "outlet_families": [
     "ABC",
@@ -6487,7 +6226,7 @@
     {
      "value": 28,
      "unit": "days",
-     "what": "Days of testimony (GMA: '34 witnesses over 28 days'); this file set's numbering",
+     "what": "Days of testimony, as this site counts them (GMA: '34 witnesses over 28 days')",
      "source": "GMA; consistent with NBC 'Day 29' minus June 18",
      "outlets": [
       "ABC",
@@ -6550,7 +6289,7 @@
     {
      "value": 100000,
      "unit": "USD",
-     "what": "Cash payment cited in Rule 29 argument (security supervisor Garcia testimony, for himself and two others)",
+     "what": "Cash payment cited in the Rule 29 argument (hotel security officer Eddy Garcia testified it was for himself and two others)",
      "source": "NBC (from Day 15 testimony)",
      "outlets": [
       "NBC"
@@ -6583,18 +6322,17 @@
     "Marc Agnifilo"
    ],
    "legal_events": [
-    "Government rests (34 witnesses).",
-    "Rule 29 motion for judgment of acquittal on counts 1-5; decision reserved (denied Sept. 30, 2025).",
-    "Combs states on the record he will not testify.",
-    "Defense rests without calling a witness; no government rebuttal.",
-    "Charge conference set for June 25; closings set for June 26."
+    "The prosecution rested after 34 witnesses.",
+    "The defense made a Rule 29 motion, asking the judge to acquit on all five counts because the evidence was not enough; the judge reserved his decision and denied it on September 30, 2025.",
+    "Combs told the judge on the record that he would not testify.",
+    "The defense rested without calling a witness; prosecutors called no rebuttal witnesses.",
+    "Lawyers would meet the judge on jury instructions June 25; closing arguments were set for June 26."
    ],
    "discrepancies": [
-    "Wording of Combs's statement to the judge differs by outlet (see key points); all agree he chose not to testify.",
-    "Which 2012/2017 Ventura text was read: GMA says a 2012 message, NBC says a 2017 message; both may have been read. Not resolved without transcript.",
-    "Trial length: NPR 'nearly seven weeks', Fox News 'six weeks of testimony' (different measures: calendar span from May 12 vs testimony weeks).",
-    "NBC says cross ended 1:26 p.m. and the government rested 1:30 p.m.; GMA/NPR only say 'afternoon'.",
-    "Fox News reports the defense had first estimated about two weeks; NBC newsletter (June 23) reports a defense plan of 2 to 5 days before it decided to call none."
+    "Outlets quote Combs's words to the judge slightly differently; all agree he chose not to testify.",
+    "Which old message from Ventura the defense read: GMA says one from 2012; NBC says one from 2017. Both may have been read.",
+    "How long the trial ran: NPR says nearly seven weeks, counting from May 12; Fox says six weeks of testimony.",
+    "How long the defense planned its case to be: Fox reports a first estimate of about two weeks; an NBC newsletter reported 2 to 5 days. In the end it called no witnesses."
    ],
    "single_sourced": [
     "Exact clock times (NBC live blog only)",
@@ -6630,7 +6368,7 @@
     },
     {
      "id": "gma32_open",
-     "title": "Diddy trial Day 32 recap: Combs declines to testify",
+     "title": "Diddy trial recap: Combs declines to testify",
      "outlet": "ABC News / Good Morning America",
      "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-32-recap-combs-declines-testify-123176244",
      "date": "2025-06-24",
@@ -6678,14 +6416,14 @@
  "verdict": {
   "title": "Closings, deliberations, verdict (July 2, 2025) and sentencing (October 3, 2025)",
   "case": "United States v. Sean Combs, No. 24-cr-542 (S.D.N.Y.), Judge Arun Subramanian",
-  "content_note": "Facts are as reported by the cited outlets. Descriptions are factual and non-graphic. The jury acquitted on the racketeering and both sex-trafficking counts; those are acquittals, not findings of the allegations.",
+  "content_note": "Facts are as reported by the cited outlets, without graphic detail. The jury found Combs not guilty of racketeering conspiracy and both sex-trafficking counts. Not guilty means the jury was not persuaded beyond a reasonable doubt; it is not a finding about what anyone lived through.",
   "summary": "After the evidence closed on June 24, the court held a charge conference (June 25), then closing arguments (June 26-27). The jury was charged and began deliberating June 30 and returned verdicts on July 2 after about 13 hours over three days: not guilty on racketeering conspiracy and on both sex-trafficking counts; guilty on two counts of transportation to engage in prostitution. Bail was denied. On October 3, 2025, Combs was sentenced to 50 months, a $500,000 fine and five years of supervised release.",
   "phases": [
    {
     "date": "2025-06-25",
     "label": "Charge conference",
     "facts": [
-     "Lawyers and judge worked on jury instructions without the jury (scheduled per NBC and GMA on June 24; reporting that it took place that day rests on those schedule notes, no post-event article opened)."
+     "Lawyers and the judge worked on the jury's instructions without the jury present (scheduled, per NBC and GMA)."
     ],
     "confidence": "medium"
    },
@@ -6693,7 +6431,7 @@
     "date": "2025-06-26",
     "label": "Closing arguments, day 1: prosecution",
     "facts": [
-     "AUSA Christy Slavik gave the government's closing, described by GMA as nearly five hours; she argued the evidence showed a decades-long criminal enterprise and that Combs used sexually explicit videos to pressure Ventura (NPR/AP wording via Michigan Public)."
+     "Prosecutor Christy Slavik gave the government's closing argument, which GMA described as nearly five hours. She argued the evidence showed a decades-long criminal enterprise and that Combs used sexually explicit videos to pressure Ventura (NPR, AP). The jury later found him not guilty of racketeering conspiracy."
     ],
     "confidence": "medium"
    },
@@ -6703,7 +6441,7 @@
     "facts": [
      "Marc Agnifilo's defense closing ran about four hours (NPR: more than four hours; GMA: roughly four; AP: four hours). He called the Combs-Ventura relationship a 'great modern love story,' argued the relationships were consensual, that the case was about money, and that the male escorts were paid for their time; he disputed the arson, kidnapping and racketeering claims.",
      "Judge Subramanian sustained an objection to the suggestion that the government was 'targeting' Combs and told jurors charging decisions are 'none of your concern' (NPR).",
-     "AUSA Maurene Comey's rebuttal said domestic violence is not a defense to sex trafficking and that the conduct ended 'in this courtroom' (GMA, NPR, AP)."
+     "Prosecutor Maurene Comey's rebuttal said domestic violence is not a defense to sex trafficking and that the conduct ended 'in this courtroom' (GMA, NPR, AP)."
     ],
     "confidence": "high"
    },
@@ -6722,7 +6460,7 @@
     "facts": [
      "About 75 minutes into the day, jurors asked to review testimony of Cassie Ventura on the 2016 Los Angeles hotel incident, a 2013 yacht incident and a New York hotel incident, plus Daniel Phillip's testimony (PBS).",
      "Jurors asked what counts as drug distribution under the racketeering conspiracy charge; the judge planned only to remind them of earlier instructions (PBS).",
-     "Late in the day jurors reported agreement on four counts and said they were stuck on the racketeering count; the judge told them to keep deliberating (CBS, AP via KCTV5). Reports that prosecutors asked for a modified Allen charge and the defense opposed come from an earlier research pass (NPR/ABC) and were not re-opened."
+     "Late in the day jurors reported agreement on four counts and said they were stuck on the racketeering count; the judge told them to keep deliberating (CBS, AP via KCTV5). NPR and ABC reported that prosecutors asked for a modified Allen charge (an instruction urging a stuck jury to keep trying) and that the defense opposed it."
     ],
     "confidence": "high"
    },
@@ -6735,7 +6473,7 @@
      "Bail: the judge denied bail; the defense had proposed a $1 million bond (CBS). He said Combs had not shown by clear and convincing evidence a lack of danger to any person or the community (AP via KCTV5). Combs remained in custody (Brooklyn Metropolitan Detention Center).",
      "Penalties: each transportation count carries up to 10 years, up to 20 years if consecutive (Fox 5, NPR). The sex-trafficking counts carried a 15-year mandatory minimum and the racketeering count up to life (KPBS/NPR, AP).",
      "Prosecutors' preliminary guideline estimate for the two convictions: 51 to 63 months (CBS); the defense estimated about two years (AP via KCTV5). The judge proposed October 3 for sentencing (CBS) and confirmed it in a July 9 letter (NPR).",
-     "SDNY issued a statement on the verdict (Press Release 25-155, dated July 1, updated July 2) from U.S. Attorney Jay Clayton and HSI Special Agent in Charge Ricky J. Patel; the page does not itself recite the verdict counts and speaks generally about victim-centered prosecution (DOJ)."
+     "The U.S. Attorney's Office for the Southern District of New York issued a statement on the verdict from U.S. Attorney Jay Clayton and Homeland Security Investigations Special Agent in Charge Ricky J. Patel (DOJ)."
     ],
     "confidence": "high"
    },
@@ -6743,7 +6481,7 @@
     "date": "2025-09-30",
     "label": "Post-trial motions denied",
     "facts": [
-     "Judge Subramanian denied the Rule 29 acquittal motion and a new-trial motion (TheWrap, reporting the written opinion). The court's own opinion PDF was located in search (transcripts.nysd.uscourts.gov) but was not opened in this pass."
+     "Judge Subramanian denied the defense's Rule 29 motion (asking him to acquit) and its motion for a new trial (TheWrap, reporting the written opinion)."
     ],
     "confidence": "medium"
    },
@@ -6755,10 +6493,18 @@
      "Requests: prosecution at least 11 years 3 months (135 months) (NPR, AP); defense no more than 14 months / immediate release (NPR, AP, GMA). Probation's guideline range: about 5 years 10 months to 7 years 3 months (AP via KSAT).",
      "Judge's reasoning: a substantial sentence was needed to 'send a message to abusers and victims alike that exploitation and violence against women is met with real accountability' (NPR); 'a history of good works cannot wash away the record in this case' (GMA); Combs 'paid for and organized these acts' and the conduct went on over a decade 'with tremendous frequency' (AP, GMA). He kept a coercion enhancement citing threats to release recordings (AP via KSAT).",
      "Credit: for time held since the September 2024 arrest (about a year) (NPR, GMA, NBC New York). Estimated time remaining: about 2.5 years (NPR) or roughly 3 years (AP) - estimates differ.",
-     "Combs apologized to Cassie Ventura, Jane and domestic-violence survivors; six of his seven children addressed the court; the witness 'Mia' withdrew from speaking after a defense objection (AP, NPR). Defense said it would appeal (NBC New York; AP: 14 days to file notice).",
-     "A DOJ/SDNY press release for the sentencing was searched for and not found in this pass."
+     "Combs apologized to Cassie Ventura, Jane and domestic-violence survivors; six of his seven children addressed the court; the witness 'Mia' withdrew from speaking after a defense objection (AP, NPR). Defense said it would appeal (NBC New York; AP: 14 days to file notice)."
     ],
     "confidence": "high"
+   },
+   {
+    "date": "2026-04-09",
+    "label": "Appeal argued",
+    "facts": [
+     "Combs appealed his conviction and sentence. A three-judge panel of the 2nd U.S. Circuit Court of Appeals in Manhattan heard arguments; the judges asked whether the sentence was too harsh and whether the trial judge relied on conduct tied to the charges the jury rejected. The panel did not rule that day (AP via WBAL-TV).",
+     "No appeal decision had been reported when this page was last checked, on November 19, 2026."
+    ],
+    "confidence": "medium"
    }
   ],
   "numbers": [
@@ -7017,13 +6763,12 @@
    }
   ],
   "discrepancies": [
-   "Verdict-day bail ruling: Fox 5's article (re-opened) says no ruling yet at publication; CBS, AP via KCTV5 and the ABC headline report the judge denied bail the same day. Later article wins: bail denied July 2.",
-   "Credit for time served at verdict: CBS says '10 months' credit' (about nine months in custody per AP); at sentencing, outlets say about a year since the September 2024 arrest (NPR, NBC NY, AP). Different dates, not a conflict.",
-   "Time remaining after sentencing: NPR estimates as early as about 2.5 years; AP says roughly 3 years; neither is an official Bureau of Prisons release date.",
-   "Prosecution request: NPR/AP 'at least 11 years and 3 months'; GMA headline 'at least 11 years'; TheWrap cites a 189-page submission seeking more than 11 years. All are compatible with 135 months.",
-   "Closing lengths: GMA 'nearly five hours' (prosecution) is single-sourced; AP and NPR did not give prosecution length.",
-   "Wikipedia/NBC count 29 days of testimony because they include the no-testimony June 18; this file set counts 28 testimony days (GMA: 34 witnesses over 28 days).",
-   "Fox News's June 30 article says 'opening statements began May 5'; May 5 was jury selection and openings were May 12 (earlier pass)."
+   "Bail on verdict day: an early Fox 5 article said there was no decision yet; CBS, AP and ABC report the judge denied bail that day, July 2.",
+   "Time already served: at the verdict, CBS cited about 10 months' credit; at sentencing, outlets said about a year since his September 2024 arrest. The two were measured on different dates.",
+   "Time left after sentencing: NPR estimated as little as about two and a half years; AP said roughly three years. Neither is an official Bureau of Prisons release date.",
+   "What prosecutors asked for: NPR and AP say at least 11 years and 3 months; GMA's headline says at least 11 years; TheWrap says more than 11 years. These agree.",
+   "Some outlets, including NBC, count 29 days of testimony because they include June 18, when no witness testified. This site counts 28, matching GMA's '34 witnesses over 28 days'.",
+   "A Fox News article says opening statements began May 5. May 5 was jury selection; openings were May 12."
   ],
   "single_sourced": [
    "Prosecution closing about five hours (GMA)",
@@ -7123,7 +6868,7 @@
    },
    {
     "id": "gma34_open",
-    "title": "Diddy trial Day 34 recap (closing arguments)",
+    "title": "Diddy trial recap: closing arguments",
     "outlet": "ABC News / Good Morning America",
     "url": "https://www.goodmorningamerica.com/news/story/diddy-trial-day-34-recap-defense-reframe-alleged-123291971",
     "date": "2025-06-28",
@@ -7192,6 +6937,15 @@
     "date": "2025-09-30",
     "note": "Opinion dated Sept 30; Rule 29 and new-trial motions denied; 189-page government submission",
     "opened_this_pass": true
+   },
+   {
+    "id": "ap_appeal",
+    "title": "Appeals court judges raise questions about severity of Sean 'Diddy' Combs' 4-year prison sentence",
+    "outlet": "Associated Press via WBAL-TV",
+    "url": "https://www.wbaltv.com/article/sean-diddy-combs-appeals-conviction-first-amendment/70973587",
+    "date": "2026-04-09",
+    "note": "Opened November 19, 2026: Second Circuit panel heard arguments April 9, 2026; no ruling that day.",
+    "opened_this_pass": true
    }
   ],
   "verification_note": "Verdict counts: CBS, ABC7, Fox 5, NPR/KPBS and AP all agree. Sentence terms: NPR, GMA, AP (two pages), NBC New York agree on 50 months and $500,000; supervised release confirmed by NPR, AP and NBC New York.",
@@ -7207,7 +6961,7 @@
   ],
   "confidence": {
    "level": "high",
-   "summary": "17 sources from 8 outlet families (ABC, AP, CBS, DOJ, Fox, NBC, NPR, TheWrap); verdict counts and sentence terms confirmed by 4+ outlets each; items flagged medium/low above."
+   "summary": "18 sources from 9 outlet families (ABC, AP, CBS, DOJ, Fox, NBC, NPR, PBS, TheWrap)"
   },
   "day": "verdict"
  }

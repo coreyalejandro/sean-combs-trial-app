@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Dual lifeline",
   contentLevel: 2,
   caption: "Ages and dates as Ventura testified. The defense agreed on cross-examination that the relationship lasted about 11 years (Day 4).",
-  howToRead: "The red line is Ventura's age and the black line is Combs's, year by year; the shaded band between them is the relationship. Numbered marks match the list below. Drag across the picture or move the slider to read both ages in any year.",
+  howToRead: "The red line is Ventura's age year by year and the black line is Combs's, labelled only for the year they met, as she testified; the shaded band between them is the relationship. Numbered marks match the list below. Drag across the picture or move the slider to read her age in any year.",
   altShort: "Timeline from 2005 to 2018 showing Ventura's age (19 to about 32) and Combs's age (37 to about 50), with the dates she gave for each stage of the relationship.",
   status: 'done',
 }

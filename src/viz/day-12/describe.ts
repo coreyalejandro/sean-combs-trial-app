@@ -1,4 +1,5 @@
 // Day 12 text version: long description and table rows from the same selection as the picture.
+import { midSentence } from '@/lib/viz/format'
 import type { TableRow } from '@/viz/kits/days-08-14/ui'
 import { valueText } from '@/viz/kits/days-08-14/geom'
 import { ALL_HOURS, HOURS_PER_DAY, type Day12Model } from './select'
@@ -18,7 +19,7 @@ export function describe(m: Day12Model): { paragraphs: string[]; rows: TableRow[
     if (p.span?.calculated) rows.push({ key: `${p.id}-calc`, value: `${p.span.hours} hours`, what: `${who}: length of the workday`, fact: null, calc: p.span.calculated })
     if (p.always) rows.push({ key: `${p.id}-always`, value: ALL_HOURS, what: `${who}: ${p.always.text}`, fact: p.always })
     if (p.sleepDays) rows.push({ key: `${p.id}-sleep`, value: valueText(p.sleepDays.fact.value, p.sleepDays.fact.unit), what: `${who}: ${p.sleepDays.fact.text}`, fact: p.sleepDays.fact })
-    for (const x of p.pay) rows.push({ key: `${p.id}-${x.fact.key}`, value: valueText(x.fact.value, x.fact.unit), what: `${who}: ${x.label.toLowerCase()} (${x.fact.text})`, fact: x.fact })
+    for (const x of p.pay) rows.push({ key: `${p.id}-${x.fact.key}`, value: valueText(x.fact.value, x.fact.unit), what: `${who}: ${midSentence(x.label)} (${x.fact.text})`, fact: x.fact })
   }
   for (const f of [m.standardDay, m.standardWeek]) if (f) rows.push({ key: f.key, value: valueText(f.value, f.unit), what: f.text, fact: f })
   return { paragraphs, rows }

@@ -130,11 +130,11 @@ export function MoneyPath(p: PathProps) {
         {ret ? (
           <g>
             <circle cx={cx(ret.date)} cy={familyY} r={r} className={s.station} />
-            <text x={cx(ret.date)} y={familyY - r} textAnchor="middle" className={s.stationLabel}>returned</text>
+            <text x={cx(ret.date) + r + layout.dot} y={familyY - r - layout.dot} textAnchor="start" className={s.stationLabel}>returned</text>
           </g>
         ) : null}
         {held !== null && wire && ret ? (
-          <text x={(cx(wire.date) + cx(ret.date)) / 2} y={accountY + r + layout.dot} textAnchor="middle" className={s.heldLabel}>
+          <text x={cx(ret.date) - r} y={accountY + r + layout.gap} textAnchor="end" className={s.heldLabel}>
             held {held} days (calculated)
           </text>
         ) : null}

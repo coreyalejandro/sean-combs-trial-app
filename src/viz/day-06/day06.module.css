@@ -1,11 +1,12 @@
 /* Day 6: dot map with a year slider. On a phone the national map loses its labels and the list carries the detail. */
 .viz { display: grid; gap: 14px; }
 .mapWrap { display: grid; gap: 12px; }
+.mapWrap { grid-template-areas: "controls" "list" "panels"; }
+.controls { grid-area: controls; }
+.panels { grid-area: panels; }
+.listCol { grid-area: list; }
 @media (min-width: 800px) {
-  .mapWrap { grid-template-columns: minmax(0, 1fr) 280px; grid-template-areas: "controls controls" "panels list"; align-items: start; }
-  .controls { grid-area: controls; }
-  .panels { grid-area: panels; }
-  .listCol { grid-area: list; }
+  .mapWrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "controls controls" "list panels"; align-items: start; }
 }
 .controls { background: var(--ink); color: var(--paper); padding: 12px; display: grid; gap: 8px; }
 .yearLabel { font: 700 12px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: baseline; gap: 8px; }
@@ -61,3 +62,4 @@
 .anchor { fill: var(--red); stroke: #fff; stroke-width: 1; }
 .placeLabel { font: 400 11px var(--f-data); fill: var(--ink); paint-order: stroke; stroke: #e4e4de; stroke-width: 3px; }
 .leader { stroke-opacity: 0.7; }
+

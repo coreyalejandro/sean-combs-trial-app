@@ -56,7 +56,7 @@ function Lines({ p, width, year, onPick, compact }: { p: LifelineProps; width: n
       viewBox={`0 0 ${width} ${h}`}
       className={`${s.svg} ${compact ? s.svgPhone : s.svgWide}`}
       role="img"
-      aria-label={`Ages from ${p.startYear} to ${p.endYear}. Cassie Ventura ${herAge(p.startYear)} to ${herAge(p.endYear)}; Sean Combs ${hisAge(p.startYear)} to ${hisAge(p.endYear)}; ${p.gap} years apart.`}
+      aria-label={`Years ${p.startYear} to ${p.endYear}. Cassie Ventura about ${herAge(p.startYear)} to ${herAge(p.endYear)}. She testified she was ${p.herAgeMet} and Combs was ${p.hisAgeMet} when they met in ${p.metYear}.`}
       onPointerDown={(e) => {
         e.currentTarget.setPointerCapture?.(e.pointerId)
         pick(e)
@@ -89,12 +89,12 @@ function Lines({ p, width, year, onPick, compact }: { p: LifelineProps; width: n
       <line x1={x(p.startYear)} x2={x(p.endYear + 1)} y1={hisY} y2={hisY} className={s.hisLine} />
       <text x={x(p.startYear) - layout.dot} y={herY} textAnchor="end" dominantBaseline="middle" className={s.who}>Ventura</text>
       <text x={x(p.startYear) - layout.dot} y={hisY} textAnchor="end" dominantBaseline="middle" className={s.who}>Combs</text>
-      <text x={x(p.startYear) - layout.dot} y={(herY + hisY) / 2} textAnchor="end" dominantBaseline="middle" className={s.gapLabel}>{compact ? `${p.gap} yrs` : `${p.gap} years apart`}</text>
+      <text x={x(p.startYear) - layout.dot} y={(herY + hisY) / 2} textAnchor="end" dominantBaseline="middle" className={s.gapLabel}>{compact ? `${p.herAgeMet} and ${p.hisAgeMet}` : `${p.herAgeMet} and ${p.hisAgeMet} when they met`}</text>
       {years.map((y) => (
         <g key={y} aria-hidden="true">
           <line x1={x(y)} x2={x(y)} y1={herY - layout.dot} y2={hisY + layout.dot} className={s.yearRule} />
           <text x={mid(y)} y={herY - layout.dot} textAnchor="middle" className={`${s.age} ${y === year ? s.ageOn : ''}`}>{showYear(y) || y === year ? herAge(y) : ''}</text>
-          <text x={mid(y)} y={hisY + layout.gap} textAnchor="middle" className={`${s.age} ${y === year ? s.ageOn : ''}`}>{showYear(y) || y === year ? hisAge(y) : ''}</text>
+          <text x={mid(y)} y={hisY + layout.gap} textAnchor="middle" className={`${s.age} ${y === year ? s.ageOn : ''}`}>{y === p.metYear ? hisAge(y) : ''}</text>
           {showYear(y) ? (
             <text x={mid(y)} y={h - layout.dot} textAnchor="middle" className={s.yearLabel}>{y}</text>
           ) : null}
@@ -124,7 +124,6 @@ function Lines({ p, width, year, onPick, compact }: { p: LifelineProps; width: n
 export function Lifeline(p: LifelineProps) {
   const [year, setYear] = useState(p.startYear)
   const herAge = p.herAgeMet + (year - p.metYear)
-  const hisAge = p.hisAgeMet + (year - p.metYear)
   const atYear = p.events.filter((e) => e.year <= year && year <= (e.yearEnd ?? e.year))
   return (
     <div className={s.lifeline} data-viz-control="lifeline">
@@ -142,13 +141,12 @@ export function Lifeline(p: LifelineProps) {
           step={1}
           value={year}
           onChange={(e) => setYear(Number(e.target.value))}
-          aria-valuetext={`${year}: Ventura about ${herAge}, Combs about ${hisAge}`}
+          aria-valuetext={`${year}: Ventura about ${herAge}`}
           className={s.slider}
         />
         <p className={s.readoutText} aria-live="polite">
-          In <span className="num">{year}</span>, Ventura was about <strong className="num">{herAge}</strong> and Combs about{' '}
-          <strong className="num">{hisAge}</strong>
-          <Calculated formula={`age in the year they met plus years since; she was ${p.herAgeMet} and he was ${p.hisAgeMet} in ${p.metYear}`} />
+          In <span className="num">{year}</span>, Ventura was about <strong className="num">{herAge}</strong>
+          <Calculated formula={`her age when they met plus the years since; she testified she was ${p.herAgeMet} in ${p.metYear}`} />
           {atYear.length > 0 ? <span className={s.atYear}> · {atYear.map((e) => e.label).join('; ')}</span> : null}
         </p>
       </div>

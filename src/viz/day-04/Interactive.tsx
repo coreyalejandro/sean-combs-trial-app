@@ -87,7 +87,7 @@ export function Thread({ messages, labels }: { messages: Message[]; labels: Reco
                     <Sourced level={m.ventura.level} refs={m.ventura.refs} labels={labels} />
                   </>
                 ) : (
-                  <p>Her answer to this message is not in the record.</p>
+                  <p>Her answer to this message was not reported.</p>
                 )}
               </div>
             </li>

@@ -22,10 +22,11 @@ export default function FinalePage() {
         <div className="wrap cover-inner">
           <span className="cover-number" aria-hidden="true">{DAY_COUNT + 1}</span>
           <div className="cover-text">
-            <p className="cover-eyebrow mono">Visualization {DAY_COUNT + 1} · The finale · a simulation</p>
+            <p className="cover-eyebrow mono">After the verdict · a simulation</p>
             <h1 className="cover-title">If every survivor walked to Washington</h1>
             <p className="cover-dek">
-              About {fmtPeople(summary.totals.central)} adults in America have survived contact sexual violence. On one morning, they all
+              This site followed one trial through {DAY_COUNT} days of testimony and a verdict on five charges. This page pulls back
+              from that one courtroom. About {fmtPeople(summary.totals.central)} adults in America have survived contact sexual violence. On one morning, they all
               leave home and walk to Washington, D.C. 1 dot = {fmtInt(summary.people_per_dot)} people. Every walker is invented.
             </p>
           </div>
@@ -70,16 +71,20 @@ export default function FinalePage() {
         <FinaleAtAGlance />
         <FinaleMethod />
 
-        <section className="fm-closing" aria-labelledby="closing-heading">
-          <p className="mono fm-version">Version 1</p>
-          <h2 id="closing-heading">This is the march <em>to</em> Washington.</h2>
-          <p className="measure">
-            The march <em>on</em> Washington, what everyone does once they are there, is in development and is not defined yet. The start
-            date is not chosen either, so the map counts &ldquo;Day 1&rdquo;, &ldquo;Day 2&rdquo; and so on.
-          </p>
-        </section>
-
         <FinaleSources />
+
+        <section className="fm-closing" aria-labelledby="closing-heading">
+          <p className="measure">
+            One trial asked one jury whether five charges were proved beyond a reasonable doubt. Not guilty is not a finding about what anyone
+            lived through. Outside that courtroom:
+          </p>
+          <h2 id="closing-heading">About {fmtPeople(summary.totals.central)} people.</h2>
+          <p className="measure">
+            Adults in the United States who have survived contact sexual violence. Every walker on this map is invented. The people they stand
+            for are not.
+          </p>
+          <p className="measure muted">This is version 1: the march <em>to</em> Washington. Version 2 will be the march <em>on</em> Washington.</p>
+        </section>
         <nav className="day-pager" aria-label="Previous and next">
           <Link href="/verdict/" className="btn" rel="prev">
             <span>Back to the verdict</span>

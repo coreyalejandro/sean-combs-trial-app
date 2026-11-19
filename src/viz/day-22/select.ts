@@ -229,7 +229,7 @@ export function selectDay22(today: TrialDay): Day22Selection {
 
     const timed = segments.filter((s) => s.exam !== 'closed' && s.start && s.end)
     let minutes: number | null = null
-    let minutesFormula = 'not calculated: the record gives no times for the questioning this day'
+    let minutesFormula = 'not calculated: the reporting gives no times for the questioning this day'
     if (timed.length > 0) {
       minutes = timed.reduce((sum, s) => sum + minutesBetween((s.start as TimeFact).date, (s.end as TimeFact).date), 0)
       minutesFormula = 'end time minus start time'

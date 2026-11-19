@@ -99,7 +99,7 @@ function Chart({ view, kinds, linear, vertical, sel, setSel }: { view: Day13View
           return vertical ? (
             <g key={t}>
               <line x1={g.tap + g.gap} x2={W} y1={p} y2={p} className={css.grid} />
-              <text x={g.tap + g.half + 2} y={p + g.quarter} textAnchor="end" className={css.gridText}>{formatUSDShort(t)}</text>
+              <text x={2} y={p - 2} textAnchor="start" className={css.gridText}>{formatUSDShort(t)}</text>
             </g>
           ) : (
             <g key={t}>

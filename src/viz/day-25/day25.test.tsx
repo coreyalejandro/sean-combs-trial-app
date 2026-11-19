@@ -6,13 +6,19 @@ import { selectDay25 } from './select'
 
 afterEach(cleanup)
 
-describe('Day 25 evidence treemap', () => {
+describe('Day 25 evidence bars', () => {
   const day = getDay(25)
-  it('counts every exhibit in the records', () => {
+  it('counts each exhibit once, leaving out what was excluded or only described', () => {
     const sel = selectDay25(day)
     const all = getDays().reduce((n, d) => n + d.exhibits.length, 0)
-    expect(sel.total).toBe(all)
-    expect(sel.groups.reduce((n, g) => n + g.exhibits.length, 0)).toBe(all)
+    expect(sel.mentions).toBe(all)
+    expect(sel.total).toBe(all - sel.notShown - sel.repeats)
+    expect(sel.notShown).toBeGreaterThan(0)
+    expect(sel.repeats).toBeGreaterThan(0)
+    expect(sel.groups.reduce((n, g) => n + g.exhibits.length, 0)).toBe(sel.total)
+    const labels = sel.groups.flatMap((g) => g.exhibits.map((e) => e.label))
+    expect(labels.some((l) => /excluded/i.test(l))).toBe(false)
+    expect(labels.filter((l) => /InterContinental .*video|hotel hallway/i.test(l)).length).toBeLessThanOrEqual(1)
     expect(sel.sealed).toBeGreaterThan(0)
   })
   it('never shows graphic, sexual or quoted message text, or third-party names', () => {

@@ -1,16 +1,14 @@
-// Day 25: What the Jury Was Shown, by Kind of Evidence. A treemap of every exhibit named in coverage
-// across the testimony days, one tile per exhibit, hatched where sealed from the public.
+// Day 25: What the News Said the Jury Was Shown. One bar per kind of evidence, counting the exhibits news coverage
+// names across the testimony days (after removing what was excluded, only described, or a repeat), hatched where sealed.
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { Cite } from '@/components/shell/SourceRef'
 import { NumbersTable } from '@/components/shell/NumbersTable'
-import { layout } from '@/lib/viz/layout'
 import type { DayVizProps } from '@/viz/types'
 import { resolveSources } from '@/lib/data'
 import { Calc, dayLink, RowList, XRef } from '@/viz/kits/days-22-28/kit'
-import { TreemapInteractive } from './Interactive'
+import { BarsInteractive, type BarRow } from './Interactive'
 import { meta } from './meta'
 import { selectDay25, SIDE_WORDS, type Day25Selection, type KindGroup } from './select'
-import { treemapGeometry } from './treemap'
 import styles from './day25.module.css'
 
 export { meta }
@@ -19,14 +17,14 @@ function GroupList({ g }: { g: KindGroup }) {
   return (
     <div>
       <h3 className={styles.listHead}>
-        {g.label}: <span className="num">{g.exhibits.length}</span> <Calc formula="exhibits named in coverage, counted" />
+        {g.label}: <span className="num">{g.exhibits.length}</span> <Calc formula="exhibits named in news coverage, counted once each" />
       </h3>
       <ul className={styles.list}>
         {g.exhibits.map((e) => (
           <li key={e.id}>
             <a href={dayLink(e.day)}>Day {e.day}</a>: {e.label}
             {e.sealed ? <span className="tag">sealed</span> : null}
-            {e.side !== 'unstated' ? <span className="tag">{e.side}</span> : null}
+            {e.side !== 'unstated' ? <span className="tag">shown by the {e.side}</span> : null}
           </li>
         ))}
       </ul>
@@ -37,11 +35,8 @@ function GroupList({ g }: { g: KindGroup }) {
 function Legend() {
   return (
     <ul className={styles.legend} aria-label="Key">
-      <li><span className={`${styles.sw} ${styles.swPro}`} aria-hidden="true" /> presented by the prosecution, as stated in coverage</li>
-      <li><span className={`${styles.sw} ${styles.swDef}`} aria-hidden="true" /> presented by the defense, as stated</li>
-      <li><span className={`${styles.sw} ${styles.swUn}`} aria-hidden="true" /> side not stated in coverage</li>
-      <li><span className={`${styles.sw} ${styles.swSeal}`} aria-hidden="true" /> hatched: sealed, seen by the jury only</li>
-      <li><span className={`${styles.sw} ${styles.swToday}`} aria-hidden="true" /> red outline: named on this day</li>
+      <li><span className={`${styles.sw} ${styles.swUn}`} aria-hidden="true" style={{ background: 'var(--ink)' }} /> exhibits of that kind</li>
+      <li><span className={`${styles.sw} ${styles.swSeal}`} aria-hidden="true" /> hatched part: sealed, seen by the jury only</li>
     </ul>
   )
 }
@@ -81,16 +76,18 @@ function DayFigures({ day }: DayVizProps) {
 
 export default function Day25Viz({ n, day }: DayVizProps) {
   const sel = selectDay25(day)
-  const wide = treemapGeometry(sel, layout.chartWidth, layout.chartWidth / 2 + layout.margin.bottom)
-  const narrow = treemapGeometry(sel, layout.phoneWidth - layout.gap * 2, layout.chartWidth * (2 / (2 + 1)))
+  const rows: BarRow[] = sel.groups.map((g) => ({
+    kind: g.kind, label: g.label, count: g.exhibits.length, sealed: g.sealed, today: g.exhibits.filter((e) => sel.todayIds.includes(e.id)).length,
+  }))
   return (
     <div className={styles.viz}>
       <p className={styles.summary}>
-        <span className={styles.big}>{sel.total}</span> exhibits named in coverage over {sel.daysWithExhibits} days{' '}
-        <Calc formula="every exhibit listed in the day records, counted" />; <span className={styles.big}>{sel.sealed}</span> sealed from
-        the public <Calc formula="exhibits whose description says sealed, jury only or not public" />.
+        <span className={styles.big}>{sel.total}</span> exhibits named in news coverage over {sel.daysWithExhibits} days{' '}
+        <Calc formula={`${sel.mentions} mentions, less ${sel.notShown} the judge excluded or that were only described, and ${sel.repeats} repeats of the same exhibit`} />;{' '}
+        <span className={styles.big}>{sel.sealed}</span> sealed from the public <Calc formula="exhibits whose description says sealed, jury only or not public" />.
+        This is what the reporting mentions, not the court&rsquo;s exhibit list.
       </p>
-      <TreemapInteractive wide={wide} narrow={narrow} lists={wide.groups.map((g) => <GroupList key={g.kind} g={sel.groups.find((x) => x.kind === g.kind) as KindGroup} />)} legend={<Legend />} />
+      <BarsInteractive rows={rows} lists={sel.groups.map((g) => <GroupList key={g.kind} g={g} />)} legend={<Legend />} dayLabel={`Day ${day.day}`} />
       <DayFigures n={n} day={day} />
     </div>
   )
@@ -99,7 +96,7 @@ export default function Day25Viz({ n, day }: DayVizProps) {
 function CountsTable({ sel }: { sel: Day25Selection }) {
   return (
     <RowList
-      caption="Exhibits named in coverage, by kind (all calculated by counting)"
+      caption="Exhibits named in news coverage, by kind (all calculated by counting)"
       columns={['Kind', 'Exhibits', 'Sealed', SIDE_WORDS.prosecution, SIDE_WORDS.defense, SIDE_WORDS.unstated]}
       rows={sel.groups.map((g) => ({
         key: g.kind,
@@ -115,12 +112,13 @@ export function TextVersion({ day }: DayVizProps) {
     <>
       <p>{meta.altShort}</p>
       <p>
-        The day records name {sel.total} exhibits across {sel.daysWithExhibits} testimony days. Each is sorted into a kind by the words its
-        description uses (for example &ldquo;audio&rdquo;, &ldquo;photo&rdquo;, &ldquo;bank&rdquo;); {sel.sealed} are described as sealed
-        or shown to the jury only. Coverage names the side that presented an exhibit for only {sel.total - sel.bySide.unstated} of them
-        ({sel.bySide.defense} defense, {sel.bySide.prosecution} prosecution); most of the rest came during the prosecution&apos;s case, but
-        the records do not say so item by item, so they are shown as &ldquo;side not stated&rdquo;. Descriptions of injuries, sexual
-        material and quoted messages are replaced with plain words. All counts here are calculated by counting the records.
+        News coverage of the {sel.daysWithExhibits} testimony days mentions {sel.mentions} exhibits or pieces of evidence. This page leaves out{' '}
+        {sel.notShown} that the judge excluded or that were only described or referred to, and counts the same exhibit once even when it came up on
+        several days ({sel.repeats} repeats, most of them the hotel video). That leaves {sel.total}, each sorted into a kind by the words its
+        description uses (for example &ldquo;audio&rdquo;, &ldquo;photo&rdquo;, &ldquo;bank&rdquo;); {sel.sealed} are described as sealed or shown
+        to the jury only. This is what the reporting mentions, not the court&rsquo;s official exhibit list. Coverage names the side that presented
+        an exhibit for only {sel.total - sel.bySide.unstated} of them ({sel.bySide.defense} defense, {sel.bySide.prosecution} prosecution).
+        Descriptions of injuries and sexual material are replaced with plain words. All counts here are calculated by counting.
       </p>
       <CountsTable sel={sel} />
       {sel.groups.map((g) => (

@@ -66,7 +66,8 @@ export function select(day: TrialDay): Day04Selection {
         to: wy[0],
         paraphrase: 'A text in which she said she was willing to take part in the encounters.',
         defense: reading(shown, 'Shown as her own words, to suggest she wanted to take part.'),
-        ventura: answerJustWords,
+        // Her "just words" answer was given about the March 2017 message (CNN via Yahoo), not this one.
+        ventura: null,
         again: [],
       })
   }
@@ -77,7 +78,7 @@ export function select(day: TrialDay): Day04Selection {
         id: 'side',
         from: Number(m[1]),
         to: Number(m[1]),
-        paraphrase: 'A message that used the phrase “side piece.”',
+        paraphrase: 'A message in which she told him he was treating her as less than a partner (“a side piece”), which she said was not what she thought she was.',
         defense: reading(exhibit, 'Introduced by the defense among its exhibits.'),
         ventura: null,
         again: [],
@@ -90,7 +91,7 @@ export function select(day: TrialDay): Day04Selection {
       const again: Message['again'] = []
       for (const d of getDays().filter((x) => x.day > day.day)) {
         const f = findFact(d, /defense entered .*text from Ventura|read in text messages from Cassie Ventura/i)
-        if (f) again.push({ day: d.day, text: /entered/i.test(f.text) ? 'The defense entered this text again.' : 'The defense read her messages to the jury again, as its whole case.', level: f.confidence, refs: f.refs })
+        if (f) again.push({ day: d.day, text: /entered/i.test(f.text) ? 'The defense entered this text again.' : 'The defense read her messages to the jury again, as most of its short case.', level: f.confidence, refs: f.refs })
       }
       messages.push({
         id: 'both',

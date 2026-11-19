@@ -5,12 +5,12 @@ import type { VizMeta } from '@/viz/types'
 
 export const meta: VizMeta = {
   day: 25,
-  title: "What the Jury Was Shown, by Kind of Evidence",
+  title: "What the News Said the Jury Was Shown, by Kind of Evidence",
   question: "What kinds of evidence went before the jury, and how much of it the public could not see?",
-  form: "Treemap",
+  form: "Bar chart by kind",
   contentLevel: 2,
-  caption: "Counts are exhibits named in news coverage, not the court's official exhibit list, which was not opened for this project.",
-  howToRead: 'Each small tile is one exhibit named in news coverage, grouped into blocks by kind; bigger blocks hold more exhibits. Blue and amber tiles were presented by the prosecution or the defense as coverage states; pale tiles do not say. Hatched tiles were sealed from the public. Select a block to list its exhibits.',
-  altShort: "Treemap of every exhibit named in coverage, grouped by kind, with sealed recordings hatched.",
+  caption: "Counts are exhibits named in news coverage, once each, leaving out what the judge excluded and what was only described. They are not the court's official exhibit list.",
+  howToRead: 'Each bar is one kind of evidence; a longer bar means more exhibits of that kind were named in coverage. The hatched part of a bar was sealed from the public. Select a kind to list its exhibits, each linked to its day.',
+  altShort: "Bar chart of the exhibits news coverage names, one bar per kind of evidence, with the sealed part of each bar hatched.",
   status: 'done',
 }

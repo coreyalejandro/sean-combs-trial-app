@@ -128,7 +128,7 @@ test('the static summary, sources and the version-1 line are in the HTML', async
   for (const s of ['cdc-nisvs', 'census-v2025', 'bls-cps11', 'ne-roads']) await expect(page.locator(`#source-${s} a`)).toHaveCount(1)
   const ids = await page.locator('[data-source-ids]').evaluateAll((els) => els.flatMap((e) => (e.getAttribute('data-source-ids') || '').split(' ').filter(Boolean)))
   for (const id of new Set(ids)) await expect(page.locator(`[id="source-${id}"]`), `source ${id}`).toHaveCount(1)
-  await expect(page.locator('.fm-closing')).toContainText('in development')
+  await expect(page.locator('.fm-closing')).toContainText('version 1')
 })
 
 test.describe('without JavaScript', () => {
@@ -162,7 +162,7 @@ test('verdict turn in quiet mode: still frames with Continue, then Begin the mar
   await page.goto('/verdict/')
   const turn = page.locator('.vt-turn')
   await turn.scrollIntoViewIfNeeded()
-  await expect(turn.locator('h2')).toContainText('witnesses')
+  await expect(turn.locator('h2')).toContainText('testified for the prosecution')
   for (let i = 0; i < 3; i++) await turn.getByRole('button', { name: 'Continue' }).click()
   await expect(turn.locator('h2')).toContainText('million adults in America')
   await turn.getByRole('link', { name: 'Begin the march' }).click()

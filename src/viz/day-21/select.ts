@@ -176,34 +176,7 @@ export function select(day: TrialDay): Day21Selection {
     })
   }
 
-  // Her own income: before the relationship (Day 20), and at trial (Day 22)
-  const prior = find(d20, /earlier annual .*income/i)
-  if (prior) {
-    const year = toNumber(prior.value) ?? 0
-    items.push({
-      id: 'prior', kind: 'income', label: 'Her own income before the relationship (yearly figure, shown per month)', lo: year / MONTHS_PER_YEAR, hi: year / MONTHS_PER_YEAR,
-      start: null, end: null, when: 'before the relationship', words: [prior.what], level: prior.confidence, sources: src(d20, prior), fromDays: [d20.day],
-      formula: `about ${formatUSD(year)} a year divided by ${MONTHS_PER_YEAR} months`,
-    })
-  }
-  const later = find(d22, /income from/i)
-  const onlineStart = d19.key_points.find((k) => /OnlyFans in early/i.test(k))?.match(/early (\d{4})/)?.[1]
-  if (later) {
-    const amount = toNumber(later.value) ?? 0
-    const y = onlineStart ? isoToDate(onlineStart)?.date : undefined
-    items.push({
-      id: 'later', kind: 'income', label: 'Her own later income each month (online subscriptions)', lo: amount, hi: amount, start: y ? toIso(y) : null, end: null, open: true,
-      when: onlineStart ? `from early ${onlineStart}` : 'at the time of trial', words: [later.what], level: later.confidence, sources: src(d22, later), fromDays: [d22.day],
-    })
-  }
-  const child = find(d22, /child support/i)
-  if (child) {
-    const amount = toNumber(child.value) ?? 0
-    items.push({
-      id: 'child', kind: 'income', label: 'Child support she receives each month (not from Combs)', lo: amount, hi: amount, start: null, end: null, when: 'at the time of trial',
-      words: [child.what], level: child.confidence, sources: src(d22, child), fromDays: [d22.day],
-    })
-  }
+  // Jane's own income, child support and business are not shown (privacy of a pseudonymous witness; review, Nov 2026).
 
   const dated = items.flatMap((i) => [i.start, i.end]).filter((x): x is string => !!x).sort()
   const first = isoToDate(dated[0] ?? day.date)?.date ?? new Date(0)

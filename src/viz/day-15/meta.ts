@@ -6,7 +6,7 @@ import type { VizMeta } from '@/viz/types'
 export const meta: VizMeta = {
   day: 15,
   title: "Where the $100,000 for the Hotel Video Went",
-  question: "How was the cash paid for the 2016 hotel video divided, according to the security supervisor?",
+  question: "How was the cash paid for the 2016 hotel video divided, according to Eddy Garcia, a hotel security officer?",
   form: "Sankey with a confidence switch",
   contentLevel: 1,
   caption: "Prosecutors called the payment a bribe and part of the racketeering case. The defense said it was meant to keep a damaging video out of the news (Day 1).",

@@ -50,7 +50,11 @@ export function Day22Text({ sel, day }: { sel: Day22Selection; day: TrialDay }) 
                   {r.lunchReturn ? ` (back from lunch ${formatClock(r.lunchReturn.date)})` : ''}
                 </span>,
                 s.start && s.end ? (
-                  <span key="l">{formatDuration(minutesBetween(s.start.date, s.end.date))} <Calc formula="end time minus start time" /></span>
+                  r.lunch && s.exam !== 'closed' ? (
+                    <span key="l">{formatDuration(minutesBetween(s.start.date, s.end.date) - minutesBetween(r.lunch.start.date, r.lunch.end.date))} <Calc formula="end time minus start time, minus the reported lunch break" /></span>
+                  ) : (
+                    <span key="l">{formatDuration(minutesBetween(s.start.date, s.end.date))} <Calc formula="end time minus start time" /></span>
+                  )
                 ) : (
                   'not reported'
                 ),

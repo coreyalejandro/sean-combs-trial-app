@@ -80,7 +80,7 @@ export function select(day: TrialDay): Day15Selection {
   if (cash && cashAmount !== null && share && shareAmount !== null) {
     used.push(share)
     nodes.push({
-      id: 'garcia', name: 'Garcia, the security supervisor', amount: shareAmount, level: share.confidence, sources: numSources(share, pool),
+      id: 'garcia', name: 'Garcia, a hotel security officer', amount: shareAmount, level: share.confidence, sources: numSources(share, pool),
       words: pick(said, /used car|large purchases/i), confirmed: share.confidence === 'high',
     })
     links.push({ source: 'cash', target: 'garcia', value: shareAmount, level: lowest(cash.confidence, share.confidence), confirmed: share.confidence === 'high' })
@@ -109,7 +109,7 @@ export function select(day: TrialDay): Day15Selection {
         const offSources = additionSources(off, pool)
         extraSources.push(...supSources, ...offSources)
         const supLevel: Level = firstPrice ? 'conflict' : sup.confidence
-        nodes.push({ id: 'supervisor', name: 'His supervisor', amount: supAmount, level: supLevel, sources: supSources, words: [sup.text], confirmed: false })
+        nodes.push({ id: 'supervisor', name: 'His boss', amount: supAmount, level: supLevel, sources: supSources, words: [sup.text], confirmed: false })
         nodes.push({ id: 'officer', name: 'Another security officer', amount: offAmount, level: off.confidence, sources: offSources, words: [off.text], confirmed: false })
         links.push({ source: 'rest', target: 'supervisor', value: supAmount, level: supLevel, confirmed: false })
         links.push({ source: 'rest', target: 'officer', value: offAmount, level: off.confidence, confirmed: false })

@@ -28,7 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="wrap">
             <p>
               Every number on this site links to the outlet that reported it. No survivor is tracked or named. Testimony is
-              summarised without graphic detail. <a href="/support/">Get support</a>.
+              summarised without graphic detail. <a href="/about/">About this site</a> · <a href="/method/">How it was made</a> ·{' '}
+              <a href="/glossary/">Words used</a> · <a href="/support/">Get support</a>.
             </p>
           </div>
         </footer>

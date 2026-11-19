@@ -27,6 +27,8 @@ describe('day 08', () => {
   it('shows a zero wait and a missing date honestly', () => {
     const m = select(day)
     expect(gap(m.rows.find((r) => r.id === 'mescudi')!, 'legal')).toBe(0)
-    expect(gap(m.rows.find((r) => r.id === 'bongolan')!, 'legal')).toBeNull()
+    // Bongolan's lawsuit (November 2024, added from Yahoo News) is dated; Jane's own first step is not reported.
+    expect(gap(m.rows.find((r) => r.id === 'bongolan')!, 'legal')).toBe(8)
+    expect(gap(m.rows.find((r) => r.id === 'jane')!, 'legal')).toBeNull()
   })
 })

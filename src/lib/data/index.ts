@@ -1,6 +1,6 @@
 // The one way to read trial data. Server components and build-time code import from here.
 // Never type a fact into a component: read it from these functions.
-import raw from '@/data/trial_days.json'
+import { data as publicData } from './store'
 import chargesFile from '@/data/shared/charges.json'
 import witnessesFile from '@/data/shared/witnesses.json'
 import type { Charge, Source, TrialData, TrialDay, Verdict, WitnessRecord } from './types'
@@ -11,7 +11,7 @@ export { confidenceInfo, CONFIDENCE_ORDER, lowerConfidence } from './confidence'
 export { redactThirdParties } from './redact'
 export { getGaps, type CalendarGap } from './calendar'
 
-const data = raw as unknown as TrialData
+const data = publicData
 
 /** Number of testimony days (28). Derived from the data, never typed. */
 export const DAY_COUNT: number = data.days.length
@@ -80,3 +80,4 @@ export function formatDate(iso: string, opts: { weekday?: boolean; year?: boolea
 }
 
 export type { Source }
+export { publicText, plainSourceTitle } from './store'

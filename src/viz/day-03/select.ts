@@ -75,6 +75,8 @@ export interface Piece {
   source: string
   level: Level
   refs: Ref[]
+  /** No single article is tied to it: it cites the day's coverage as a whole. */
+  whole: boolean
 }
 
 export interface MatrixRow {
@@ -117,7 +119,7 @@ export function select(day: TrialDay): Day03Selection {
       const rec = d.day === day.day ? day : d
       const fact = findFact(rec, rule.find.pattern)
       if (!fact) continue
-      pieces.push({ id: `${rule.row}-${rule.kind}-${d.day}`, row: rule.row, kind: rule.kind, day: d.day, label: rule.label, source: redactThirdParties(fact.text), level: fact.confidence, refs: fact.refs })
+      pieces.push({ id: `${rule.row}-${rule.kind}-${d.day}`, row: rule.row, kind: rule.kind, day: d.day, label: rule.label, source: redactThirdParties(fact.text), level: fact.confidence, refs: fact.refs, whole: Boolean(fact.wholeRecord) })
       break
     }
   }

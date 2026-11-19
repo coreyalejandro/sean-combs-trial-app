@@ -21,6 +21,22 @@ const THIRD_PARTY_NAMES: Array<[RegExp, string | ((match: string) => string)]> =
   [/\bMadonna job\b/g, 'Her later job'],
   [/\bworked for Madonna\b/g, 'worked for another employer'],
   [/\bMadonna\b/g, 'a later employer'],
+  // People who never testified and were never charged are not named beside alleged crimes (review, Nov 2026):
+  // hotel staff said to have shared the video money; a person called a victim who did not testify; bystanders.
+  [/\bsupervisor Bill Madrano\b/g, 'his supervisor'],
+  [/\bofficer Henry Elias\b/g, 'another security officer'],
+  [/\bBill Madrano\b/g, 'a hotel supervisor'],
+  [/\bHenry Elias\b/g, 'another hotel security officer'],
+  [/\balleged third victim 'Gina'/g, 'a third woman'],
+  [/\bGina \(referenced\)/g, 'A third woman (referenced, did not testify)'],
+  [/\bwith Yung Miami(?: \(Caresha Brownlee\))?/g, 'with another woman'],
+  [/\bYung Miami \(Caresha Brownlee\) \(referenced\)/g, 'Another woman (referenced)'],
+  [/\bYung Miami\b/g, 'another woman'],
+  [/\bdirected by Andy Samberg\b/g, ''],
+  [/\bnamed in suit by Rodney 'Lil Rod' Jones\b/g, 'named in a civil suit'],
+  [/\bRodney 'Lil Rod' Jones \(civil plaintiff, context\)/g, 'A civil plaintiff (context)'],
+  [/\bVashta Dunlap \(expected defense witness\)/g, 'An expected defense witness (not called)'],
+  [/\bVashta Dunlap\b/g, 'an expected defense witness'],
   // Care rule 6: people are called by name or role, never "accuser" as a label.
   [/\ban accuser\b/gi, 'a witness'],
   [/\baccusers\b/gi, 'witnesses'],
@@ -32,4 +48,4 @@ export function redactThirdParties(text: string): string {
 }
 
 /** For tests: the raw names that must never appear in rendered HTML. */
-export const REDACTED_NAMES_FOR_TESTS = ['Cowboys 4 Angels', 'Cabral', 'Cabrel', 'Sujin', 'Sugit', 'Jules Theodore', 'Madonna', "'Paul'", "'Anton'"]
+export const REDACTED_NAMES_FOR_TESTS = ['Madrano', 'Henry Elias', "'Gina'", 'Yung Miami', 'Vashta', 'Lil Rod', 'Cowboys 4 Angels', 'Cabral', 'Cabrel', 'Sujin', 'Sugit', 'Jules Theodore', 'Madonna', "'Paul'", "'Anton'"]

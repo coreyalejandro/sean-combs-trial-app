@@ -60,133 +60,133 @@
    "share": 0.4428,
    "low": 0.4259,
    "high": 0.4598,
-   "workers": 285177368
+   "workers": 285177
   },
   {
    "job": "Childcare workers",
    "share": 0.4318,
    "low": 0.415,
    "high": 0.4488,
-   "workers": 477597344
+   "workers": 477597
   },
   {
    "job": "Registered nurses",
    "share": 0.4152,
    "low": 0.3984,
    "high": 0.4321,
-   "workers": 1464776208
+   "workers": 1464776
   },
   {
    "job": "Nursing assistants",
    "share": 0.4141,
    "low": 0.3973,
    "high": 0.4309,
-   "workers": 581337432
+   "workers": 581337
   },
   {
    "job": "Home health aides",
    "share": 0.4118,
    "low": 0.3951,
    "high": 0.4287,
-   "workers": 298968252
+   "workers": 298968
   },
   {
    "job": "Personal care aides",
    "share": 0.394,
    "low": 0.3774,
    "high": 0.4108,
-   "workers": 725026240
+   "workers": 725026
   },
   {
    "job": "Elementary and middle school teachers",
    "share": 0.3923,
    "low": 0.3758,
    "high": 0.4091,
-   "workers": 1377519784
+   "workers": 1377520
   },
   {
    "job": "Waiters and waitresses",
    "share": 0.3658,
    "low": 0.3494,
    "high": 0.3825,
-   "workers": 641676344
+   "workers": 641676
   },
   {
    "job": "Cashiers",
    "share": 0.3622,
    "low": 0.3458,
    "high": 0.3789,
-   "workers": 901803300
+   "workers": 901803
   },
   {
    "job": "Secondary school teachers",
    "share": 0.3283,
    "low": 0.3122,
    "high": 0.3449,
-   "workers": 259380700
+   "workers": 259381
   },
   {
    "job": "Bus drivers, school",
    "share": 0.3151,
    "low": 0.299,
    "high": 0.3316,
-   "workers": 66165960
+   "workers": 66166
   },
   {
    "job": "Total, 16 years and over",
    "share": 0.3018,
    "low": 0.2859,
    "high": 0.3183,
-   "workers": 49345784246
+   "workers": 49345784
   },
   {
    "job": "Retail salespersons",
    "share": 0.3015,
    "low": 0.2856,
    "high": 0.318,
-   "workers": 802397940
+   "workers": 802398
   },
   {
    "job": "Janitors and building cleaners",
    "share": 0.2711,
    "low": 0.2554,
    "high": 0.2874,
-   "workers": 634607644
+   "workers": 634608
   },
   {
    "job": "Software developers",
    "share": 0.2262,
    "low": 0.2108,
    "high": 0.2424,
-   "workers": 509958484
+   "workers": 509958
   },
   {
    "job": "Police officers",
    "share": 0.2152,
    "low": 0.1999,
    "high": 0.2314,
-   "workers": 151749840
+   "workers": 151750
   },
   {
    "job": "Driver/sales workers and truck drivers",
    "share": 0.1907,
    "low": 0.1756,
    "high": 0.2068,
-   "workers": 683328262
+   "workers": 683328
   },
   {
    "job": "Firefighters",
    "share": 0.1834,
    "low": 0.1683,
    "high": 0.1994,
-   "workers": 64550464
+   "workers": 64550
   },
   {
    "job": "Construction laborers",
    "share": 0.1823,
    "low": 0.1672,
    "high": 0.1983,
-   "workers": 434129028
+   "workers": 434129
   }
  ],
  "jobs_method": "share gone = women's share of the job x 45.1% + men's share x 16.9% (national rates; assumes workers are survivors at the same rate as all adults of their sex). National; states differ.",
@@ -292,7 +292,7 @@
   "hours": 5.0,
   "arrival_zone_km": 20.0
  },
- "uncertainty": "Counts carry CDC 95% confidence ranges. Timing, crowding and needs come from one seeded run (a planned set of 200 runs that would show how much these could vary is not built yet).",
+ "uncertainty": "Counts carry CDC 95% confidence ranges. Timing, crowding and needs come from one run of the simulation: they show one way the march could unfold, not a range.",
  "not_computed": {
   "status": "not computed",
   "reason": "BEA current-dollar state GDP levels could not be retrieved: the release pages that could be fetched (4th-quarter 2025 GDP release, 3rd-quarter 2025 state GDP release) give only growth rates, and BEA's interactive tables are not reachable from the build machine. No number was invented. Formula kept: state GDP per day x (absent workers / all workers)."

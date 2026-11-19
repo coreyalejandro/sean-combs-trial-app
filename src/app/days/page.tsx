@@ -23,7 +23,7 @@ export default function DaysIndex() {
                 <span className="index-num">{d.day}</span>
                 <span className="index-date mono">{formatDate(d.date, { weekday: true, year: false })}</span>
                 <span className="index-title">{meta.title}</span>
-                <span className="index-form mono">{meta.form}</span>
+                <span className="index-form">{meta.question}</span>
               </Link>
               {gap ? (
                 <div className="index-gap" aria-label="Calendar note">
@@ -35,15 +35,15 @@ export default function DaysIndex() {
         })}
         <li className="index-li">
           <Link href="/verdict/" className="index-card is-dark">
-            <span className="index-num">V</span>
-            <span className="index-date mono">June 25 to October 3, 2025</span>
+            <span className="index-num is-word">Verdict</span>
+            <span className="index-date mono">June 25, 2025 to April 9, 2026</span>
             <span className="index-title">The verdict and the sentence</span>
           </Link>
         </li>
         <li className="index-li">
           <Link href="/finale/" className="index-card is-dark is-red">
             <span className="index-num">{DAY_COUNT + 1}</span>
-            <span className="index-date mono">The finale</span>
+            <span className="index-date mono">The finale: the march</span>
             <span className="index-title">If every survivor walked to Washington</span>
           </Link>
         </li>

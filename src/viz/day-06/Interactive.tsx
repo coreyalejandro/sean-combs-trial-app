@@ -108,7 +108,8 @@ export function DotMap({ panels, accounts, places, shapes, yearFrom, yearTo, lab
       </div>
 
       <div className={s.panels}>
-        {panels.map((p) => (
+        {/* Led by the list of accounts; only the Los Angeles map is drawn, where most accounts sit (review, Nov 2026). */}
+        {panels.filter((p) => p.id === 'la').map((p) => (
           <div key={p.id} className={`${s.panel} ${s[`panel_${p.id}`] ?? ''}`}>
             <svg viewBox={`0 0 ${p.w} ${p.h}`} className={s.svg} role="img" aria-label={`${p.title}: ${p.markers.filter((m) => m.accountIds.some((id) => { const a = byId(id); return a ? visible(a) : false })).map((m) => m.label).join(', ') || 'no dots yet'}`}>
               {p.base}

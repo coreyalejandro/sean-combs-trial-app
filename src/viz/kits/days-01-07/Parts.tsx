@@ -10,7 +10,7 @@ export function RefMarks({ refs, labels }: { refs: Ref[]; labels: Record<string,
   return (
     <span className={s.refs} data-source-ids={refs.map((r) => r.id).join(' ')}>
       {refs.map((r) => (
-        <a key={r.id} href={`#source-${r.id}`} className="source-ref" aria-label={`Source: ${r.outlet}${r.fromDay ? `, Day ${r.fromDay} record` : ''}`}>
+        <a key={r.id} href={`#source-${r.id}`} className="source-ref" aria-label={`Source: ${r.outlet}${r.fromDay ? `, first cited on Day ${r.fromDay}` : ''}`}>
           <sup>[{labels[r.id] ?? '?'}]</sup>
         </a>
       ))}
@@ -18,11 +18,17 @@ export function RefMarks({ refs, labels }: { refs: Ref[]; labels: Record<string,
   )
 }
 
-/** A confidence mark with words, then the source links. */
-export function Sourced({ level, refs, labels, compact = false }: { level: Level; refs: Ref[]; labels: Record<string, string>; compact?: boolean }) {
+/**
+ * Words for a statement that no single article in the day's list is tied to: it comes from the day's coverage as a
+ * whole, so it is not given an outlet count ("one outlet" would be wrong when six articles are cited).
+ */
+export const COVERAGE_LABEL = "in that day's coverage"
+
+/** A confidence mark with words, then the source links. `whole`: the statement rests on the day's coverage as a whole. */
+export function Sourced({ level, refs, labels, compact = false, whole = false }: { level: Level; refs: Ref[]; labels: Record<string, string>; compact?: boolean; whole?: boolean }) {
   return (
     <span className={s.sourced}>
-      <ConfidenceMark level={level} withLabel={!compact} />
+      {whole ? <span className="conf-label">{COVERAGE_LABEL}</span> : <ConfidenceMark level={level} withLabel={!compact} />}
       <RefMarks refs={refs} labels={labels} />
     </span>
   )
@@ -44,6 +50,10 @@ export interface TableRow {
   refs: Ref[]
   /** A section heading row placed before this row. */
   group?: string
+  /** The statement rests on the day's coverage as a whole (no outlet count shown). */
+  whole?: boolean
+  /** Words shown instead of a confidence mark (for map reference points, which are not trial facts). */
+  levelText?: string
 }
 
 /** The one data table of a text version: built from the same selection as the picture. */
@@ -84,7 +94,7 @@ function RowWithGroup({ row, span, labels }: { row: TableRow; span: number; labe
         {row.cells.map((c, i) => (
           <td key={i}>{c}</td>
         ))}
-        <td><ConfidenceMark level={row.level} /></td>
+        <td>{row.levelText ? <span className="conf-label">{row.levelText}</span> : row.whole ? <span className="conf-label">{COVERAGE_LABEL}</span> : <ConfidenceMark level={row.level} />}</td>
         <td><RefMarks refs={row.refs} labels={labels} /></td>
       </tr>
     </>

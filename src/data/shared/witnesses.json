@@ -13,7 +13,7 @@
         1
       ],
       "group": "eyewitness",
-      "role": "Security officer at the Los Angeles hotel in March 2016 (described by CBS live blog as an LAPD officer; by AP as a former hotel security officer); Army reservist 15+ years",
+      "role": "Security officer at the Los Angeles hotel in March 2016",
       "immunity": false
     },
     {
@@ -29,7 +29,7 @@
         2
       ],
       "group": "eyewitness",
-      "role": "Manager/performer of a male revue show; paid male performer in encounters with Cassie Ventura",
+      "role": "Male dancer who testified he was paid to take part in encounters with Ventura",
       "immunity": false
     },
     {
@@ -47,7 +47,7 @@
         5
       ],
       "group": "named-in-charges",
-      "role": "Singer, Combs's former partner (on-and-off 2007-2018); alleged victim named in the indictment",
+      "role": "Singer and Combs's former partner (2007 to 2018); the woman named in Counts 2 and 3",
       "immunity": false
     },
     {
@@ -78,7 +78,7 @@
         6
       ],
       "group": "described-harm",
-      "role": "Former Danity Kane / Diddy-Dirty Money member",
+      "role": "Singer; former member of Danity Kane and Diddy-Dirty Money",
       "immunity": false
     },
     {
@@ -93,7 +93,7 @@
         6
       ],
       "group": "eyewitness",
-      "role": "Ventura's former best friend / roommate (met 2001)",
+      "role": "Ventura's former best friend and roommate",
       "immunity": false
     },
     {
@@ -109,7 +109,7 @@
         7
       ],
       "group": "former-staff",
-      "role": "Combs's personal assistant 2007-2009",
+      "role": "Combs's personal assistant, 2007 to 2009",
       "immunity": false
     },
     {
@@ -139,7 +139,7 @@
         7
       ],
       "group": "eyewitness",
-      "role": "Former male exotic dancer / escort, age 51",
+      "role": "Former male dancer who testified he was paid to take part in encounters with Ventura",
       "immunity": false
     },
     {
@@ -156,7 +156,7 @@
         8
       ],
       "group": "police-and-agents",
-      "role": "HSI special agent; supervised March 2024 Miami search",
+      "role": "Homeland Security Investigations special agent who supervised the March 2024 Miami search",
       "immunity": false
     },
     {
@@ -171,7 +171,7 @@
         8
       ],
       "group": "expert",
-      "role": "Forensic/clinical psychologist, prosecution expert on abuse dynamics ('blind' expert, did not evaluate Combs or Ventura)",
+      "role": "Psychologist; prosecution expert on how abuse works in general (she evaluated no one in this case)",
       "immunity": false
     },
     {
@@ -187,7 +187,7 @@
         9
       ],
       "group": "former-staff",
-      "role": "Combs's former executive/personal assistant (2014-2015)",
+      "role": "Combs's former assistant (2014 to 2015); testified under an immunity order",
       "immunity": true
     },
     {
@@ -202,7 +202,7 @@
         9
       ],
       "group": "described-harm",
-      "role": "Rapper/actor; briefly dated Cassie Ventura in 2011",
+      "role": "Rapper and actor who briefly dated Ventura in 2011",
       "immunity": false
     },
     {
@@ -217,27 +217,27 @@
         9
       ],
       "group": "eyewitness",
-      "role": "Makeup artist for Ventura (2007-2021)",
+      "role": "Ventura's makeup artist",
       "immunity": false
     },
     {
       "id": "demmour",
-      "display_name": "Frédéric Demmour",
+      "display_name": "Frédéric Zemmour",
       "pseudonym": false,
       "raw_names": [
-        "Frederic (Frédéric) Demmour/Zemmour"
+        "Frédéric Zemmour"
       ],
       "first_day": 9,
       "days": [
         9
       ],
       "group": "records-and-analysis",
-      "role": "General manager, L'Ermitage Beverly Hills (spelled both ways in sources); subpoenaed",
+      "role": "General manager of L'Ermitage, a Beverly Hills hotel",
       "immunity": false
     },
     {
       "id": "croft",
-      "display_name": "Federal agent (Josh Croft, per one outlet)",
+      "display_name": "A federal agent (device analysis)",
       "pseudonym": false,
       "raw_names": [
         "Federal agent / HSI forensic (Josh Croft per Fox)"
@@ -247,7 +247,7 @@
         9
       ],
       "group": "police-and-agents",
-      "role": "Analysis of Ventura's electronic devices (ABC: unnamed agent; Fox: Josh Croft, undated)",
+      "role": "Federal agent who examined Ventura's phones and devices",
       "immunity": false
     },
     {
@@ -262,7 +262,7 @@
         10
       ],
       "group": "former-staff",
-      "role": "Former executive assistant to Combs; later Ventura's creative director (2016-2018)",
+      "role": "Combs's former executive assistant; later Ventura's creative director",
       "immunity": false
     },
     {
@@ -277,7 +277,7 @@
         11
       ],
       "group": "police-and-agents",
-      "role": "LAPD officer (16 years on force) who responded to the 2011 Cudi break-in report",
+      "role": "Los Angeles police officer who responded to the 2011 break-in report at Kid Cudi's home",
       "immunity": false
     },
     {
@@ -292,7 +292,7 @@
         11
       ],
       "group": "police-and-agents",
-      "role": "LAFD arson investigator on the Cudi Porsche fire",
+      "role": "Los Angeles Fire Department arson investigator (Kid Cudi's car fire)",
       "immunity": false
     },
     {
@@ -308,7 +308,7 @@
         12
       ],
       "group": "eyewitness",
-      "role": "Celebrity stylist for Combs and Ventura (2008-2018); subpoenaed",
+      "role": "Stylist for Combs and Ventura (2008 to 2018)",
       "immunity": false
     },
     {
@@ -341,7 +341,7 @@
         14
       ],
       "group": "records-and-analysis",
-      "role": "Area director of sales and marketing, Beverly Hills Hotel",
+      "role": "Sales and marketing director at the Beverly Hills Hotel",
       "immunity": false
     },
     {
@@ -356,7 +356,7 @@
         15
       ],
       "group": "eyewitness",
-      "role": "former overnight security supervisor, InterContinental Hotel, Los Angeles (testifying under an immunity order after invoking the Fifth Amendment on June 2). Direct (prosecutor Mitzi Steiner per ABC); cross by Brian Steel; redirect by government.",
+      "role": "Former overnight security officer at the Los Angeles hotel; testified under an immunity order",
       "immunity": true
     },
     {
@@ -371,7 +371,7 @@
         15
       ],
       "group": "former-staff",
-      "role": "former CFO of Combs Enterprises / Bad Boy Entertainment (worked for Combs 1998-2017 per NBC). Direct and redirect by government; cross by Marc Agnifilo.",
+      "role": "Former finance chief of Combs's companies (worked for Combs 1998 to 2017)",
       "immunity": false
     },
     {
@@ -386,7 +386,7 @@
         16
       ],
       "group": "records-and-analysis",
-      "role": "forensic video analyst/expert (government). Direct only reported.",
+      "role": "Video analyst called by the prosecution",
       "immunity": false
     },
     {
@@ -403,7 +403,7 @@
         17
       ],
       "group": "described-harm",
-      "role": "friend of Cassie Ventura; testified with immunity after invoking the Fifth Amendment that morning. Direct (about 11:56 AM-2:21 PM ET) and the start of cross by Nicole Westmoreland (about 2:24-4:06 PM). Cross to resume June 5.",
+      "role": "Friend of Ventura; testified under an immunity order",
       "immunity": true
     },
     {
@@ -418,7 +418,7 @@
         17
       ],
       "group": "records-and-analysis",
-      "role": "investigative/forensic analyst, U.S. Attorney's Office SDNY (phone-data extraction); brief direct (about 2:01 PM).",
+      "role": "Analyst at the U.S. Attorney's Office who extracted phone data",
       "immunity": false
     },
     {
@@ -441,11 +441,11 @@
       ],
       "group": "named-in-charges",
       "role": "Former girlfriend of Combs (pseudonym)",
-      "immunity": true
+      "immunity": false
     },
     {
       "id": "la-search-agent",
-      "display_name": "Federal agent (Los Angeles search; name unverified)",
+      "display_name": "A federal agent (Los Angeles search)",
       "pseudonym": false,
       "raw_names": [
         "Homeland Security Investigations (HSI) special agent (name reported as 'Andre Lamon' by one outlet only; unverified): seizures from Combs' Los Angeles home, March 2024; direct and cross; all guns found in a security room (ABC)"
@@ -455,7 +455,7 @@
         23
       ],
       "group": "police-and-agents",
-      "role": "",
+      "role": "Homeland Security Investigations agent from the March 2024 search of Combs's Los Angeles home",
       "immunity": false
     },
     {
@@ -470,7 +470,7 @@
         23
       ],
       "group": "former-staff",
-      "role": "former personal assistant (under immunity; the 5th assistant to testify and 4th witness with immunity per GMA): direct, then cross. Testified about buying drugs 'a handful of times' and arranging hotel rooms.",
+      "role": "Combs's former personal assistant; testified under an immunity order",
       "immunity": true
     },
     {
@@ -485,7 +485,7 @@
         24
       ],
       "group": "records-and-analysis",
-      "role": "paralegal at the U.S. Attorney's Office (summary witness): direct on text messages from phone extractions, call logs, charts; cross by defense; on the stand about 9:00 a.m. to 12:20 p.m. (NBC)",
+      "role": "Paralegal at the U.S. Attorney's Office; summary witness on messages and call records",
       "immunity": false
     },
     {
@@ -501,7 +501,7 @@
         25
       ],
       "group": "police-and-agents",
-      "role": "special agent with the U.S. Attorney's Office/HSI (summary witness): direct on flight records, charts and data; testimony ran the rest of the day and continued June 17",
+      "role": "Special agent; summary witness on flight records",
       "immunity": false
     },
     {
@@ -516,7 +516,7 @@
         26
       ],
       "group": "former-staff",
-      "role": "former personal assistant (testifying with immunity): direct, then cross by defense attorney Brian Steel",
+      "role": "Combs's former personal assistant; testified under an immunity order",
       "immunity": true
     },
     {
@@ -533,7 +533,7 @@
         28
       ],
       "group": "police-and-agents",
-      "role": "HSI special agent (summary witness): began on direct (prosecutor Maurene Comey) per NBC; continued Monday",
+      "role": "Homeland Security Investigations special agent; summary witness and the prosecution's last witness",
       "immunity": false
     }
   ]

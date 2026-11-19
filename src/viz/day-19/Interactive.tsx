@@ -115,17 +115,18 @@ export default function Day19Interactive({ events, geo, zooms, pool }: {
         ))}
       </div>
       <fieldset className={s.lanesFilter}>
-        <legend>Show people and groups</legend>
+        <legend>Show people and groups (each colour marks who acted)</legend>
         {LANES.map((l) => (
           <label key={l.id}>
-            <input type="checkbox" checked={!hidden.has(l.id)} onChange={() => toggleLane(l.id)} /> {l.name}
+            <input type="checkbox" checked={!hidden.has(l.id)} onChange={() => toggleLane(l.id)} />{' '}
+            <span className={s.sw} style={{ background: LANE_COLOR[l.id] }} aria-hidden="true" /> {l.name}
           </label>
         ))}
       </fieldset>
       <div className={k.wide}><Swim g={g.wide} events={events} hidden={hidden} active={active} onPick={setActive} /></div>
       <div className={k.narrow}><Swim g={g.narrow} events={events} hidden={hidden} active={active} onPick={setActive} /></div>
       <p className={s.legend}>
-        A dot sits in the lane of the person or group who acted; a line runs to the lane of the person it reached. Filled dot: two or more outlets; hollow: one outlet; dashed: one outlet, unconfirmed; half-filled: outlets disagree.
+        A dot sits in the lane of the person or group who acted, in that person&rsquo;s colour (key above); a line runs to the lane of the person it reached. Filled dot: two or more outlets; hollow: one outlet; dashed: one outlet, unconfirmed; half-filled: outlets disagree.
       </p>
       {current ? (
         <div className={k.detail} aria-live="polite">

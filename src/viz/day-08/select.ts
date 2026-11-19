@@ -34,6 +34,8 @@ export interface Day08Model {
   book: SourceBook
   used: ReportedNumber[]
   years: [number, number]
+  /** Ventura's lawsuit counted from the end of the relationship, not its start. */
+  afterEnd: { relEnd: number; suitYear: number; gap: number } | null
 }
 
 const CONCEPTS: Array<Concept & { match: RegExp }> = [
@@ -74,7 +76,10 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
   const janeStart = num(D('Day 17'), 'jane-start', /Duration of Jane's relationship/i)
   const janeContact = add('jane-agent-contact')
   // Bongolan: 2016 -> a civil suit whose filing year coverage does not give.
-  const bongolanSuit = num(D('Day 16'), 'bongolan-suit', /Amount Bongolan sued/i)
+  const bongolanSuit = mergeFacts('bongolan-suit', 'Bongolan filed a civil lawsuit against Combs', [
+    add('bongolan-suit-filed'),
+    num(D('Day 16'), 'bongolan-suit-amount', /Amount Bongolan sued/i),
+  ])
 
   const rows: Row[] = [
     {
@@ -84,7 +89,7 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
     },
     {
       id: 'mia', who: name('mia')?.display_name ?? 'Mia', pseudonym: true,
-      start: point(miaStart, 'Began working for Combs'),
+      start: point(miaStart, 'Began working for Combs (coverage does not date the first harm she described)'),
       ends: {
         legal: point(miaMediation, 'Mediation over her claims'),
         official: point(miaOfficial, 'First meetings with prosecutors'),
@@ -98,13 +103,16 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
     {
       id: 'jane', who: name('jane')?.display_name ?? 'Jane', pseudonym: true,
       start: point(janeStart, 'Relationship with Combs began'),
-      ends: { legal: point(janeContact, 'Agent left a card after the raids'), official: point(janeContact, 'Agent left a card after the raids') },
+      ends: {
+        legal: { year: null, label: 'Her own first step toward a court or police: not reported', fact: null },
+        official: point(janeContact, 'Agents first reached out: a card left for her after the searches of his homes'),
+      },
     },
     {
       id: 'bongolan', who: name('bongolan')?.display_name ?? 'Bryana Bongolan', pseudonym: false,
       start: point(add('bongolan-first-event'), 'The incident she described'),
       ends: {
-        legal: { year: null, label: 'Filed a civil suit (year not in coverage)', fact: bongolanSuit },
+        legal: point(bongolanSuit, 'Filed a civil lawsuit'),
         official: { year: null, label: 'First meeting with prosecutors', fact: null },
       },
     },
@@ -115,7 +123,7 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
   const concepts = CONCEPTS.filter((c) => c.match.test(hughes)).map(({ id, label, plain }) => ({ id, label, plain }))
 
   const fees = [num(day.day, 'hughes-rate', /Hughes's rate/i), num(day.day, 'hughes-fee', /Hughes's fee/i)].filter((f): f is Fact => !!f)
-  const feeNote = day.discrepancies.find((d) => /RESOLVED - Hughes fee/i.test(d))?.replace(/^RESOLVED - /, '') ?? null
+  const feeNote = day.discrepancies.find((d) => /Hughes's fee/i.test(d))?.replace(/^[^:]*:\s*/, '') ?? null
 
   const allYears = rows.flatMap((r) => [r.start.year, r.ends.legal.year, r.ends.official.year]).filter((y): y is number => y !== null)
   const years: [number, number] = allYears.length ? [Math.min(...allYears), Math.max(...allYears)] : [0, 1]
@@ -123,7 +131,14 @@ export function select(day: TrialDay, read0: DayReader = getDay, additions: Addi
   const facts = rows.flatMap((r) => [r.start.fact, r.ends.legal.fact, r.ends.official.fact]).concat(fees)
   const book = buildSourceBook(day, facts)
 
-  return { rows, concepts, conceptSource: hughes ? 'Day 8 record' : null, fees, feeNote, book, used, years }
+  // Ventura's wait measured from the end of the relationship too (review, Nov 2026): the relationship's last year
+  // is read from the Day 5 record ("Relationship 2007-2018"), the lawsuit year from the row above.
+  const relSpan = read(D('Day 5')).numbers.find((x) => /^Relationship \d{4}-\d{4}/.test(x.what))
+  const relEnd = relSpan ? Number(relSpan.what.match(/-(\d{4})/)?.[1]) : null
+  const suitYear = rows[0].ends.legal.year
+  const afterEnd = relEnd && suitYear ? { relEnd, suitYear, gap: suitYear - relEnd } : null
+
+  return { rows, concepts, conceptSource: hughes ? 'Day 8 coverage' : null, fees, feeNote, book, used, years, afterEnd }
 }
 
 /** Years between the first event and the chosen end point (null when a date is missing). */

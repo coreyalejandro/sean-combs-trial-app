@@ -184,7 +184,7 @@ export function TextVersion({ day }: DayVizProps) {
       level: a.level,
       refs: a.refs,
     }))
-  const placeRows: TableRow[] = sel.places.map((p, i) => ({ key: p.id, group: i === 0 ? 'Where the dots sit (city centres, not addresses)' : undefined, cells: ['', p.name, p.refs.length > 0 ? 'Coordinates from a gazetteer or encyclopedia' : 'Centre of the country outline in the world atlas'], level: p.level, refs: p.refs }))
+  const placeRows: TableRow[] = sel.places.map((p, i) => ({ key: p.id, group: i === 0 ? 'Where the dots sit (city centres, not addresses)' : undefined, cells: ['', p.name, p.refs.length > 0 ? 'Map position of the city' : 'Centre of the country outline in the world atlas'], level: p.level, refs: p.refs, levelText: 'map reference, not a trial fact' }))
   const numberRows: TableRow[] = day.numbers.map((n, i) => ({
     key: `n${i}`,
     group: i === 0 ? `Every figure reported on Day ${day.day}` : undefined,
@@ -204,7 +204,7 @@ export function TextVersion({ day }: DayVizProps) {
         {sel.accounts.length - dated.length} accounts have no reported year and stay on the map throughout, drawn as open rings.
         {sel.accounts.some((a) => a.placeId === null) ? ' Accounts with no reported place are listed beside the map instead.' : ''}
       </p>
-      <RowsTable caption={`Day ${day.day}: each account, where the dots sit, and every figure reported`} columns={['Year or value', 'Who and where', 'What the record says']} rows={[...accountRows, ...placeRows, ...numberRows]} labels={labels} />
+      <RowsTable caption={`Day ${day.day}: each account, where the dots sit, and every figure reported`} columns={['Year or value', 'Who and where', 'What was reported']} rows={[...accountRows, ...placeRows, ...numberRows]} labels={labels} />
     </>
   )
 }

@@ -112,10 +112,10 @@ export function select(day: TrialDay): Day01Selection {
 
   const stakeDefs: Array<{ id: string; what: RegExp; unit?: RegExp; label: (n: ReportedNumber) => string; detail?: (n: ReportedNumber) => string | undefined }> = [
     { id: 'counts', what: /indictment counts/i, unit: /count/i, label: () => 'counts in the indictment' },
-    { id: 'minimum', what: /mandatory minimum/i, label: () => 'mandatory minimum if convicted on all counts', detail: (n) => (/maximum life/i.test(n.what) ? 'Maximum: life' : undefined) },
+    { id: 'minimum', what: /mandatory minimum/i, label: () => 'years in prison: the mandatory minimum if convicted on all counts', detail: (n) => (/maximum life/i.test(n.what) ? 'Maximum: life' : undefined) },
     { id: 'jurors', what: /seated jurors/i, unit: /^jurors$/i, label: () => 'jurors', detail: (n) => n.what.match(/\d+ men, \d+ women/)?.[0] },
     { id: 'alternates', what: /alternate/i, unit: /alternate/i, label: () => 'alternate jurors' },
-    { id: 'span', what: /span of alleged conduct/i, label: () => 'span of conduct the prosecution alleged' },
+    { id: 'span', what: /span of alleged conduct/i, label: () => 'years: how long the prosecution says the conduct went on' },
   ]
   const stakes: Stake[] = stakeDefs.flatMap((sd) => {
     const num = findNumber(day, sd.what, sd.unit)

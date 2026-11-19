@@ -3,6 +3,7 @@
 // link: whole where testimony says the step happened, broken where it says it did not. Under the
 // chain, a court lane holds what the judge did with this testimony. Left to right on a wide screen,
 // top to bottom on a phone.
+import { midSentence } from '@/lib/viz/format'
 import { useState } from 'react'
 import { useRovingFocus } from '@/lib/viz/roving'
 import { g } from '@/viz/kits/days-08-14/geom'
@@ -70,7 +71,7 @@ export function Day11Interactive({ view }: { view: Day11View }) {
                 <span className={css.stepSummary}>{s.summary}</span>
               </button>
               {notes.length > 0 && (
-                <ul className={css.court} aria-label={`In court, about ${s.title.toLowerCase()}`}>
+                <ul className={css.court} aria-label={`In court, about ${midSentence(s.title)}`}>
                   {notes.map((c) => (
                     <li key={c.fact.key}>
                       <span className={css.courtTag}>In court</span> {c.text} <FactMeta fact={c.fact} book={view.book} compact />

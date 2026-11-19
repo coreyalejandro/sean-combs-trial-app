@@ -79,11 +79,12 @@ export function flowLayout(sel: Day15Selection, opts: { width: number; height: n
     const w = layout.gap
     const h = layout.gap * 2
     const x0 = vertical ? g.x0 : g.x1 + layout.tap * 2
-    const y0 = vertical ? g.y1 + layout.tap : (g.y0 + g.y1) / 2 - h / 2
+    // Level with the top of Garcia's share, so its two-line label clears the labels of the bands below.
+    const y0 = vertical ? g.y1 + layout.tap : g.y0
     geoNodes.push({ id: 'nda', x0, x1: x0 + w, y0, y1: y0 + h, depth: g.depth + 1 })
     const d = vertical
       ? `M${(g.x0 + g.x1) / 2},${g.y1}L${(g.x0 + g.x1) / 2},${y0 + h / 2}L${x0},${y0 + h / 2}`
-      : `M${g.x1},${(g.y0 + g.y1) / 2}L${x0},${(g.y0 + g.y1) / 2}`
+      : `M${g.x1},${y0 + h / 2}L${x0},${y0 + h / 2}`
     geoLinks.push({ id: 'garcia-nda', source: 'garcia', target: 'nda', d, width: layout.stroke.mark, level: ndaNode.level, money: false })
   }
   const money = geoNodes.filter((n) => n.id !== 'nda')

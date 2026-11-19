@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Witness constellation",
   contentLevel: 1,
   caption: "A defendant never has to testify or call witnesses. The burden of proof is on the prosecution.",
-  howToRead: 'Each star is one prosecution witness, placed left to right by the day they first testified and in a band for their role; bigger stars spent more days on the stand. Faint lines join witnesses whose records mention the same event. The right-hand sky is the defense. Select a star for its card, or show one role.',
+  howToRead: 'Each star is one prosecution witness, placed left to right by the day they first testified and in a band for their role; bigger stars spent more days on the stand. Faint lines join witnesses whose reported testimony mentions the same event. The right-hand sky is the defense. Select a star for its card, or show one role.',
   altShort: "Constellation of 34 prosecution witnesses in the order they testified over 28 days, beside an empty space for the defense, which called none.",
   status: 'done',
 }

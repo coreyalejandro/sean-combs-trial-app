@@ -13,10 +13,9 @@ test.describe('day 26 visualization', () => {
     expect(sw).toBeLessThanOrEqual(cw + 1)
   })
 
-  test('responds to selection', async ({ page }, info) => {
+  test('responds to selection', async ({ page }) => {
     await page.goto('/day/26/')
-    if (info.project.name === 'desktop-1280') await page.locator('[data-testid=day26-hive] svg [data-roving-index="0"]').click()
-    else await page.locator('[data-testid=day26-hive] button', { hasText: 'David James' }).click()
+    await page.locator('[data-testid=day26-hive] button', { hasText: 'David James' }).click()
     await expect(page.locator('[data-testid=day26-hive]')).toContainText('Close')
   })
 
@@ -24,7 +23,7 @@ test.describe('day 26 visualization', () => {
     test.use({ javaScriptEnabled: false })
     test('the picture is in the HTML', async ({ page }) => {
       await page.goto('/day/26/')
-      expect(await page.locator('figure[role="group"] svg').count()).toBeGreaterThan(0)
+      expect(await page.locator('[data-testid=day26-hive] button').count()).toBeGreaterThan(0)
       expect(await page.locator('#text-version table tr').count()).toBeGreaterThan(1)
     })
   })

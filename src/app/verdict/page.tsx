@@ -15,6 +15,8 @@ import '@/viz/finale/finale.css'
 export const metadata = { title: 'The verdict and the sentence' }
 
 const MILLION = 1e6
+/** The day these facts (including the appeal's status) were last checked against the news. */
+const AS_OF = 'November 19, 2026'
 const NUMBER_WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five']
 
 export default function VerdictPage() {
@@ -22,7 +24,8 @@ export default function VerdictPage() {
   const witnesses = getWitnesses()
   const verdictDay = v.phases.find((p) => p.label === 'Verdict')?.date ?? v.phases[v.phases.length - 1].date
   const named = new Set(getCharges().map((c) => c.person).filter(Boolean))
-  const namedLine = `${NUMBER_WORDS[named.size] ?? named.size} women named in its charges.`
+  const namedIdx = witnesses.map((w, i) => (w.group === 'named-in-charges' ? i : -1)).filter((i) => i >= 0)
+  const namedWord = NUMBER_WORDS[named.size] ?? String(named.size)
   return (
     <div className="page-dark verdict-page">
       <header className="day-cover">
@@ -39,6 +42,7 @@ export default function VerdictPage() {
         <aside className="content-note on-dark" aria-label="Content note">
           <p><strong>Content note.</strong> {v.content_note}</p>
         </aside>
+        <p className="verdict-asof mono">Facts on this page as of {AS_OF}. Appeal: argued April 9, 2026; no decision reported as of that date.</p>
         <ChargeRibbon resolved />
         <p className="verdict-meaning measure">
           Not guilty means the jury was not persuaded beyond a reasonable doubt. It is not a finding about what anyone lived through.
@@ -67,7 +71,8 @@ export default function VerdictPage() {
 
         <VerdictTurn
           witnesses={witnesses.length}
-          namedLine={namedLine}
+          namedIdx={namedIdx}
+          namedWord={namedWord}
           peoplePerDot={fmtInt(summary.people_per_dot)}
           survivors={fmtPeople(summary.totals.central)}
           survivorsRound={`${fmtInt(summary.totals.central / MILLION)} million`}
@@ -75,7 +80,7 @@ export default function VerdictPage() {
         />
         <p className="measure muted">
           The survivor count is the CDC&rsquo;s National Intimate Partner and Sexual Violence Survey 2023/2024 (lifetime contact sexual
-          violence, U.S. adults); its sources and method are on the next page.
+          violence, U.S. adults). It is a national estimate, not a count of anyone in this case; its sources and method are on the next page.
         </p>
 
         <SourcesPanel sources={v.sources} confidence={v.confidence} discrepancies={v.discrepancies} heading="Sources for the verdict and sentence" />

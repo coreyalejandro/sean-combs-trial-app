@@ -14,6 +14,7 @@ export interface StationView {
   id: string
   title: string
   holder: string
+  holderLabel?: string
   whenText: string
   words: string[]
   level: Level
@@ -80,7 +81,7 @@ export default function Day16Interactive({ stations, pool }: { stations: Station
                   >
                     <span className={s.when}>{st.whenText}</span>
                     <span className={s.title}>{st.title}</span>
-                    <span className={s.holder}>Who had it: {st.holder}</span>
+                    <span className={s.holder}>{st.holderLabel ?? 'Who had it'}: {st.holder}</span>
                   </button>
                   {isActive ? (
                     <div className={s.detail}>

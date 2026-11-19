@@ -1,7 +1,7 @@
 // Day 16: the stations of the 2016 hotel video's chain of custody, each read from the day that reported it.
 // A station whose fact is missing from the record is left out, so the line always matches the data.
 import { getVerdict, redactThirdParties, resolveSources, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
-import { formatUSD, formatValue, toNumber } from '@/lib/viz/format'
+import { formatUSD, formatValue, toNumber, midSentence } from '@/lib/viz/format'
 import { dayRef } from '@/viz/kits/days-15-21/days'
 import { lowest, type Level } from '@/viz/kits/days-15-21/sources'
 import { datesInText, formatDated, isoToDate, type Dated } from '@/viz/kits/days-15-21/time'
@@ -11,6 +11,8 @@ export interface Station {
   title: string
   /** Who had the video, or who acted on it, at this station. */
   holder: string
+  /** "Who had it" by default; "Who acted" where the stop is about something done, not possession. */
+  holderLabel?: string
   when: Dated
   whenText: string
   words: string[]
@@ -103,7 +105,7 @@ export function select(day: TrialDay): Day16Selection {
   const texts = findText(d25.key_points, /keep .*video .*public|from becoming public/i)
   if (texts && year2016) {
     stations.push({
-      id: 'texts', title: 'Texts about keeping it from becoming public', holder: "Combs's chief of staff",
+      id: 'texts', title: 'Texts about keeping it from becoming public', holder: "Combs's chief of staff, who sent the texts (she was not charged and did not testify)", holderLabel: 'Who acted',
       when: year2016, whenText: `${formatDated(year2016)} (shown to the jury on Day ${d25.day})`,
       words: [clause(texts, /public/i) ?? ''].filter(Boolean),
       level: lowest(textLevel(d25), 'low'), sources: sourcesFor(d25, /Khorram|texts|hotel/i), fromDay: d25.day, era: 'before',
@@ -145,7 +147,7 @@ export function select(day: TrialDay): Day16Selection {
     stations.push({
       id: 'analyst', title: 'A forensic analyst finds "no anomalies"', holder: 'Frank Piazza, forensic video analyst for the prosecution',
       when: today, whenText: `${formatDated(today)} (Day ${day.day})`,
-      words: piazza.split(/(?<=\.)\s+(?=[A-Z])/).filter((t) => /anomal|chronological/i.test(t)).map((t) => redactThirdParties(t.replace(/^Piazza:\s*/, '').replace(/\.$/, ''))),
+      words: piazza.split(/(?<=\.)\s+(?=[A-Z])/).filter((t) => /anomal|chronological/i.test(t)).map((t) => `Frank Piazza ${redactThirdParties(t.replace(/^Piazza:\s*/, '').replace(/\.$/, ''))}.`),
       level: checked ? checked.confidence : textLevel(day), sources: checked ? resolveSources(checked, day.sources) : day.sources,
       fromDay: day.day, era: 'trial',
     })
@@ -162,7 +164,7 @@ export function select(day: TrialDay): Day16Selection {
     const src = sameDay.length > 0 ? sameDay : all
     stations.push({
       id: 'jury', title: 'The jury asks to rehear testimony about the incident', holder: 'The jury, deliberating',
-      when: phaseDate, whenText: `${formatDated(phaseDate)} (${phase.label.toLowerCase()})`, words: [redactThirdParties(fact)],
+      when: phaseDate, whenText: `${formatDated(phaseDate)} (${midSentence(phase.label)})`, words: [redactThirdParties(fact)],
       level: phase.confidence, sources: src.length > 0 ? src : verdict.sources.slice(0, 1), fromDay: null, era: 'trial',
     })
   }

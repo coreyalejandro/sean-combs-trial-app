@@ -42,10 +42,10 @@ const RULES: Rule[] = [
   { id: 'acquittal', kind: 'mistrial', day: 'Day 28', match: /Rule 29 motion/i, outcome: 'reserved', title: 'Defense motion for a judgment of acquittal on every count' },
   { id: 'batson', kind: 'jurors', day: 'Day 1', match: /struck Black jurors/i, outcome: 'denied', title: 'Defense claim that prosecutors struck Black jurors unfairly' },
   { id: 'juror-move', kind: 'jurors', day: 'Day 21', match: /moved to remove Juror/i, outcome: 'pending', title: 'Prosecutors move to remove a juror for "lack of candor"' },
-  { id: 'juror-postponed', kind: 'jurors', day: 'Day 22', match: /postponed decision/i, outcome: 'pending', title: 'Decision on removing the juror postponed' },
+  { id: 'juror-postponed', kind: 'jurors', day: 'Day 22', match: /postponed (?:a )?decision/i, outcome: 'pending', title: 'Decision on removing the juror postponed' },
   { id: 'juror-removed', kind: 'jurors', day: 'Day 23', match: /announced removal of Juror/i, outcome: 'granted', title: 'Judge announces the juror will be removed' },
   { id: 'juror-dismissed', kind: 'jurors', day: 'Day 24', match: /formally dismissed/i, outcome: 'granted', title: 'Juror dismissed and replaced by an alternate' },
-  { id: 'juror-overruled', kind: 'jurors', day: 'Day 24', match: /letter overruled/i, outcome: 'denied', title: "Defense objection to the juror's removal" },
+  { id: 'juror-overruled', kind: 'jurors', day: 'Day 24', match: /letter.*overruled/i, outcome: 'denied', title: "Defense objection to the juror's removal" },
   { id: 'juror-conference', kind: 'jurors', day: 'Day 25', match: /closed juror conference/i, outcome: 'pending', title: 'Closed conference about a juror' },
   { id: 'juror-kept', kind: 'jurors', day: 'Day 26', match: /kept a juror/i, outcome: 'kept', title: 'Juror with outside communications kept on the jury' },
   { id: 'caution-steel', kind: 'warnings', day: 'Day 14', match: /cautioned Steel/i, outcome: 'warning', title: 'Judge cautions a defense lawyer over his questions' },
@@ -60,7 +60,7 @@ const RULES: Rule[] = [
   { id: 'media-2', kind: 'evidence', day: 'Day 3', match: /denied media request/i, outcome: 'denied', title: 'Media request to show sealed recordings publicly' },
   { id: 'disclose', kind: 'evidence', day: 'Day 3', match: /disclose cross exhibits/i, outcome: 'denied', title: 'Prosecution request that the defense show its exhibits in advance' },
   { id: 'regina', kind: 'evidence', day: 'Day 7', match: /allowed Regina Ventura/i, outcome: 'denied', title: "Defense objection to Regina Ventura's testimony" },
-  { id: 'cudi', kind: 'evidence', day: 'Day 9', match: /jury told to disregard/i, outcome: 'struck', title: "A witness's belief about the car fire struck" },
+  { id: 'cudi', kind: 'evidence', day: 'Day 9', match: /told to disregard/i, outcome: 'struck', title: "A witness's belief about the car fire struck" },
   { id: 'fingerprint', kind: 'evidence', day: 'Day 11', match: /struck the arson investigator/i, outcome: 'struck', title: "Arson investigator's fingerprint testimony struck" },
   { id: 'money-grab', kind: 'evidence', day: 'Day 14', match: /money grab/i, outcome: 'struck', title: 'A defense phrase struck; jury told to disregard' },
   { id: 'sealed', kind: 'evidence', day: 'Day 16', match: /filed under seal/i, outcome: 'granted', title: 'Private videos filed under seal (jury only)' },
@@ -69,7 +69,7 @@ const RULES: Rule[] = [
 
 export interface Day20Selection {
   events: DocketEvent[]
-  counts: { total: number; motions: number; motionsDenied: number; denied: number; immunity: number }
+  counts: { total: number; motions: number; motionsDenied: number; deniedAfterVerdict: number; denied: number; immunity: number }
   used: ReportedNumber[]
   other: ReportedNumber[]
   pool: Source[]
@@ -135,6 +135,8 @@ export function select(day: TrialDay): Day20Selection {
       total: events.length,
       motions: motions.length,
       motionsDenied: motions.filter((e) => e.outcome === 'denied').length,
+      // A motion the judge reserved at trial and denied later (the Rule 29 motion, denied after the verdict), as its text says
+      deniedAfterVerdict: motions.filter((e) => e.outcome === 'reserved' && /denied it/i.test(e.text)).length,
       denied: events.filter((e) => e.outcome === 'denied').length,
       immunity: events.filter((e) => e.kind === 'immunity').length,
     },

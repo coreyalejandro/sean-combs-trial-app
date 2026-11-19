@@ -154,7 +154,7 @@
 .index-num { font: 900 40px/1 var(--f-display); color: var(--red); }
 .index-date { font-size: 12px; color: var(--muted); }
 .index-title { font-weight: 700; line-height: 1.25; }
-.index-form { font-size: 11px; color: var(--muted); }
+.index-form { font-size: 13px; line-height: 1.35; color: var(--muted); }
 .index-card.is-red { background: var(--red); border-color: var(--red); }
 .index-card.is-red .index-num, .index-card.is-red .index-date, .index-card.is-red .index-title { color: #fff; }
 .index-gap { margin-top: 8px; font-size: 13px; color: var(--muted-ink); border: 1px dashed var(--neutral); padding: 6px 8px; }
@@ -172,3 +172,19 @@
 .support-page, .sources-page { padding-top: 32px; padding-bottom: 48px; }
 .support-list { padding-left: 20px; }
 .support-list li { margin: 10px 0; }
+
+/* "How it ended" under the charge ribbon on day pages */
+.ribbon-outcome-line { margin: 8px 0 0; font-size: 14px; line-height: 1.4; }
+
+/* Toward the march: the same quiet thread on every day page, pointing to the finale */
+.toward-march { margin: 32px 0; padding: 12px 0 12px 16px; border-left: 4px solid var(--red); max-width: var(--measure, 68ch); }
+.toward-march .toward-label { font: 700 13px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 6px; }
+.toward-march .toward-line { margin: 0 0 6px; font-size: 17px; line-height: 1.45; }
+.toward-march .toward-link { margin: 0; font-size: 15px; }
+.not-charged-note { border-left: 4px solid var(--neutral); padding: 8px 12px; background: #f0f0ec; margin: 0 0 16px; max-width: var(--measure, 68ch); }
+.glossary-list { display: grid; gap: 10px; margin: 12px 0; max-width: var(--measure, 68ch); }
+.glossary-list dt { font-weight: 700; }
+.glossary-list dd { margin: 2px 0 0; }
+.words-on-page { margin: 12px 0; border: 1px solid var(--rule-paper); padding: 8px 12px; max-width: var(--measure, 68ch); }
+.words-on-page summary { cursor: pointer; font-weight: 700; }
+.index-num.is-word { font-size: 28px; }

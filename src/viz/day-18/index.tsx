@@ -1,6 +1,7 @@
 // Day 18: How Long the Nights Lasted, in Two Women's Testimony (Builder 3).
 // A duration range plot: every length either woman gave, on one hours axis, grouped by witness;
 // recovery on its own scale below. Lengths of time stand in for any detail (care rule 2).
+import { midSentence } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
 import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { extrasFrom, levelWords } from '@/viz/kits/days-15-21/sources'
@@ -33,13 +34,13 @@ export function TextVersion({ day }: DayVizProps) {
   for (const g of sel.groups) {
     const list = sel.spans.filter((x) => x.who === g.who)
     if (list.length === 0) continue
-    p.push(`${g.name}${g.years ? ` (${g.years})` : ''}: ${list.map((x) => `${x.label.toLowerCase()}, ${x.reported} (${spanText(x, 'hours')}; ${levelWords(x.level)}; Day ${x.fromDay})`).join('; ')}.`)
+    p.push(`${g.name}${g.years ? ` (${g.years})` : ''}: ${list.map((x) => `${midSentence(x.label)}, ${x.reported} (${spanText(x, 'hours')}; ${levelWords(x.level)}; Day ${x.fromDay})`).join('; ')}.`)
   }
   if (sel.overlap) p.push(`A shaded band marks the hours both women's figures cover: ${spanText(sel.overlap, 'hours')} (calculated). Recovery is drawn on its own, longer scale.`)
   const rows: TableRow[] = sel.spans.map((x) => ({
     key: x.id,
     what: `${sel.groups.find((g) => g.who === x.who)?.name}: ${x.label}`,
-    value: `${x.reported} (${spanText(x, 'hours')}, calculated)`,
+    value: /hour/i.test(x.reported) ? x.reported : `${x.reported} (${spanText(x, 'hours')}, calculated)`,
     when: x.who === 'recovery' ? undefined : sel.groups.find((g) => g.who === x.who)?.years ?? undefined,
     level: x.level,
     sources: x.sources,
@@ -48,7 +49,7 @@ export function TextVersion({ day }: DayVizProps) {
     <div className={k.longDesc}>
       {p.map((t) => <p key={t}>{t}</p>)}
       <VizTable caption={`Durations as testified, and every other figure from Day ${day.day}`} rows={rows} pool={sel.pool} other={sel.other} dayNumber={day.day} whenLabel="Years" />
-      <OmittedNote count={sel.omitted} why="they describe bodily or sexual detail, which this project does not chart (care rule 2)." />
+      <OmittedNote count={sel.omitted} why="they describe bodily or sexual detail." />
     </div>
   )
 }

@@ -2,7 +2,7 @@
 // The server selects; the client child draws both age lines (in the static HTML too) and adds the year cursor.
 import { redactThirdParties, type ReportedNumber } from '@/lib/data'
 import { PlaceholderTextVersion, PlaceholderViz } from '@/components/shell/Placeholder'
-import { formatValue } from '@/lib/viz/format'
+import { formatValue, midSentence } from '@/lib/viz/format'
 import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { Calculated, RowsTable, Sourced, type TableRow } from '@/viz/kits/days-01-07/Parts'
 import { numberRefs, uniqueRefs, toExtraSources } from '@/viz/kits/days-01-07/refs'
@@ -91,7 +91,6 @@ export function TextVersion(props: DayVizProps) {
   if (!sel) return <PlaceholderTextVersion {...props} meta={meta} />
   const { labels } = sel.index
   const herEnd = sel.herAgeMet + (sel.endYear - sel.metYear)
-  const hisEnd = sel.hisAgeMet + (sel.endYear - sel.metYear)
   const eventRows: TableRow[] = sel.events.map((e, i) => ({
     key: e.id,
     group: i === 0 ? 'The marks on the lifeline' : undefined,
@@ -110,16 +109,16 @@ export function TextVersion(props: DayVizProps) {
     <>
       <p>
         Two lines run from {sel.startYear} to {sel.endYear}. The upper line is Cassie Ventura&rsquo;s age, the lower line Sean Combs&rsquo;s. She testified
-        that they met in {sel.metYear}, when she was {sel.herAgeMet} and he was {sel.hisAgeMet}: {sel.gap} years apart
-        <Calculated formula={`${sel.hisAgeMet} minus ${sel.herAgeMet}`} />. By {sel.endYear} she was about {herEnd} and he about {hisEnd}
-        <Calculated formula="age in the year they met plus the years since" />.
+        that they met in {sel.metYear}, when she was {sel.herAgeMet} and he was {sel.hisAgeMet}, as reported from court; the picture shows his age
+        only for that year. By {sel.endYear} she was about {herEnd}
+        <Calculated formula="her age when they met plus the years since" />.
       </p>
       <p>
-        Numbered marks show the dates she gave: {sel.events.map((e) => `${e.label.toLowerCase()} (${e.yearEnd ? `${e.year} or ${e.yearEnd}` : e.year})`).join('; ')}.
+        Numbered marks show the dates she gave: {sel.events.map((e) => `${midSentence(e.label)} (${e.yearEnd ? `${e.year} or ${e.yearEnd}` : e.year})`).join('; ')}.
         {sel.relationship ? ` The band between the lines shows the relationship, ${sel.relationship.from} to ${sel.relationship.to}; outlets give its length as ${sel.relationship.readings.map((r) => r.text).join(', or ')}.` : ''}
         {sel.deal ? ` A small inset of ${sel.deal.size} squares, ${sel.deal.released} filled, stands for her record deal and its one release.` : ''}
       </p>
-      <RowsTable caption={`Day ${day.day}: the dates on the lifeline, and every figure reported`} columns={['Year or figure', 'What the record says']} rows={[...eventRows, ...numberRows]} labels={labels} />
+      <RowsTable caption={`Day ${day.day}: the dates on the lifeline, and every figure reported`} columns={['Year or figure', 'What was reported']} rows={[...eventRows, ...numberRows]} labels={labels} />
       <p className="visually-hidden">{uniqueRefs(sel.events.flatMap((e) => e.refs)).length} sources back the marks.</p>
     </>
   )

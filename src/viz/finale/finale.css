@@ -70,7 +70,8 @@
 .fm-fill { display: block; height: 100%; background: var(--paper); }
 .fm-all .fm-fill { background: var(--red); }
 .fm-num { font: 400 13px/1 var(--f-data); text-align: right; font-variant-numeric: tabular-nums; }
-.fm-tablewrap { overflow-x: auto; }
+.fm-tablewrap { overflow-x: auto; max-width: 100%; }
+.fm-panel { min-width: 0; }
 .fm-tonight { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .fm-tonight th, .fm-tonight td { text-align: right; padding: 5px 4px; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
 .fm-tonight th:first-child, .fm-tonight td:first-child { text-align: left; font-weight: 400; }
@@ -104,7 +105,8 @@
 .fm-method { max-width: var(--measure); }
 .fm-method ul { padding-left: 20px; }
 .fm-method li { margin: 6px 0; }
-.fm-closing { border: 1px dashed var(--muted); padding: 20px; }
+.fm-closing { border-top: 3px solid var(--red); padding: 24px 0 8px; margin-top: 32px; }
+.fm-closing h2 { font: 900 clamp(32px, 6vw, 56px)/1.05 var(--f-display); margin: 8px 0 12px; }
 .fm-version { display: inline-block; margin: 0 0 8px; padding: 4px 8px; background: var(--red-text); color: #fff; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px; }
 .finale-page .day-pager { flex-wrap: wrap; }
 
@@ -177,3 +179,4 @@
 .finale-page .text-version { background: var(--slate); border-color: var(--rule); color: var(--paper); }
 .fm-text > :not(summary) { padding-left: 16px; padding-right: 16px; }
 .fm-text > :last-child { padding-bottom: 16px; }
+@media (max-width: 500px) { .fm-tonight { font-size: 11.5px; } .fm-tonight th, .fm-tonight td { padding: 5px 2px; } }

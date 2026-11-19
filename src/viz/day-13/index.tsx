@@ -2,7 +2,7 @@
 // Mia's mediation as a step down and other amounts as context. Owned by Builder 2.
 import { getDay } from '@/lib/data'
 import type { DayVizProps, ExtraSource } from '@/viz/types'
-import { bookExtras, FactsTable } from '@/viz/kits/days-08-14/ui'
+import { bookExtras, FactMeta, FactsTable, kit } from '@/viz/kits/days-08-14/ui'
 import { Day13Interactive } from './Interactive'
 import { describe } from './describe'
 import { meta } from './meta'
@@ -16,6 +16,16 @@ export default function Day13Viz({ day }: DayVizProps) {
   return (
     <div>
       <Day13Interactive view={{ mia: m.mia, context: m.context, book: m.book }} />
+      <p className={kit.note}>
+        A demand is a lawyer&rsquo;s opening figure in a negotiation, not a measure of harm or of what anyone is owed.
+        {m.purpose ? (
+          <>
+            {' '}Global News reports that Mia&rsquo;s settlement reimbursed promised bonuses that were never paid and unpaid overtime, and that she said
+            she never told her lawyers about the sexual abuse. <FactMeta fact={m.purpose} book={m.book} />
+          </>
+        ) : null}{' '}
+        The judge struck the defense&rsquo;s &ldquo;money grab&rdquo; phrase from the record (Day 14).
+      </p>
     </div>
   )
 }

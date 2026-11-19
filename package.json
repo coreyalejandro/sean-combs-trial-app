@@ -13,11 +13,12 @@
     "typecheck": "tsc --noEmit",
     "check:literals": "node scripts/check-viz-literals.mjs",
     "check:witnesses": "tsx scripts/build-witnesses.ts --check",
+    "check:public-text": "tsx scripts/public-text.ts out",
     "build:witnesses": "tsx scripts/build-witnesses.ts",
     "test": "npm run check:literals && npm run test:unit",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "test:all": "npm run typecheck && npm run test && npm run build && npm run test:e2e"
+    "test:all": "npm run typecheck && npm run test && npm run build && npm run check:public-text && npm run test:e2e"
   },
   "dependencies": {
     "@deck.gl/react": "9.1.14",

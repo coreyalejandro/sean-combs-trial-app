@@ -18,3 +18,4 @@
 .listBtn[aria-pressed='true'] { background: #fff; box-shadow: inset 4px 0 0 var(--red); }
 .listWhen { display: block; font: 400 12px/1.3 var(--f-data); color: var(--muted-ink); }
 @media (max-width: 799px) { .laneLabel { font-size: 11px; } }
+.sw { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--ink); }

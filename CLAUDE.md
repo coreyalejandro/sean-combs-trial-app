@@ -14,7 +14,8 @@ A static Next.js 14 site (exported to `out/`, hosted on Cloudflare Pages from `m
 - Rebuild the witness table after the data changes: `npm run build:witnesses`
 
 ## Data
-- One source of facts: `src/data/trial_days.json` (copied unchanged from the research file). Never type a fact into a component.
+- One source of facts: `src/data/trial_days.json`, the public edition of the research file (`days/trial_days.json`): factual corrections go into both; reader wording and privacy edits only here. Everything the site prints passes through `src/lib/data/store.ts`. Never type a fact into a component.
+- Run `npm run check:public-text` after a build: no research or AI process notes may reach a page.
 - Read data only through `@/lib/data`.
 
 ## Key guidelines

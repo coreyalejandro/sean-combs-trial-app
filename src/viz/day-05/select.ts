@@ -6,6 +6,8 @@ import { buildIndex, findFact, findNumber, numberRefs, uniqueRefs, type Level, t
 export type IconKind = 'cash' | 'bottle' | 'pills' | 'powder' | 'light'
 
 export interface Item {
+  /** Cites the day's coverage as a whole (no single article is tied to it). */
+  whole?: boolean
   id: IconKind
   name: string
   /** How many icons; `perIcon` says what one icon stands for. */
@@ -52,11 +54,11 @@ export function select(day: TrialDay): Day05Selection {
   if (binda) {
     const pills = listed.find((x) => /alias/i.test(x))
     const alias = pills?.match(/alias '([^']+)'/)?.[1]
-    if (pills) items.push({ id: 'pills', name: alias ? `pills under the name “${alias}”` : 'pills under an alias', icons: 1, perIcon: 'one pill bottle (count not reported)', countReported: false, detail: `${pills.replace(/^[a-z]/, (c) => c.toUpperCase()).replace(/'/g, '’')}.`, level: binda.confidence, refs: binda.refs })
+    if (pills) items.push({ id: 'pills', name: alias ? `pills under the name “${alias}”` : 'pills under an alias', icons: 1, perIcon: 'one pill bottle (count not reported)', countReported: false, detail: `${pills.replace(/^[a-z]/, (c) => c.toUpperCase()).replace(/'/g, '’')}.`, level: binda.confidence, refs: binda.refs, whole: Boolean(binda.wholeRecord) })
     const powder = listed.find((x) => /powder/i.test(x))
-    if (powder) items.push({ id: 'powder', name: 'powder, tested for drugs', icons: 1, perIcon: 'one sample (amount not reported)', countReported: false, detail: 'A powder that was tested for drugs.', level: binda.confidence, refs: binda.refs })
+    if (powder) items.push({ id: 'powder', name: 'powder, tested for drugs', icons: 1, perIcon: 'one sample (amount not reported)', countReported: false, detail: 'A powder that was tested for drugs.', level: binda.confidence, refs: binda.refs, whole: Boolean(binda.wholeRecord) })
     const light = listed.find((x) => /lighting/i.test(x))
-    if (light) items.push({ id: 'light', name: 'lighting device', icons: 1, perIcon: 'one device', countReported: false, detail: 'A lighting device.', level: binda.confidence, refs: binda.refs })
+    if (light) items.push({ id: 'light', name: 'lighting device', icons: 1, perIcon: 'one device', countReported: false, detail: 'A lighting device.', level: binda.confidence, refs: binda.refs, whole: Boolean(binda.wholeRecord) })
   }
 
   const arrestNum = findNumber(day, /arrest date/i)

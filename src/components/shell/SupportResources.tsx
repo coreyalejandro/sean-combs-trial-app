@@ -1,5 +1,5 @@
 // Care rule 7: support always one tap away. Numbers confirmed on each service's official site
-// on November 19, 2026 (rainn.org, 988lifeline.org, thehotline.org).
+// on November 19, 2026 (rainn.org, 988lifeline.org, thehotline.org, 1in6.org, lgbthotline.org).
 export function SupportResources({ compact = false }: { compact?: boolean }) {
   return (
     <section className={`support ${compact ? 'support-compact' : ''}`} aria-labelledby="support-heading">
@@ -19,6 +19,18 @@ export function SupportResources({ compact = false }: { compact?: boolean }) {
           START to <a href="sms:88788&body=START">88788</a>. Live chat at{' '}
           <a href="https://www.thehotline.org" rel="noopener noreferrer">thehotline.org</a>.
         </li>
+        {compact ? null : (
+          <>
+            <li>
+              <strong>For men</strong>: <a href="https://1in6.org" rel="noopener noreferrer">1in6.org</a> offers free, counselor-led online
+              support groups and resources for men who have experienced sexual abuse or assault.
+            </li>
+            <li>
+              <strong>For LGBTQ+ survivors</strong>: the <a href="https://lgbthotline.org" rel="noopener noreferrer">LGBT National Help Center</a>{' '}
+              offers free, confidential peer support by phone and chat; hours are on its site.
+            </li>
+          </>
+        )}
       </ul>
       {compact ? null : <p className="muted">In an emergency, call 911.</p>}
     </section>

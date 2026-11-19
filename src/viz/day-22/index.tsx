@@ -50,12 +50,11 @@ function Legend({ sel }: { sel: Day22Selection }) {
         {swatch(styles.sClosed, EXAM_LABEL.closed)}
         {swatch(styles.sOpen, 'Dashed outline: times approximate or not reported')}
       </ul>
-      {sel.daysReported ? (
+      {sel.rows.length > 0 ? (
         <p className={styles.count}>
           <strong>Days on the stand:</strong>{' '}
-          <Cite num={sel.daysReported} pool={sel.sources} showMark={false} /> by the court-day record, or{' '}
-          <span className="num">{sel.daysCounted}</span> <Calc formula="court days with Jane listed as a witness" /> counting her first
-          afternoon. <ConfidenceMark level="conflict" />
+          {sel.daysReported ? <Cite num={sel.daysReported} pool={sel.sources} showMark={false} /> : <span className="num">{sel.daysCounted} court days</span>},{' '}
+          {formatDate(sel.rows[0].date, { year: false })} to {formatDate(sel.rows[sel.rows.length - 1].date, { year: false })}.
         </p>
       ) : null}
     </div>
@@ -64,6 +63,7 @@ function Legend({ sel }: { sel: Day22Selection }) {
 
 export default function Day22Viz({ day }: DayVizProps) {
   const sel = selectDay22(day)
+  const wired = day.numbers.find((x) => /Total Combs wired/i.test(x.what)) ?? null
   const wide = ganttGeometry(sel, layout.chartWidth)
   const narrow = ganttGeometry(sel, layout.phoneWidth)
   const details = sel.rows.flatMap((r) =>
@@ -97,7 +97,7 @@ export default function Day22Viz({ day }: DayVizProps) {
             ) : null}
             {topics.length > 0 ? (
               <>
-                <p className={styles.topicsHead}>Topics the record lists{s.topics ? ' for this part of the day' : ' for this day'}:</p>
+                <p className={styles.topicsHead}>Topics the reporting lists{s.topics ? ' for this part of the day' : ' for this day'}:</p>
                 <ul className={styles.topics}>
                   {topics.map((t) => (
                     <li key={t.label}>{t.label}</li>
@@ -114,6 +114,12 @@ export default function Day22Viz({ day }: DayVizProps) {
       <GanttInteractive wide={wide} narrow={narrow} details={details} legend={<Legend sel={sel} />} />
       {sel.finalAnswer ? (
         <blockquote className={styles.quote}>
+          {wired ? (
+            <p className={styles.quoteLead}>
+              The question: the defense put to her the <Cite num={wired} pool={day.sources} showMark={false} /> Combs wired her over the
+              relationship. Her answer:
+            </p>
+          ) : null}
           <p>&ldquo;{sel.finalAnswer.text}&rdquo;</p>
           <footer>
             Jane&apos;s last answer on the stand, Day {sel.finalAnswer.day} (the red dot).{' '}

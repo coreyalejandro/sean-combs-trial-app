@@ -87,8 +87,8 @@ export function OmittedNote({ count, why }: { count: number; why: string }) {
   if (count <= 0) return null
   return (
     <p className={styles.omitted}>
-      {count === 1 ? 'One figure' : `${count} figures`} from this day {count === 1 ? 'is' : 'are'} left out of this page: {why} They remain in the
-      sources listed below.
+      {count === 1 ? 'One figure' : `${count} figures`} from this day {count === 1 ? 'is' : 'are'} left out of this page because {why}{' '}
+      {count === 1 ? 'It remains' : 'They remain'} in the sources listed below.
     </p>
   )
 }

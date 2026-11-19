@@ -5,7 +5,7 @@ import type { VizMeta } from '@/viz/types'
 
 export const meta: VizMeta = {
   day: 10,
-  title: "December 2011, Told by Six Witnesses",
+  title: "December 2011, Told by Six Witnesses and One Set of Bank Records",
   question: "How do different witnesses' accounts of the same few weeks line up?",
   form: "Corroboration strip",
   contentLevel: 2,

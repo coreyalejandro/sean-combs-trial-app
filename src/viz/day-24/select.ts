@@ -22,7 +22,7 @@ export interface JuryEvent {
   /** Testimony day, when the event happened on one. */
   day: number | null
   headline: string
-  /** What the record says, redacted. */
+  /** What was reported, redacted. */
   record: string
   sources: Source[]
   confidence: Confidence

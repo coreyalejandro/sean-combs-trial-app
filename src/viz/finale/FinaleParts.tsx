@@ -97,7 +97,6 @@ export function FinaleTextVersion() {
           {S.space.mall_full_standing_on_day}. People from the West take {fmtNum(S.west_ne_ratio, 1)} times as long as people from the
           Northeast.
         </p>
-        <p>The picture shows the march <em>to</em> Washington. What happens <em>on</em> Washington is not defined yet.</p>
       </div>
 
       <h3>How many of each kind of worker would be gone</h3>
@@ -179,8 +178,7 @@ export function FinaleMethod() {
       <h3>The routing method, and how far off it is</h3>
       <p>
         Routes run on the {r.network}: one shortest-path tree from the National Mall that every walker follows from the nearest mapped
-        road, so routes that share roads merge into corridors. Street-level routing (OpenStreetMap) could not be reached from the build
-        machines, so this coarser network stands in for it. Measured error:
+        road, so routes that share roads merge into corridors. This network is coarser than a street map. How far off that makes it:
       </p>
       <ul>
         <li>Route length is a median <span className="num">{fmtNum(r.route_ratio_median, RATIO_DIGITS)}</span> times the straight-line distance (10th to 90th percentile {fmtNum(r.route_ratio_p10, RATIO_DIGITS)} to {fmtNum(r.route_ratio_p90, RATIO_DIGITS)}). The network smooths curves and leaves out small roads, so walks are probably a little too short and arrivals a little early.</li>
@@ -196,7 +194,7 @@ export function FinaleMethod() {
         <FinaleRef sources={R('mall')}>{''}</FinaleRef>. Jobs: {S.jobs_method} <FinaleRef sources={R('bls-cps11', 'cdc-nisvs')}>{''}</FinaleRef>
       </p>
       <p className="fm-caveat">
-        <strong>Estimates, not forecasts.</strong> {S.uncertainty} Daily output paused: {S.not_computed.status}.
+        <strong>Estimates, not forecasts.</strong> {S.uncertainty}
       </p>
     </section>
   )

@@ -45,7 +45,7 @@ export function TextVersion({ day }: DayVizProps) {
   const yearText = (m: (typeof sel.messages)[number]) => (m.from === m.to ? String(m.from) : `${m.from} to ${m.to}`)
   const msgRows: TableRow[] = sel.messages.flatMap((m, i) => [
     { key: `${m.id}-d`, group: i === 0 ? 'The messages, with both readings' : undefined, cells: [yearText(m), m.paraphrase, `Defense: ${m.defense.text}`], level: m.defense.level, refs: m.defense.refs },
-    { key: `${m.id}-v`, cells: [yearText(m), '', `Ventura: ${m.ventura?.text ?? 'her answer is not in the record.'}`], level: m.ventura?.level ?? 'low', refs: m.ventura?.refs ?? [] },
+    { key: `${m.id}-v`, cells: [yearText(m), '', `Ventura: ${m.ventura?.text ?? 'her answer was not reported.'}`], level: m.ventura?.level ?? 'low', refs: m.ventura?.refs ?? [] },
     ...m.again.map((a) => ({ key: `${m.id}-a${a.day}`, cells: [`Day ${a.day}`, '', a.text], level: a.level, refs: a.refs })),
   ])
   const numberRows: TableRow[] = day.numbers.map((n, i) => ({
@@ -62,7 +62,7 @@ export function TextVersion({ day }: DayVizProps) {
       <p>
         On cross-examination the defense showed Cassie Ventura messages she had written years earlier. The picture places {sel.messages.length} of them on a time
         line{first && last ? ` from ${first.from} to ${last.to}` : ''}, oldest first, each paraphrased. Beside each message are two readings: what the defense put to
-        her, and what she answered. Where her answer to a message is not in the record, the picture says so instead of guessing.
+        her, and what she answered. Where her answer to a message was not reported, the picture says so instead of guessing.
       </p>
       <p>The thread is short on purpose: only these messages can be dated from the reporting. Messages are paraphrased; this page reproduces no sexual content.</p>
       <RowsTable caption={`Day ${day.day}: the messages and both readings, and every figure reported`} columns={['Year or value', 'Message', 'Reading']} rows={[...msgRows, ...numberRows]} labels={labels} />

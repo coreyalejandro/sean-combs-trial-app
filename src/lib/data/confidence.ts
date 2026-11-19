@@ -21,11 +21,11 @@ export function confidenceInfo(level: Confidence | 'conflict'): ConfidenceInfo {
     case 'high':
       return { level, label: 'two or more outlets', explain: 'Reported by two or more independent news organisations.', mark: 'solid' }
     case 'medium':
-      return { level, label: 'one outlet', explain: 'Reported by one major news organisation; no contradiction found.', mark: 'hollow' }
+      return { level, label: 'one outlet', explain: 'Reported by one major news organisation, and no other report contradicts it.', mark: 'hollow' }
     case 'low':
-      return { level, label: 'one outlet, unconfirmed', explain: 'From a single source that was flagged as unverified, contradicted, or from a smaller outlet.', mark: 'dashed' }
+      return { level, label: 'one outlet, unconfirmed', explain: 'Reported by one outlet only and not confirmed elsewhere, or contradicted by another report.', mark: 'dashed' }
     case 'conflict':
-      return { level, label: 'outlets disagree', explain: 'Outlets reported different values; both are listed.', mark: 'split' }
+      return { level, label: 'outlets disagree', explain: 'News reports give different values; each is listed.', mark: 'split' }
   }
 }
 

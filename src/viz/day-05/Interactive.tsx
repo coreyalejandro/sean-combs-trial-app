@@ -1,6 +1,7 @@
 'use client'
 // Day 5: the isotype. One plain icon per unit, drawn in CSS (no photographs). Tab enters the icons, arrow keys move,
 // Enter or a tap opens the item; "Show as a list" swaps the icons for a plain list. The static HTML shows every icon.
+import { midSentence } from '@/lib/viz/format'
 import { useState } from 'react'
 import { useRovingFocus } from '@/lib/viz/roving'
 import { Sourced } from '@/viz/kits/days-01-07/Parts'
@@ -11,7 +12,11 @@ const confClass: Record<string, string> = { high: s.solid, medium: s.hollow, low
 
 export function Isotype({ items, agent, labels }: { items: Item[]; agent: { name: string; role: string } | null; labels: Record<string, string> }) {
   const [asList, setAsList] = useState(false)
-  const flat = items.flatMap((it) => Array.from({ length: it.icons }, (_, k) => ({ it, k })))
+  // Only the cash is drawn as icons (a counted amount). Items whose amount was not reported, or that this site does
+  // not count, are listed in words (review, Nov 2026).
+  const iconic = items.filter((it) => it.id === 'cash')
+  const worded = items.filter((it) => it.id !== 'cash')
+  const flat = iconic.flatMap((it) => Array.from({ length: it.icons }, (_, k) => ({ it, k })))
   const [open, setOpen] = useState<number | null>(null)
   const roving = useRovingFocus(flat.length, { onSelect: (i) => setOpen(i), onExit: () => setOpen(null) })
   const openItem = open !== null ? flat[open]?.it : null
@@ -33,8 +38,9 @@ export function Isotype({ items, agent, labels }: { items: Item[]; agent: { name
           ))}
         </ul>
       ) : (
-        <div className={s.groups} onKeyDown={roving.onKeyDown} role="group" aria-label="Items agents found, one icon per unit. Use the arrow keys to move and Enter to open.">
-          {items.map((it) => (
+        <>
+        <div className={s.groups} onKeyDown={roving.onKeyDown} role="group" aria-label={`Cash agents found, one icon per ${iconic[0]?.perIcon ?? "unit"}. Use the arrow keys to move and Enter to open.`}>
+          {iconic.map((it) => (
             <section key={it.id} className={s.group} aria-label={`${it.countReported ? it.icons : 'One'} ${it.name}`}>
               <h3 className={s.groupHead}>
                 {it.id === 'cash' ? <span className={s.big}>{it.detail.split(' ')[0]}</span> : it.countReported ? <span className={s.big}>{it.icons}</span> : null}
@@ -64,6 +70,19 @@ export function Isotype({ items, agent, labels }: { items: Item[]; agent: { name
             </section>
           ))}
         </div>
+        {worded.length > 0 ? (
+          <div className={s.wordList}>
+            <h3 className={s.groupHead}><span className={s.groupName}>Also on the agent&rsquo;s list</span></h3>
+            <ul className={s.list}>
+              {worded.map((it) => (
+                <li key={it.id}>
+                  {it.detail} <Sourced level={it.level} refs={it.refs} labels={labels} whole={it.whole} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        </>
       )}
       <div className={s.detail} aria-live="polite">
         {openItem ? (
@@ -72,13 +91,13 @@ export function Isotype({ items, agent, labels }: { items: Item[]; agent: { name
             {agent ? (
               <p className={s.detailWho}>
                 Listed in court by {agent.name}
-                {agent.role ? `, ${agent.role.charAt(0).toLowerCase()}${agent.role.slice(1)}` : ''}.
+                {agent.role ? `, ${midSentence(agent.role)}` : ''}.
               </p>
             ) : null}
             <Sourced level={openItem.level} refs={openItem.refs} labels={labels} />
           </>
         ) : (
-          <p className={s.detailHint}>Focus or tap an icon for the item, the agent who listed it, and the source.</p>
+          <p className={s.detailHint}>Focus or tap an icon for the agent who listed the cash, and the source.</p>
         )}
       </div>
     </div>

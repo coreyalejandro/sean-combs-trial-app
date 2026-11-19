@@ -17,6 +17,23 @@ export default function Day05Viz({ day }: DayVizProps) {
   const { labels } = sel.index
   return (
     <div className={s.viz}>
+      {sel.stand ? (
+        <div className={s.stand}>
+          <span className={s.crossLabel}>Ventura on the stand</span>
+          <ol className={s.standDays} aria-label={`Cassie Ventura testified on ${sel.stand.days.map((d) => `Day ${d}`).join(', ')}`}>
+            {sel.stand.allDays.map((d) => (
+              <li key={d} className={sel.stand!.days.includes(d) ? s.standOn : s.standOff} aria-hidden="true">
+                <span>Day {d}</span>
+              </li>
+            ))}
+          </ol>
+          <p className={s.standText}>
+            <span className="num">{sel.stand.count}</span>
+            {sel.stand.endedToday ? ', ending today' : ''}. <Sourced level={sel.stand.level} refs={sel.stand.refs} labels={labels} />
+          </p>
+        </div>
+      ) : null}
+      <h3 className={s.partHead}>After her testimony, a federal agent listed what was found when Combs was arrested</h3>
       {sel.arrest ? (
         <p className={s.dateline}>
           <span className={s.datelineDate}>{sel.arrest.date}</span>
@@ -32,22 +49,6 @@ export default function Day05Viz({ day }: DayVizProps) {
               <span className={s.crossLabel}>On cross-examination</span>
               <p>The defense pointed out that {sel.belongings.text.replace(/^a /, 'a ')}.</p>
               <Sourced level={sel.belongings.level} refs={sel.belongings.refs} labels={labels} />
-            </div>
-          ) : null}
-          {sel.stand ? (
-            <div className={s.stand}>
-              <span className={s.crossLabel}>Ventura on the stand</span>
-              <ol className={s.standDays} aria-label={`Cassie Ventura testified on ${sel.stand.days.map((d) => `Day ${d}`).join(', ')}`}>
-                {sel.stand.allDays.map((d) => (
-                  <li key={d} className={sel.stand!.days.includes(d) ? s.standOn : s.standOff} aria-hidden="true">
-                    <span>Day {d}</span>
-                  </li>
-                ))}
-              </ol>
-              <p className={s.standText}>
-                <span className="num">{sel.stand.count}</span>
-                {sel.stand.endedToday ? ', ending today' : ''}. <Sourced level={sel.stand.level} refs={sel.stand.refs} labels={labels} />
-              </p>
             </div>
           ) : null}
         </aside>

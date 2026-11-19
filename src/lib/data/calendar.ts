@@ -1,10 +1,9 @@
 // Dates inside the testimony span with no testimony, shown on the trial rail as grey gaps.
 // June 18, 2025: court convened, a juror was ill, no witnesses. The note text comes from the data
 // (the calendar_note recorded on the day before the gap), so nothing here is typed by hand except the date.
-import raw from '@/data/trial_days.json'
-import type { TrialData } from './types'
+import { data as publicData } from './store'
 
-const data = raw as unknown as TrialData
+const data = publicData
 
 export interface CalendarGap {
   date: string

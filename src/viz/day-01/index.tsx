@@ -23,7 +23,7 @@ function ClaimCard({ side, claim, labels }: { side: Side; claim: Claim | null; l
     return (
       <div className={`${s.card} ${s[side]} ${s.empty}`}>
         <span className={s.cardSide}>{sideLabel[side]}</span>
-        <p>Not in the record of this opening.</p>
+        <p>Not reported from this opening.</p>
       </div>
     )
   }
@@ -112,7 +112,7 @@ export default function Day01Viz({ day }: DayVizProps) {
               <details className={s.topic}>
                 <summary>
                   <span className={s.topicLabel}>{row.label}</span>
-                  <span className={s.topicHint}>{row.laterDays.length > 0 ? 'Where the trial tested it' : 'Not returned to in later records'}</span>
+                  <span className={s.topicHint}>{row.laterDays.length > 0 ? 'Where the trial tested it' : 'Not returned to on a later day'}</span>
                 </summary>
                 {row.laterDays.length > 0 ? (
                   <p className={s.later}>
@@ -125,7 +125,7 @@ export default function Day01Viz({ day }: DayVizProps) {
                     ))}
                   </p>
                 ) : (
-                  <p className={s.later}>No later day&rsquo;s record returns to it by name.</p>
+                  <p className={s.later}>No later day returns to it by name.</p>
                 )}
               </details>
               <span className={`${s.ribbon} ${s.ribbonDef} ${row.defense ? '' : s.ribbonGap}`} aria-hidden="true" />
@@ -135,7 +135,7 @@ export default function Day01Viz({ day }: DayVizProps) {
         </ol>
         {pros || def ? (
           <p className={s.openingSources}>
-            Both openings as summarised in the Day 1 record{' '}
+            Both openings as news reports summarised them{' '}
             <Sourced level="medium" refs={(pros ?? def)?.fact.refs ?? []} labels={labels} compact />
           </p>
         ) : null}
@@ -176,7 +176,7 @@ export function TextVersion({ day }: DayVizProps) {
       cells: [
         r.label,
         <>
-          <strong>Prosecution:</strong> {r.prosecution ? cap(r.prosecution.text) : 'not in the record of this opening'}. <strong>Defense:</strong> {r.defense ? cap(r.defense.text) : 'not in the record of this opening'}.{' '}
+          <strong>Prosecution:</strong> {r.prosecution ? cap(r.prosecution.text) : 'not reported from this opening'}. <strong>Defense:</strong> {r.defense ? cap(r.defense.text) : 'not reported from this opening'}.{' '}
           {r.laterDays.length > 0 ? `Tested on ${r.laterDays.map((d) => `Day ${d}`).join(', ')}.` : ''}
         </>,
       ],
@@ -190,15 +190,15 @@ export function TextVersion({ day }: DayVizProps) {
       <p>
         On {formatDate(day.date, { weekday: true })}, before any witness spoke, each side gave the jury its opening statement:
         {pros ? ` ${pros.speaker} for the prosecution` : ''}{pros && def ? ' and' : ''}{def ? ` ${def.speaker} for the defense` : ''}. The picture sets the two
-        side by side on {sel.rows.length} topics. On {both} of them the record has a claim from both sides; on the rest, only one side&rsquo;s claim was
-        reported. Each topic links to the later days whose records return to it.
+        side by side on {sel.rows.length} topics. On {both} of them a claim from both sides was reported; on the rest, only one side&rsquo;s claim was
+        reported. Each topic links to the later days that returned to it.
       </p>
       <p>
-        Openings are not evidence. Above the topics are the figures that framed the trial ({sel.stakes.map((st) => `${formatValue(st.num.value, st.num.unit)} ${st.label}`).join('; ')}).
+        Openings are not evidence. Above the topics are the figures that framed the trial ({sel.stakes.map((st) => `${typeof st.num.value === 'number' ? st.num.value.toLocaleString('en-US') : st.num.value} ${st.label}`).join('; ')}).
         Below them, {sel.witnesses.length} stars stand for the prosecution&rsquo;s witnesses; {sel.litIds.length} are lit after Day 1. The verdict is
         behind a button so it is read only by choice.
       </p>
-      <RowsTable caption={`Day ${day.day}: the openings by topic, and every figure reported`} columns={['Topic or figure', 'What the record says']} rows={rows} labels={labels} />
+      <RowsTable caption={`Day ${day.day}: the openings by topic, and every figure reported`} columns={['Topic or figure', 'What was reported']} rows={rows} labels={labels} />
     </>
   )
 }

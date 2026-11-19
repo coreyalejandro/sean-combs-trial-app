@@ -44,6 +44,16 @@ export default function Day08Viz({ day }: DayVizProps) {
         </section>
       )}
       <Day08Interactive view={{ rows: m.rows, years: m.years, book: m.book }} />
+      <p className={kit.note}>
+        Dr. Hughes spoke about patterns in general. Her testimony cannot say why any one of these five people waited, and she did not evaluate
+        any of them.
+        {m.afterEnd ? (
+          <>
+            {' '}Ventura&rsquo;s wait is counted from {m.rows[0].start.year}, when she testified the abuse began. Counted from {m.afterEnd.relEnd}, when the
+            relationship ended, her lawsuit came {m.afterEnd.gap} years later (calculated).
+          </>
+        ) : null}
+      </p>
     </div>
   )
 }

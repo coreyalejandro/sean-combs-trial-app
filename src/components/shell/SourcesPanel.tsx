@@ -2,7 +2,7 @@
 // and where outlets disagree. Rendered on every day page by the shell, so every visualization shows its sources.
 // Sources the picture draws from other days' records or from additions.json are listed after the day's own,
 // numbered on from them, so every source on the page sits in one list.
-import { redactThirdParties, type DayConfidence, type Source } from '@/lib/data'
+import { plainSourceTitle, redactThirdParties, type DayConfidence, type Source } from '@/lib/data'
 import type { ExtraSource } from '@/viz/types'
 import { ConfidenceLegend, ConfidenceMark } from './ConfidenceMark'
 
@@ -48,6 +48,22 @@ function Aliases({ ids }: { ids?: string[] }) {
   )
 }
 
+/** Where an extra source comes from, in reader words ("first cited on Day 15"), whatever wording a picture used. */
+export function plainOrigin(origin: string): string {
+  const day = origin.match(/Day (\d+)/)
+  if (day) return `first cited on Day ${day[1]}`
+  if (/verdict/i.test(origin)) return 'first cited on the verdict page'
+  return 'added to check a detail on this page'
+}
+
+/** "6 sources from 3 outlet families (ABC, AP, CBS); numbers: ..." -> "6 news reports, from ABC, AP and CBS." */
+export function plainSourcesSummary(summary: string, count: number): string {
+  const list = summary.match(/\(([^)]*)\)/)?.[1]?.split(/,\s*/).filter(Boolean) ?? []
+  const names = list.length > 1 ? `${list.slice(0, -1).join(', ')} and ${list[list.length - 1]}` : list[0]
+  const reports = `${count} news report${count === 1 ? '' : 's'}`
+  return names ? `This page draws on ${reports}, from ${names}.` : `This page draws on ${reports}.`
+}
+
 /** The page's source list items for extra sources (also used by unit tests to resolve every tag). */
 export function ExtraSourcesList({ plan, start }: { plan: SourcesPlan; start: number }) {
   if (plan.listed.length === 0) return null
@@ -57,9 +73,9 @@ export function ExtraSourcesList({ plan, start }: { plan: SourcesPlan; start: nu
         <li key={s.id} id={`source-${s.id}`}>
           <Aliases ids={plan.aliases[s.id]} />
           <span className="src-outlet">{s.outlet}</span>.{' '}
-          <a href={s.url} rel="noopener noreferrer" target="_blank">{s.title}</a>.{' '}
-          <time className="src-date" dateTime={s.date.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? undefined}>{s.date}</time>
-          <span className="src-flag"> ({s.origin})</span>
+          <a href={s.url} rel="noopener noreferrer" target="_blank">{plainSourceTitle(s.title)}</a>.{' '}
+          <time className="src-date" dateTime={s.date.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? undefined}>{s.date.replace(/\s*\(.*$/, '')}</time>
+          <span className="src-flag"> ({plainOrigin(s.origin)})</span>
         </li>
       ))}
     </ol>
@@ -85,10 +101,7 @@ export function SourcesPanel({
   return (
     <section className="sources-panel" aria-labelledby="sources-heading" id="sources">
       <h2 id="sources-heading">{heading}</h2>
-      <p className="sources-confidence">
-        <strong>How sure this page is:</strong> <ConfidenceMark level={confidence.level === 'high' ? 'high' : confidence.level} />{' '}
-        <span>{confidence.summary}</span>
-      </p>
+      <p className="sources-confidence">{plainSourcesSummary(confidence.summary, sources.length)}</p>
       <details className="legend-details">
         <summary>What the marks mean</summary>
         <ConfidenceLegend />
@@ -100,23 +113,22 @@ export function SourcesPanel({
             <span className="src-outlet">{s.outlet}</span>.{' '}
             <a href={s.url} rel="noopener noreferrer" target="_blank">{s.title}</a>.{' '}
             <time className="src-date" dateTime={s.date.slice(0, 10)}>{s.date}</time>
-            {s.opened_this_pass ? null : <span className="src-flag"> (read in an earlier research pass)</span>}
           </li>
         ))}
       </ol>
       {plan.listed.length > 0 && (
         <>
-          <h3 id="sources-extra-heading">Also used on this page: other days&rsquo; records and added facts</h3>
+          <h3 id="sources-extra-heading">Also cited on this page</h3>
           <p className="sources-extra-note">
-            The picture also draws on these. They come from the records of other trial days, or were added to check a detail
-            (each is marked). The numbers continue from the list above.
+            These reports were first cited on other pages of this site, or were added to check a detail (each is marked).
+            The numbers continue from the list above.
           </p>
           <ExtraSourcesList plan={plan} start={sources.length + 1} />
         </>
       )}
       {discrepancies.length > 0 && (
         <>
-          <h3>Where outlets disagree or were corrected</h3>
+          <h3>Where news reports differ</h3>
           <ul className="discrepancies">
             {discrepancies.map((d, i) => (
               <li key={i}>
@@ -128,7 +140,7 @@ export function SourcesPanel({
       )}
       {outletLabels.length > 0 && (
         <p className="outlet-labels">
-          <strong>Outlets number this day differently:</strong> {outletLabels.join('; ')}
+          <strong>Some outlets number this trial day differently:</strong> {outletLabels.join('; ')}
         </p>
       )}
     </section>

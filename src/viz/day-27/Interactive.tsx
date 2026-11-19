@@ -19,7 +19,7 @@ function TripMap({ g, trips, selected, onSelect }: { g: MapGeometry; trips: Trip
   const cls = (id: string) => `${styles[styleOf(id).replace('-', '_')]} ${selected === null ? '' : selected === id ? styles.on : styles.off}`
   const { fontSize, dashUnconfirmed, dot } = layout
   return (
-    <svg className={g.narrow ? styles.narrow : styles.wide} viewBox={`0 0 ${g.width} ${g.height}`} role="img" aria-label="Map of the trips in the records. Arcs join both ends of a trip where records name them; rings mark arrival cities where only the destination was reported.">
+    <svg className={g.narrow ? styles.narrow : styles.wide} viewBox={`0 0 ${g.width} ${g.height}`} role="img" aria-label="Map of the trips in the reporting. Arcs join both ends of a trip where records name them; rings mark arrival cities where only the destination was reported.">
       <path d={g.land} className={styles.land} />
       <path d={g.states} className={styles.states} />
       {g.inset ? (
