@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Corroboration strip",
   contentLevel: 2,
   caption: "Agreement on dates is not proof of who did what. The judge told jurors to disregard testimony suggesting who set the fire (Days 9 and 11).",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
-  altShort: "Calendar of December 2011 to January 2012 showing seven events and which of six witnesses or records described each.",
-  status: 'placeholder',
+  howToRead: 'The calendar runs across the top; each red mark is an event\'s date, joined to its column below. Each tile in a column is one witness or record that described that event (initials; dark = witness, white = police or fire, dashed = bank records); the dot on its corner says how sure that account is. Choose a name to see only their accounts, or select a column to read them.',
+  altShort: "Calendar of December 2011 to January 2012 showing seven events and which of seven witnesses and records described each.",
+  status: 'done',
 }

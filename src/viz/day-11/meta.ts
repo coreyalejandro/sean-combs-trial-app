@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Chain-of-evidence diagram with broken links",
   contentLevel: 1,
   caption: "No one was charged for the fire. Jurors were told to disregard testimony suggesting who set it.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
-  altShort: "Seven-step investigation chain in which three links are broken: evidence not collected, witnesses not reached, and no charges.",
-  status: 'placeholder',
+  howToRead: 'Read the steps in order. A whole link means testimony says the step happened; a broken link and a dashed card mean testimony says it did not. The grey court notes under a step say what the judge did with that testimony. Select a step for what each witness said and where it was reported.',
+  altShort: "Seven-step investigation chain that stops after the fire scene: the glove was not collected or tested, two witnesses were not reached, and no one was charged.",
+  status: 'done',
 }

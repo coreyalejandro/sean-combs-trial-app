@@ -1,0 +1,17 @@
+.link { transition: stroke-opacity 300ms ease, stroke 300ms ease; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.card { border: 2px solid var(--ink); background: #fff; }
+.card[data-selected="true"] { outline: 3px solid var(--red); outline-offset: -1px; }
+.cardHead {
+  display: block; width: 100%; text-align: left; background: var(--ink); color: var(--paper); border: 0;
+  padding: 8px 10px; min-height: 44px; cursor: pointer; font: inherit;
+}
+.cardName { display: block; font: 700 16px/1.25 var(--f-body); }
+.cardMeta { display: block; font: 400 12px/1.3 var(--f-data); color: var(--muted); }
+.chips { list-style: none; margin: 0; padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  min-height: 44px; padding: 6px 12px; background: #fff; color: var(--ink); border: 2px solid var(--ink);
+  font: 600 15px/1.2 var(--f-body); cursor: pointer;
+}
+.chip[data-conf="low"] { border-style: dashed; }
+.chip[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
