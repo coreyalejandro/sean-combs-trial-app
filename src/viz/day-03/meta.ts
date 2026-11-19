@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Evidence matrix that fills over time",
   contentLevel: 3,
   caption: "A filled square means the jury saw that kind of evidence, not that it believed it. No photograph or video is shown here.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: "Each row is an event Ventura testified about; each column a kind of evidence. A dark square shows the trial day that kind of evidence first reached the jury, and red dots count later pieces; a striped square rests on one unconfirmed outlet. Move the slider or press Play to watch it fill, and select a square for its sources.",
   altShort: "Grid of five events from Ventura's testimony against six kinds of evidence, showing which kinds the jury saw for each and on which trial day.",
-  status: 'placeholder',
+  status: 'done',
 }

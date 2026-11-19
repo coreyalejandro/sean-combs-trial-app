@@ -1,0 +1,66 @@
+/* Day 4: message thread with two reading lanes. Phone first; four lanes from 800 px. */
+.viz { display: grid; gap: 18px; }
+.threadWrap { display: grid; gap: 12px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--ink); color: var(--paper); padding: 10px 12px; }
+.btn { min-height: 44px; padding: 8px 14px; border: 2px solid var(--paper); background: transparent; color: var(--paper); font: 700 14px/1.2 var(--f-body); cursor: pointer; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btnQuiet { min-height: 44px; padding: 8px 10px; border: 0; background: transparent; color: var(--muted); font: 400 13px/1.2 var(--f-data); text-decoration: underline; cursor: pointer; }
+.counter { font: 400 13px/1.2 var(--f-data); color: var(--muted); min-width: 10ch; }
+
+.lanesHead { display: none; }
+.thread { list-style: none; margin: 0; padding: 0; position: relative; }
+.thread::before { content: ""; position: absolute; left: 31px; top: 0; bottom: 0; width: 2px; background: var(--ink); }
+.msg {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-areas: "rail bubble" "rail def" "rail her";
+  gap: 8px 10px;
+  padding: 14px 0;
+  transition: opacity 250ms ease;
+}
+.rail { grid-area: rail; display: grid; align-content: start; justify-items: center; gap: 6px; position: relative; z-index: 1; }
+.year { background: var(--ink); color: var(--paper); font: 700 12px/1.2 var(--f-data); padding: 4px 6px; text-align: center; }
+.gap { font: 400 11px/1.25 var(--f-data); color: var(--muted-ink); background: var(--paper); text-align: center; padding: 2px 0; }
+.gap [class*="calc"] { display: block; margin: 2px auto 0; width: max-content; font-size: 9px; padding: 1px 3px; }
+.bubbleCol { grid-area: bubble; display: grid; gap: 6px; }
+.bubble {
+  margin: 0;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 18px 18px 18px 4px;
+  padding: 10px 14px;
+  font-size: 16px;
+  line-height: 1.4;
+  max-width: 34ch;
+}
+.again { margin: 0; font-size: 13px; }
+.againLink { font: 700 12px/1 var(--f-data); background: var(--red-text); color: #fff; padding: 3px 6px; text-decoration: none; }
+.reading { padding: 8px 12px; background: #fff; font-size: 14px; line-height: 1.4; }
+.reading p { margin: 0 0 4px; }
+.reading[hidden] { display: none; }
+.def { grid-area: def; border-left: 6px solid var(--defense); }
+.her { grid-area: her; border-left: 6px solid var(--ink); }
+.none { border-left-style: dashed; color: var(--muted-ink); font-style: italic; background: repeating-linear-gradient(135deg, #ecece7 0 6px, #fff 6px 12px); }
+.lane { display: block; font: 700 11px/1 var(--f-data); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-ink); margin-bottom: 4px; font-style: normal; }
+.off { opacity: 0.4; }
+.current .bubble { border-color: var(--red); box-shadow: 4px 4px 0 var(--red); }
+
+@media (min-width: 800px) {
+  .lanesHead {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+    font: 700 12px/1.2 var(--f-data);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 6px;
+  }
+  .thread::before { left: 47px; }
+  .msg { grid-template-columns: 96px minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "rail bubble def her"; gap: 12px; align-items: start; border-bottom: 1px solid var(--rule-paper); }
+  .lane { display: none; }
+}
+
+.facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14px; }
+.factValue { font: 700 14px/1 var(--f-data); background: var(--ink); color: var(--paper); padding: 2px 6px; margin-right: 4px; }

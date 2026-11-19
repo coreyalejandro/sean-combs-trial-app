@@ -1,17 +1,77 @@
-// Day 3: What Backs Each Part of Her Account
-// Owned by Builder 1 (the first week: one woman's account). Replace the placeholder with the evidence matrix that fills over time described in README.md.
-// Rules: render only from `day` / '@/lib/data'; no numbers typed by hand (npm run check:literals);
-// interaction goes in a 'use client' child component in this folder.
-import { PlaceholderTextVersion, PlaceholderViz } from '@/components/shell/Placeholder'
+// Day 3: What Backs Each Part of Her Account. An evidence matrix that fills over the trial.
+import { redactThirdParties } from '@/lib/data'
+import { formatValue } from '@/lib/viz/format'
 import type { DayVizProps } from '@/viz/types'
+import { ExtraSources, RowsTable, Sourced, type TableRow } from '../day-01/kit/Parts'
+import { numberRefs } from '../day-01/kit/refs'
+import { Matrix } from './Interactive'
 import { meta } from './meta'
+import { KINDS, select } from './select'
+import s from './day03.module.css'
 
 export { meta }
 
-export default function Day03Viz(props: DayVizProps) {
-  return <PlaceholderViz {...props} meta={meta} />
+export default function Day03Viz({ day }: DayVizProps) {
+  const sel = select(day)
+  const { labels, extras } = sel.index
+  return (
+    <div className={s.viz}>
+      <Matrix rows={sel.rows} kinds={KINDS} pieces={sel.pieces.map((p) => ({ ...p, source: '' }))} firstDay={sel.firstDay} lastDay={sel.lastDay} filledByDay={sel.filledByDay} labels={labels} />
+      <ul className={s.rowSources} aria-label="Where each event's date comes from">
+        {sel.rows.map((r) => (
+          <li key={r.id}>
+            <span className="num">{r.label}</span>: date as reported on Day {day.day} <Sourced level={r.level} refs={r.refs} labels={labels} compact />
+          </li>
+        ))}
+      </ul>
+      {sel.views ? (
+        <p className={s.aside}>
+          By the end of Day {day.day} the jury had watched the hotel video <span className="num">{sel.views.value}</span> times. <Sourced level={sel.views.level} refs={sel.views.refs} labels={labels} />
+        </p>
+      ) : null}
+      <ExtraSources extras={extras} labels={labels} />
+    </div>
+  )
 }
 
-export function TextVersion(props: DayVizProps) {
-  return <PlaceholderTextVersion {...props} meta={meta} />
+export function TextVersion({ day }: DayVizProps) {
+  const sel = select(day)
+  const { labels } = sel.index
+  const kindLabel = (id: string) => KINDS.find((k) => k.id === id)?.label ?? id
+  const filled = sel.filledByDay[sel.filledByDay.length - 1] ?? 0
+  const total = sel.rows.length * KINDS.length
+  const pieceRows: TableRow[] = sel.rows.flatMap((r) =>
+    sel.pieces
+      .filter((p) => p.row === r.id)
+      .map((p, i) => ({
+        key: p.id,
+        group: i === 0 ? `${r.label}: ${r.what}` : undefined,
+        cells: [`Day ${p.day}`, kindLabel(p.kind), p.label],
+        level: p.level,
+        refs: p.refs,
+      })),
+  )
+  const numberRows: TableRow[] = day.numbers.map((n, i) => ({
+    key: `n${i}`,
+    group: i === 0 ? `Every figure reported on Day ${day.day}` : undefined,
+    cells: [<span key="v" className="num">{formatValue(n.value, n.unit)}</span>, n.unit, redactThirdParties(n.what)],
+    level: n.confidence,
+    refs: numberRefs(day, n),
+  }))
+  const emptyKinds = sel.rows.map((r) => ({ r, missing: KINDS.filter((k) => !sel.pieces.some((p) => p.row === r.id && p.kind === k.id)).map((k) => k.label.toLowerCase()) }))
+  return (
+    <>
+      <p>
+        A grid of {sel.rows.length} events from Cassie Ventura&rsquo;s testimony ({sel.rows.map((r) => r.label).join('; ')}) against {KINDS.length} kinds of
+        evidence ({KINDS.map((k) => k.label.toLowerCase()).join(', ')}). A square fills on the trial day that kind of evidence first reached the jury for that
+        event; small dots count later pieces of the same kind. By Day {sel.lastDay}, {filled} of {total} squares are filled (calculated from the pieces listed below).
+      </p>
+      <p>
+        A filled square means the jury saw that kind of evidence, not that it believed it. Still empty at the end of the trial:{' '}
+        {emptyKinds.map(({ r, missing }) => `${r.label}, ${missing.length > 0 ? missing.join(', ') : 'none'}`).join('; ')}. Pieces whose record names no
+        outlet cite that day&rsquo;s whole source list.
+      </p>
+      <RowsTable caption={`Day ${day.day}: each piece of evidence by event, and every figure reported`} columns={['Day or value', 'Kind', 'What it was']} rows={[...pieceRows, ...numberRows]} labels={labels} />
+    </>
+  )
 }

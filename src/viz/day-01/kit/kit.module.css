@@ -1,0 +1,44 @@
+/* Builder 1 kit styles (Days 1 to 7). Tokens come from src/styles/tokens.css. */
+.refs { white-space: nowrap; }
+.sourced { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; }
+
+.calc {
+  display: inline-block;
+  font: 400 11px/1 var(--f-data);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px dashed currentColor;
+  padding: 2px 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+  color: var(--muted-ink);
+}
+
+.extras {
+  margin-top: 20px;
+  border-top: 1px solid var(--rule-paper);
+  padding-top: 8px;
+  font-size: 13px;
+}
+.extrasTitle { cursor: pointer; min-height: 32px; font: 700 12px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px; }
+.extrasNote { margin: 0 0 6px; color: var(--muted-ink); }
+.extrasList { list-style: none; padding: 0; margin: 0; }
+.extrasList li { margin: 4px 0; overflow-wrap: anywhere; }
+.extrasList li:target { background: #fff3c4; }
+.extrasLabel { font: 700 12px/1 var(--f-data); display: inline-block; min-width: 1.6em; }
+.outlet { font-weight: 700; }
+.date, .from { font: 400 12px/1.2 var(--f-data); color: var(--muted-ink); }
+
+.groupRow th {
+  background: #ebebe6;
+  font: 700 12px/1.2 var(--f-data);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px;
+}
+
+.missing { font-size: 14px; color: var(--muted-ink); margin: 8px 0 0; max-width: 68ch; }
+@media (min-width: 800px) {
+  .extrasList { columns: 2; column-gap: 24px; }
+  .extrasList li { break-inside: avoid; }
+}

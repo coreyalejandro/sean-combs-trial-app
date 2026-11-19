@@ -1,4 +1,326 @@
 {
   "day": 6,
-  "items": []
+  "items": [
+    {
+      "id": "place-los-angeles",
+      "kind": "place",
+      "text": "Los Angeles, California (city centre; city-level precision)",
+      "value": "34.050,-118.250",
+      "from_days": [
+        6
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Los Angeles (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Los_Angeles",
+          "date": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-west-hollywood",
+      "kind": "place",
+      "text": "West Hollywood, California (city centre; city-level precision)",
+      "value": "34.0879806,-118.3709694",
+      "from_days": [
+        6,
+        11
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "West Hollywood, California (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/West_Hollywood,_California",
+          "date": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-beverly-hills",
+      "kind": "place",
+      "text": "Beverly Hills, California (Census internal point; city-level precision)",
+      "value": "34.07923,-118.402437",
+      "from_days": [
+        9
+      ],
+      "confidence": "high",
+      "sources": [
+        {
+          "outlet": "U.S. Census Bureau",
+          "outlet_family": "Census",
+          "title": "2026 Gazetteer Files: Places, California (Beverly Hills city, INTPTLAT/INTPTLONG)",
+          "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2026_Gazetteer/2026_gaz_place_06.txt",
+          "date": "2026"
+        },
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Beverly Hills, California (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Beverly_Hills,_California",
+          "date": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-central-park",
+      "kind": "place",
+      "text": "Central Park, New York City (park centre; venue-level precision)",
+      "value": "40.78222,-73.96528",
+      "from_days": [
+        6
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Central Park (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Central_Park",
+          "date": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "place-las-vegas",
+      "kind": "place",
+      "text": "Las Vegas, Nevada (city centre; city-level precision)",
+      "value": "36.1672,-115.1486",
+      "from_days": [
+        9
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "Wikipedia",
+          "outlet_family": "Wikipedia",
+          "title": "Las Vegas (infobox coordinates)",
+          "url": "https://en.wikipedia.org/wiki/Las_Vegas",
+          "date": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-richard-la-2009",
+      "kind": "event",
+      "text": "Dawn Richard testified she saw Combs attack Ventura in Los Angeles in 2009 (the skillet incident).",
+      "value": "place-los-angeles",
+      "date": "2009",
+      "from_days": [
+        5,
+        6
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Complex (Shawn Setaro)",
+          "outlet_family": "Complex",
+          "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
+          "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
+          "date": "2025-05-19"
+        },
+        {
+          "outlet": "Associated Press via Dayton Daily News",
+          "outlet_family": "AP",
+          "title": "Singer Dawn Richard says Sean 'Diddy' Combs threatened her with death after she saw him beat Cassie",
+          "url": "https://www.daytondailynews.com/nation-world/singer-dawn-richard-says-sean-diddy-combs-threatened-her-with-death-after-she-saw-him-beat-cassie/UPCU45GK4RAZPMSGOGGTQTXMMQ/",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-richard-centralpark-2009",
+      "kind": "event",
+      "text": "Dawn Richard testified to a 2009 incident before a festival in Central Park.",
+      "value": "place-central-park",
+      "date": "2009",
+      "from_days": [
+        6
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Complex (Shawn Setaro)",
+          "outlet_family": "Complex",
+          "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
+          "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-richard-weho-2010",
+      "kind": "event",
+      "text": "Dawn Richard testified to a 2010 incident at a restaurant dinner in West Hollywood.",
+      "value": "place-west-hollywood",
+      "date": "2010",
+      "from_days": [
+        6
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Complex (Shawn Setaro)",
+          "outlet_family": "Complex",
+          "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
+          "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-morgan-la-undated",
+      "kind": "event",
+      "text": "Kerry Morgan testified that she hid with Ventura on a neighbor's steps in Los Angeles; the year was not reported.",
+      "value": "place-los-angeles",
+      "from_days": [
+        6
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Complex (Shawn Setaro)",
+          "outlet_family": "Complex",
+          "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
+          "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-morgan-jamaica-2013",
+      "kind": "event",
+      "text": "Kerry Morgan testified that she and Ventura hid in a ditch in Jamaica in 2013.",
+      "value": "place-jamaica",
+      "date": "2013",
+      "from_days": [
+        6
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Complex (Shawn Setaro)",
+          "outlet_family": "Complex",
+          "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
+          "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-morgan-la-2016",
+      "kind": "event",
+      "text": "Kerry Morgan described the aftermath of the March 2016 Los Angeles hotel incident, when she said Combs came to the door.",
+      "value": "place-los-angeles",
+      "date": "2016",
+      "from_days": [
+        6
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Complex (Shawn Setaro)",
+          "outlet_family": "Complex",
+          "title": "Diddy Case: Cassie's former best friend says they hid from mogul in a ditch, Dawn Richard questioned",
+          "url": "https://content.adc-blue.infra.complex.com/music/a/shawn-setaro/diddy-trial-new-lawyer-throw-doubt-dawn-richard-story-cassie-ditch",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "acct-kaplan-lasvegas-2015",
+      "kind": "event",
+      "text": "George Kaplan, a former assistant, testified he saw violence toward Ventura on a 2015 flight to Las Vegas.",
+      "value": "place-las-vegas",
+      "date": "2015",
+      "from_days": [
+        9
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "ABC News",
+          "outlet_family": "ABC",
+          "title": "Sean 'Diddy' Combs trial recap day 13: 2nd week of testimony concludes with Kid Cudi describing alleged car bombing",
+          "url": "https://abcnews.com/US/sean-diddy-combs-trial-recap-day-13-2nd/story?id=122096856",
+          "date": "2025-05-22"
+        }
+      ]
+    },
+    {
+      "id": "acct-morales-beverlyhills-2010",
+      "kind": "event",
+      "text": "Mylah Morales, a makeup artist, testified she saw Ventura's injuries after a Grammy-weekend incident in 2010; ABC places it at a Beverly Hills hotel, AP says she did not name the hotel.",
+      "value": "place-beverly-hills",
+      "date": "2010",
+      "from_days": [
+        9
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "FOX 5 NY",
+          "outlet_family": "Fox",
+          "title": "Cudi claims Diddy retaliated; makeup artist recalls Cassie injuries during Grammys weekend",
+          "url": "https://www.fox5ny.com/news/nyc-diddy-trial-kid-cudi-testify-sean-combs",
+          "date": "2025-05-22"
+        },
+        {
+          "outlet": "ABC News",
+          "outlet_family": "ABC",
+          "title": "Sean 'Diddy' Combs trial recap day 13: 2nd week of testimony concludes with Kid Cudi describing alleged car bombing",
+          "url": "https://abcnews.com/US/sean-diddy-combs-trial-recap-day-13-2nd/story?id=122096856",
+          "date": "2025-05-22"
+        }
+      ]
+    },
+    {
+      "id": "acct-nash-weho-disputed",
+      "kind": "event",
+      "text": "Deonte Nash, a stylist, testified he saw Combs be violent toward Ventura more than once; Fox places one incident at a West Hollywood hotel without a year, NBC dates it 2016 (unresolved).",
+      "value": "place-west-hollywood",
+      "from_days": [
+        11
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 11 (live blog)",
+          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-11",
+          "date": "2025-05-28"
+        },
+        {
+          "outlet": "NBC News",
+          "outlet_family": "NBC",
+          "title": "Sean Combs trial live updates, May 28 (rcna209331)",
+          "url": "https://www.nbcnews.com/news/us-news/live-blog/sean-diddy-combs-trial-testimony-witnesses-live-updates-rcna209331",
+          "date": "2025-05-28"
+        }
+      ]
+    },
+    {
+      "id": "acct-phillip-unplaced",
+      "kind": "event",
+      "text": "Daniel Phillip testified he saw Combs assault Ventura at her residence; the city and year were not reported.",
+      "from_days": [
+        1
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "outlet": "CBS New York (Alice Gainer)",
+          "outlet_family": "CBS",
+          "title": "First witnesses in Sean 'Diddy' Combs' trial testify about Cassie assault, paid sexual encounters",
+          "url": "https://www.cbsnews.com/amp/newyork/news/sean-diddy-combs-trial-daniel-phillip-israel-florez",
+          "date": "2025-05-12"
+        }
+      ]
+    }
+  ]
 }

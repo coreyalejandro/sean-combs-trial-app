@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Isotype pictograph",
   contentLevel: 2,
   caption: "Items as the agent listed them. On cross-examination, the defense pointed out a woman's belongings were also in the room.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: "Each plain icon is one unit of what the agent listed; the key under each group says what one icon stands for. Solid icons were reported by two or more outlets, outlined icons by one. Focus or tap an icon for its source, or choose Show as a list.",
   altShort: "Pictograph of items found in the arrest room: $9,000 in cash, five bottles of baby oil, pills under an alias, a powder tested for drugs, and a lighting device.",
-  status: 'placeholder',
+  status: 'done',
 }
