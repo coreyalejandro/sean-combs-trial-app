@@ -1,0 +1,35 @@
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.card {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; height: 100%;
+  padding: 10px 8px; background: #fff; border: 2px solid var(--ink); cursor: pointer; font: inherit; color: var(--ink); text-align: center;
+}
+.card[aria-pressed="true"] { outline: 3px solid var(--red); outline-offset: 2px; }
+.name { font: 900 17px/1.15 var(--f-display); }
+.pseudo { font: 400 12px/1 var(--f-body); color: var(--muted-ink); }
+.role { font: 400 12px/1.3 var(--f-data); color: var(--muted-ink); }
+.dial { width: 100%; max-width: 176px; height: auto; display: block; margin: 4px 0; overflow: visible; }
+.track { fill: none; stroke: #ecece7; }
+.tick { stroke: var(--muted-ink); stroke-width: 1; }
+.hourText { fill: var(--muted-ink); font-family: var(--f-data); }
+.faint { fill: var(--neutral); opacity: 0.55; }
+.arcSolid { fill: var(--red); stroke: var(--red); stroke-width: 1; }
+.arcHollow { fill: #fde3e1; stroke: var(--red); stroke-width: 2; }
+.arcDashed { fill: #fde3e1; stroke: var(--red); stroke-width: 2; stroke-dasharray: 4 3; }
+.always { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 1 3; stroke-linecap: round; }
+.big { font: 900 30px/1 var(--f-display); fill: var(--ink); }
+.small { font: 400 11px/1 var(--f-data); fill: var(--muted-ink); }
+.note { font-size: 12px; line-height: 1.3; color: var(--muted-ink); }
+.sleep { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 4px; }
+.sleepBlocks { display: flex; gap: 3px; }
+.blockOn, .blockOff { width: 16px; height: 16px; display: inline-block; border: 2px solid var(--ink); }
+.blockOn { background: var(--ink); }
+.blockOn[data-conf="medium"] { background: repeating-linear-gradient(135deg, var(--ink) 0 2px, #fff 2px 5px); }
+.blockOn[data-conf="low"] { background: #fff; border-style: dashed; }
+.blockOff { border-color: #d6d6d0; background: transparent; }
+.sleepText { font: 400 12px/1.3 var(--f-data); }
+.sleepNone { font: 400 11px/1.3 var(--f-data); color: var(--muted-ink); margin: 4px 0 0; max-width: 20ch; }
+.keySolid, .keyFaint, .keyBlock { display: inline-block; width: 14px; height: 10px; vertical-align: middle; margin-right: 4px; }
+.keySolid { background: var(--red); }
+.keyFaint { background: var(--neutral); opacity: 0.55; }
+.keyBlock { background: var(--ink); width: 10px; }
+.mid { font: 900 19px/1 var(--f-display); fill: var(--ink); }

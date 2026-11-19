@@ -1,0 +1,13 @@
+.root { width: 100%; }
+.bar { transition: x2 600ms ease; }
+.endDot { transition: transform 600ms ease; }
+
+.concepts { margin: 0 0 16px; }
+.conceptsHead { font: 700 13px/1.3 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+.conceptList { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.conceptList li { border-top: 4px solid var(--ink); background: #fff; padding: 8px 10px; }
+.conceptList strong { display: block; font: 900 16px/1.2 var(--f-display); }
+.conceptList span { font-size: 14px; color: var(--muted-ink); }
+.fee { font-size: 14px; margin: 8px 0 0; color: var(--muted-ink); }
+.rowBg { fill: transparent; }
+.rowSel { fill: #ecece7; }

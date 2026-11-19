@@ -1,0 +1,9 @@
+.grid { stroke: #d6d6d0; stroke-width: 1; }
+.gridText { font: 400 11px/1 var(--f-data); fill: var(--muted-ink); }
+.laneText { font: 700 12px/1 var(--f-data); fill: var(--ink); text-transform: uppercase; letter-spacing: 0.04em; }
+.step { fill: none; stroke: var(--red); stroke-width: 3; stroke-dasharray: 2 4; stroke-linecap: round; }
+.dotG { cursor: pointer; }
+.dotG circle, .dotG text, .dotG line { transition: cx 600ms ease, x 600ms ease, x1 600ms ease, x2 600ms ease, cy 600ms ease, y 600ms ease; }
+.dotLabel { font: 400 12px/1 var(--f-body); fill: var(--ink); }
+.dotSub { font: 400 11px/1 var(--f-body); fill: var(--muted-ink); }
+.mono { font-family: var(--f-data); }

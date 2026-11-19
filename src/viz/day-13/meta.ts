@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Log-scale dot line",
   contentLevel: 2,
   caption: "On this scale each step to the right is ten times bigger. A settlement is not an admission by either side.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Further right means more money, and each gridline is ten times the one before. The red dots joined by a dotted line are Mia\'s mediation, from what was asked to what she received; the other dots are amounts named at trial, grouped by kind. A solid dot was reported by two or more outlets, a hollow one by one outlet, a half-filled one where outlets disagree. Switch to the ordinary scale to see why the log scale is needed.',
   altShort: "Log-scale line of amounts named at trial, from $20,000 to $30 million, with Mia's 2017 mediation shown falling from $10 million asked to about $200,000 received.",
-  status: 'placeholder',
+  status: 'done',
 }

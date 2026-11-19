@@ -1,4 +1,190 @@
 {
   "day": 9,
-  "items": []
+  "items": [
+    {
+      "id": "lermitage-frank-white",
+      "kind": "note",
+      "text": "L'Ermitage Beverly Hills guest-profile records listed the alias Frank White (testimony of the hotel's general manager)",
+      "value": "Frank White",
+      "unit": "alias",
+      "alias": "Frank White",
+      "place": "L'Ermitage Beverly Hills",
+      "from_days": [
+        9
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 9 (live blog)",
+          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
+          "date": "2025-05-22"
+        }
+      ]
+    },
+    {
+      "id": "lermitage-frank-black",
+      "kind": "note",
+      "text": "L'Ermitage Beverly Hills guest-profile records listed the alias Frank Black (testimony of the hotel's general manager)",
+      "value": "Frank Black",
+      "unit": "alias",
+      "alias": "Frank Black",
+      "place": "L'Ermitage Beverly Hills",
+      "from_days": [
+        9
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 9 (live blog)",
+          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
+          "date": "2025-05-22"
+        }
+      ]
+    },
+    {
+      "id": "lermitage-jackie-star",
+      "kind": "note",
+      "text": "L'Ermitage Beverly Hills guest-profile records listed the alias Jackie Star (testimony of the hotel's general manager)",
+      "value": "Jackie Star",
+      "unit": "alias",
+      "alias": "Jackie Star",
+      "place": "L'Ermitage Beverly Hills",
+      "from_days": [
+        9
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 9 (live blog)",
+          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
+          "date": "2025-05-22"
+        }
+      ]
+    },
+    {
+      "id": "lermitage-ryan-lopez",
+      "kind": "note",
+      "text": "L'Ermitage Beverly Hills guest-profile records listed the alias Ryan Lopez (testimony of the hotel's general manager)",
+      "value": "Ryan Lopez",
+      "unit": "alias",
+      "alias": "Ryan Lopez",
+      "place": "L'Ermitage Beverly Hills",
+      "from_days": [
+        9
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 9 (live blog)",
+          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-9",
+          "date": "2025-05-22"
+        }
+      ]
+    },
+    {
+      "id": "bhh-phillip-pines",
+      "kind": "note",
+      "text": "The Beverly Hills Hotel's guest-profile system listed the alias Phillip Pines (testimony of its area director of sales and marketing)",
+      "value": "Phillip Pines",
+      "unit": "alias",
+      "alias": "Phillip Pines",
+      "place": "Beverly Hills Hotel",
+      "from_days": [
+        14
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 14 (live blog)",
+          "url": "https://noticias.foxnews.com/live-news/sean-diddy-combs-trial-day-14.amp",
+          "date": "2025-06-02"
+        }
+      ]
+    },
+    {
+      "id": "bhh-frank-black",
+      "kind": "note",
+      "text": "The Beverly Hills Hotel's guest-profile system listed the alias Frank Black (testimony of its area director of sales and marketing)",
+      "value": "Frank Black",
+      "unit": "alias",
+      "alias": "Frank Black",
+      "place": "Beverly Hills Hotel",
+      "from_days": [
+        14
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 14 (live blog)",
+          "url": "https://noticias.foxnews.com/live-news/sean-diddy-combs-trial-day-14.amp",
+          "date": "2025-06-02"
+        }
+      ]
+    },
+    {
+      "id": "parkhyatt-frank-black",
+      "kind": "note",
+      "text": "Medication found in Combs's Park Hyatt room at his September 2024 arrest was labelled with the alias Frank Black (an agent's testimony)",
+      "value": "Frank Black",
+      "unit": "alias",
+      "alias": "Frank Black",
+      "place": "Park Hyatt, New York",
+      "date": "2024-09",
+      "from_days": [
+        5
+      ],
+      "confidence": "low",
+      "sources": [
+        {
+          "outlet": "ABC News / Good Morning America live updates",
+          "outlet_family": "ABC",
+          "title": "Special agent's testimony concludes as prosecution calls Danity Kane's Dawn Richard to the stand",
+          "url": "https://www.goodmorningamerica.com/news/live-updates/sean-diddy-combs-trial-live-updates-121656142/special-agents-testimony-concludes-as-prosecution-calls-danity-kanes-dawn-richard-to-the-stand-121890192",
+          "date": "2025-05-19"
+        }
+      ]
+    },
+    {
+      "id": "assistants-frank-black",
+      "kind": "note",
+      "text": "Two former assistants testified they booked hotel rooms for Combs under the alias Frank Black (David James, who worked for him 2007 to 2009, and George Kaplan, 2014 to 2015)",
+      "value": "Frank Black",
+      "unit": "alias",
+      "alias": "Frank Black",
+      "place": "Rooms booked by assistants",
+      "from_days": [
+        7,
+        8
+      ],
+      "confidence": "high",
+      "sources": [
+        {
+          "outlet": "CNN-sourced via Yahoo News",
+          "outlet_family": "CNN",
+          "title": "Sean 'Diddy' Combs trial takeaways: Cassie Ventura's mother, a former assistant and a male escort named 'The Punisher' testify in sex trafficking case",
+          "url": "https://www.yahoo.com/news/sean-diddy-combs-trial-takeaways-cassie-venturas-mother-a-former-assistant-and-a-male-escort-named-the-punisher-testify-in-sex-trafficking-case-191615644.html",
+          "date": "2025-05-21"
+        },
+        {
+          "outlet": "Fox News",
+          "outlet_family": "Fox",
+          "title": "Sean Diddy Combs trial day 8 (live blog)",
+          "url": "https://www.foxnews.com/live-news/sean-diddy-combs-trial-day-8",
+          "date": "2025-05-21"
+        }
+      ]
+    }
+  ]
 }
