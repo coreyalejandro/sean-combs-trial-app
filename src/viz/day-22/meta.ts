@@ -10,7 +10,8 @@ export const meta: VizMeta = {
   form: "Testimony Gantt",
   contentLevel: 2,
   caption: "\"Is that all I'm worth in three years?\" (Jane's last answer, June 12).",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Each row is a court day and runs left to right along the clock. Blue is the prosecution asking, amber the defense; striped bars are redirect, re-cross and the closed conference. Dashed outlines mean the times are approximate or were not reported. Select a bar for its times and topics.',
   altShort: "Chart of six court days of Jane's testimony, split between prosecution and defense questioning, ending June 12.",
-  status: 'placeholder',
+  counts: [4, 5],
+  status: 'done',
 }

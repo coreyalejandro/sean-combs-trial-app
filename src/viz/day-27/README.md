@@ -23,3 +23,12 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Text alternative:** "Map of trips named in the transportation charges, including Atlanta to Newark in 2023, with arrival cities marked where only the destination was reported."
 - **Why this form:** the transportation counts are about movement between places, so arcs are the native form, and they rhyme with the finale.
 - **Content level:** 2.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** arc map in SVG with d3-geo (conic equal-area), land from world-atlas and state lines from us-atlas; London in an inset. Lifted great-circle arcs (Loewen's method: the great circle is sampled and each point lifted by a sine of its position, in proportion to the chord) only where a record names both ends; rings at arrival cities otherwise. Solid = dated in the Ventura count period (Count 3), dashed red = the Jane count period (Count 5). "Play in date order" and Earlier / Later step through trips.
+- **Data:** trip endpoints and dates are structured in `additions.json` from the day records (Day 27 Atlanta to Newark, Sept 2023; Day 24 London, Dec 2009; Day 25 2010 tickets, route not reported; Day 2 arrivals in Los Angeles, Miami, Las Vegas; Day 17 Jane's travel), each with that day's source ids. City coordinates are reference points from the Wikipedia articles (opened this pass), marked one outlet.
+- **Adaptation:** the old "D28 file" (June 23) is now Day 27. The relationship periods come from the data (Ventura 2007-2018 from her witness-table role; Jane 2021-2024 from Day 17). The records do not say which count each trip was offered for; trips are grouped by date, and the page says so.
+- **Confidence changes:** the Day 2 "flown to" point is not attributed to a single outlet in the day record, so it is shown as one outlet rather than DESIGN_29's "high". Workers are never named.

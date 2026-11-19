@@ -10,7 +10,8 @@ export const meta: VizMeta = {
   form: "Great-circle arc map",
   contentLevel: 2,
   caption: "Arcs appear only where records name both ends of a trip. The finale uses the same arcs for every survivor in the march.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'An arc joins two cities only where a record names both ends of a trip; a ring marks an arrival city when where the trip began was not reported. Solid marks are dated in the Ventura count period, dashed red marks in the Jane count period. Select a trip in the list, or play them in date order.',
   altShort: "Map of trips named in the transportation charges, including Atlanta to Newark in 2023, with arrival cities marked where only the destination was reported.",
-  status: 'placeholder',
+  counts: [3, 5],
+  status: 'done',
 }

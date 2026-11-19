@@ -1,0 +1,46 @@
+/* Day 26: hive plot and phone grid. Tokens only. */
+.viz { display: grid; gap: 12px; }
+.root { display: grid; gap: 12px; }
+.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.swDid { display: inline-block; width: 24px; border-top: 2px solid var(--ink); }
+.swDir { display: inline-block; width: 24px; border-top: 2px dashed var(--red); }
+.swEmpty { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--muted-ink); }
+.hive { display: none; width: 100%; height: auto; }
+.matrixWrap { display: block; overflow-x: auto; }
+@media (min-width: 800px) { .hive { display: block; } .matrixWrap { display: none; } }
+.axis { stroke: var(--rule-paper); stroke-width: 6; stroke-linecap: round; }
+.axisLabel { fill: var(--muted-ink); font-family: var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; }
+.linkDid { fill: none; stroke: var(--ink); stroke-width: 1.5; opacity: 0.55; }
+.linkDir { fill: none; stroke: var(--red); stroke-width: 2; opacity: 0.85; }
+.on { opacity: 1; stroke-width: 3; }
+.off { opacity: 0.08; }
+.node { cursor: pointer; outline: none; }
+.node:focus-visible .hit { stroke: var(--red); stroke-width: 2; }
+.hit { fill: transparent; }
+.person { fill: var(--ink); stroke: var(--paper); }
+.director { fill: var(--red); stroke: var(--paper); }
+.task { fill: var(--neutral); stroke: var(--ink); stroke-width: 1.5; }
+.empty { fill: var(--paper); stroke: var(--muted-ink); stroke-width: 2; }
+.label { fill: var(--ink); font-family: var(--f-body); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; stroke-linejoin: round; }
+.labelOn { fill: var(--red-text); font-family: var(--f-body); font-weight: 700; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.detail { border-left: 4px solid var(--ink); padding: 8px 12px; background: #fff; }
+.hint { color: var(--muted-ink); font-size: 15px; margin: 4px 0; }
+.detailHead { margin: 0 0 4px; font-size: 18px; }
+.list { margin: 0 0 8px; padding-left: 20px; font-size: 15px; }
+.list li { margin: 4px 0; }
+.matrix { font-size: 13px; }
+.mHead, .mRow { display: grid; grid-template-columns: minmax(0, 1fr) repeat(var(--cols), 30px); align-items: center; }
+.mHead { border-bottom: 2px solid var(--ink); }
+.mCorner { font: 700 11px/1 var(--f-data); text-transform: uppercase; color: var(--muted-ink); align-self: end; padding-bottom: 4px; }
+.mRows { list-style: none; margin: 0; padding: 0; }
+.mRow { border-bottom: 1px solid var(--rule-paper); min-height: 44px; }
+.mName { min-width: 0; }
+.colBtn { writing-mode: vertical-rl; transform: rotate(180deg); background: none; border: 0; font: 600 12px/1 var(--f-body); color: var(--ink); width: 30px; min-height: 84px; padding: 4px 0; cursor: pointer; }
+.colBtn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.rowBtn { background: none; border: 0; padding: 4px 0; min-height: 36px; font: 700 13px/1.2 var(--f-body); color: var(--ink); text-align: left; cursor: pointer; }
+.rowBtn[aria-pressed="true"] { color: var(--red-text); text-decoration: underline; }
+.dirBy { display: block; font-size: 11px; color: var(--red-text); }
+.cellOn { color: var(--ink); font-size: 16px; text-align: center; }
+.cell { text-align: center; }
+.rowOn { background: #fff3c4; }

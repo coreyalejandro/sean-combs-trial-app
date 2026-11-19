@@ -23,3 +23,13 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Text alternative:** "Chart of six court days of Jane's testimony, split between prosecution and defense questioning, ending June 12." (The generated version adds the computed total hours, marked approximate.)
 - **Why this form:** how long a person is questioned is itself a fact; a Gantt chart shows the endurance as clock time.
 - **Content level:** 2.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** testimony Gantt (SVG, server-rendered; client adds selection). One row per court day in Jane's witness-table row (Days 17 to 22), clock time across, bars by examination: direct and redirect blue, cross and re-cross amber, redirect, re-cross and the closed conference striped, approximate or unreported parts dashed. A phone layout is drawn separately (labels above bars).
+- **Data, all parsed from the records' own text (no times typed):** start and end times from Jane's witness entry each day; an end taken from the day's "Court adjourned" legal event when only a start is given (Day 17); the lunch break from "Lunch 12:20-1:15 PM" (Day 18) and a return-from-lunch tick from "due back 1:15 PM" (Day 19); who was asking from "direct by Maurene Comey" etc.; the closed conference's length from Day 22's number and its start placed at the hour jurors were told to arrive (Day 21's "due before 9 AM"), marked approximate. Topics per session come from keyword rules over that day's key points (labels only, never the testimony itself).
+- **Adaptation:** DESIGN_29 rated the June 5 start "high (NBC)"; no reported number backs it, so it is shown as "one outlet, unconfirmed" (lowered, never raised). Times backed by a reported number keep that number's confidence (medium).
+- **Days count:** shown as the conflict it is: 5 by the court-day record (Day 22 number) vs 6 rows counting June 5 (calculated).
+- **Total hours:** calculated, approximate, with the formula in the text version; Day 22 is excluded because its questioning times were not reported.

@@ -23,3 +23,12 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Text alternative:** "Jury box of 12 seats and 6 alternates showing one juror replaced on June 16 and the alternate pool falling from 6 to 5."
 - **Why this form:** the jury is a state that changes over time; a seat map shows who was in the box at any moment.
 - **Content level:** 1.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** seat-map tracker: 12 numbered juror seats and 6 alternate seats as a jury box, with Previous / Next, a range slider and an ordered list of every change (the screen-reader version). No-JavaScript readers get the final frame and the full list.
+- **Events (all from the records):** Day 1 jury sworn in (12 jurors, 8 men and 4 women, 6 alternates); Day 21 motion to remove Juror No. 6 (the seat number is parsed from the record); Day 22 decision postponed; Day 23 removal announced; Day 24 dismissal and the alternate seated, 5 alternates left; June 18 (the calendar gap note: a juror ill); Day 26 (June 20) a juror with outside communications kept; verdict record June 30 jury note and July 2 verdict.
+- **Adaptation to final numbering:** DESIGN_29's "D26 file" (June 18) is now the June 18 calendar note recorded on Day 25; its "D27 file" (June 20) is Day 26.
+- Which alternate moved up and which seats the unnamed jurors held were not reported, so those are drawn as "not reported" (the empty alternate seat, a dashed red rail on the box). Strike counts are shown as a conflict (6 on Day 1 vs 9 on Day 21, each one outlet).

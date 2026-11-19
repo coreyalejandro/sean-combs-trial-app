@@ -1,0 +1,13 @@
+/* Shared bits for Builder 4's days. Tokens only (src/styles/tokens.css). */
+.xsources { margin-top: 12px; font-size: 13px; color: var(--muted-ink); }
+.xhead { font: 700 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; margin: 12px 0 4px; color: var(--ink); }
+.xlist { margin: 0; padding-left: 18px; }
+.xlist li { margin: 2px 0; overflow-wrap: anywhere; }
+.xlist li:target { background: #fff3c4; color: var(--ink); }
+.rowlist { margin: 12px 0; }
+.rows { margin: 0; padding-left: 22px; font-size: 14px; }
+.rows > li { border-bottom: 1px solid var(--rule-paper); padding: 6px 0; }
+.pairs { margin: 0; display: grid; grid-template-columns: 1fr; gap: 2px; }
+@media (min-width: 800px) { .pairs { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 4px 16px; } }
+.pair dt { font: 700 11px/1.3 var(--f-data); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-ink); }
+.pair dd { margin: 0; }

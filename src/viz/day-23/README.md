@@ -24,3 +24,11 @@ Read `/BUILDER_BRIEF.md` and `CONTRIBUTING-VIZ.md` first. The design below is co
 - **Why this form:** the Los Angeles numbers dwarf the others; a shared unit shows the scale exactly, without the exaggeration that scaled circles invite.
 - **Thin data:** the Los Angeles counts come from one outlet family and the agent's name is unverified.
 - **Content level:** 1.
+
+---
+
+## Build notes (Builder 4)
+
+- **Built:** shared-unit waffles, one square = one bottle, the same square size in all three grids (computed paths, server-rendered). Baby oil and lubricant start on separate rows. "Show as a table" swaps to a table; the fill animation runs once on scroll and never in quiet mode.
+- **Data:** each search's day is found by its record, not its number: the arrest room (Day 5: 5 bottles, arrest date), Miami (Day 8: 25 + 31 bottles, 13 pairs of heels, raid date; Day 7: AR-15 receivers), Los Angeles (Day 23: 200 + 900 bottles, 18 boxes, drum magazine, firearms in a security room). Agents come from the witness table.
+- **Confidence:** the data marks the Los Angeles counts "high", but both outlets are ABC (GMA and the ABC live blog), one outlet family, so the page lowers them to "one outlet". DESIGN_29 said "low"; medium (one major outlet, uncontradicted) is the rule's level. The LA agent's single-sourced name is not shown.

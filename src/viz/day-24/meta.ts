@@ -10,7 +10,7 @@ export const meta: VizMeta = {
   form: "Seat-map tracker",
   contentLevel: 1,
   caption: "The judge said the removal rested only on inconsistent answers about where the juror lived. The defense called it discriminatory.",
-  howToRead: 'The picture is not built yet. The text version lists every figure reported this day, with how sure each one is and where it came from.',
+  howToRead: 'Use Previous change, Next change or the slider to move through the trial. Juror seats are numbered as reported; red marks the seat at issue, and an empty dashed alternate seat shows the alternate who moved up. Each step shows what the record says and how sure it is.',
   altShort: "Jury box of 12 seats and 6 alternates showing one juror replaced on June 16 and the alternate pool falling from 6 to 5.",
-  status: 'placeholder',
+  status: 'done',
 }

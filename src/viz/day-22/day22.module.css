@@ -1,0 +1,40 @@
+/* Day 22: testimony Gantt. Tokens only. */
+.viz { display: grid; gap: 12px; }
+.root { display: grid; gap: 8px; }
+.wide { display: none; width: 100%; height: auto; }
+.narrow { display: block; width: 100%; height: auto; }
+@media (min-width: 800px) {
+  .wide { display: block; }
+  .narrow { display: none; }
+}
+.axis text { fill: var(--muted-ink); font-family: var(--f-data); }
+.rowLabel { fill: var(--ink); font-family: var(--f-body); }
+.duration { fill: var(--muted-ink); font-family: var(--f-data); paint-order: stroke; stroke: var(--paper); stroke-width: 4px; }
+.barLabel { fill: #fff; font-family: var(--f-body); font-weight: 700; pointer-events: none; }
+.inkLabel { fill: var(--ink); font-family: var(--f-body); font-weight: 700; pointer-events: none; paint-order: stroke; stroke: var(--paper); stroke-width: 3px; }
+.mutedLabel { fill: var(--muted-ink); font-family: var(--f-body); font-style: italic; }
+.bar { cursor: pointer; outline: none; }
+.bar:focus-visible rect { stroke: var(--red); stroke-width: 3px; stroke-dasharray: none; }
+.legendWrap { display: grid; gap: 6px; }
+.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { display: inline-block; width: 22px; height: 14px; border: 1px solid transparent; }
+.sDirect { background: var(--prosecution); }
+.sCross { background: var(--defense); }
+.sRedirect { background: repeating-linear-gradient(45deg, var(--prosecution) 0 3px, var(--paper) 3px 6px); }
+.sRecross { background: repeating-linear-gradient(45deg, var(--defense) 0 3px, var(--paper) 3px 6px); }
+.sClosed { background: repeating-linear-gradient(45deg, var(--neutral) 0 3px, var(--paper) 3px 6px); }
+.sOpen { border: 2px dashed var(--muted-ink); background: transparent; }
+.count { margin: 0; font-size: 15px; }
+.detail { border-left: 4px solid var(--ink); padding: 8px 12px; background: #fff; min-height: 44px; }
+.detail p { margin: 4px 0; }
+.hint { color: var(--muted-ink); font-size: 15px; }
+.detailBody { margin-bottom: 8px; }
+.detailHead { margin: 0 0 4px; font-size: 17px; }
+.topicsHead { font-weight: 700; }
+.topics { margin: 0; padding-left: 20px; }
+.quote { margin: 0; border-left: 6px solid var(--red); padding: 8px 16px; background: var(--ink); color: var(--paper); }
+.quote p { margin: 0; font: 900 clamp(20px, 3vw, 28px)/1.2 var(--f-display); }
+.quote footer { margin-top: 6px; font-size: 14px; color: var(--muted); }
+.quote footer a { color: var(--paper); }
+.total { margin: 0; font-size: 15px; max-width: var(--measure); }

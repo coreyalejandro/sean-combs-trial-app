@@ -1,0 +1,40 @@
+/* Day 27: arc map. Tokens only. */
+.viz { display: grid; gap: 12px; }
+.root { display: grid; gap: 10px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.wide { display: none; width: 100%; height: auto; }
+.narrow { display: block; width: 100%; height: auto; }
+@media (min-width: 800px) { .wide { display: block; } .narrow { display: none; } }
+.land { fill: #e4e4de; stroke: none; }
+.states { fill: none; stroke: #c4c4bc; stroke-width: 0.6; }
+.dot { fill: var(--muted-ink); }
+.placeLabel { fill: var(--ink); font-family: var(--f-body); font-weight: 600; paint-order: stroke; stroke: var(--paper); stroke-width: 3px; }
+.ring { fill: none; stroke-width: 2.5; cursor: pointer; }
+.arcHalo { fill: none; stroke: var(--paper); stroke-width: 7; }
+.arc { fill: none; stroke-width: 3.5; stroke-linecap: round; cursor: pointer; }
+.head { stroke: var(--paper); stroke-width: 1.5; }
+.count_a { stroke: var(--ink); }
+.count_b { stroke: var(--red-text); }
+.none { stroke: var(--neutral); }
+.head.count_a { fill: var(--ink); }
+.head.count_b { fill: var(--red-text); }
+.head.none { fill: var(--neutral); }
+.on { stroke-width: 5; opacity: 1; }
+.off { opacity: 0.25; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.key { display: inline-block; width: 28px; height: 0; border-top: 3px solid var(--neutral); flex: none; }
+.k_count_a { border-top: 3px solid var(--ink); }
+.k_count_b { border-top: 3px dashed var(--red-text); }
+.k_none { border-top: 3px solid var(--neutral); }
+.keyRing { display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 2.5px solid var(--ink); flex: none; margin: 0 6px; }
+.trips { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule-paper); }
+.trips li { border-bottom: 1px solid var(--rule-paper); }
+.tripOn { background: #fff; }
+.tripBtn { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; width: 100%; min-height: 44px; padding: 6px 4px; background: none; border: 0; font: inherit; font-size: 15px; color: inherit; text-align: left; cursor: pointer; }
+.tripBtn[aria-pressed="true"] { font-weight: 700; }
+.detail { padding: 0 8px 8px 40px; font-size: 15px; }
+.detail p { margin: 4px 0; }
+.note { margin: 0; font-size: 15px; max-width: var(--measure); color: var(--muted-ink); }
+.insetBox { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; }
+.insetLabel { fill: var(--muted-ink); font-family: var(--f-data); }
