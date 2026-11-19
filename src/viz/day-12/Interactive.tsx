@@ -7,9 +7,9 @@
 import { useState } from 'react'
 import { arc } from 'd3'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { g, valueText } from '../day-08/kit/geom'
-import { FactMeta, kit, Calc, dayList } from '../day-08/kit/ui'
-import type { Fact, SourceBook } from '../day-08/kit/facts'
+import { g, valueText } from '@/viz/kits/days-08-14/geom'
+import { FactMeta, kit, Calc, dayList } from '@/viz/kits/days-08-14/ui'
+import type { Fact, SourceBook } from '@/viz/kits/days-08-14/facts'
 import { ALL_HOURS, DAYS_PER_WEEK, HOURS_PER_DAY, type Person } from './select'
 import css from './day12.module.css'
 

@@ -3,9 +3,9 @@
 import { utcDay, utcMonth, utcYear } from 'd3'
 import { redactThirdParties, resolveSources, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 import { formatUSD, toNumber } from '@/lib/viz/format'
-import { dayRef } from '../day-15/kit/days'
-import { lowest, type Level } from '../day-15/kit/sources'
-import { datesInText, formatMonth, isoToDate, MONTHS_PER_YEAR, toIso } from '../day-15/kit/time'
+import { dayRef } from '@/viz/kits/days-15-21/days'
+import { lowest, type Level } from '@/viz/kits/days-15-21/sources'
+import { datesInText, formatMonth, isoToDate, MONTHS_PER_YEAR, toIso } from '@/viz/kits/days-15-21/time'
 
 export type Kind = 'monthly' | 'asked-monthly' | 'payment' | 'asked' | 'undated' | 'total' | 'income'
 

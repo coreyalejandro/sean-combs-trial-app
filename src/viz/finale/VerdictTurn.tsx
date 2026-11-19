@@ -92,7 +92,7 @@ export function VerdictTurn(p: TurnProps) {
     `${p.witnesses} stars, one for each prosecution witness.`,
     'The stars gather and contract into one red dot.',
     `The single red dot, now labelled: 1 dot = ${p.peoplePerDot} people.`,
-    'A map of the United States filled with red dots, one for every 1,000 survivors, at home.',
+    `A map of the United States filled with red dots, one for every ${p.peoplePerDot} survivors, at home.`,
   ][step]
 
   return (

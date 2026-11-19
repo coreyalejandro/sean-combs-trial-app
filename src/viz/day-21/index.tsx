@@ -2,15 +2,16 @@
 // Monthly money as bands, one-time payments as a swarm of dots sized by amount, and the undated amounts and the
 // total beside them on the same dot scale. Everything is read from Days 17 to 22.
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, levelWords } from '../day-15/kit/sources'
-import { OmittedNote, VizTable, type TableRow } from '../day-15/kit/VizTable'
-import k from '../day-15/kit/kit.module.css'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { extrasFrom, levelWords } from '@/viz/kits/days-15-21/sources'
+import { OmittedNote, VizTable, type TableRow } from '@/viz/kits/days-15-21/VizTable'
+import k from '@/viz/kits/days-15-21/kit.module.css'
 import { amountText } from './format'
 import { layoutDay21 } from './geometry'
 import Day21Interactive from './Interactive'
 import { meta } from './meta'
 import { select } from './select'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -20,7 +21,6 @@ export default function Day21Viz({ day }: DayVizProps) {
   return (
     <div className={k.viz} data-viz="day-21">
       <Day21Interactive items={sel.items} geo={geo} pool={sel.pool} />
-      <ExtraSources sources={sel.extraSources} pool={sel.pool} />
     </div>
   )
 }
@@ -41,4 +41,10 @@ export function TextVersion({ day }: DayVizProps) {
       <OmittedNote count={sel.omitted} why="they count sexual encounters, which this project does not chart (care rule 2)." />
     </div>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return extrasFrom(sel.extraSources, sel.pool)
 }

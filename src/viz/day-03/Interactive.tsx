@@ -4,8 +4,8 @@
 import { scaleLinear } from 'd3'
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { layout } from '@/lib/viz/layout'
-import { useQuiet as useQuietMotion } from '../day-01/kit/useQuiet'
-import { Calculated, Sourced } from '../day-01/kit/Parts'
+import { useQuietMotion } from '@/lib/viz/motion'
+import { Calculated, Sourced } from '@/viz/kits/days-01-07/Parts'
 import type { MatrixRow, Piece } from './select'
 import s from './day03.module.css'
 

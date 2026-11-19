@@ -1,6 +1,6 @@
 // Day 16 long description and table rows, from the same stations as the picture.
-import type { TableRow } from '../day-15/kit/VizTable'
-import { levelWords } from '../day-15/kit/sources'
+import type { TableRow } from '@/viz/kits/days-15-21/VizTable'
+import { levelWords } from '@/viz/kits/days-15-21/sources'
 import type { Day16Selection } from './select'
 
 export function describe(sel: Day16Selection, gaps: Array<string | null>): { paragraphs: string[]; rows: TableRow[] } {

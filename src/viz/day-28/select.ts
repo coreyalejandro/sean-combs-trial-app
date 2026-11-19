@@ -12,7 +12,7 @@ import {
   type WitnessGroup,
   type WitnessRecord,
 } from '@/lib/data'
-import { redact } from '@/viz/day-22/kit'
+import { redact } from '@/viz/kits/days-22-28/kit'
 
 export const GROUP_LABEL: Record<WitnessGroup, string> = {
   'named-in-charges': 'The two women named in the charges',

@@ -1,5 +1,6 @@
 // All 28 day modules. Scaffold-owned: builders never edit this file.
-// Each entry points at src/viz/day-NN/index.tsx (default export = picture, TextVersion, meta).
+// Each entry points at src/viz/day-NN/index.tsx (default export = picture, TextVersion, meta, and optionally
+// extraSources(day): the other days' and added sources the page cites, listed by the shell's Sources panel).
 import type { DayModule } from './types'
 import * as d01 from './day-01'
 import * as d02 from './day-02'
@@ -30,7 +31,13 @@ import * as d26 from './day-26'
 import * as d27 from './day-27'
 import * as d28 from './day-28'
 
-const mod = (m: { default: DayModule['Viz']; TextVersion: DayModule['TextVersion']; meta: DayModule['meta'] }): DayModule => ({ meta: m.meta, Viz: m.default, TextVersion: m.TextVersion })
+const none = () => []
+const mod = (m: { default: DayModule['Viz']; TextVersion: DayModule['TextVersion']; meta: DayModule['meta']; extraSources?: DayModule['extraSources'] }): DayModule => ({
+  meta: m.meta,
+  Viz: m.default,
+  TextVersion: m.TextVersion,
+  extraSources: m.extraSources ?? none,
+})
 
 export const registry: Record<number, DayModule> = {
   1: mod(d01),

@@ -2,7 +2,7 @@
 // Day 4: a phone-style message thread on a time rail, with the defense's reading and Ventura's answer beside
 // each message. The build-time HTML shows every message with both readings; "Step through" walks one at a time.
 import { useRef, useState, type KeyboardEvent } from 'react'
-import { Calculated, Sourced } from '../day-01/kit/Parts'
+import { Calculated, Sourced } from '@/viz/kits/days-01-07/Parts'
 import type { Message } from './select'
 import s from './day04.module.css'
 

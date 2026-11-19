@@ -6,7 +6,7 @@ import additionsJson from './additions.json'
 import {
   D, withDay, additionById, buildSourceBook, factFromAddition, findNumber, factFromNumber, firstYear, mergeFacts,
   type AdditionsFile, type DayReader, type Fact, type SourceBook,
-} from './kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 export type Mode = 'legal' | 'official'
 

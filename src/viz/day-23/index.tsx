@@ -7,13 +7,14 @@ import { NumbersTable } from '@/components/shell/NumbersTable'
 import { formatDate, getDay } from '@/lib/data'
 import { layout } from '@/lib/viz/layout'
 import { formatInt, formatValue } from '@/lib/viz/format'
-import type { DayVizProps } from '@/viz/types'
-import { Calc, CrossDaySources, RowList, XRef } from '@/viz/day-22/kit'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { Calc, crossDayExtras, RowList, XRef } from '@/viz/kits/days-22-28/kit'
 import { WaffleStage } from './Interactive'
 import { meta } from './meta'
 import { selectDay23, type Day23Selection, type Site } from './select'
 import { waffle, type WaffleGrid } from './waffle'
 import styles from './day23.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -171,7 +172,6 @@ export default function Day23Viz({ day }: DayVizProps) {
           The Los Angeles counts come from Good Morning America and the ABC live blog, which are one outlet family.
         </p>
       ) : null}
-      <CrossDaySources ids={allIds(sel)} day={day} />
     </div>
   )
 }
@@ -201,7 +201,7 @@ export function TextVersion({ day }: DayVizProps) {
       />
       <NumbersTable numbers={day.numbers} pool={day.sources} caption={`Figures reported on Day ${day.day}`} />
       <p className="muted">
-        Bottle counts: {sel.sites.map((s) => s.bottles.map((b) => <span key={`${s.id}-${b.kind}`}><Cite num={b.num} pool={getPool(day, b.day)} showMark /> ({s.name}, {b.kind}); </span>))}
+        Bottle counts: {sel.sites.map((s) => s.bottles.map((b) => <span key={`${s.id}-${b.kind}`}><Cite num={b.num} pool={getPool(day, b.day)} showMark numbered={b.day === day.day} /> ({s.name}, {b.kind}); </span>))}
       </p>
     </>
   )
@@ -209,4 +209,9 @@ export function TextVersion({ day }: DayVizProps) {
 
 function getPool(day: DayVizProps['day'], n: number) {
   return n === day.day ? day.sources : getDay(n).sources
+}
+
+/** Other days' sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  return crossDayExtras(allIds(selectDay23(day)), day)
 }

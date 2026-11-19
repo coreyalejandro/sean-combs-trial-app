@@ -1,6 +1,6 @@
 // Day 1: the fields the claim diff needs, picked by what they are (never by array position).
 import { getCharges, getDays, getVerdict, getWitnesses, redactThirdParties, type ReportedNumber, type TrialDay, type WitnessRecord } from '@/lib/data'
-import { buildIndex, findNumber, numberRefs, toRef, uniqueRefs, type Fact, type Ref, type RefIndex } from './kit/refs'
+import { buildIndex, findNumber, numberRefs, toRef, uniqueRefs, type Fact, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 
 export type Side = 'prosecution' | 'defense'
 

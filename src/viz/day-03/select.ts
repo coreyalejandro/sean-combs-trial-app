@@ -2,7 +2,7 @@
 // evidence the jury saw of that kind, found in the day records by what they say (never by position).
 // A piece appears only while its day's record still contains the statement it rests on.
 import { getDays, redactThirdParties, type TrialDay } from '@/lib/data'
-import { buildIndex, findFact, findNumber, monthIn, monthName, numberRefs, uniqueRefs, yearIn, type Level, type Ref, type RefIndex } from '../day-01/kit/refs'
+import { buildIndex, findFact, findNumber, monthIn, monthName, numberRefs, uniqueRefs, yearIn, type Level, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 
 export const KINDS = [
   { id: 'testimony', label: 'Her testimony', short: 'Her' },

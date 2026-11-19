@@ -2,13 +2,14 @@
 // who directed them; every link carries the record text that put it there. Phones get a person-by-task grid.
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { NumbersTable } from '@/components/shell/NumbersTable'
-import type { DayVizProps } from '@/viz/types'
-import { CrossDaySources, dayLink, RowList, XRef } from '@/viz/day-22/kit'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { crossDayExtras, dayLink, RowList, XRef } from '@/viz/kits/days-22-28/kit'
 import { hiveGeometry } from './hive'
 import { HiveInteractive, type MatrixData } from './Interactive'
 import { meta } from './meta'
 import { selectDay26, TASKS, type Day26Selection, type Link } from './select'
 import styles from './day26.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -60,6 +61,10 @@ function Detail({ sel, id }: { sel: Day26Selection; id: string }) {
   )
 }
 
+function allIds(sel: Day26Selection): string[] {
+  return [...sel.links.flatMap((l) => l.sources.map((s) => s.id)), ...sel.unlinked.flatMap((u) => u.sources.map((s) => s.id))]
+}
+
 function matrixData(sel: Day26Selection): MatrixData {
   return {
     columns: TASKS.map((t) => ({ id: t.id, short: SHORT[t.id], label: t.label })),
@@ -85,7 +90,6 @@ export default function Day26Viz({ day }: DayVizProps) {
   const g = hiveGeometry(sel, SHORT)
   const ids = [...sel.people.map((p) => p.id), ...sel.tasks.map((t) => t.id), ...sel.directors.map((d) => d.id)]
   const details = Object.fromEntries(ids.map((id) => [id, <Detail key={id} sel={sel} id={id} />]))
-  const allIds = [...sel.links.flatMap((l) => l.sources.map((s) => s.id)), ...sel.unlinked.flatMap((u) => u.sources.map((s) => s.id))]
   return (
     <div className={styles.viz}>
       <ul className={styles.legend} aria-label="Key">
@@ -94,7 +98,6 @@ export default function Day26Viz({ day }: DayVizProps) {
         <li><span className={styles.swEmpty} aria-hidden="true" /> hollow: in the record, but no task from this list</li>
       </ul>
       <HiveInteractive g={g} details={details} matrix={matrixData(sel)} />
-      <CrossDaySources ids={allIds} day={day} />
     </div>
   )
 }
@@ -134,4 +137,9 @@ export function TextVersion({ day }: DayVizProps) {
       <NumbersTable numbers={day.numbers} pool={day.sources} caption={`Figures reported on Day ${day.day}`} />
     </>
   )
+}
+
+/** Other days' sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  return crossDayExtras(allIds(selectDay26(day)), day)
 }

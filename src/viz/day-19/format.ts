@@ -1,6 +1,6 @@
 // Day 19: an event's date in words (shared by the picture and the text version).
 import { formatDate } from '@/lib/data'
-import { formatMonth, isoToDate } from '../day-15/kit/time'
+import { formatMonth, isoToDate } from '@/viz/kits/days-15-21/time'
 
 export function whenText(e: { iso: string; precision: string }): string {
   const d = isoToDate(e.iso)?.date

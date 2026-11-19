@@ -27,13 +27,14 @@ export function writeQuietSetting(on: boolean): void {
 export function useQuietMotion(): boolean {
   const [quiet, setQuiet] = useState(true) // render the still frame first (also the no-JS state)
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => setQuiet(mq.matches || document.documentElement.dataset.quiet === 'true')
+    // Some environments (jsdom in unit tests, very old browsers) have no matchMedia: fall back to the switch alone.
+    const mq = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-reduced-motion: reduce)') : null
+    const update = () => setQuiet(Boolean(mq?.matches) || document.documentElement.dataset.quiet === 'true')
     update()
-    mq.addEventListener('change', update)
+    mq?.addEventListener?.('change', update)
     window.addEventListener('quietmodechange', update)
     return () => {
-      mq.removeEventListener('change', update)
+      mq?.removeEventListener?.('change', update)
       window.removeEventListener('quietmodechange', update)
     }
   }, [])
@@ -44,11 +45,12 @@ export function useQuietMotion(): boolean {
 export function useMediaQuery(query: string): boolean {
   const [match, setMatch] = useState(false)
   useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return
     const mq = window.matchMedia(query)
     const update = () => setMatch(mq.matches)
     update()
-    mq.addEventListener('change', update)
-    return () => mq.removeEventListener('change', update)
+    mq.addEventListener?.('change', update)
+    return () => mq.removeEventListener?.('change', update)
   }, [query])
   return match
 }

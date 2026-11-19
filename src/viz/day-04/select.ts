@@ -1,7 +1,7 @@
 // Day 4: the messages the defense showed Ventura on cross-examination, each with both readings.
 // Messages are paraphrased here (care rule 2); the record's own words are used only to find and date them.
 import { getDays, type TrialDay } from '@/lib/data'
-import { buildIndex, clause, findFact, findNumber, numberRefs, uniqueRefs, yearsIn, type Fact, type Level, type Ref, type RefIndex } from '../day-01/kit/refs'
+import { buildIndex, clause, findFact, findNumber, numberRefs, uniqueRefs, yearsIn, type Fact, type Level, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 
 export interface Reading {
   text: string

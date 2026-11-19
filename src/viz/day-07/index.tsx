@@ -2,20 +2,21 @@
 import { redactThirdParties } from '@/lib/data'
 import { PlaceholderTextVersion, PlaceholderViz } from '@/components/shell/Placeholder'
 import { formatValue } from '@/lib/viz/format'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, RowsTable, Sourced, type TableRow } from '../day-01/kit/Parts'
-import { monthName, numberRefs } from '../day-01/kit/refs'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { RowsTable, Sourced, type TableRow } from '@/viz/kits/days-01-07/Parts'
+import { monthName, numberRefs, toExtraSources } from '@/viz/kits/days-01-07/refs'
 import { MoneyPath } from './Interactive'
 import { meta } from './meta'
 import { select } from './select'
 import s from './day07.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
 export default function Day07Viz(props: DayVizProps) {
   const sel = select(props.day)
   if (!sel) return <PlaceholderViz {...props} meta={meta} />
-  const { labels, extras } = sel.index
+  const { labels } = sel.index
   return (
     <div className={s.viz}>
       <div className={s.head}>
@@ -48,7 +49,6 @@ export default function Day07Viz(props: DayVizProps) {
           {sel.ruling.text} <Sourced level={sel.ruling.level} refs={sel.ruling.refs} labels={labels} />
         </p>
       ) : null}
-      <ExtraSources extras={extras} labels={labels} />
     </div>
   )
 }
@@ -87,4 +87,10 @@ export function TextVersion(props: DayVizProps) {
       <RowsTable caption={`Day ${day.day}: each step of the money path, other dates that month, and every figure reported`} columns={['Date or value', 'What the record says']} rows={[...pathRows, ...numberRows]} labels={labels} />
     </>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return sel ? toExtraSources(sel.index.extras) : []
 }

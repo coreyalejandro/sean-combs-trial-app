@@ -3,7 +3,7 @@ import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { NumbersTable } from '@/components/shell/NumbersTable'
 import { formatDate, type TrialDay } from '@/lib/data'
 import { formatClock, formatDuration, minutesBetween } from './clock'
-import { Calc, RowList, XRef } from './kit'
+import { Calc, RowList, XRef } from '@/viz/kits/days-22-28/kit'
 import { meta } from './meta'
 import { EXAM_LABEL, type Day22Selection } from './select'
 

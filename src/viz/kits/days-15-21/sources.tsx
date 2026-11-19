@@ -1,10 +1,8 @@
 // Source helpers shared by Builder 3's days (15 to 21).
-// The shell's SourcesPanel lists only the current day's sources. These pictures also use facts from
-// other days and from additions.json, so their sources are listed under the picture (ExtraSources),
-// with the same `source-<id>` anchors, so every tag on the page resolves to a listed source.
-import { confidenceInfo, resolveSources, type Confidence, type ReportedNumber, type Source } from '@/lib/data'
-import { layout } from '@/lib/viz/layout'
-import { OpenOnHash } from './OpenOnHash'
+// These pictures also use facts from other days and from additions.json; extrasFrom() hands those sources to
+// the shell's Sources panel (listed after the day's own, with `source-<id>` anchors), so every tag resolves.
+import { confidenceInfo, resolveSources, sourceHome, type Confidence, type ReportedNumber, type Source } from '@/lib/data'
+import type { ExtraSource } from '@/viz/types'
 import styles from './kit.module.css'
 
 export type Level = Confidence | 'conflict'
@@ -86,39 +84,23 @@ export function dedupe(sources: Source[]): Source[] {
   return sources.filter((s) => (seen.has(s.id) ? false : (seen.add(s.id), true)))
 }
 
+/** Where a source comes from, in words, for the page's Sources panel. */
+export function originOf(id: string): string {
+  const home = sourceHome(id)
+  if (home === 'verdict') return 'from the verdict record'
+  if (typeof home === 'number') return `from the Day ${home} record`
+  return 'added for this picture'
+}
+
 /**
- * Sources this picture uses that are not in the day's own list (other days, additions.json).
- * Rendered once, in the picture, so the anchors are unique on the page.
+ * Sources this picture uses that are not in the day's own list (other days, additions.json), for the shell's
+ * Sources panel, which lists them after the day's own so the anchors are unique on the page.
  */
-export function ExtraSources({ sources, pool, notes }: { sources: Source[]; pool: Source[]; notes?: Record<string, string> }) {
+export function extrasFrom(sources: Source[], pool: Source[]): ExtraSource[] {
   const ids = new Set(pool.map((p) => p.id))
-  const extra = dedupe(sources).filter((s) => !ids.has(s.id))
-  if (extra.length === 0) return null
-  const items = extra.map((s) => (
-    <li key={s.id} id={`source-${s.id}`}>
-      <span className="src-outlet">{s.outlet}</span>.{' '}
-      <a href={s.url} rel="noopener noreferrer" target="_blank">{s.title}</a>.{' '}
-      <time className="src-date" dateTime={s.date.slice(0, 'yyyy-mm-dd'.length)}>{s.date}</time>
-      {notes?.[s.id] ? <span className="src-flag"> ({notes[s.id]})</span> : null}
-    </li>
-  ))
-  const title = 'Also drawn from other days and added facts'
-  // A long list folds away (opened automatically when a source tag points into it).
-  if (extra.length > layout.dot * 2) {
-    return (
-      <details className={styles.extraSources}>
-        <summary>{title} ({extra.length} sources)</summary>
-        <ol>{items}</ol>
-        <OpenOnHash />
-      </details>
-    )
-  }
-  return (
-    <section className={styles.extraSources} aria-label={title}>
-      <h3>{title}</h3>
-      <ol>{items}</ol>
-    </section>
-  )
+  return dedupe(sources)
+    .filter((s) => !ids.has(s.id))
+    .map((s) => ({ id: s.id, outlet: s.outlet, title: s.title, url: s.url, date: s.date, origin: originOf(s.id) }))
 }
 
 /** The small "calculated" tag DESIGN_29 puts on every number the app derives. */

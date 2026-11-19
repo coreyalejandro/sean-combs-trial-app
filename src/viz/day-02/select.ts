@@ -1,6 +1,6 @@
 // Day 2: the fields the dual lifeline needs, picked by what they are.
 import { getDays, getWitnessesOnDay, type TrialDay } from '@/lib/data'
-import { buildIndex, findFact, findNumber, numberRefs, uniqueRefs, weaker, yearIn, yearsIn, type Level, type Ref, type RefIndex } from '../day-01/kit/refs'
+import { buildIndex, findFact, findNumber, numberRefs, uniqueRefs, weaker, yearIn, yearsIn, type Level, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 
 export interface LifeEvent {
   id: string

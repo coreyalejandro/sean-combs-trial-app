@@ -5,15 +5,16 @@ import { scaleLinear, ticks } from 'd3'
 import { formatDate } from '@/lib/data'
 import { formatInt } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { describe } from './describe'
 import { flowLayout } from './geometry'
 import Day15Interactive, { type Day15View, type RulerGeo } from './Interactive'
-import { ExtraSources, numSources } from './kit/sources'
-import { VizTable } from './kit/VizTable'
-import k from './kit/kit.module.css'
+import { extrasFrom, numSources } from '@/viz/kits/days-15-21/sources'
+import { VizTable } from '@/viz/kits/days-15-21/VizTable'
+import k from '@/viz/kits/days-15-21/kit.module.css'
 import { meta } from './meta'
 import { select, usdCents, type NodeId } from './select'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -73,7 +74,6 @@ export default function Day15Viz({ day }: DayVizProps) {
   return (
     <div className={k.viz} data-viz="day-15">
       <Day15Interactive view={buildView(sel)} />
-      <ExtraSources sources={sel.extraSources} pool={sel.pool} />
     </div>
   )
 }
@@ -87,4 +87,10 @@ export function TextVersion({ day }: DayVizProps) {
       <VizTable caption={`The money in Garcia's account, and every other figure from Day ${day.day}`} rows={rows} pool={sel.pool} other={sel.other} dayNumber={day.day} whenLabel="Date" />
     </div>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return extrasFrom(sel.extraSources, sel.pool)
 }

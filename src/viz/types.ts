@@ -36,10 +36,28 @@ export interface DayVizProps {
   day: TrialDay
 }
 
+/**
+ * A source the picture or text version cites that is not in the day's own list: another day's record,
+ * the verdict record, or the day's additions.json. The page's Sources panel lists these after the day's own
+ * sources, numbered on from them, each with id="source-<id>" so every data-source-ids tag resolves.
+ */
+export interface ExtraSource {
+  /** Page anchor id (the list item gets id="source-<id>"). */
+  id: string
+  outlet: string
+  title: string
+  url: string
+  date: string
+  /** Where it comes from, in words: "from the Day 15 record", "added for this picture". */
+  origin: string
+}
+
 export interface DayModule {
   meta: VizMeta
   /** The picture. Render SVG on the server from data; add interaction in a 'use client' child. */
   Viz: ComponentType<DayVizProps>
   /** The long description and data table, built from the same selection as the picture. */
   TextVersion: ComponentType<DayVizProps>
+  /** Sources cited on the page beyond the day's own list, in the order the picture numbers them. */
+  extraSources: (day: TrialDay) => ExtraSource[]
 }

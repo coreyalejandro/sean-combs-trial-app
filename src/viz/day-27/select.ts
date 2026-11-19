@@ -3,7 +3,7 @@
 // points (city coordinates) come from additions.json too. Counts and relationship periods come from the data.
 import { getCharges, getDay, getWitnesses, sourceById, type Confidence, type Source, type TrialDay } from '@/lib/data'
 import additions from './additions.json'
-import type { AdditionItem } from '@/viz/day-22/kit'
+import type { AdditionItem } from '@/viz/kits/days-22-28/kit'
 
 export interface Place {
   id: string

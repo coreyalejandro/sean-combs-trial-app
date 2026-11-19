@@ -3,10 +3,10 @@
 // The build-time HTML shows the last year, with every dot on the map.
 import { useEffect, useState, type ReactNode } from 'react'
 import { layout } from '@/lib/viz/layout'
-import { useQuiet as useQuietMotion } from '../day-01/kit/useQuiet'
+import { useQuietMotion } from '@/lib/viz/motion'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { Sourced } from '../day-01/kit/Parts'
-import type { Level, Ref } from '../day-01/kit/refs'
+import { Sourced } from '@/viz/kits/days-01-07/Parts'
+import type { Level, Ref } from '@/viz/kits/days-01-07/refs'
 import type { Account } from './select'
 import s from './day06.module.css'
 

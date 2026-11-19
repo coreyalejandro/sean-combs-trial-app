@@ -3,7 +3,7 @@
 // One geometry per zoom level ("all months", then each month).
 import { scaleLinear, scaleUtc, utcMonday, utcMonth } from 'd3'
 import { layout } from '@/lib/viz/layout'
-import { isoToDate } from '../day-15/kit/time'
+import { isoToDate } from '@/viz/kits/days-15-21/time'
 import { LANES, type LaneId, type TimelineEvent } from './select'
 
 export interface LaneGeo { id: LaneId; pos: number; name: string }

@@ -1,7 +1,7 @@
 // Day 5: the items the arresting agent listed, one icon per unit, from the agent's testimony and the day's figures.
 import { formatDate, getWitnesses, type TrialDay } from '@/lib/data'
 import { formatUSD } from '@/lib/viz/format'
-import { buildIndex, findFact, findNumber, numberRefs, uniqueRefs, type Level, type Ref, type RefIndex } from '../day-01/kit/refs'
+import { buildIndex, findFact, findNumber, numberRefs, uniqueRefs, type Level, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 
 export type IconKind = 'cash' | 'bottle' | 'pills' | 'powder' | 'light'
 

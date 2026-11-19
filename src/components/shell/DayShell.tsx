@@ -15,7 +15,7 @@ import { dayHref, TrialRail } from './TrialRail'
 
 export function DayShell({ n }: { n: number }) {
   const day = getDay(n)
-  const { meta, Viz, TextVersion } = getDayModule(n)
+  const { meta, Viz, TextVersion, extraSources } = getDayModule(n)
   const prev: PagerLink | null = n > 1 ? { href: dayHref(n - 1), label: `Day ${n - 1}` } : null
   const next: PagerLink = n < DAY_COUNT ? { href: dayHref(n + 1), label: `Day ${n + 1}` } : { href: '/verdict/', label: 'The verdict' }
   const gapAfter = getGaps().find((g) => g.afterDay === n)
@@ -45,7 +45,7 @@ export function DayShell({ n }: { n: number }) {
             <p>{gapAfter.note}</p>
           </aside>
         ) : null}
-        <SourcesPanel sources={day.sources} confidence={day.confidence} discrepancies={day.discrepancies} outletLabels={day.alt_day_labels} />
+        <SourcesPanel sources={day.sources} confidence={day.confidence} discrepancies={day.discrepancies} outletLabels={day.alt_day_labels} extras={extraSources(day)} />
         <DayPager prev={prev} next={next} position="bottom" />
       </div>
       <RailKeys prevHref={prev?.href ?? null} nextHref={next.href} />

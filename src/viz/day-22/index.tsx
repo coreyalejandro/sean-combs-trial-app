@@ -5,15 +5,16 @@ import { Cite } from '@/components/shell/SourceRef'
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { formatDate } from '@/lib/data'
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { formatClock, formatDuration } from './clock'
 import { ganttGeometry } from './geometry'
 import { GanttInteractive } from './Interactive'
-import { Calc, CrossDaySources, XRef } from './kit'
+import { Calc, crossDayExtras, XRef } from '@/viz/kits/days-22-28/kit'
 import { meta } from './meta'
 import { EXAM_LABEL, selectDay22, type Day22Selection, type TimeFact } from './select'
 import { Day22Text } from './describe'
 import styles from './day22.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -128,11 +129,15 @@ export default function Day22Viz({ day }: DayVizProps) {
         <Calc formula="sum of each day's end time minus start time, minus reported lunch breaks" />, approximate; the last day&apos;s
         questioning had no reported times and is not counted.
       </p>
-      <CrossDaySources ids={allSourceIds(sel)} day={day} />
     </div>
   )
 }
 
 export function TextVersion({ day }: DayVizProps) {
   return <Day22Text sel={selectDay22(day)} day={day} />
+}
+
+/** Other days' sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  return crossDayExtras(allSourceIds(selectDay22(day)), day)
 }

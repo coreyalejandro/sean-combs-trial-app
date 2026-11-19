@@ -3,11 +3,11 @@
 // them in prose); her account comes from the Day 12 to 14 records.
 import { getDay, type ReportedNumber, type TrialDay } from '@/lib/data'
 import additionsJson from './additions.json'
-import { monthYear, shortDate } from '../day-08/kit/geom'
+import { monthYear, shortDate } from '@/viz/kits/days-08-14/geom'
 import {
   D, withDay, buildSourceBook, firstYear, isoToDate, factFromAddition, factFromNumber, findNumber, leadingNumber, textFact, weakest, yearsIn,
   type AdditionsFile, type DayReader, type Fact, type SourceBook,
-} from '../day-08/kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 export type Glyph = 'post' | 'gift' | 'text' | 'video'
 export type Why = 'staff' | 'celebration' | 'fear'

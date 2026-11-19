@@ -1,17 +1,18 @@
 // Day 17: Two Places at Once? A Hotel Bill Tests a Date (Builder 3).
 // A space-and-time contradiction diff: a U.S. map with the two cities, above one shared date strip,
 // with the witness's answer and the judge's ruling as their own lanes.
-import type { DayVizProps } from '@/viz/types'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
 import { formatInt } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
-import { ExtraSources, lowest, type Level } from '../day-15/kit/sources'
-import { VizTable, type TableRow } from '../day-15/kit/VizTable'
-import k from '../day-15/kit/kit.module.css'
+import { extrasFrom, lowest, type Level } from '@/viz/kits/days-15-21/sources'
+import { VizTable, type TableRow } from '@/viz/kits/days-15-21/VizTable'
+import k from '@/viz/kits/days-15-21/kit.module.css'
 import { formatDate } from '@/lib/data'
 import { mapGeo, stripGeo } from './geometry'
 import Day17Interactive, { type Day17View } from './Interactive'
 import { meta } from './meta'
 import { select, stripDays, type Day17Selection } from './select'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -50,7 +51,6 @@ export default function Day17Viz({ day }: DayVizProps) {
   return (
     <div className={k.viz} data-viz="day-17">
       <Day17Interactive view={buildView(sel)} />
-      <ExtraSources sources={sel.extraSources} pool={sel.pool} />
     </div>
   )
 }
@@ -79,4 +79,10 @@ export function TextVersion({ day }: DayVizProps) {
       <VizTable caption={`The disputed date, and every other figure from Day ${day.day}`} rows={rows} pool={sel.pool} other={sel.other} dayNumber={day.day} />
     </div>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return extrasFrom(sel.extraSources, sel.pool)
 }

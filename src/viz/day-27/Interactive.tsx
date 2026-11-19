@@ -3,7 +3,7 @@
 // "Play in date order" steps through the trips (never under quiet mode or reduced motion).
 import { useEffect, useState, type ReactNode } from 'react'
 import { layout } from '@/lib/viz/layout'
-import { useQuiet as useQuietMotion } from '@/viz/day-22/useQuiet'
+import { useQuietMotion } from '@/lib/viz/motion'
 import type { MapGeometry } from './mapgeo'
 import styles from './day27.module.css'
 

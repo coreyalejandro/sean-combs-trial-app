@@ -6,7 +6,7 @@ import witnessesFile from '@/data/shared/witnesses.json'
 import type { Charge, Source, TrialData, TrialDay, Verdict, WitnessRecord } from './types'
 
 export * from './types'
-export { resolveSources, sourcesForDay, allSources, sourceById } from './sources'
+export { resolveSources, sourcesForDay, allSources, sourceById, sourceHome } from './sources'
 export { confidenceInfo, CONFIDENCE_ORDER, lowerConfidence } from './confidence'
 export { redactThirdParties } from './redact'
 export { getGaps, type CalendarGap } from './calendar'

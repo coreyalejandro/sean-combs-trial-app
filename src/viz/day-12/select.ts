@@ -7,7 +7,7 @@ import additionsJson from './additions.json'
 import {
   D, withDay, additionById, buildSourceBook, factFromAddition, factFromNumber, findNumber, leadingNumber, textFact,
   type AdditionsFile, type DayReader, type Fact, type SourceBook,
-} from '../day-08/kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 const EPOCH = new Date(0)
 /** Hours in a day and days in a week, from the calendar (not typed). */

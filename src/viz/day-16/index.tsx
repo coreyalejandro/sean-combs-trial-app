@@ -2,16 +2,17 @@
 // A chain-of-custody line: stops in time order, each from the day that reported it. Waits between stops
 // are computed from the dates; the track length grows with the wait on a compressed (log) scale.
 import { scaleLog, utcDay, utcMonth } from 'd3'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources } from '../day-15/kit/sources'
-import { MONTHS_PER_YEAR } from '../day-15/kit/time'
-import { OmittedNote, VizTable } from '../day-15/kit/VizTable'
-import k from '../day-15/kit/kit.module.css'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { extrasFrom } from '@/viz/kits/days-15-21/sources'
+import { MONTHS_PER_YEAR } from '@/viz/kits/days-15-21/time'
+import { OmittedNote, VizTable } from '@/viz/kits/days-15-21/VizTable'
+import k from '@/viz/kits/days-15-21/kit.module.css'
 import { layout } from '@/lib/viz/layout'
 import { describe } from './describe'
 import Day16Interactive, { type StationView } from './Interactive'
 import { meta } from './meta'
 import { select, type Day16Selection } from './select'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -38,7 +39,6 @@ export default function Day16Viz({ day }: DayVizProps) {
   return (
     <div className={k.viz} data-viz="day-16">
       <Day16Interactive stations={stations} pool={sel.pool} />
-      <ExtraSources sources={sel.extraSources} pool={sel.pool} />
     </div>
   )
 }
@@ -53,4 +53,10 @@ export function TextVersion({ day }: DayVizProps) {
       <OmittedNote count={sel.omitted} why="it describes a witness's body, which this project does not chart (care rule 2)." />
     </div>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return extrasFrom(sel.extraSources, sel.pool)
 }

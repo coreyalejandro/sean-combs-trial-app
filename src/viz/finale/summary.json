@@ -292,7 +292,7 @@
   "hours": 5.0,
   "arrival_zone_km": 20.0
  },
- "uncertainty": "Counts carry CDC 95% confidence ranges. Timing, crowding and needs come from one seeded run (the 200-run uncertainty ensemble in DESIGN_V2 is not built yet).",
+ "uncertainty": "Counts carry CDC 95% confidence ranges. Timing, crowding and needs come from one seeded run (a planned set of 200 runs that would show how much these could vary is not built yet).",
  "not_computed": {
   "status": "not computed",
   "reason": "BEA current-dollar state GDP levels could not be retrieved: the release pages that could be fetched (4th-quarter 2025 GDP release, 3rd-quarter 2025 state GDP release) give only growth rates, and BEA's interactive tables are not reachable from the build machine. No number was invented. Formula kept: state GDP per day x (absent workers / all workers)."

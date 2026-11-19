@@ -13,7 +13,7 @@ import {
 } from '@/lib/data'
 import { utcMinute } from 'd3'
 import { clockTokens, MINUTES_PER_HOUR, minutesBetween, toDate, type ClockToken } from './clock'
-import { redact } from './kit'
+import { redact } from '@/viz/kits/days-22-28/kit'
 
 export type Exam = 'direct' | 'cross' | 'redirect' | 're-cross' | 'closed'
 

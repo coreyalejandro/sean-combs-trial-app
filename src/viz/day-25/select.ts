@@ -2,7 +2,7 @@
 // record uses. The kind, "sealed" and side tags are computed here from each exhibit's own text
 // (the scaffold did not tag them), so the rules below are the method, and the README lists them.
 import { getDays, type TrialDay } from '@/lib/data'
-import { redact } from '@/viz/day-22/kit'
+import { redact } from '@/viz/kits/days-22-28/kit'
 
 export type Kind =
   | 'financial'

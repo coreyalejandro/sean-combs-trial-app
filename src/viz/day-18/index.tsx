@@ -2,15 +2,16 @@
 // A duration range plot: every length either woman gave, on one hours axis, grouped by witness;
 // recovery on its own scale below. Lengths of time stand in for any detail (care rule 2).
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, levelWords } from '../day-15/kit/sources'
-import { OmittedNote, VizTable, type TableRow } from '../day-15/kit/VizTable'
-import k from '../day-15/kit/kit.module.css'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { extrasFrom, levelWords } from '@/viz/kits/days-15-21/sources'
+import { OmittedNote, VizTable, type TableRow } from '@/viz/kits/days-15-21/VizTable'
+import k from '@/viz/kits/days-15-21/kit.module.css'
 import { layoutDay18 } from './geometry'
 import { spanText } from './format'
 import Day18Interactive from './Interactive'
 import { meta } from './meta'
 import { select } from './select'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -20,7 +21,6 @@ export default function Day18Viz({ day }: DayVizProps) {
   return (
     <div className={k.viz} data-viz="day-18">
       <Day18Interactive spans={sel.spans} groups={sel.groups} geo={geo} pool={sel.pool} overlap={sel.overlap} />
-      <ExtraSources sources={sel.extraSources} pool={sel.pool} />
     </div>
   )
 }
@@ -51,4 +51,10 @@ export function TextVersion({ day }: DayVizProps) {
       <OmittedNote count={sel.omitted} why="they describe bodily or sexual detail, which this project does not chart (care rule 2)." />
     </div>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return extrasFrom(sel.extraSources, sel.pool)
 }

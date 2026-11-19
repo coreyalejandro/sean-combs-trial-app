@@ -59,11 +59,6 @@
 @media (max-width: 799px) { .scrollCue { display: flex; } }
 
 /* Sources from other days */
-.extraSources { margin-top: 16px; border-top: 1px solid var(--rule-paper); padding-top: 8px; font-size: 13px; }
-.extraSources h3 { font: 700 12px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px; color: var(--muted-ink); }
-.extraSources ol { margin: 0; padding-left: 22px; }
-.extraSources li { margin: 3px 0; overflow-wrap: anywhere; }
-.extraSources li:target { background: #fff3c4; }
 
 /* Text version */
 .table td { font-size: 14px; }
@@ -75,4 +70,3 @@
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; list-style: none; padding: 0; margin: 8px 0 0; font-size: 13px; }
 .legend li { display: inline-flex; align-items: center; gap: 6px; }
 .legend svg { width: auto; display: inline; }
-.extraSources > summary { cursor: pointer; font: 700 12px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-ink); min-height: 44px; display: flex; align-items: center; }

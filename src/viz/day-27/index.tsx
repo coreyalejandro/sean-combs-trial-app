@@ -3,13 +3,15 @@
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { NumbersTable } from '@/components/shell/NumbersTable'
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
-import { AdditionsList, CrossDaySources, dayLink, RowList, XRef } from '@/viz/day-22/kit'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { AdditionsList, crossDayExtras, dayLink, RowList, XRef } from '@/viz/kits/days-22-28/kit'
+import kitStyles from '@/viz/kits/days-22-28/kit.module.css'
 import { ArcMapInteractive, type TripMeta } from './Interactive'
 import { mapGeometry } from './mapgeo'
 import { meta } from './meta'
 import { selectDay27, type Day27Selection, type Trip } from './select'
 import styles from './day27.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -61,11 +63,9 @@ export default function Day27Viz({ day }: DayVizProps) {
         The records do not say which count each trip was offered for, so trips are grouped by date against the two relationships the
         transportation counts name. Workers are never named.
       </p>
-      <CrossDaySources
-        ids={sel.trips.flatMap((t) => t.sources.map((s) => s.id))}
-        day={day}
-        extra={<AdditionsList items={sel.placeSources} heading="Map reference points (city coordinates)" />}
-      />
+      <section className={kitStyles.xsources} aria-label="Map reference points">
+        <AdditionsList items={sel.placeSources} heading="Map reference points (city coordinates)" />
+      </section>
     </div>
   )
 }
@@ -94,4 +94,9 @@ export function TextVersion({ day }: DayVizProps) {
       <NumbersTable numbers={day.numbers} pool={day.sources} caption={`Figures reported on Day ${day.day}`} />
     </>
   )
+}
+
+/** Other days' sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  return crossDayExtras(selectDay27(day).trips.flatMap((t) => t.sources.map((s) => s.id)), day)
 }

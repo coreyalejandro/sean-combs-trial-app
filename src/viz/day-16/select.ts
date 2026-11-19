@@ -2,9 +2,9 @@
 // A station whose fact is missing from the record is left out, so the line always matches the data.
 import { getVerdict, redactThirdParties, resolveSources, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 import { formatUSD, formatValue, toNumber } from '@/lib/viz/format'
-import { dayRef } from '../day-15/kit/days'
-import { lowest, type Level } from '../day-15/kit/sources'
-import { datesInText, formatDated, isoToDate, type Dated } from '../day-15/kit/time'
+import { dayRef } from '@/viz/kits/days-15-21/days'
+import { lowest, type Level } from '@/viz/kits/days-15-21/sources'
+import { datesInText, formatDated, isoToDate, type Dated } from '@/viz/kits/days-15-21/time'
 
 export interface Station {
   id: string

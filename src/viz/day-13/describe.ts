@@ -1,6 +1,6 @@
 // Day 13 text version: long description and table rows from the same selection as the picture.
 import { formatUSDShort } from '@/lib/viz/format'
-import type { TableRow } from '../day-08/kit/ui'
+import type { TableRow } from '@/viz/kits/days-08-14/ui'
 import { KINDS, type Day13Model } from './select'
 
 export function describe(m: Day13Model): { paragraphs: string[]; rows: TableRow[] } {

@@ -1,66 +1,51 @@
 // Small helpers shared by Builder 4's days (22 to 28). Server-safe: no hooks, no browser APIs.
-// - redact(): the shared redactor plus names the shared list does not hold yet (see SHARED_REQUEST.md).
-// - XRef / CrossDaySources: cite a source recorded on ANOTHER day. The page's own sources panel lists
-//   only this day's sources, so every cross-day source cited here is listed once, under the picture,
-//   with id="source-<id>" (the page test checks that every data-source-ids id is on the page).
+// - redact(): the shared redactor (src/lib/data/redact.ts now holds every name these days need hidden).
+// - XRef: cite sources by id, including sources recorded on ANOTHER day.
+// - crossDayExtras(): the other days' sources a picture cites, for the shell's Sources panel (listed after the
+//   day's own, with id="source-<id>", so every data-source-ids tag on the page resolves).
 import type { ReactNode } from 'react'
-import { redactThirdParties, sourceById, type Source, type TrialDay } from '@/lib/data'
+import { redactThirdParties, sourceById, sourceHome, type TrialDay } from '@/lib/data'
+import type { ExtraSource } from '@/viz/types'
 import styles from './kit.module.css'
 
-const ISO_DATE = 'YYYY-MM-DD'
-
-/** Third parties the shared redactor does not cover yet (care rule 4). Requested in SHARED_REQUEST.md. */
-const EXTRA_REDACTIONS: Array<[RegExp, string]> = [
-  [/\bfor escort Jules Theodore\b/g, 'for a sex worker named in court records'],
-  [/\bJules Theodore\b/g, 'a sex worker named in court records'],
-  [/\bEscort 'Paul' and 'Anton'/g, 'Two escorts named in court records'],
-]
-
 export function redact(text: string): string {
-  return EXTRA_REDACTIONS.reduce((t, [re, rep]) => t.replace(re, rep), redactThirdParties(text))
+  return redactThirdParties(text)
 }
 
-/** A link to a source by id, with the day it was recorded on. */
+/** The outlet's short name ("NBC News", "CBS News"), used as the link text for a source. */
+export function shortOutlet(outlet: string): string {
+  return outlet.split(/\s[(/]|\svia\s/)[0]
+}
+
+/** Links to sources by id (any day's record), labelled with the outlet's name. */
 export function XRef({ ids, children }: { ids: string[]; children?: ReactNode }) {
   return (
     <span data-source-ids={ids.join(' ')}>
       {children}
-      {ids.map((id) => (
-        <a key={id} href={`#source-${id}`} className="source-ref" aria-label={`Source: ${sourceById(id)?.outlet ?? id}`}>
-          <sup>[{id}]</sup>
-        </a>
-      ))}
+      {ids.map((id) => {
+        const outlet = sourceById(id)?.outlet
+        return (
+          <a key={id} href={`#source-${id}`} className="source-ref" aria-label={`Source: ${outlet ?? 'listed below'}`}>
+            <sup>[{outlet ? shortOutlet(outlet) : 'source'}]</sup>
+          </a>
+        )
+      })}
     </span>
   )
 }
 
-/** Sources from other days, listed once under the picture so every cross-day reference resolves. */
-export function CrossDaySources({ ids, day, extra }: { ids: string[]; day: TrialDay; extra?: ReactNode }) {
+/** Sources from other days a picture cites, for the shell's Sources panel (the day's own are listed already). */
+export function crossDayExtras(ids: string[], day: TrialDay): ExtraSource[] {
   const own = new Set(day.sources.map((s) => s.id))
-  const list = [...new Set(ids)]
-    .filter((id) => !own.has(id))
-    .map((id) => sourceById(id))
-    .filter((s): s is Source => Boolean(s))
-  if (list.length === 0 && !extra) return null
-  return (
-    <section className={styles.xsources} aria-label="Sources from other days used in this picture">
-      {list.length > 0 && (
-        <>
-          <h3 className={styles.xhead}>Sources from other days used in this picture</h3>
-          <ul className={styles.xlist}>
-            {list.map((s) => (
-              <li key={s.id} id={`source-${s.id}`}>
-                <span className="mono">[{s.id}]</span> <strong>{s.outlet}</strong>.{' '}
-                <a href={s.url} rel="noopener noreferrer" target="_blank">{s.title}</a>.{' '}
-                <time className="src-date" dateTime={s.date.slice(0, ISO_DATE.length)}>{s.date}</time>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-      {extra}
-    </section>
-  )
+  const out: ExtraSource[] = []
+  for (const id of new Set(ids)) {
+    if (own.has(id)) continue
+    const s = sourceById(id)
+    if (!s) continue
+    const home = sourceHome(id)
+    out.push({ id, outlet: s.outlet, title: s.title, url: s.url, date: s.date, origin: home === 'verdict' ? 'from the verdict record' : `from the Day ${home} record` })
+  }
+  return out
 }
 
 /** The small "calculated" tag DESIGN_29 puts on every number the app derives. */

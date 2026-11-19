@@ -5,12 +5,13 @@ import { scaleLinear } from 'd3'
 import { formatDate, redactThirdParties, type ReportedNumber } from '@/lib/data'
 import { formatValue } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, RowsTable, Sourced, type TableRow } from './kit/Parts'
-import { numberRefs } from './kit/refs'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { RowsTable, Sourced, type TableRow } from '@/viz/kits/days-01-07/Parts'
+import { numberRefs, toExtraSources } from '@/viz/kits/days-01-07/refs'
 import { meta } from './meta'
 import { select, type Claim, type Day01Selection, type Side } from './select'
 import s from './day01.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -81,7 +82,7 @@ function Constellation({ sel }: { sel: Day01Selection }) {
 
 export default function Day01Viz({ day }: DayVizProps) {
   const sel = select(day)
-  const { labels, extras } = sel.index
+  const { labels } = sel.index
   const pros = sel.openings.find((o) => o.side === 'prosecution')
   const def = sel.openings.find((o) => o.side === 'defense')
   return (
@@ -154,8 +155,6 @@ export default function Day01Viz({ day }: DayVizProps) {
           ))}
         </ol>
       </details>
-
-      <ExtraSources extras={extras} labels={labels} />
     </div>
   )
 }
@@ -202,4 +201,10 @@ export function TextVersion({ day }: DayVizProps) {
       <RowsTable caption={`Day ${day.day}: the openings by topic, and every figure reported`} columns={['Topic or figure', 'What the record says']} rows={rows} labels={labels} />
     </>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return sel ? toExtraSources(sel.index.extras) : []
 }

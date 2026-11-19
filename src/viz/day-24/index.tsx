@@ -4,12 +4,13 @@ import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { Cite } from '@/components/shell/SourceRef'
 import { NumbersTable } from '@/components/shell/NumbersTable'
 import { formatDate, resolveSources, type Source } from '@/lib/data'
-import type { DayVizProps } from '@/viz/types'
-import { CrossDaySources, dayLink, XRef } from '@/viz/day-22/kit'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { crossDayExtras, dayLink, XRef } from '@/viz/kits/days-22-28/kit'
 import { JuryTracker, type SeatFrame } from './Interactive'
 import { meta } from './meta'
 import { selectDay24, stateAt, type Day24Selection, type JuryEvent } from './select'
 import styles from './day24.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -24,7 +25,7 @@ function EventBody({ e }: { e: JuryEvent }) {
         <ul className={styles.nums}>
           {e.numbers.map((n) => (
             <li key={n.what}>
-              <Cite num={n} pool={e.pool} /> {n.what}
+              <Cite num={n} pool={e.pool} numbered={false} /> {n.what}
             </li>
           ))}
         </ul>
@@ -59,7 +60,7 @@ export function allIds(sel: Day24Selection): string[] {
   ]
 }
 
-function Facts({ sel }: { sel: Day24Selection }) {
+function Facts({ sel, dayN }: { sel: Day24Selection; dayN: number }) {
   return (
     <div className={styles.facts}>
       {sel.men !== null && sel.women !== null ? (
@@ -74,12 +75,12 @@ function Facts({ sel }: { sel: Day24Selection }) {
           <ConfidenceMark level="conflict" /> Prosecution strikes during jury selection:{' '}
           <span className="num">{String(sel.strikes.a.what.match(/prosecution (?<n>\d+)/)?.groups?.n ?? '')}</span> on Day {sel.strikes.aDay.day}{' '}
           <XRef ids={resolveSources(sel.strikes.a, sel.strikes.aDay.sources).map((s) => s.id)} /> versus{' '}
-          <Cite num={sel.strikes.b} pool={sel.strikes.bDay.sources} showMark={false} /> on Day {sel.strikes.bDay.day} (each from one outlet).
+          <Cite num={sel.strikes.b} pool={sel.strikes.bDay.sources} showMark={false} numbered={sel.strikes.bDay.day === dayN} /> on Day {sel.strikes.bDay.day} (each from one outlet).
         </p>
       ) : null}
       {sel.raceClaim ? (
         <p>
-          The defense said prosecutors struck Black prospective jurors (<Cite num={sel.raceClaim.num} pool={sel.raceClaim.day.sources} />); the
+          The defense said prosecutors struck Black prospective jurors (<Cite num={sel.raceClaim.num} pool={sel.raceClaim.day.sources} numbered={sel.raceClaim.day.day === dayN} />); the
           judge accepted the prosecution&apos;s race-neutral reasons.
         </p>
       ) : null}
@@ -99,8 +100,7 @@ export default function Day24Viz({ day }: DayVizProps) {
         seatNotes={seatNotes(sel)}
         items={sel.events.map((e) => <EventBody key={e.key} e={e} />)}
       />
-      <Facts sel={sel} />
-      <CrossDaySources ids={allIds(sel)} day={day} />
+      <Facts sel={sel} dayN={day.day} />
     </div>
   )
 }
@@ -126,4 +126,9 @@ export function TextVersion({ day }: DayVizProps) {
       <NumbersTable numbers={day.numbers} pool={day.sources} caption={`Figures reported on Day ${day.day}`} />
     </>
   )
+}
+
+/** Other days' sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  return crossDayExtras(allIds(selectDay24(day)), day)
 }

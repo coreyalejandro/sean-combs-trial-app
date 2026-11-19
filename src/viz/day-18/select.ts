@@ -2,9 +2,9 @@
 // The picture charts lengths of time only; it never describes what happened during them (care rule 2).
 import { resolveSources, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 import { formatValue, toNumber } from '@/lib/viz/format'
-import { dayRef } from '../day-15/kit/days'
-import { lowest, type Level } from '../day-15/kit/sources'
-import { datesInText, DAYS_PER_WEEK, formatMonth, HOURS_PER_DAY } from '../day-15/kit/time'
+import { dayRef } from '@/viz/kits/days-15-21/days'
+import { lowest, type Level } from '@/viz/kits/days-15-21/sources'
+import { datesInText, DAYS_PER_WEEK, formatMonth, HOURS_PER_DAY } from '@/viz/kits/days-15-21/time'
 
 export type Who = 'ventura' | 'jane' | 'recovery'
 

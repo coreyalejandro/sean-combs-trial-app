@@ -1,6 +1,6 @@
 // Day 8 text version: the long description and table rows, from the same selection as the picture.
-import type { TableRow } from './kit/ui'
-import { money } from './kit/geom'
+import type { TableRow } from '@/viz/kits/days-08-14/ui'
+import { money } from '@/viz/kits/days-08-14/geom'
 import { MODES, gap, type Day08Model, type Mode } from './select'
 
 const years = (n: number) => `${n} ${n === 1 ? 'year' : 'years'}`

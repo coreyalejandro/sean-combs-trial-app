@@ -1,14 +1,15 @@
 // Day 8: Why Many Survivors Wait to Tell. A dumbbell chart of the waits in this trial's own record,
 // framed by the four general patterns Dr. Dawn Hughes described. Owned by Builder 2.
 import { getDay } from '@/lib/data'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, FactMeta, FactsTable, kit } from './kit/ui'
-import { money } from './kit/geom'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { bookExtras, FactMeta, FactsTable, kit } from '@/viz/kits/days-08-14/ui'
+import { money } from '@/viz/kits/days-08-14/geom'
 import { Day08Interactive } from './Interactive'
 import { describe } from './describe'
 import { meta } from './meta'
 import { select } from './select'
 import css from './day08.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -43,7 +44,6 @@ export default function Day08Viz({ day }: DayVizProps) {
         </section>
       )}
       <Day08Interactive view={{ rows: m.rows, years: m.years, book: m.book }} />
-      <ExtraSources book={m.book} day={day} />
     </div>
   )
 }
@@ -58,4 +58,9 @@ export function TextVersion({ day }: DayVizProps) {
       <p className={kit.note}>Waits are calculated from the years shown, counted in whole years. A missing date is shown as not stated in coverage, never estimated.</p>
     </>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  return bookExtras(select(day, getDay).book)
 }

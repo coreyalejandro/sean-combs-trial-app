@@ -5,12 +5,16 @@ import type { ComponentType } from 'react'
 import { REDACTED_NAMES_FOR_TESTS } from '@/lib/data/redact'
 import type { TrialDay } from '@/lib/data'
 import type { DayVizProps } from '@/viz/types'
+import { getDayModule } from '@/viz/registry'
+import { SourcesPanel } from '@/components/shell/SourcesPanel'
 
+/** Picture, text version and the page's Sources panel (which lists the other days' and added sources). */
 export function renderDay(Viz: ComponentType<DayVizProps>, TextVersion: ComponentType<DayVizProps>, day: TrialDay) {
   return render(
     <div>
       <Viz n={day.day} day={day} />
       <TextVersion n={day.day} day={day} />
+      <SourcesPanel sources={day.sources} confidence={day.confidence} discrepancies={day.discrepancies} extras={getDayModule(day.day).extraSources(day)} />
     </div>,
   )
 }
@@ -21,7 +25,7 @@ export function expectSourcedPage(container: HTMLElement, day: TrialDay) {
   expect(within(table).getAllByRole('row').length).toBeGreaterThan(day.numbers.length)
   const ids = new Set([...container.querySelectorAll('[data-source-ids]')].flatMap((e) => (e.getAttribute('data-source-ids') ?? '').split(' ').filter(Boolean)))
   expect(ids.size).toBeGreaterThan(0)
-  const listed = new Set([...day.sources.map((s) => s.id), ...[...container.querySelectorAll('li[id^="source-"]')].map((e) => e.id.replace(/^source-/, ''))])
+  const listed = new Set([...day.sources.map((s) => s.id), ...[...container.querySelectorAll('[id^="source-"]')].map((e) => e.id.replace(/^source-/, ''))])
   for (const id of ids) expect(listed.has(id), `source ${id} is listed`).toBe(true)
   const html = container.innerHTML
   for (const name of REDACTED_NAMES_FOR_TESTS) expect(html).not.toContain(name)

@@ -39,6 +39,13 @@ describe('trial_days.json', () => {
     for (const d of getDays()) expect(d.sources.length).toBeGreaterThan(0)
   })
 
+  it('each source id names one article (ids are unique across days)', () => {
+    const urls = new Map<string, Set<string>>()
+    for (const d of [...getDays(), getVerdict()]) for (const s of d.sources) urls.set(s.id, (urls.get(s.id) ?? new Set()).add(s.url))
+    const shared = [...urls].filter(([, u]) => u.size > 1).map(([id]) => id)
+    expect(shared).toEqual([])
+  })
+
   it('every reported number resolves to at least one listed source', () => {
     const missing: string[] = []
     for (const d of getDays()) {

@@ -12,7 +12,7 @@ import {
   type TrialDay,
 } from '@/lib/data'
 import { toNumber } from '@/lib/viz/format'
-import { redact } from '@/viz/day-22/kit'
+import { redact } from '@/viz/kits/days-22-28/kit'
 
 export type SeatState = 'seated' | 'at-issue' | 'removal-announced' | 'replaced'
 

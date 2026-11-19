@@ -1,7 +1,8 @@
 import { cleanup, render, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { getDay } from '@/lib/data'
-import Viz, { TextVersion } from './index'
+import Viz, { TextVersion, extraSources } from './index'
+import { SourcesPanel } from '@/components/shell/SourcesPanel'
 import { select } from './select'
 
 afterEach(cleanup)
@@ -12,6 +13,7 @@ function renderBoth(d = day) {
     <div>
       <Viz n={1} day={d} />
       <TextVersion n={1} day={d} />
+      <SourcesPanel sources={d.sources} confidence={d.confidence} extras={extraSources(d)} />
     </div>,
   )
 }
@@ -34,9 +36,9 @@ describe('Day 1 claim diff', () => {
     expect(within(table).getAllByRole('row').length).toBeGreaterThan(day.numbers.length)
     expect(container.querySelectorAll('[data-topic]').length).toBeGreaterThanOrEqual(2 + 2)
     expect(container.textContent).toContain('See how the jury decided')
-    // every source id used is either in the day's pool or listed by the picture
+    // every source id used is either in the day's pool or listed by the page's Sources panel
     const ids = new Set([...container.querySelectorAll('[data-source-ids]')].flatMap((e) => (e.getAttribute('data-source-ids') ?? '').split(' ').filter(Boolean)))
-    const listed = new Set([...day.sources.map((s) => s.id), ...[...container.querySelectorAll('li[id^="source-"]')].map((e) => e.id.replace('source-', ''))])
+    const listed = new Set([...day.sources.map((s) => s.id), ...[...container.querySelectorAll('[id^="source-"]')].map((e) => e.id.replace('source-', ''))])
     for (const id of ids) expect(listed.has(id), id).toBe(true)
     expect(container.textContent).not.toMatch(/accuser/i)
   })

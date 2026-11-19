@@ -1,6 +1,6 @@
 // Day 20: one shape per outcome, used in the chart, the phone list and the legend. Always paired with the word.
 import { layout } from '@/lib/viz/layout'
-import type { Level } from '../day-15/kit/sources'
+import type { Level } from '@/viz/kits/days-15-21/sources'
 import type { Outcome } from './select'
 
 export function OutcomeShape({ x, y, r, outcome, level, color = 'var(--ink)' }: { x: number; y: number; r: number; outcome: Outcome; level?: Level; color?: string }) {

@@ -16,12 +16,12 @@ export function TrialRail({ current }: { current: number | 'verdict' | 'finale' 
           <RailItems key={d.day} d={d} current={current} gaps={gaps.filter((g) => g.afterDay === d.day)} />
         ))}
         <li className="rail-end">
-          <Link href="/verdict/" aria-current={current === 'verdict' ? 'page' : undefined} className={current === 'verdict' ? 'is-current' : ''}>
+          <Link href="/verdict/" aria-label="Verdict and sentence" aria-current={current === 'verdict' ? 'page' : undefined} className={current === 'verdict' ? 'is-current' : ''}>
             Verdict
           </Link>
         </li>
         <li className="rail-end">
-          <Link href="/finale/" aria-current={current === 'finale' ? 'page' : undefined} className={current === 'finale' ? 'is-current' : ''}>
+          <Link href="/finale/" aria-label="March: if every survivor walked to Washington" aria-current={current === 'finale' ? 'page' : undefined} className={current === 'finale' ? 'is-current' : ''}>
             March
           </Link>
         </li>

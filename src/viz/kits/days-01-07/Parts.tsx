@@ -1,8 +1,6 @@
 // Builder 1 kit: small pieces every Day 1-7 picture shares. No hooks, so server and client components can both use them.
 import type { ReactNode } from 'react'
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
-import { layout } from '@/lib/viz/layout'
-import { OpenOnHash } from './OpenOnHash'
 import type { Level, Ref } from './refs'
 import s from './kit.module.css'
 
@@ -36,30 +34,6 @@ export function Calculated({ formula }: { formula?: string }) {
     <span className={s.calc} title={formula}>
       calculated{formula ? <span className="visually-hidden">: {formula}</span> : null}
     </span>
-  )
-}
-
-/** Sources used by the picture that the shell's panel does not list (other days' records, additions.json). */
-export function ExtraSources({ extras, labels }: { extras: Ref[]; labels: Record<string, string> }) {
-  if (extras.length === 0) return null
-  return (
-    <section className={s.extras} aria-label="More sources used in this picture">
-      <details open={extras.length <= layout.gap / 2}>
-        <summary className={s.extrasTitle}>More sources used in this picture ({extras.length})</summary>
-        <p className={s.extrasNote}>Lettered sources come from other days&rsquo; records or were added for this picture. Numbered ones are in the sources list below.</p>
-        <ol className={s.extrasList}>
-          {extras.map((r) => (
-            <li key={r.id} id={`source-${r.id}`}>
-              <span className={s.extrasLabel}>{labels[r.id]}.</span> <span className={s.outlet}>{r.outlet}</span>.{' '}
-              <a href={r.url} rel="noopener noreferrer" target="_blank">{r.title}</a>.{' '}
-              <time className={s.date}>{r.date}</time>{' '}
-              <span className={s.from}>{r.fromDay ? `(cited in the Day ${r.fromDay} record)` : r.origin ? `(${r.origin})` : '(added for this picture)'}</span>
-            </li>
-          ))}
-        </ol>
-      </details>
-      <OpenOnHash />
-    </section>
   )
 }
 

@@ -2,11 +2,11 @@
 // Dates come from the record (numbers and the dates written in them); each account is a paraphrase
 // tied to the record that backs it (its sources and confidence).
 import { getDay, getWitnesses, type ReportedNumber, type TrialDay } from '@/lib/data'
-import { monthYear, shortDate } from '../day-08/kit/geom'
+import { monthYear, shortDate } from '@/viz/kits/days-08-14/geom'
 import {
   D, withDay, buildSourceBook, datesIn, isoToDate, factFromNumber, findNumber, textFact, weakest,
   type DayReader, type Fact, type SourceBook,
-} from '../day-08/kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 export interface Witness { id: string; name: string; short: string; kind: 'person' | 'official' | 'records'; day: number }
 export interface Account { witness: string; day: number; said: string; fact: Fact }

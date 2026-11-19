@@ -3,11 +3,17 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+import { REDACTED_NAMES_FOR_TESTS as REDACTED } from '../../src/lib/data/redact'
 
 const DAYS = Array.from({ length: 28 }, (_, i) => i + 1)
 const OTHER = ['/', '/days/', '/verdict/', '/finale/', '/support/', '/sources/']
-const REDACTED = ['Cowboys 4 Angels', 'Cabral', 'Sujin', 'Sugit']
 const SCREENS = path.join(__dirname, '__screens__')
+// The finale draws WebGL, which the test browser renders in software: one frame can take seconds on a busy
+// machine, so tests that open /finale/ get more time (see tests/e2e/finale.spec.ts).
+const FINALE_TIMEOUT = 180_000
+const slowIfFinale = (route: string) => {
+  if (route.startsWith('/finale')) test.setTimeout(FINALE_TIMEOUT)
+}
 
 async function noSidewaysScroll(page: Page) {
   const { sw, cw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }))
@@ -25,6 +31,7 @@ async function sharedChecks(page: Page) {
 
 for (const route of OTHER) {
   test(`renders ${route}`, async ({ page }) => {
+    slowIfFinale(route)
     const res = await page.goto(route)
     expect(res?.status()).toBe(200)
     await sharedChecks(page)
@@ -93,6 +100,7 @@ test.describe('without JavaScript', () => {
 
 for (const route of ['/', '/day/1/', '/day/28/', '/verdict/', '/finale/', '/days/', '/support/']) {
   test(`accessibility (axe) ${route}`, async ({ page }) => {
+    slowIfFinale(route)
     await page.goto(route)
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()
     const bad = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
@@ -102,6 +110,7 @@ for (const route of ['/', '/day/1/', '/day/28/', '/verdict/', '/finale/', '/days
 
 for (const [name, route] of [['home', '/'], ['day-01', '/day/1/'], ['day-28', '/day/28/'], ['verdict', '/verdict/'], ['finale', '/finale/'], ['days', '/days/']] as const) {
   test(`screenshot ${name}`, async ({ page }, info) => {
+    slowIfFinale(route)
     await page.goto(route)
     fs.mkdirSync(SCREENS, { recursive: true })
     await page.screenshot({ path: path.join(SCREENS, `${name}-${info.project.name}.png`), fullPage: true })

@@ -6,7 +6,7 @@ import additionsJson from './additions.json'
 import {
   D, withDay, additionById, buildSourceBook, factFromAddition, factFromNumber, findNumber, mergeFacts, textFact,
   type AdditionsFile, type DayReader, type Fact, type SourceBook,
-} from '../day-08/kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 export type Status = 'done' | 'not-done'
 export interface Evidence { said: string; who: string; fact: Fact }

@@ -123,7 +123,10 @@
 .page-dark .sources-panel { border-top-color: var(--paper); }
 .sources-list { padding-left: 24px; font-size: 14px; }
 .sources-list li { margin: 6px 0; overflow-wrap: anywhere; }
-.sources-list li:target { background: #fff3c4; color: var(--ink); }
+.sources-list li:target, .sources-list li:has(> .source-alias:target) { background: #fff3c4; color: var(--ink); }
+.source-alias { scroll-margin-top: 80px; }
+.sources-extra-note { font-size: 14px; color: var(--muted-ink); max-width: 68ch; }
+.page-dark .sources-extra-note { color: var(--muted); }
 .src-outlet { font-weight: 700; }
 .src-date, .src-flag { font-family: var(--f-data); font-size: 12px; color: var(--muted-ink); }
 .page-dark .src-date, .page-dark .src-flag { color: var(--muted); }

@@ -3,7 +3,7 @@
 import { scaleLinear, scaleSqrt, scaleUtc, utcYear } from 'd3'
 import { formatUSDShort } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
-import { isoToDate } from '../day-15/kit/time'
+import { isoToDate } from '@/viz/kits/days-15-21/time'
 import type { Day21Selection } from './select'
 
 export interface Day21Geo {

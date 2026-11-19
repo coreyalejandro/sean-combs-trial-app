@@ -11,13 +11,14 @@ import worldTopo from 'world-atlas/countries-50m.json'
 import { redactThirdParties } from '@/lib/data'
 import { formatValue } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, RowsTable, Sourced, type TableRow } from '../day-01/kit/Parts'
-import { numberRefs } from '../day-01/kit/refs'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { RowsTable, Sourced, type TableRow } from '@/viz/kits/days-01-07/Parts'
+import { numberRefs, toExtraSources } from '@/viz/kits/days-01-07/refs'
 import { DotMap, type MapPanel, type Marker } from './Interactive'
 import { meta } from './meta'
 import { select, type Account, type Place } from './select'
 import s from './day06.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -147,7 +148,7 @@ function buildPanels(accounts: Account[], places: Place[]): MapPanel[] {
 
 export default function Day06Viz({ day }: DayVizProps) {
   const sel = select(day)
-  const { labels, extras } = sel.index
+  const { labels } = sel.index
   const shapes: Record<string, string> = {}
   sel.witnesses.forEach((w, i) => {
     shapes[w] = shapeFor(i)
@@ -165,7 +166,6 @@ export default function Day06Viz({ day }: DayVizProps) {
           ))}
         </ul>
       ) : null}
-      <ExtraSources extras={extras} labels={labels} />
     </div>
   )
 }
@@ -207,4 +207,10 @@ export function TextVersion({ day }: DayVizProps) {
       <RowsTable caption={`Day ${day.day}: each account, where the dots sit, and every figure reported`} columns={['Year or value', 'Who and where', 'What the record says']} rows={[...accountRows, ...placeRows, ...numberRows]} labels={labels} />
     </>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return sel ? toExtraSources(sel.index.extras) : []
 }

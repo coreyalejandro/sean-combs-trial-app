@@ -5,9 +5,9 @@
 import { useState } from 'react'
 import { scaleLinear } from 'd3'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { g } from './kit/geom'
-import { ConfDot, FactMeta, kit, dayList } from './kit/ui'
-import type { SourceBook } from './kit/facts'
+import { g } from '@/viz/kits/days-08-14/geom'
+import { ConfDot, FactMeta, kit, dayList } from '@/viz/kits/days-08-14/ui'
+import type { SourceBook } from '@/viz/kits/days-08-14/facts'
 import { MODES, type Mode, type Row } from './select'
 import css from './day08.module.css'
 

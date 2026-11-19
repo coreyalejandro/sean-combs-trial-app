@@ -2,7 +2,7 @@
 import { redactThirdParties, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 import { formatUSD, toNumber } from '@/lib/viz/format'
 import additionsFile from './additions.json'
-import { additionSources, findAddition, lowest, numSources, type AdditionsFile, type Level } from './kit/sources'
+import { additionSources, findAddition, lowest, numSources, type AdditionsFile, type Level } from '@/viz/kits/days-15-21/sources'
 
 const additions = additionsFile as AdditionsFile
 export const usdCents = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })

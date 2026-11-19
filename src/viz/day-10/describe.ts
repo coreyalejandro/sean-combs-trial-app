@@ -1,5 +1,5 @@
 // Day 10 text version: long description and table rows from the same selection as the picture.
-import type { TableRow } from '../day-08/kit/ui'
+import type { TableRow } from '@/viz/kits/days-08-14/ui'
 import { eventLabel, type Day10Model } from './select'
 
 export function describe(m: Day10Model): { paragraphs: string[]; rows: TableRow[] } {

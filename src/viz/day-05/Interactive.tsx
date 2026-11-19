@@ -3,7 +3,7 @@
 // Enter or a tap opens the item; "Show as a list" swaps the icons for a plain list. The static HTML shows every icon.
 import { useState } from 'react'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { Sourced } from '../day-01/kit/Parts'
+import { Sourced } from '@/viz/kits/days-01-07/Parts'
 import type { Item } from './select'
 import s from './day05.module.css'
 

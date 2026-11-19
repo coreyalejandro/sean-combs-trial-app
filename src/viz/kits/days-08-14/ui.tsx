@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import { redactThirdParties, resolveSources, type ReportedNumber, type TrialDay } from '@/lib/data'
 import { formatValue } from '@/lib/viz/format'
+import type { ExtraSource } from '@/viz/types'
 import type { Fact, SourceBook, SourceLink, SrcRec } from './facts'
 import s from './kit.module.css'
 
@@ -50,27 +51,16 @@ export function dayList(days: number[]): string {
   return words.length === 1 ? words[0] : `${words.slice(0, -1).join(', ')} and ${words[words.length - 1]}`
 }
 
-/** Sources the picture cites from other days (or from additions.json) that the day's own list does not hold. */
-export function ExtraSources({ book, day }: { book: SourceBook; day: TrialDay }) {
-  if (book.extras.length === 0) return null
-  return (
-    <details open className={s.trail}>
-      <summary className={s.trailHead}>Sources from other days used in this picture ({book.extras.length})</summary>
-      <p className={s.trailNote}>
-        The numbers continue from this day&apos;s own Sources list below.
-      </p>
-      <ol className={s.trailList} start={day.sources.length + 1}>
-        {book.extras.map((x) => (
-          <li key={x.key} id={`source-${x.key}`}>
-            <span className="src-outlet">{x.outlet}</span>.{' '}
-            <a href={x.url} rel="noopener noreferrer" target="_blank">{x.title}</a>.{' '}
-            <time className="src-date" dateTime={x.date.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? x.date}>{x.date}</time>
-            {x.fromDay ? <span className="src-flag"> (from the Day {x.fromDay} record)</span> : <span className="src-flag"> (added for this picture)</span>}
-          </li>
-        ))}
-      </ol>
-    </details>
-  )
+/** Sources the picture cites from other days (or additions.json), for the shell's Sources panel, in footnote order. */
+export function bookExtras(book: SourceBook): ExtraSource[] {
+  return book.extras.map((x) => ({
+    id: x.key,
+    outlet: x.outlet,
+    title: x.title,
+    url: x.url,
+    date: x.date,
+    origin: x.fromDay ? `from the Day ${x.fromDay} record` : 'added for this picture',
+  }))
 }
 
 export interface TableRow {

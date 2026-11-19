@@ -2,8 +2,8 @@
   "extends": "next/core-web-vitals",
   "overrides": [
     {
-      "files": ["src/viz/day-*/**/*.ts", "src/viz/day-*/**/*.tsx"],
-      "excludedFiles": ["src/viz/day-*/meta.ts", "src/viz/day-*/**/*.test.ts", "src/viz/day-*/**/*.test.tsx"],
+      "files": ["src/viz/day-*/**/*.ts", "src/viz/day-*/**/*.tsx", "src/viz/kits/**/*.ts", "src/viz/kits/**/*.tsx"],
+      "excludedFiles": ["src/viz/day-*/meta.ts", "src/viz/**/*.test.ts", "src/viz/**/*.test.tsx", "src/viz/kits/**/testkit.tsx"],
       "rules": {
         "no-magic-numbers": ["error", { "ignore": [-1, 0, 1, 2], "ignoreArrayIndexes": true, "enforceConst": true }]
       }

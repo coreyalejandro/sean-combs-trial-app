@@ -2,9 +2,9 @@
 import { geoDistance, utcDay } from 'd3'
 import { redactThirdParties, resolveSources, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 import { formatValue } from '@/lib/viz/format'
-import { dayRef } from '../day-15/kit/days'
-import { additionSources, citedIn, findAddition, lowest, type AdditionsFile, type Level } from '../day-15/kit/sources'
-import { isoToDate, toIso } from '../day-15/kit/time'
+import { dayRef } from '@/viz/kits/days-15-21/days'
+import { additionSources, citedIn, findAddition, lowest, type AdditionsFile, type Level } from '@/viz/kits/days-15-21/sources'
+import { isoToDate, toIso } from '@/viz/kits/days-15-21/time'
 import { clause } from '../day-16/select'
 import additionsFile from './additions.json'
 

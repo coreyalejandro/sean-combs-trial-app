@@ -5,8 +5,8 @@ import { feature, mesh } from 'topojson-client'
 import type { GeometryCollection, Topology } from 'topojson-specification'
 import us from 'us-atlas/states-10m.json'
 import { layout } from '@/lib/viz/layout'
-import { shortDay } from '../day-15/kit/time'
-import { isoToDate } from '../day-15/kit/time'
+import { shortDay } from '@/viz/kits/days-15-21/time'
+import { isoToDate } from '@/viz/kits/days-15-21/time'
 import type { City, DateMark, LaneId } from './select'
 
 export interface MapGeo { width: number; height: number; nation: string; states: string; arc: string | null; cities: Array<{ id: City['id']; name: string; x: number; y: number }> }

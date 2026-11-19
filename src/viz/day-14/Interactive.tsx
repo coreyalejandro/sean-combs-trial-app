@@ -6,9 +6,9 @@
 import { useRef, useState } from 'react'
 import { scaleUtc, utcYear } from 'd3'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { g } from '../day-08/kit/geom'
-import { ConfDot, FactMeta, kit, dayList } from '../day-08/kit/ui'
-import { firstYear, isoToDate, type Fact, type SourceBook } from '../day-08/kit/facts'
+import { g } from '@/viz/kits/days-08-14/geom'
+import { ConfDot, FactMeta, kit, dayList } from '@/viz/kits/days-08-14/ui'
+import { firstYear, isoToDate, type Fact, type SourceBook } from '@/viz/kits/days-08-14/facts'
 import { whenLabel, type AccountItem, type Explanation, type Glyph, type PublicItem } from './select'
 import css from './day14.module.css'
 

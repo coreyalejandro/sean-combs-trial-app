@@ -6,7 +6,7 @@ import additionsJson from './additions.json'
 import {
   D, withDay, buildSourceBook, datesIn, factFromAddition, factFromNumber, findNumber, textFact, yearsIn,
   type AdditionsFile, type DayReader, type Fact, type SourceBook,
-} from '../day-08/kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 export interface Link { id: string; alias: string; place: string; fact: Fact; years: number[] }
 export interface PlaceNote { fact: Fact; label: string }

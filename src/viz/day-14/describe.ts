@@ -1,6 +1,6 @@
 // Day 14 text version: long description and table rows from the same selection as the picture.
-import type { TableRow } from '../day-08/kit/ui'
-import { valueText } from '../day-08/kit/geom'
+import type { TableRow } from '@/viz/kits/days-08-14/ui'
+import { valueText } from '@/viz/kits/days-08-14/geom'
 import { whenLabel, type Day14Model } from './select'
 
 export function describe(m: Day14Model): { paragraphs: string[]; rows: TableRow[] } {

@@ -4,7 +4,7 @@ import { getDay, type ReportedNumber, type TrialDay } from '@/lib/data'
 import {
   D, withDay, buildSourceBook, dollarsIn, factFromNumber, findNumber, mergeFacts,
   type DayReader, type Fact, type SourceBook,
-} from '../day-08/kit/facts'
+} from '@/viz/kits/days-08-14/facts'
 
 export type Kind = 'settlement' | 'ask' | 'payment'
 export const KINDS: Array<{ id: Kind; label: string; plain: string }> = [

@@ -482,7 +482,7 @@
      "opened_this_pass": false
     },
     {
-     "id": "nbc13",
+     "id": "nbc02",
      "title": "All eyes on Cassie as the prosecution's star witness testifies in Diddy's trial",
      "outlet": "NBC News",
      "url": "https://www.nbcnews.com/news/us-news/eyes-cassie-prosecutions-star-witness-testifies-diddys-trial-rcna206588",
@@ -491,7 +491,7 @@
      "opened_this_pass": false
     },
     {
-     "id": "fox13",
+     "id": "fox02",
      "title": "Diddy trial: Cassie says 'freak offs' became a job",
      "outlet": "FOX 5 NY (Adeja Shivonne)",
      "url": "https://www.fox5ny.com/news/diddy-trial-live-cassie-testify",
@@ -585,7 +585,7 @@
      "value": 13,
      "unit": "people",
      "what": "Male sex workers identified as recruited (Fox 5)",
-     "source": "fox14",
+     "source": "fox03",
      "outlets": [
       "Fox"
      ],
@@ -595,7 +595,7 @@
      "value": "hundreds?",
      "unit": "count",
      "what": "Freak offs - witness estimate ('impossible to know')",
-     "source": "fox14",
+     "source": "fox03",
      "outlets": [
       "Fox"
      ],
@@ -707,7 +707,7 @@
      "value": "4:45 PM",
      "unit": "time",
      "what": "Court adjourned",
-     "source": "fox14",
+     "source": "fox03",
      "outlets": [
       "Fox"
      ],
@@ -738,7 +738,7 @@
    ],
    "sources": [
     {
-     "id": "fox14",
+     "id": "fox03",
      "title": "Cassie says it's 'impossible' to know how many 'freak offs' there were",
      "outlet": "FOX 5 NY (Adeja Shivonne)",
      "url": "https://www.fox5ny.com/news/diddy-trial-cassie-testimony-part-2",
@@ -2826,7 +2826,7 @@
     "Judge Subramanian"
    ],
    "legal_events": [
-    "Defense moved for a mistrial over implication Combs destroyed fingerprint evidence; Judge Subramanian denied; struck the arson investigator's fingerprint testimony (NBC; single-sourced)",
+    "Defense moved for a mistrial over implication Combs destroyed fingerprint evidence; Judge Subramanian denied (NBC; Global; ABC); struck the arson investigator's fingerprint testimony (NBC; single-sourced)",
     "Judge irritated by late-running cross; court ran late to finish Nash",
     "Cassie's lawsuit etc. not argued"
    ],
@@ -2882,7 +2882,7 @@
    "discrepancies": [
     "NBC places Nash's 'hotel incident' in 2016; Fox says West Hollywood hotel without a year - unresolved.",
     "Fox says no cross reported for Ignacio; NBC says Steel crossed him.",
-    "Mistrial motion reported only by NBC."
+    "Mistrial motion: denied per NBC, Global News and ABC News 4; only NBC reports that the arson investigator's fingerprint testimony was struck."
    ],
    "single_sourced": [],
    "outlet_families": [

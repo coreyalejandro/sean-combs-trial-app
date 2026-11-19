@@ -2,7 +2,7 @@
 import { scaleLinear, ticks } from 'd3'
 import { formatInt } from '@/lib/viz/format'
 import { layout } from '@/lib/viz/layout'
-import { HOURS_PER_DAY } from '../day-15/kit/time'
+import { HOURS_PER_DAY } from '@/viz/kits/days-15-21/time'
 import type { Day18Selection, Who } from './select'
 
 export interface Tick { x: number; label: string }

@@ -10,7 +10,7 @@ import {
   type Source,
   type TrialDay,
 } from '@/lib/data'
-import { redact } from '@/viz/day-22/kit'
+import { redact } from '@/viz/kits/days-22-28/kit'
 
 export type TaskId = 'hotels' | 'stock' | 'drugs' | 'clean' | 'travel' | 'cash' | 'schedule'
 

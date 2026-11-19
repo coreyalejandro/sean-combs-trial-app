@@ -1,6 +1,6 @@
 // Day 18: a duration in hours, written in hours or days (shared by the picture and the text version).
 import { formatInt } from '@/lib/viz/format'
-import { HOURS_PER_DAY } from '../day-15/kit/time'
+import { HOURS_PER_DAY } from '@/viz/kits/days-15-21/time'
 
 export type SpanUnit = 'hours' | 'days'
 const dec = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 })

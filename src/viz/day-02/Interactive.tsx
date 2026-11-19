@@ -4,7 +4,7 @@
 import { scaleLinear } from 'd3'
 import { useCallback, useRef, useState, type PointerEvent } from 'react'
 import { layout } from '@/lib/viz/layout'
-import { Calculated, Sourced } from '../day-01/kit/Parts'
+import { Calculated, Sourced } from '@/viz/kits/days-01-07/Parts'
 import type { LifeEvent } from './select'
 import s from './day02.module.css'
 

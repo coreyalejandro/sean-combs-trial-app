@@ -1,8 +1,8 @@
 // Builder 2 kit (Days 8 to 14): one shape for every fact a picture shows, whether it comes from
 // a day's `numbers`, from another day's record, or from a day folder's sourced additions.json.
 // Facts carry their source records; `buildSourceBook` gives each one a page id and footnote number.
-// (Source ids are not unique across days: fox13, nbc13 and fox14 name different articles on Days 2
-// and 3 than on Days 13 and 14, so sources are matched by URL.)
+// Sources are matched by URL: the same article can be listed under different ids on different days.
+// (Source ids are now unique per article; the Day 2 and 3 ids that clashed with Days 13 and 14 were renamed.)
 import { getDays, redactThirdParties, resolveSources, type Confidence, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 
 export type Level = Confidence | 'conflict'

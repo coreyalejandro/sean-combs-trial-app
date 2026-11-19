@@ -5,9 +5,9 @@
 // On phones the same links become a place-by-place list of name chips.
 import { useState } from 'react'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { g, clip } from '../day-08/kit/geom'
-import { FactMeta, kit, dayList } from '../day-08/kit/ui'
-import type { SourceBook } from '../day-08/kit/facts'
+import { g, clip } from '@/viz/kits/days-08-14/geom'
+import { FactMeta, kit, dayList } from '@/viz/kits/days-08-14/ui'
+import type { SourceBook } from '@/viz/kits/days-08-14/facts'
 import type { Alias, Link, Place } from './select'
 import css from './day09.module.css'
 

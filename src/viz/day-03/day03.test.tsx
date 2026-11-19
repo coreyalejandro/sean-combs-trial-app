@@ -1,7 +1,7 @@
 import { cleanup, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { getDay } from '@/lib/data'
-import { expectSourcedPage, renderDay } from '../day-01/kit/testkit'
+import { expectSourcedPage, renderDay } from '@/viz/kits/days-01-07/testkit'
 import Viz, { TextVersion } from './index'
 import { select } from './select'
 

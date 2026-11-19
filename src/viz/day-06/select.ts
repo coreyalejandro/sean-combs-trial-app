@@ -2,7 +2,7 @@
 // Accounts and city coordinates are in this folder's additions.json (each with sources); an account is drawn only
 // while its witness's own day record still mentions them.
 import { getDay, getDays, getWitnesses, type TrialDay } from '@/lib/data'
-import { additionRefs, buildIndex, findNumber, numberRefs, toRef, uniqueRefs, yearIn, yearsIn, type AdditionItem, type AdditionsFile, type Level, type Ref, type RefIndex } from '../day-01/kit/refs'
+import { additionRefs, buildIndex, findNumber, numberRefs, toRef, uniqueRefs, yearIn, yearsIn, type AdditionItem, type AdditionsFile, type Level, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 import additions from './additions.json'
 
 export interface Place {

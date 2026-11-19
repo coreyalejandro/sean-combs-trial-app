@@ -3,7 +3,7 @@
 import { sankey, sankeyLeft, type SankeyLink, type SankeyNode } from 'd3-sankey'
 import { layout } from '@/lib/viz/layout'
 import type { Day15Selection, NodeId } from './select'
-import type { Level } from './kit/sources'
+import type { Level } from '@/viz/kits/days-15-21/sources'
 
 export interface NodeGeo { id: NodeId; x0: number; y0: number; x1: number; y1: number; depth: number }
 export interface LinkGeo { id: string; source: NodeId; target: NodeId; d: string; width: number; level: Level; money: boolean }

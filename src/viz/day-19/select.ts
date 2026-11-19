@@ -3,9 +3,9 @@
 import { utcDay, utcMonth } from 'd3'
 import { redactThirdParties, resolveSources, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 import { formatUSD, formatUSDShort, toNumber } from '@/lib/viz/format'
-import { dayRef } from '../day-15/kit/days'
-import { additionSources, citedIn, findAddition, lowest, type AdditionsFile, type Level } from '../day-15/kit/sources'
-import { datesInText, isoToDate, type Dated } from '../day-15/kit/time'
+import { dayRef } from '@/viz/kits/days-15-21/days'
+import { additionSources, citedIn, findAddition, lowest, type AdditionsFile, type Level } from '@/viz/kits/days-15-21/sources'
+import { datesInText, isoToDate, type Dated } from '@/viz/kits/days-15-21/time'
 import { clause, sourcesFor } from '../day-16/select'
 import additionsFile from './additions.json'
 

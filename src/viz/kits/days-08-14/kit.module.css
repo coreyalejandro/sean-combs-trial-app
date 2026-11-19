@@ -10,12 +10,6 @@
 }
 
 /* Sources from other days */
-.trail { margin-top: 20px; border-top: 1px solid var(--rule-paper); padding-top: 10px; }
-.trailHead { font: 700 13px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px; cursor: pointer; min-height: 32px; }
-.trailNote { font-size: 13px; color: var(--muted-ink); margin: 0 0 4px; }
-.trailList { padding-left: 28px; font-size: 13px; margin: 0; }
-.trailList li { margin: 4px 0; overflow-wrap: anywhere; }
-.trailList li:target { background: #fff3c4; }
 
 .groupHead { background: #ecece7; font: 700 12px/1.2 var(--f-data) !important; text-transform: uppercase; }
 

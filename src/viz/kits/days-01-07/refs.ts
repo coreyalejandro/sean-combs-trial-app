@@ -4,6 +4,7 @@
 // Every fact a picture prints carries `refs` (its sources). Refs from the day's own pool keep the
 // SourcesPanel numbering ([1], [2]); refs from other days' records or from additions.json get letters
 // ([a], [b]) and are listed once, inside the figure, by <ExtraSources>.
+import type { ExtraSource } from '@/viz/types'
 import { allSources, getDays, redactThirdParties, resolveSources, type Confidence, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
 
 export interface Ref {
@@ -163,28 +164,49 @@ export function additionRefs(item: AdditionItem): Ref[] {
 }
 
 export interface RefIndex {
-  /** Link text for every ref id used on the page ("1", "2" for the day's sources; "a", "b" for the rest). */
+  /** Link text for every ref id used on the page: the number it has in the page's Sources panel. */
   labels: Record<string, string>
-  /** Sources the shell's panel does not list; <ExtraSources> lists them inside the figure. */
+  /** Sources beyond the day's own list; the day module's extraSources() hands them to the shell's panel. */
   extras: Ref[]
 }
 
-const LETTERS = 'abcdefghijklmnopqrstuvwxyz'
-
-/** Number every ref a picture uses: the day's own sources keep the panel's numbers, the rest get letters. */
 export function buildIndex(pool: Source[], refs: Ref[]): RefIndex {
+  // Numbers match the page's Sources panel: the day's own sources first, then the extras in this order
+  // (the shell lists extraSources(day) after the day's own, de-duplicated by id and by URL, numbered on).
   const labels: Record<string, string> = {}
+  const byUrl = new Map<string, string>()
   pool.forEach((s, i) => {
     labels[s.id] = String(i + 1)
+    byUrl.set(s.url, labels[s.id])
   })
   const extras: Ref[] = []
+  let numbered = pool.length
   for (const r of refs) {
     if (labels[r.id]) continue
-    const n = extras.length
-    labels[r.id] = n < LETTERS.length ? LETTERS[n] : `${LETTERS[n % LETTERS.length]}${Math.floor(n / LETTERS.length)}`
+    const same = byUrl.get(r.url)
+    if (same) {
+      // The same article under another id: same number; still handed to the panel, which gives it an anchor.
+      labels[r.id] = same
+    } else {
+      numbered += 1
+      labels[r.id] = String(numbered)
+      byUrl.set(r.url, labels[r.id])
+    }
     extras.push(r)
   }
   return { labels, extras }
+}
+
+/** The extras in the shape the shell's Sources panel lists them. */
+export function toExtraSources(extras: Ref[]): ExtraSource[] {
+  return extras.map((r) => ({
+    id: r.id,
+    outlet: r.outlet,
+    title: r.title,
+    url: r.url,
+    date: r.date,
+    origin: r.fromDay ? `cited in the Day ${r.fromDay} record` : r.origin ?? 'added for this picture',
+  }))
 }
 
 /** De-duplicated refs, keeping first-seen order. */

@@ -1,6 +1,6 @@
 // Day 12 text version: long description and table rows from the same selection as the picture.
-import type { TableRow } from '../day-08/kit/ui'
-import { valueText } from '../day-08/kit/geom'
+import type { TableRow } from '@/viz/kits/days-08-14/ui'
+import { valueText } from '@/viz/kits/days-08-14/geom'
 import { ALL_HOURS, HOURS_PER_DAY, type Day12Model } from './select'
 
 export function describe(m: Day12Model): { paragraphs: string[]; rows: TableRow[] } {

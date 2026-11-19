@@ -5,9 +5,9 @@
 // top to bottom on a phone.
 import { useState } from 'react'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { g } from '../day-08/kit/geom'
-import { FactMeta, kit } from '../day-08/kit/ui'
-import type { SourceBook } from '../day-08/kit/facts'
+import { g } from '@/viz/kits/days-08-14/geom'
+import { FactMeta, kit } from '@/viz/kits/days-08-14/ui'
+import type { SourceBook } from '@/viz/kits/days-08-14/facts'
 import type { CourtNote, Step } from './select'
 import css from './day11.module.css'
 

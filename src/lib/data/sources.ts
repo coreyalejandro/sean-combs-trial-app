@@ -4,16 +4,27 @@ import type { ReportedNumber, Source, TrialData, TrialDay } from './types'
 
 const data = raw as unknown as TrialData
 
-/** Every source in the file (all days plus the verdict), de-duplicated by id. */
+/**
+ * Every source in the file (all days plus the verdict), de-duplicated by URL (the same article listed on
+ * several days appears once). Source ids are unique per article; tests/unit/data.test.ts checks that.
+ */
 export function allSources(): Source[] {
   const seen = new Map<string, Source>()
-  for (const d of data.days) for (const s of d.sources) if (!seen.has(s.id)) seen.set(s.id, s)
-  for (const s of data.verdict.sources) if (!seen.has(s.id)) seen.set(s.id, s)
+  for (const d of data.days) for (const s of d.sources) if (!seen.has(s.url)) seen.set(s.url, s)
+  for (const s of data.verdict.sources) if (!seen.has(s.url)) seen.set(s.url, s)
   return [...seen.values()]
 }
 
+/** The day (or 'verdict') whose record first lists a source id. */
+export function sourceHome(id: string): number | 'verdict' | null {
+  for (const d of data.days) if (d.sources.some((s) => s.id === id)) return d.day
+  if (data.verdict.sources.some((s) => s.id === id)) return 'verdict'
+  return null
+}
+
 export function sourceById(id: string): Source | undefined {
-  return allSources().find((s) => s.id === id)
+  for (const d of data.days) for (const s of d.sources) if (s.id === id) return s
+  return data.verdict.sources.find((s) => s.id === id)
 }
 
 export function sourcesForDay(day: TrialDay): Source[] {

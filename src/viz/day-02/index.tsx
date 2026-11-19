@@ -3,13 +3,14 @@
 import { redactThirdParties, type ReportedNumber } from '@/lib/data'
 import { PlaceholderTextVersion, PlaceholderViz } from '@/components/shell/Placeholder'
 import { formatValue } from '@/lib/viz/format'
-import type { DayVizProps } from '@/viz/types'
-import { Calculated, ExtraSources, RowsTable, Sourced, type TableRow } from '../day-01/kit/Parts'
-import { numberRefs, uniqueRefs } from '../day-01/kit/refs'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { Calculated, RowsTable, Sourced, type TableRow } from '@/viz/kits/days-01-07/Parts'
+import { numberRefs, uniqueRefs, toExtraSources } from '@/viz/kits/days-01-07/refs'
 import { Lifeline } from './Interactive'
 import { meta } from './meta'
 import { select } from './select'
 import s from './day02.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
@@ -21,7 +22,7 @@ function firmYears(text: string): number | null {
 export default function Day02Viz(props: DayVizProps) {
   const sel = select(props.day)
   if (!sel) return <PlaceholderViz {...props} meta={meta} />
-  const { labels, extras } = sel.index
+  const { labels } = sel.index
   const rel = sel.relationship
   const firstReading = rel?.readings[0]?.text ?? ''
   const firm = rel && /just over|about/i.test(firstReading) ? rel.from + (firmYears(firstReading) ?? 0) : null
@@ -80,7 +81,6 @@ export default function Day02Viz(props: DayVizProps) {
           </section>
         ) : null}
       </div>
-      <ExtraSources extras={extras} labels={labels} />
     </div>
   )
 }
@@ -123,4 +123,10 @@ export function TextVersion(props: DayVizProps) {
       <p className="visually-hidden">{uniqueRefs(sel.events.flatMap((e) => e.refs)).length} sources back the marks.</p>
     </>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return sel ? toExtraSources(sel.index.extras) : []
 }

@@ -5,9 +5,9 @@ import { ConfidenceMark } from '@/components/shell/ConfidenceMark'
 import type { Source } from '@/lib/data'
 import { layout } from '@/lib/viz/layout'
 import { useRovingFocus } from '@/lib/viz/roving'
-import { ConfDot } from '../day-15/kit/marks'
-import { Calc, SrcTags, levelWords, type Level } from '../day-15/kit/sources'
-import k from '../day-15/kit/kit.module.css'
+import { ConfDot } from '@/viz/kits/days-15-21/marks'
+import { Calc, SrcTags, levelWords, type Level } from '@/viz/kits/days-15-21/sources'
+import k from '@/viz/kits/days-15-21/kit.module.css'
 import s from './day16.module.css'
 
 export interface StationView {

@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 // No hard-coded numbers in visualizations (DESIGN_29, Tests 3). Best effort, using the TypeScript parser.
 //
-// 1. Code files in src/viz/day-*/ (not meta.ts, not tests):
+// 1. Code files in src/viz/day-*/, the shared kits in src/viz/kits/ and the finale in src/viz/finale/ (not meta.ts, not tests):
 //    - numeric literals other than -1, 0, 1, 2 fail (put layout constants in src/lib/viz/layout.ts);
 //    - strings, template text and JSX text that contain a number found in trial_days.json fail
 //      ("$100,000", "100000", "$100K", "2016-03-05"), except "Day N" references.
 // 2. meta.ts copy (title, caption, ...): every number written in a string must exist somewhere in the data,
 //    so copy can mention figures but cannot invent them. Numeric literals only for `day` and `contentLevel`.
-// 3. additions.json is data, not code: validated by tests/unit/additions.test.ts instead.
+// 3. The finale (src/viz/finale/, visualization 29) is a map engine, so layout and engine constants are allowed;
+//    instead, text it prints (strings, templates, JSX text) must not contain a number that is a value in its data
+//    (summary.json, public/finale-data/meta.json). summary.ts, which declares the sources table, is exempt.
+// 4. additions.json is data, not code: validated by tests/unit/additions.test.ts instead.
 import fs from 'node:fs'
 import path from 'node:path'
 import ts from 'typescript'
@@ -60,6 +63,19 @@ for (const n of data.verdict.numbers) {
 }
 for (const a of additions) harvest(a)
 
+// Finale data values (numbers of 3 or more digits, and any decimal), harvested from its two data files.
+const finaleValues = new Set()
+function harvestFinale(v) {
+  if (typeof v === 'number') { if (Math.abs(v) >= 100 || !Number.isInteger(v)) finaleValues.add(v) }
+  else if (Array.isArray(v)) { if (v.length <= FINALE_MAX_LIST) v.forEach(harvestFinale) } // long per-day / per-county series are map data, not copy
+  else if (v && typeof v === 'object') Object.values(v).forEach(harvestFinale)
+}
+const FINALE_MAX_LIST = 50
+for (const f of ['src/viz/finale/summary.json', 'public/finale-data/meta.json']) {
+  const full = path.join(root, f)
+  if (fs.existsSync(full)) harvestFinale(JSON.parse(fs.readFileSync(full, 'utf8')))
+}
+
 const errors = []
 const rel = (f) => path.relative(root, f)
 const lineOf = (sf, node) => sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1
@@ -70,6 +86,10 @@ function stripDayRefs(text) {
 
 function checkTextAgainstData(text, file, line, mode) {
   const t = stripDayRefs(text)
+  if (mode === 'finale') {
+    for (const n of numbersIn(t)) if (finaleValues.has(n)) errors.push(`${file}:${line} text contains ${n}, a value from the finale data; read it from summary.json or meta.json`)
+    return
+  }
   for (const d of t.matchAll(/\d{4}-\d{2}-\d{2}/g)) {
     if (mode === 'code' && dateStrings.has(d[0])) errors.push(`${file}:${line} date "${d[0]}" is a data value typed by hand; read it from the data`)
   }
@@ -84,7 +104,9 @@ function scan(file, mode) {
   const src = fs.readFileSync(file, 'utf8')
   const sf = ts.createSourceFile(file, src, ts.ScriptTarget.Latest, true, file.endsWith('x') ? ts.ScriptKind.TSX : ts.ScriptKind.TS)
   const visit = (node) => {
-    if (ts.isNumericLiteral(node)) {
+    if (ts.isNumericLiteral(node) && mode === 'finale') {
+      // engine and layout constants are allowed in the finale (see rule 3)
+    } else if (ts.isNumericLiteral(node)) {
       let value = Number(node.text)
       const parent = node.parent
       if (parent && ts.isPrefixUnaryExpression(parent) && parent.operator === ts.SyntaxKind.MinusToken) value = -value
@@ -108,21 +130,27 @@ function scan(file, mode) {
   visit(sf)
 }
 
-function walk(dir) {
+function walk(dir, finale = false) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name)
-    if (entry.isDirectory()) walk(full)
-    else if (/\.(ts|tsx|js|jsx|mjs)$/.test(entry.name) && !/\.test\.|\.spec\./.test(entry.name)) {
-      scan(full, entry.name === 'meta.ts' ? 'meta' : 'code')
+    if (entry.isDirectory()) walk(full, finale)
+    else if (/\.(ts|tsx|js|jsx|mjs)$/.test(entry.name) && !/\.test\.|\.spec\.|^testkit\./.test(entry.name)) {
+      if (finale) { if (entry.name !== 'summary.ts') scan(full, 'finale') }
+      else scan(full, entry.name === 'meta.ts' ? 'meta' : 'code')
     }
   }
 }
 
 const dayDirs = fs.readdirSync(vizRoot).filter((d) => /^day-\d\d$/.test(d))
 for (const d of dayDirs) walk(path.join(vizRoot, d))
+// Shared code the days are drawn with, and visualization 29 (the finale), are held to the same rule.
+const sharedDirs = ['kits', 'finale'].filter((d) => fs.existsSync(path.join(vizRoot, d)))
+for (const d of sharedDirs) walk(path.join(vizRoot, d), d === 'finale')
+// The finale's page files print its copy too.
+for (const f of ['src/app/finale/page.tsx', 'src/app/verdict/page.tsx']) if (fs.existsSync(path.join(root, f))) scan(path.join(root, f), 'finale')
 
 if (errors.length) {
   console.error(`check-viz-literals: ${errors.length} problem(s)\n` + errors.map((e) => '  ' + e).join('\n'))
   process.exit(1)
 }
-console.log(`check-viz-literals: ${dayDirs.length} day folders clean (no hand-typed data numbers; copy numbers traceable to the data)`)
+console.log(`check-viz-literals: ${dayDirs.length} day folders and ${sharedDirs.join(', ')} clean (no hand-typed data numbers; copy numbers traceable to the data)`)

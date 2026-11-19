@@ -2,7 +2,7 @@
 // Day 23 interaction: "Show as a table" swaps the grids for the same figures as a table;
 // "Fill the grids again" replays the fill (never under quiet mode or reduced motion).
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { useQuiet as useQuietMotion } from '@/viz/day-22/useQuiet'
+import { useQuietMotion } from '@/lib/viz/motion'
 import styles from './day23.module.css'
 
 export function WaffleStage({ grids, table }: { grids: ReactNode; table: ReactNode }) {

@@ -310,7 +310,7 @@ export default function MarchMap({ refs }: { refs: Record<string, RefSource> }) 
     <div className="fm-app" data-ready={phase.kind === 'ready' ? 'true' : 'false'}>
       <div className="fm-stage">
         <div className="fm-map">
-          <div className="fm-canvas" ref={mapEl} role="img" aria-label={`Map of the march on Day ${dayNumber(t)}: dots, each 1,000 people, moving along real roads toward Washington, D.C. The counters below give the numbers.`} />
+          <div className="fm-canvas" ref={mapEl} role="img" aria-label={`Map of the march on Day ${dayNumber(t)}: ${p ? `dots, each ${fmtInt(p)} people,` : 'dots'} moving along real roads toward Washington, D.C. The counters below give the numbers.`} />
           {phase.kind === 'loading' ? (
             <p className="fm-loading" aria-live="polite">
               Loading the walkers and their roads… <span className="mono">{Math.round(phase.progress * PERCENT)}%</span>

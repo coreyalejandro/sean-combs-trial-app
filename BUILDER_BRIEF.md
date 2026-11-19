@@ -54,7 +54,7 @@ npm ci
 | 2: the witnesses around her | 8 to 14 | dumbbell, two-sided network, corroboration strip, broken evidence chain, 24-hour clocks, log-scale line, mirrored timeline | `src/viz/day-08/` to `src/viz/day-14/` |
 | 3: the money and the second account | 15 to 21 | Sankey with confidence switch, chain-of-custody line, contradiction diff with two maps, duration ranges, swimlanes, docket tracker, payment beeswarm | `src/viz/day-15/` to `src/viz/day-21/` |
 | 4: the record and the system | 22 to 28 | testimony Gantt, waffle comparison, jury-box tracker, treemap, hive-plot network, great-circle arc map, witness constellation | `src/viz/day-22/` to `src/viz/day-28/` |
-| Finale porter | verdict and 29 | verdict transition, the march | `src/app/verdict/`, `src/app/finale/`, `src/components/finale/`, `public/march/`, `tests/e2e/finale.spec.ts` |
+| Finale porter | verdict and 29 | verdict transition, the march | `src/app/verdict/`, `src/app/finale/`, `src/viz/finale/`, `public/finale-data/`, `tests/e2e/finale.spec.ts` |
 
 Each builder may also add `tests/e2e/day-NN.spec.ts` for their own days.
 
@@ -219,8 +219,8 @@ What is there: `viewer/app.js` (the viewer logic; it fetches `data/meta.json` an
 
 What to do:
 
-1. **Data:** copy `meta.json` and `march.bin` into `public/march/data/`. Drop `march-data.js` and `meta.js` (only for opening the viewer from disk).
-2. **Component:** wrap the `app.js` logic in a client-only React component in `src/components/finale/` (load it with `next/dynamic` and `ssr: false`), using the installed `deck.gl` / `@deck.gl/react` 9.1.14 instead of the vendored script. deck.gl must load only on `/finale/`.
+1. **Data:** copy `meta.json` and `march.bin` into `public/finale-data/` (shipped as `march.qbin`, gzip bytes the browser inflates). Drop `march-data.js` and `meta.js` (only for opening the viewer from disk).
+2. **Component:** wrap the `app.js` logic in a client-only React component in `src/viz/finale/` (load it with `next/dynamic` and `ssr: false`), using the installed `deck.gl` / `@deck.gl/react` 9.1.14 instead of the vendored script. deck.gl must load only on `/finale/`.
 3. **Page:** replace the placeholder in `src/app/finale/page.tsx`. Keep the four counters, the three views ("The leaving", "The passing through", "The arriving"), Play and Pause, the speed menu, the day bar with its three marks, and "Quiet mode (no motion)" wired to the app-wide setting (`useQuietMotion()` and the header switch; do not add a second switch). Render a static summary (the still image and a text table of the counters) in the HTML for no-JavaScript readers. Keep the closing line: this is version 1, the march *to* Washington; the march *on* Washington is in development. The start date stays "Day 1", "Day 2" until Corey picks one.
 4. **Verdict turn:** in `src/app/verdict/page.tsx`, replace the scaffold's static turn with the transition DESIGN_29 describes: the 34 witness stars (from `getWitnesses()`) contract into one dot, relabelled "1 dot = 1,000 people", then "Begin the march". Carry the first counter's number over to the finale. In quiet mode, each step is a still frame with a "Continue" button. The verdict page's charge ribbon, "Not guilty means..." line, record and sources stay. The lines "One trial. 34 witnesses. Two women named in its charges." and "Then the camera pulls back." are draft copy awaiting Corey's voice review. The sentence ruler (14, 50, 135 and 240 months) is yours to add from `getVerdict().numbers`.
 5. **Tests:** port the viewer's checks to `tests/e2e/finale.spec.ts`: it loads, plays, jumps to any day quickly, opens at 390 px, and works in quiet mode. The shared page tests already cover `/finale/` and `/verdict/` for sources, support link, axe and sideways scroll.

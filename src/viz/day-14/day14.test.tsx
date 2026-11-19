@@ -4,7 +4,7 @@ import { cleanup } from '@testing-library/react'
 import { getDay } from '@/lib/data'
 import Viz, { TextVersion, meta } from './index'
 import { select } from './select'
-import { alteredDay, alteredReader, renderDay } from '../day-08/kit/testkit'
+import { alteredDay, alteredReader, renderDay } from '@/viz/kits/days-08-14/testkit'
 
 afterEach(cleanup)
 const day = getDay(14)

@@ -2,18 +2,20 @@
 // Formatters only format values that came from the data; they never supply values.
 
 const usd0 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+const usd2 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const int = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 })
 const dec1 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 })
 
+/** "$100,000"; keeps cents when the amount has them ("$10.50", never "$11"). */
 export function formatUSD(n: number): string {
-  return usd0.format(n)
+  return Number.isInteger(n) ? usd0.format(n) : usd2.format(n)
 }
 
 /** "$1.2 million", "$100,000" */
 export function formatUSDShort(n: number): string {
   const million = 1e6
   if (Math.abs(n) >= million) return `$${dec1.format(n / million)} million`
-  return usd0.format(n)
+  return formatUSD(n)
 }
 
 export function formatInt(n: number): string {
@@ -32,7 +34,11 @@ export function about(text: string): string {
 /** Display a reported value as text: numbers get thousands separators; text values pass through. */
 export function formatValue(value: number | string, unit: string): string {
   if (typeof value === 'number') {
-    if (/usd/i.test(unit)) return formatUSD(value)
+    if (/usd/i.test(unit)) {
+      // "USD/hour" -> "$10.50 per hour"; "USD (more than)" -> "$100,000 (more than)"; plain "USD" -> "$100,000"
+      const rest = unit.replace(/usd/i, '').replace(/^\s*\/\s*/, ' per ').replace(/\s+/g, ' ').trimEnd()
+      return `${formatUSD(value)}${rest && !rest.startsWith(' ') ? ' ' + rest : rest}`
+    }
     return `${formatInt(value)}${unit ? ' ' + unit : ''}`
   }
   return unit && !value.includes(unit) ? `${value} ${unit}` : value

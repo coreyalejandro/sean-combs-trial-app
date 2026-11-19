@@ -3,7 +3,7 @@
 // "Play" steps through them on a timer (never under quiet mode or reduced motion).
 import { useEffect, useState, type ReactNode } from 'react'
 import { layout } from '@/lib/viz/layout'
-import { useQuiet as useQuietMotion } from '@/viz/day-22/useQuiet'
+import { useQuietMotion } from '@/lib/viz/motion'
 import styles from './day24.module.css'
 
 export interface SeatFrame {

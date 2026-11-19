@@ -2,8 +2,8 @@
 // fight in the record (which day, which words); its outcome is that text's own verb (denied, struck, reserved...).
 // If the record does not hold the words, the entry is not drawn. The witness table supplies who got immunity.
 import { formatDate, getDays, getGaps, getWitnesses, redactThirdParties, type ReportedNumber, type Source, type TrialDay } from '@/lib/data'
-import { dayNumber } from '../day-15/kit/days'
-import { citedIn, lowest, type Level } from '../day-15/kit/sources'
+import { dayNumber } from '@/viz/kits/days-15-21/days'
+import { citedIn, lowest, type Level } from '@/viz/kits/days-15-21/sources'
 import { sourcesFor } from '../day-16/select'
 
 export type Kind = 'mistrial' | 'immunity' | 'jurors' | 'warnings' | 'evidence'

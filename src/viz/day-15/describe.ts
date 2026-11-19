@@ -1,8 +1,8 @@
 // Day 15 long description and table rows, from the same selection as the picture.
 import { formatDate, redactThirdParties } from '@/lib/data'
 import { formatInt, formatUSD, formatUSDShort, formatValue } from '@/lib/viz/format'
-import type { TableRow } from './kit/VizTable'
-import { levelWords, numSources } from './kit/sources'
+import type { TableRow } from '@/viz/kits/days-15-21/VizTable'
+import { levelWords, numSources } from '@/viz/kits/days-15-21/sources'
 import type { Day15Selection } from './select'
 import { usdCents } from './select'
 

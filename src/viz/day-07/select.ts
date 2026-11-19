@@ -2,7 +2,7 @@
 // Derek Ferguson walked through (Day 15). Dates are read from the records' text, never typed.
 import { getDays, type TrialDay } from '@/lib/data'
 import { formatUSD } from '@/lib/viz/format'
-import { buildIndex, findFact, findNumber, monthIn, numberRefs, sourcesNamedIn, toRef, uniqueRefs, weaker, type Level, type Ref, type RefIndex } from '../day-01/kit/refs'
+import { buildIndex, findFact, findNumber, monthIn, numberRefs, sourcesNamedIn, toRef, uniqueRefs, weaker, type Level, type Ref, type RefIndex } from '@/viz/kits/days-01-07/refs'
 
 export interface BankEntry {
   date: number

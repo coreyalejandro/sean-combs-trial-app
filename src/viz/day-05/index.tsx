@@ -1,19 +1,20 @@
 // Day 5: What Agents Found in the Hotel Room on the Day of the Arrest. An isotype pictograph.
 import { redactThirdParties } from '@/lib/data'
 import { formatValue } from '@/lib/viz/format'
-import type { DayVizProps } from '@/viz/types'
-import { ExtraSources, RowsTable, Sourced, type TableRow } from '../day-01/kit/Parts'
-import { numberRefs } from '../day-01/kit/refs'
+import type { DayVizProps, ExtraSource } from '@/viz/types'
+import { RowsTable, Sourced, type TableRow } from '@/viz/kits/days-01-07/Parts'
+import { numberRefs, toExtraSources } from '@/viz/kits/days-01-07/refs'
 import { Isotype } from './Interactive'
 import { meta } from './meta'
 import { select } from './select'
 import s from './day05.module.css'
+import type { TrialDay } from '@/lib/data'
 
 export { meta }
 
 export default function Day05Viz({ day }: DayVizProps) {
   const sel = select(day)
-  const { labels, extras } = sel.index
+  const { labels } = sel.index
   return (
     <div className={s.viz}>
       {sel.arrest ? (
@@ -51,7 +52,6 @@ export default function Day05Viz({ day }: DayVizProps) {
           ) : null}
         </aside>
       </div>
-      <ExtraSources extras={extras} labels={labels} />
     </div>
   )
 }
@@ -88,4 +88,10 @@ export function TextVersion({ day }: DayVizProps) {
       <RowsTable caption={`Day ${day.day}: the items in the picture, and every figure reported`} columns={['Count or value', 'What it is']} rows={[...itemRows, ...numberRows]} labels={labels} />
     </>
   )
+}
+
+/** Other days' and added sources this page cites; the shell's Sources panel lists them after the day's own. */
+export function extraSources(day: TrialDay): ExtraSource[] {
+  const sel = select(day)
+  return sel ? toExtraSources(sel.index.extras) : []
 }
